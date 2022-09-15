@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <br />
+    <img src= /static/profile_pics/{{ member.image_file }}>
+    <p><b>Member Id: #{{ member.id }}</b></p>
+    <p><b>Full Name: {{ member.username }}</b</p>
+    <p>Email: {{ member.email }}</p>
+    <p>Phone: {{ member.phone }}</p>
+    <p>Password: {{ member.password }}</p>
+    <p>Joined: {{ member.date_registered }}</p>
+  <p>Current Role: {{ member.occupation }}</p>
+  <a href="/admin/manage/{{ member.id }}/edit">Edit Member Details</a>
+{% endblock content %}

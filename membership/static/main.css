@@ -1,0 +1,27 @@
+table {
+    display: block;
+}
+tr {
+    display: block;
+    overflow: auto;
+    clear: left;
+    margin-bottom: 10px;
+}
+td {
+    display: block;
+    width: 200px;
+}
+td:first-child {
+    float: left;
+    width: auto;
+}
+td:nth-child(2) {
+    margin-left: 60px;
+    padding-bottom: 6px;
+    border-top: solid grey 2px;
+}
+td:nth-child(3) {
+    margin-left: 60px;
+    padding-top: 6px;
+    border-bottom: solid grey 2px;
+}

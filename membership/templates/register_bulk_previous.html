@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Bulk Registration.</h1>
+<h2>Upload CSV file</h2>
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    
+    {{ form.csv_file.label() }}
+    {{ form.csv_file }}
+    {% if form.csv_file.errors %}
+      {% for error in form.csv_file.errors %}
+        <span class="text-danger">{{ error }}</span></br>
+      {% endfor %}
+    {% endif %}
+    <br />
+
+    <br />
+    {{ form.submit }}
+</form>
+
+
+{% endblock  %}

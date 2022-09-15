@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Edit member details.</h1>
+  <form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <img src="{{ image_file }}">
+    
+    {{ form.picture.label() }}
+    {{ form.picture }}
+    {% if form.picture.errors %}
+      {% for error in form.picture.errors %}
+        <span class="text-danger">{{ error }}</span></br>
+      {% endfor %}
+    {% endif %}
+    <br />
+    <br />
+
+    
+
+    <br />
+    {{ form.username.label }}
+    {% if form.username.errors %}
+      {{ form.email }}
+      {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.username }}
+    {% endif %}
+
+    <br />
+    {{ form.phone.label }}
+    {% if form.phone.errors %}
+      {{ form.phone }}
+      {% for error in form.phone.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.phone }}
+    {% endif %}
+    
+    <br />
+    {{ form.email.label }}
+    {% if form.email.errors %}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.email }}
+    {% endif %}
+
+    <br />
+    {{ form.password.label }}
+    {% if form.password.errors %}
+      {{ form.password }}
+      {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.password }}
+    {% endif %}
+
+    <br />
+    {{ form.current_salary.label }}
+    {% if form.current_salary.errors %}
+      {{ form.current_salary }}
+      {% for error in form.current_salary.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.current_salary }}
+    {% endif %}
+
+    <br />
+    {{ form.experience.label }}
+    {% if form.experience.errors %}
+      {{ form.experience }}
+      {% for error in form.experience.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.experience }}
+    {% endif %}
+
+    <br />
+    {{ form.occupation.label }}
+    {% if form.occupation.errors %}
+      {{ form.occupation }}
+      {% for error in form.occupation.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.occupation }}
+    {% endif %}
+
+    
+  
+    
+    <br />
+    {{ form.submit }}
+  </form> 
+
+{% endblock content %}

@@ -1,0 +1,272 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+		<style>
+        body{
+            overflow-y: hidden;
+            box-sizing: border-box;
+            
+        }
+        @media screen and (max-width:768px){
+            body{
+                overflow-y: visible;
+            }
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /*Firefox*/
+        input[type=number] {
+            -moz-appearance:  textfield;
+        }
+        #form{
+            width: 300px;
+            margin: 20vh auto 0 auto;
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            /* margin-top: 20%; */
+            font-weight: bold;
+            background-color: whitesmoke;
+            color: rgb(121, 146, 125);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        #ric{
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            background: #0b5836;
+            border: none;
+            border-radius: 4px;
+        }
+        #ric:hover{
+            background: #05ed88;
+            transition: 1s;
+        }
+        #rich{
+            background: green;
+            padding: 20px;
+            padding-bottom: 10%;
+            
+        }
+        #rich h2{
+            font-weight: bold;
+        }
+        #rach{
+            margin-top: 9%;
+            color: rgb(5, 89, 5);
+            font-weight: bold;
+            text-align: center;
+        }
+        #rach h3{
+            font-weight: bold;
+        }
+        
+        .input-control{
+            display:flex;
+            flex-direction: column;
+        }
+        .input-control input{
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control input:focus {
+            outline: 0;
+        }
+        .input-control.success input {
+            border-color: #09c372;
+        }
+        .input-control.error input {
+            border-color: #ff3660;
+        }
+        .input-control.error {
+            color: #ff3660;
+            font-size: 9px;
+            height: 13px;
+        }
+        </style>
+
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});	
+		});
+		</script>
+
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});	
+		});
+		</script>
+			<div>
+				<div class="container-fluid rech">
+                    <form  id="form" method="POST">
+						<h2>ADD ADMIN</h2>
+                        {{ form.hidden_tag() }}
+						<br />
+                        <div class="input-control">
+                        	{% if form.username.errors %}
+						      {{ form.username(type="text", id="username", placeholder="Full-name") }}
+						      {% for error in form.username.errors %}
+						          <span>{{ error }}</span>
+						      {% endfor %}
+						    {% else %}
+						      {{ form.username(type="text", id="username", placeholder="Full-name") }}
+						      <span class="error"></span>
+						    {% endif %}
+						    <span class="error"></span>                            
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="input-control">
+                        	{% if form.email.errors %}
+						      {{ form.email(type="text", id="email", placeholder="Email") }}
+						      {% for error in form.username.errors %}
+						          <span>{{ error }}</span>
+						      {% endfor %}
+						    {% else %}
+						      {{ form.email(type="text", id="email", placeholder="Email") }}
+						      <span class="error"></span>
+						    {% endif %}      
+						    <span class="error"></span>                         
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="input-control">
+                            {% if form.phone.errors %}
+                              {{ form.phone(type="number", id="phone", placeholder="Phone Number") }}
+                              <span class="error" ></span>
+                              {% for error in form.phone.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                            {% else %}
+                              {{ form.phone(type="number", id="phone", placeholder="Phone Number") }}
+                              <span class="error" ></span>
+                            {% endif %}
+                            <span class="error"></span>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+						<div class="radiuu" >
+							{{ form.is_superadmin(type="checkbox", id="is_superadmin") }}
+							<label for="is_superadmin">Add as superadmin</label>
+						</div>
+						<br>
+						<br>
+                        {{ form.submit(type="submit", id="ric") }}
+						<br>
+                    </form>
+                </div>
+			</div>	
+			<script>
+				const form = document.getElementById('form');
+				const username = document.getElementById('username');
+				const email = document.getElementById('email');
+				const  phone = document.getElementById('phone');
+		
+				form.addEventListener('submit', e => {
+					// e.preventDefault();
+					// console.log("got it")
+		
+					validateInputs(e);
+				});
+		
+				const setError = (element, message) => {
+					const inputControl = element.parentElement;
+					const errorDisplay = inputControl.querySelector('.error');
+		
+					errorDisplay.innerText = message;
+					inputControl.classList.add('error');
+					inputControl.classList.remove('success');
+		
+				};
+				const setSuccess = element => {
+					const inputControl = element.parentElement;
+					const errorDisplay = inputControl.querySelector('.error');
+		
+					errorDisplay.innerText = '';
+					inputControl.classList.add('success');
+					inputControl.classList.remove('error');
+				};
+
+				const isValidEmail = email =>{
+					const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,:\s@]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+					return re.test(String(email).toLowerCase());
+				};
+
+				const isvalidphone = phone =>{
+					var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/
+					return re.test(phone);
+				};
+		
+				const validateInputs = (e) => {
+					const usernameValue = username.value.trim();
+					const emailValue = email.value.trim();
+					const phoneValue = phone.value.trim();
+		
+					if(usernameValue === '') {
+						setError(username, 'Username is required');
+						e.preventDefault();
+					}else{
+						setSuccess(username);
+					}
+					
+					if(emailValue === '') {
+						setError(email, 'Email is required');
+						e.preventDefault();
+					}
+					else if (!isValidEmail(emailValue)){
+						setError(email, 'Provide a valid email address');
+						e.preventDefault();
+					}
+					else{
+						setSuccess(email);
+					}
+
+					if(phoneValue === '') {
+						setError(phone, 'phone number is required');
+						e.preventDefault();
+					}
+					else if (isvalidphone(phone)){
+						setError(phone, 'Phone number must be at least 10 character.');
+						e.preventDefault();
+					}
+					else{
+						setSuccess(phone);
+					}
+				};
+		
+			</script>
+{% endblock content %}

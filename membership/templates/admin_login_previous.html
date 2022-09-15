@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="container">
+    <h1 style="text-align: center;">ADMIN</h1>
+    <form class="meb" method="POST" action="">
+      <h1>Welcome Admin, Enter your Login details below.</h1>
+      {{ form.hidden_tag() }}
+      <br />
+      {% if form.email.errors %}
+        {{ form.email }}
+        {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+        {% endfor %}
+      {% else %}
+        {{ form.email }}
+      {% endif %}
+    
+      <br />
+      {% if form.password.errors %}
+        {{ form.password }}
+        {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+        {% endfor %}
+      {% else %}
+        {{ form.password }}
+      {% endif %}
+
+      <br />
+      
+      {{ form.remember(type="checkbox") }}
+      {{ form.remember.label }}
+
+      <br />
+      <small><a href="/reset_password">Forgot Password?</a</small>
+      
+      <br />
+      {{ form.submit(class="btn-warning") }}
+    </form> 
+    
+{% endblock content %}
+

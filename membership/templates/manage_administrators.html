@@ -1,0 +1,96 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<script>
+	$(function () {
+		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+		if (!screenfull.enabled) {
+			return false;
+		}
+
+		$('#toggle').click(function () {
+			screenfull.toggle($('#container')[0]);
+		});	
+	});
+</script>
+<!-- tables -->
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+    });
+</script>
+<!-- //tables -->
+				<div class="container agile-tables">
+					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center">admins List</h3>
+					<div class="w3l-table-info table-responsive">
+					  
+					    <table id="tuble" class="table table-success table-striped table-hover ">
+						<thead>
+						  <tr>
+							<th>Name</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Birth</th>
+							<th>Units</th>
+							<th>Profile Details</th>
+						  </tr>
+						</thead>
+						<tbody>
+							{% for admin in admins.items %}
+						  <tr>
+							<td>{{admin.username}}</td>
+							<td>{{ admin.phone }}</td>
+							<td>{{ admin.email }}</td>
+							<td>{{ admin.date_of_birth }}</td>
+							<td>
+							{% for unit in admin.units.all() %}
+								<span>{{ unit.name }}</span>
+							{% endfor %}
+							</td>
+							<td><a href="{{ url_for('view_member', member_id=admin.id) }}">Click</a></td>
+						  </tr>
+						  {% endfor %}
+						</tbody>
+					  </table>
+
+					  <!-- pagination -->
+					  {% for page_num in admins.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+					    {% if page_num %}
+					      {% if admins.page == page_num %}
+					        <a class="btn btn-success mb-5"  href="{{ url_for('manage_admins', page=page_num) }}">{{ page_num }}</a>
+					      {% else %}
+					        <a class="btn btn-success mb-5" href="{{ url_for('manage_admins', page=page_num) }}">{{ page_num }}</a>
+					      {% endif %}
+					    {% else %}
+					      ...
+					    {% endif %}
+					  {% endfor %}
+					</div>
+				  </div>
+		
+{% endblock content %}
