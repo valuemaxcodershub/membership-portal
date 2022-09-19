@@ -7,3 +7,5 @@ Flask_WTF==1.0.1
 itsdangerous==2.0.1
 Pillow==9.2.0
 WTForms==3.0.1
+itsdangerous==2.0.1
+email-validator==1.2.1
