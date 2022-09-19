@@ -132,6 +132,16 @@ def manage_admins():
   return render_template("manage_administrators.html", title="Admin Management", admins=admins)
 
 
+@app.route("/admin/manage_units")
+@admin_role_required
+@login_required
+def manage_admins():
+  page = request.args.get('page', 1, type=int)
+  units= Unit.query.all().paginate(page=page, per_page=5)
+
+  return render_template("manage-units.html", title="Units Management", units=units)
+
+
 
 @app.route("/admin/register-member", methods=["GET", "POST"])
 @login_required
@@ -237,9 +247,20 @@ def dashboard():
 @app.route("/admin/manage_members")
 @admin_role_required
 @login_required
-def manage_members():
+def manage_members(unit_id=None):
+  #search for unit members if the request is for a particular unit
+  if unit_id:
+    unit = Unit.query.filter_by(id=unit_id)
+    unit_members = unit.unit_members[0]
+
+    members = unit_members.paginate(page=page, per_page=5)
+
+  else: #just return all members
+    members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
+
   page = request.args.get('page', 1, type=int)
-  members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
+  
+  
 
   return render_template("manage_members.html", page=page, members=members)
 
