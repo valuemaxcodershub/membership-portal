@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request, abort
 import os
 from PIL import Image
 from membership import app, db, bcrypt, mail
-from membership.forms import UserRegistrationForm, UserLoginForm, AdminLoginForm, AdminRegistrationForm, UpdateMemberForm, RequestResetForm, ResetPasswordForm, UploadCsvForm
+from membership.forms import UserRegistrationForm, UserLoginForm, AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, RequestResetForm, ResetPasswordForm, UploadCsvForm
 from membership.models import User, Unit
 from flask_login import login_user, current_user, logout_user, login_required
 import secrets
@@ -135,17 +135,132 @@ def manage_admins():
 @app.route("/admin/manage_units")
 @admin_role_required
 @login_required
-def manage_admins():
+def manage_units():
   page = request.args.get('page', 1, type=int)
-  units= Unit.query.all().paginate(page=page, per_page=5)
+  units= Unit.query.paginate(page=page, per_page=5)
 
   return render_template("manage-units.html", title="Units Management", units=units)
 
 
+@app.route("/admin/edit_unit/<int:unit_id>", methods=["GET", "POST"])
+@admin_role_required
+@login_required
+def edit_unit(unit_id):
+  unit = Unit.query.get_or_404(unit_id)
+
+  form = UnitRegistrationForm()
+
+  if form.validate_on_submit():
+    unit.name = form.name.data
+    unit.fees_amount = form.amount.data
+    db.session.add(unit)
+    db.session.commit()
+    return(redirect(url_for('manage_units')))
+
+
+  elif request.method == 'GET':
+    form.name.data = unit.name
+    form.amount.data = unit.fees_amount
+
+
+  return render_template("edit-unit.html", form=form, unit=unit)
+
+
+@app.route("/admin/delete_user/<int:user_id>", methods=['POST'])
+@admin_role_required
+@login_required
+def delete_user(user_id):
+  user = User.query.get_or_404(user_id)
+
+  db.session.delete(user)
+  db.session.commit()
+  flash("User deleted successfuly")
+  next_page = request.args.get('next')
+  return redirect(next_page) if next_page else redirect(url_for('manage_members'))
+
+@app.route("/admin/delete_unit/<int:unit_id>", methods=['POST'])
+@admin_role_required
+@login_required
+def delete_unit(unit_id):
+  unit = Unit.query.get_or_404(unit_id)
+
+  db.session.delete(unit)
+  db.session.commit()
+  flash("Unit deleted successfuly")
+  next_page = request.args.get('next')
+  return redirect(next_page) if next_page else redirect(url_for('manage_units'))
+
+
+
+@app.route("/admin/register-unit", methods=["GET", "POST"])
+@admin_role_required
+@login_required
+def register_unit():
+  form = UnitRegistrationForm()
+
+  if form.validate_on_submit():
+    unit = Unit(name=form.name.data, fees_amount=form.amount.data)
+    db.session.add(unit)
+    db.session.commit()
+    flash(f"{form.name.data} Unit created successfuly", "success")
+    return(redirect(url_for("manage_units")))
+  else:
+    print("form not validated on submit")
+    
+  return render_template("add_unit.html", title="Register New Unit", form=form)
+
+
+
+
+
+
+
+
+
+# @app.route("/admin/manage_members")
+# @admin_role_required
+# @login_required
+# def manage_members():
+#   page = request.args.get('page', 1, type=int)
+#   unit_id = int(request.args.get('unit_id'))
+
+#   #search for unit members if the request is for a particular unit
+#   if unit_id:
+#     unit = Unit.query.filter_by(id=unit_id)
+#     unit_members = unit.unit_members[0]
+
+#     members = unit_members.paginate(page=page, per_page=5)
+
+#   else: #just return all members
+#     members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
+  
+  
+
+  # return render_template("manage_members.html", page=page, members=members)
+
+
+
+#No member pagination because of model initialization 
+#to do this, see https://stackoverflow.com/questions/46862900/why-i-am-getting-instrumentedlist-object-has-no-attribute-paginate-filter-by
+@app.route("/admin/manage_unit_members/<int:unit_id>")
+@admin_role_required
+@login_required
+def manage_unit_members(unit_id):
+  page = request.args.get('page', 1, type=int)
+  unit = Unit.query.filter_by(id=unit_id)[0]
+  unit_members = unit.unit_members
+  print(unit_members)
+  members = unit_members
+
+  return render_template("manage_unit_members.html", title="Units Management", members=members, unit=unit)
+
+
+
+
 
 @app.route("/admin/register-member", methods=["GET", "POST"])
-@login_required
 @admin_role_required
+@login_required
 def register_member():
   if current_user.role == "USER":
     return(redirect(url_for("home")))
@@ -247,20 +362,9 @@ def dashboard():
 @app.route("/admin/manage_members")
 @admin_role_required
 @login_required
-def manage_members(unit_id=None):
-  #search for unit members if the request is for a particular unit
-  if unit_id:
-    unit = Unit.query.filter_by(id=unit_id)
-    unit_members = unit.unit_members[0]
-
-    members = unit_members.paginate(page=page, per_page=5)
-
-  else: #just return all members
-    members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
-
+def manage_members():
   page = request.args.get('page', 1, type=int)
-  
-  
+  members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
 
   return render_template("manage_members.html", page=page, members=members)
 
@@ -297,11 +401,14 @@ def register_admin():
 def view_member(member_id):
   if current_user.role == "ADMIN":
     member = User.query.get_or_404(member_id)
-    return render_template('view_member.html', member=member)
+    return render_template('profile.html', member=member)
   else:
     return redirect(url_for('home'))
 
 
+#implement select multiple units
+#user can have multiple units but the form doesn't show that,
+#it makes it look like the user can pick just 1 unit
 @app.route('/admin/manage/<int:member_id>/edit', methods=("GET", "POST"))
 @login_required
 def edit_member(member_id):
@@ -324,6 +431,8 @@ def edit_member(member_id):
     member.occupation = form.occupation.data
     member.experience = form.experience.data
     member.current_salary = form.current_salary.data
+    member.home_address = form.home_address.data
+    member.work_address = form.work_address.data
     
     db.session.add(member)
     db.session.commit()
@@ -337,9 +446,11 @@ def edit_member(member_id):
     form.occupation.data = member.occupation
     form.current_salary.data = member.current_salary
     form.experience.data = member.experience
+    form.home_address.data = member.home_address
+    form.work_address.data = member.work_address
 
   image_file = url_for('static', filename='profile_pics/' + member.image_file)
-  return render_template('edit_member.html', member=member, form=form, image_file=image_file)
+  return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file)
 
 def send_reset_email(user):
   token = user.get_reset_token()

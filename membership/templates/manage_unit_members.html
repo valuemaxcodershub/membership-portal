@@ -46,7 +46,13 @@
 </script>
 <!-- //tables -->
 				<div class="container agile-tables">
-					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> Members List</h3>
+					
+						{% if unit %}
+								<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center">{{ unit.name }} Unit Member List</h3>
+						{% else %}
+								<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center">Members List</h3>
+						{% endif %}
+								
 					<div class="w3l-table-info table-responsive">
 					  
 					    <table id="tuble" class="table table-success table-striped table-hover ">
@@ -61,7 +67,7 @@
 						  </tr>
 						</thead>
 						<tbody>
-							{% for member in members.items %}
+							{% for member in members %}
 						  <tr>
 							<td>{{member.username}}</td>
 							<td>{{ member.phone }}</td>
@@ -77,19 +83,6 @@
 						  {% endfor %}
 						</tbody>
 					  </table>
-
-					  <!-- pagination -->
-					  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-					    {% if page_num %}
-					      {% if members.page == page_num %}
-					        <a class="btn btn-success mb-5"  href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
-					      {% else %}
-					        <a class="btn btn-success mb-5" href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
-					      {% endif %}
-					    {% else %}
-					      ...
-					    {% endif %}
-					  {% endfor %}
 					</div>
 				  </div>
 		

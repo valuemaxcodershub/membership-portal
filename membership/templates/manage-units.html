@@ -1,0 +1,59 @@
+
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<script>
+	$(function () {
+		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+		if (!screenfull.enabled) {
+			return false;
+		}
+
+		
+
+		$('#toggle').click(function () {
+			screenfull.toggle($('#container')[0]);
+		});	
+	});
+	</script>
+		<div class="container agile-tables">
+			<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="aka">Manage Unit</h3>
+			<div class="w3l-table-info table-responsive">	
+				
+				<table id="tuble" class="table table-success table-striped table-hover ">
+					<thead>
+					  <tr>
+						<th>Unit Name</th>
+						<th>Manage Member</th>
+						<th>Action</th>
+					  </tr>
+					</thead>
+					<tbody>
+						{% for unit in units.items %}
+						<tr>
+							<td>{{unit.name}}</td>
+							<td><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}">Click</a></td>
+							</td>
+							<td><a role="button" class="btn btn-primary" href="{{ url_for('edit_unit', unit_id=unit.id) }}"><i class="fa fa-pencil" aria-hidden="true"></i>
+						</tr>
+						  {% endfor %}
+							
+					</tbody>	
+				  </table>
+
+				  <!-- pagination -->
+				  {% for page_num in units.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+				  {% if page_num %}
+					{% if units.page == page_num %}
+					  <a class="btn btn-success mb-5"  href="{{ url_for('manage_units', page=page_num) }}">{{ page_num }}</a>
+					{% else %}
+					  <a class="btn btn-success mb-5" href="{{ url_for('manage_units', page=page_num) }}">{{ page_num }}</a>
+					{% endif %}
+				  {% else %}
+					...
+				  {% endif %}
+				{% endfor %}
+			  </div>
+			</div>
+
+{% endblock content %}

@@ -1,0 +1,157 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<style>
+	body{
+		overflow-y: hidden;
+		box-sizing: border-box;
+		
+	}
+	@media screen and (max-width:768px){
+		body{
+			overflow-y: visible;
+		}
+	}
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/*Firefox*/
+	input[type=number] {
+		-moz-appearance:  textfield;
+	}
+	#form{
+		width: 300px;
+		margin: 20vh auto 0 auto;
+		padding: 10px;
+		font-size: 12px;
+		text-align: center;
+		/* margin-top: 20%; */
+		font-weight: bold;
+		background-color: whitesmoke;
+		color: rgb(121, 146, 125);
+		border-radius: 4px;
+		font-size: 12px;
+	}
+	#ric{
+		padding: 10px;
+		margin-top: 10px;
+		width: 100%;
+		color: white;
+		font-weight: bold;
+		background: #0b5836;
+		border: none;
+		border-radius: 4px;
+	}
+	#ric:hover{
+		background: #05ed88;
+		transition: 1s;
+	}
+	#rich{
+		background: green;
+		padding: 20px;
+		padding-bottom: 10%;
+		
+	}
+	#rich h2{
+		font-weight: bold;
+	}
+	#rach{
+		margin-top: 9%;
+		color: rgb(5, 89, 5);
+		font-weight: bold;
+		text-align: center;
+	}
+	#rach h3{
+		font-weight: bold;
+	}
+	
+	.input-control{
+		display:flex;
+		flex-direction: column;
+	}
+	.input-control input{
+		border: 2px solid #f0f0f0;
+		border-radius: 4px;
+		display: block;
+		font-size: 12px;
+		padding: 10px;
+		width: 100%;
+	}
+	.input-control input:focus {
+		outline: 0;
+	}
+	.input-control.success input {
+		border-color: #09c372;
+	}
+	.input-control.error input {
+		border-color: #ff3660;
+	}
+	.input-control.error {
+		color: #ff3660;
+		font-size: 9px;
+		height: 13px;
+	}
+	</style>
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});	
+		});
+		</script>
+		<!-- HTML -->
+		<div>
+			<div class="container-fluid rech">
+				<form id="form" method="POST">
+					{{ form.hidden_tag() }}
+					<h2 data-text="Add member">Add Unit</h2>
+					<br>
+					<div class="input-control">
+                        	{% if form.name.errors %}
+						      {{ form.name(type="text", id="name", placeholder="Name") }}
+						      {% for error in form.username.errors %}
+						          <span>{{ error }}</span>
+						      {% endfor %}
+						    {% else %}
+						      {{ form.name(type="text", id="name", placeholder="Name") }}
+						      <span class="error"></span>
+						    {% endif %}      
+						    <span class="error"></span>                         
+                        </div>
+					<br>
+					<br>
+					<br>
+					<div class="input-control">
+                            {% if form.amount.errors %}
+                              {{ form.amount(type="number", id="amount", placeholder="Amount") }}
+                              <span class="error" ></span>
+                              {% for error in form.amount.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                            {% else %}
+                              {{ form.amount(type="number", id="amount", placeholder="Amount") }}
+                              <span class="error" ></span>
+                            {% endif %}
+                            <span class="error"></span>
+                        </div>
+					<br>
+					<br>
+					<br>
+					
+					{{ form.submit(type="submit", id="ric") }}
+					<br>
+				</form>
+			</div>
+		</div>	
+	
+{% endblock content %}

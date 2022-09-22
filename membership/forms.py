@@ -9,6 +9,12 @@ class UploadCsvForm(FlaskForm):
   submit = SubmitField("Submit")
 
 
+class UnitRegistrationForm(FlaskForm):
+  name = StringField("Unit name", validators=[DataRequired(), Length(min=2,max=30)])
+  amount = StringField("Fees", validators=[DataRequired(), Length(min=2,max=30)])
+  submit = SubmitField("Submit")
+
+
 class AdminRegistrationForm(FlaskForm):
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
   email = StringField("Email", validators=[DataRequired(), Email()])
@@ -75,13 +81,22 @@ class AdminLoginForm(FlaskForm):
 
 
 class UpdateMemberForm(FlaskForm):
+  my_choices = []
+  units = Unit.query.all()
+  for unit in units:
+    my_choices.append(unit.name)
+
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
   email = StringField("Email", validators=[DataRequired(), Email()])
   picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
   phone = StringField(validators=[DataRequired()])
   password = StringField("Password", validators=[DataRequired()])
+  unit = SelectField("Unit", validators=[DataRequired()],choices=my_choices)
   current_salary = StringField()
   occupation = StringField()
+  home_address = StringField()
+  date_of_birth = StringField()
+  work_address = StringField()
   experience = StringField()
   submit = SubmitField("Edit Member")
   current_member = None
