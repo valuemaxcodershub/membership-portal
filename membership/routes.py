@@ -166,10 +166,11 @@ def edit_unit(unit_id):
   return render_template("edit-unit.html", form=form, unit=unit)
 
 
-@app.route("/admin/delete_user/<int:user_id>", methods=['POST'])
+@app.route("/admin/delete_user", methods=['POST'])
 @admin_role_required
 @login_required
-def delete_user(user_id):
+def delete_user():
+  user_id = int(request.form['user_id'])
   user = User.query.get_or_404(user_id)
 
   db.session.delete(user)
@@ -182,7 +183,7 @@ def delete_user(user_id):
 @admin_role_required
 @login_required
 def delete_unit(unit_id):
-  unit = Unit.query.get_or_404(unit_id)
+  unit = Unit.query.get_or_404(int(unit_id))
 
   db.session.delete(unit)
   db.session.commit()
