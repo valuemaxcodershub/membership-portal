@@ -139,15 +139,15 @@ def admin_login():
   return render_template("admin_login.html", title="Admin Login", form=form)
 
 
-@app.route("/admin/home")
-@login_required
-def admin():
-  page = request.args.get('page', 1, type=int)
-  members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
+# 
+# @login_required
+# def admin():
+#   page = request.args.get('page', 1, type=int)
+#   members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
   
-  if current_user.role=="USER":
-    return redirect(url_for('home'))
-  return render_template("admin.html", title="Admin", members=members)
+#   if current_user.role=="USER":
+#     return redirect(url_for('home'))
+#   return render_template("admin.html", title="Admin", members=members)
 
 #only for superadmin
 @app.route("/admin/manage_admins")
@@ -207,11 +207,12 @@ def delete_user():
   next_page = request.args.get('next')
   return redirect(next_page) if next_page else redirect(url_for('manage_members'))
 
-@app.route("/admin/delete_unit/<int:unit_id>", methods=['POST'])
+@app.route("/admin/delete_unit", methods=['POST'])
 @admin_role_required
 @login_required
-def delete_unit(unit_id):
-  unit = Unit.query.get_or_404(int(unit_id))
+def delete_unit():
+  unit_id = int(request.form['unit_id'])
+  unit = Unit.query.get_or_404(unit_id)
 
   db.session.delete(unit)
   db.session.commit()
@@ -393,6 +394,7 @@ def register_bulk(error_message=""):
 
 
 @app.route("/admin/dashboard")
+@app.route("/admin/home")
 @admin_role_required
 @login_required
 def dashboard():
@@ -490,7 +492,13 @@ def edit_member(member_id):
     return redirect(url_for('home'))
   member = User.query.get_or_404(member_id)
 
-  form = UpdateMemberForm()
+  my_choices = [] 
+  for unit in Unit.query.all():
+    my_choices.append(unit.name)
+
+  form = UpdateMemberForm(my_choices=my_choices)
+
+  #for validation methods
   form.current_member = member
 
   if form.validate_on_submit():

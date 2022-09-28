@@ -40,8 +40,7 @@ class AdminRegistrationForm(FlaskForm):
 
 class UserRegistrationForm(FlaskForm):
   my_choices = []
-  units = Unit.query.all()
-  for unit in units:
+  for unit in Unit.query.all():
     my_choices.append(unit.name)
 
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
@@ -80,10 +79,17 @@ class AdminLoginForm(FlaskForm):
   submit = SubmitField("Log In")
 
 
+#try fixing no update using init
+#
+#
+#
+#
+#
+#
+#
 class UpdateMemberForm(FlaskForm):
-  my_choices = []
-  units = Unit.query.all()
-  for unit in units:
+  my_choices = [] 
+  for unit in Unit.query.all():
     my_choices.append(unit.name)
 
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
