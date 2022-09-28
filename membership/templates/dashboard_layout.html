@@ -210,8 +210,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <nav class="navbar navbar-expand-lg navbar-light bg-" >
           <div class="container-fluid">
             <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="60px" /></a>
-            <form method="POST" action="{{url_for('search_members')}}" class="d-flex">
-            <input name="search_query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form  method="POST" action="{{url_for('search_members')}}" class="d-flex">
+            <input id="" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
             </form>
           </div>
@@ -228,6 +228,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <br>
     <br>
     </section>
+
+    <!-- Auto-Complete -->
+  <script>
+    $(function() {
+        $.ajax({
+            url: '{{ url_for("autocomplete") }}'
+            }).done(function (data){
+                console.log(data);
+                $('#member_autocomplete').autocomplete({
+                    source: data,
+                    minLength: 2
+                });
+            });
+        });
+  </script>
 
     <script src="{{ url_for('static', filename='js/jquery2.0.3.min.js') }}" ></script>
     <script src="{{ url_for('static', filename='js/modernizr.js') }}" ></script>

@@ -1,5 +1,6 @@
-from flask import render_template, redirect, url_for, flash, request, abort, send_file
+from flask import Response, render_template, redirect, url_for, flash, request, abort, send_file
 import os
+import json
 from PIL import Image
 from membership import app, db, bcrypt, mail
 from membership.forms import UserRegistrationForm, UserLoginForm, AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, RequestResetForm, ResetPasswordForm, UploadCsvForm, UpdateAdminForm
@@ -89,6 +90,18 @@ def save_picture(form_picture):
 
 
 # ADMIN ADMIN ADMIN #
+@admin_role_required
+@login_required
+@app.route('/_autocomplete', methods=['GET'])
+def autocomplete():
+    members = []
+    for member in  User.query.filter_by(role="USER").all():
+      members.append(member.username)
+    print(members)
+
+    return Response(json.dumps(members), mimetype='application/json')
+
+
 @admin_role_required
 @login_required
 @app.route("/admin/search", methods=["POST"])
