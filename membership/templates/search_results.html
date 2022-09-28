@@ -46,7 +46,7 @@
 </script>
 <!-- //tables -->
 				<div class="container agile-tables">
-					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> admins List</h3>
+					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> Search results for {{query}}</h3>
 					<div class="w3l-table-info table-responsive">
 					  
 					    <table id="tuble" class="table table-success table-striped table-hover ">
@@ -55,20 +55,24 @@
 							<th>Name</th>
 							<th>Phone</th>
 							<th>Email</th>
+							<th>Units</th>
 							<th>Profile Details</th>
 						  </tr>
 						</thead>
 						<tbody>
-							{% for admin in admins.items %}
+							{% for member in members.items %}
 						  <tr>
-							<td>{{admin.username}}</td>
-							<td>{{ admin.phone }}</td>
-							<td>{{ admin.email }}</td>
-							<td><a role="button" class="btn btn-primary" href="{{ url_for('edit_admin', admin_id=admin.id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+							<td>{{member.username}}</td>
+							<td>{{ member.phone }}</td>
+							<td>{{ member.email }}</td>
+							<td>
+							{{member.display_units()}}
+							</td>
+							<td><a role="button" class="btn btn-primary" href="{{ url_for('edit_member', member_id=member.id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
-								<a type="button" class="btn btn-warning"  dataId="{{admin.id}}" dataImage="/static/profile_pics/{{admin.image_file }}" dataName="{{ admin.username }}" dataEmail="{{admin.email}}" dataPhone="{{admin.phone}}" dataPassword="{{ admin.password }}" dataUnits="{{admin.display_units()}}" dataDateReg="{{ admin.date_registered }}" dataOccupation="{{ admin.occupation }}" dataHomeAddr="{{ admin.home_address }}" dataWorkAddre="{{ admin.work_address }}" dataExperience = "{{admin.experience}}" dataCurrentSalary="{{admin.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)"><i class="fa fa-eye" aria-hidden="true"></i></a>
+								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{admin.id}}" dataName="{{admin.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 							</td>
 						  </tr>
 						  {% endfor %}
@@ -98,7 +102,7 @@
 						  </div>
 						</div>
 
-						<!--  View admin Modal -->
+						<!--  View Member Modal -->
 						<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 						<div class="modal-dialog">
 						  <div class="modal-content">
@@ -133,6 +137,34 @@
 										<p id="modalUserPassword">...</p>
 									</div>
 									<br>
+									<div>
+										<p id="modalUserUnits">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserDateReg">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserOccupation">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserWorkAddr">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserHomeAddr">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserExperience">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserCurrentSalary">...</p>
+									</div>
+									<br>
 							</div>
 							<div class="modal-footer">
 							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -147,12 +179,12 @@
 
 
 					  <!-- pagination -->
-					  {% for page_num in admins.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+					  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 					    {% if page_num %}
-					      {% if admins.page == page_num %}
-					        <a class="btn btn-success mb-5"  href="{{ url_for('manage_admins', page=page_num) }}">{{ page_num }}</a>
+					      {% if members.page == page_num %}
+					        <a class="btn btn-success mb-5"  href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
 					      {% else %}
-					        <a class="btn btn-success mb-5" href="{{ url_for('manage_admins', page=page_num) }}">{{ page_num }}</a>
+					        <a class="btn btn-success mb-5" href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
 					      {% endif %}
 					    {% else %}
 					      ...
@@ -179,6 +211,13 @@
 						    	let dataId = obj.getAttribute("dataId");
 						    	let dataPhone = obj.getAttribute("dataPhone");
 						    	let dataPassword = obj.getAttribute("dataPassword");
+						    	let dataUnits = obj.getAttribute("dataUnits");
+						    	let dataDateReg = obj.getAttribute("dataDateReg");
+						    	let dataOccupation = obj.getAttribute("dataOccupation");
+						    	let dataHomeAddress = obj.getAttribute("dataHomeAddr");
+						    	let dataWorkAddress = obj.getAttribute("dataWorkAddr");
+						    	let dataExperience = obj.getAttribute("dataExperience");
+						    	let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
 
 
 						    	document.getElementById('modalUserImage').src = dataImage;
@@ -187,6 +226,14 @@
 						    	$('#modalUserId').text('Name:  ' + dataName);
 						    	$('#modalUserPhone').text('Phone:  ' + dataPhone);
 						    	$('#modalUserPassword').text('Password:  ' + dataPassword);
+						    	$('#modalUserUnits').text('Units:  ' + dataUnits);
+						    	$('#modalUserDateReg').text('Date Joined:  ' + dataDateReg);
+						    	$('#modalUserOccupation').text('Occupation:  ' + dataOccupation);
+						    	$('#modalUserHomeAddr').text('Home Address:  ' + dataHomeAddress);
+						    	$('#modalUserWorkAddr').text('Work Address:  ' + dataWorkAddress);
+						    	$('#modalUserExperience').text('Experience:  ' + dataExperience);
+						    	$('#modalUserCurrentSalary').text('Current Salary:  ' + dataCurrentSalary);
+
 
 
 

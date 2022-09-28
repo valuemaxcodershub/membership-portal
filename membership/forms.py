@@ -119,6 +119,34 @@ class UpdateMemberForm(FlaskForm):
       if user:
         raise ValidationError('That phone number is taken. Please choose a different one.')
 
+
+class UpdateAdminForm(FlaskForm):
+  username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
+  email = StringField("Email", validators=[DataRequired(), Email()])
+  picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+  phone = StringField(validators=[DataRequired()])
+  password = StringField("Password", validators=[DataRequired()])
+  submit = SubmitField("Edit Member")
+  current_member = None
+
+  def validate_username(self, username):
+    if username.data != self.current_member.username:
+      user = User.query.filter_by(username=username.data).first()
+      if user:
+        raise ValidationError('That username is taken. Please choose a different one.')
+
+  def validate_email(self, email):
+    if email.data != self.current_member.email:
+      user = User.query.filter_by(email=email.data).first()
+      if user:
+        raise ValidationError('That email is taken. Please choose a different one.')
+
+  def validate_phone(self, phone):
+    if phone.data != self.current_member.phone:
+      user = User.query.filter_by(phone=phone.data).first()
+      if user:
+        raise ValidationError('That phone number is taken. Please choose a different one.')
+
 class RequestResetForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])

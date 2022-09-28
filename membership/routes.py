@@ -1,8 +1,8 @@
-from flask import render_template, redirect, url_for, flash, request, abort
+from flask import render_template, redirect, url_for, flash, request, abort, send_file
 import os
 from PIL import Image
 from membership import app, db, bcrypt, mail
-from membership.forms import UserRegistrationForm, UserLoginForm, AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, RequestResetForm, ResetPasswordForm, UploadCsvForm
+from membership.forms import UserRegistrationForm, UserLoginForm, AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, RequestResetForm, ResetPasswordForm, UploadCsvForm, UpdateAdminForm
 from membership.models import User, Unit
 from flask_login import login_user, current_user, logout_user, login_required
 import secrets
@@ -32,6 +32,9 @@ def super_admin_role_required(func):
 @app.route("/")
 @app.route("/home")
 def home():
+  if current_user.role == "ADMIN":
+    return redirect(url_for('dashboard'))
+
   return render_template("home.html")
 
 @app.route("/account")
@@ -86,6 +89,17 @@ def save_picture(form_picture):
 
 
 # ADMIN ADMIN ADMIN #
+@admin_role_required
+@login_required
+@app.route("/admin/search", methods=["POST"])
+def search_members():
+  query = request.form.get("search_query", False)
+  page = request.args.get('page', 1, type=int)
+  results = User.query.filter_by(role="USER").filter_by(username=query).paginate(page=page, per_page=5)
+
+  return render_template("search_results.html", members=results, query=query, title=f"Search Results for {query}")
+
+
 @app.route("/admin", methods=["GET", "POST"])
 def admin_login():
   if current_user.is_authenticated:
@@ -305,24 +319,34 @@ def parse_csv(csv_file):
 
       db.session.add(user)
 
-    
 
-# @login_required
-# @app.route("/admin/register-bulk", methods=["GET", "POST"])
-# def register_bulk():
-#   if current_user.role == "USER":
-#     return(redirect(url_for("home")))
-#   form = UploadCsvForm()
-#   if form.validate_on_submit():
-#     file = request.files['file']
-#     csv_path = os.path.join(app.root_path, 'static/CSVs', file.filename)
-#     file.save(csv_path)
+@app.route('/admin/download-template')
+def download_template():
+  params = []
+  bad_params = ["id", "date_registered", "role", "is_superadmin", "verify_reset_token", "get_reset_token", "_sa_class_manager", "display_units", "_is_superadmin"]
 
-#     parse_csv(csv_path)
-#     flash("Bulk registration successful")
-#     return(redirect(url_for("admin")))
+  for k,v in User.__dict__.items():
+    if k.startswith("__") and k.endswith("__"):
+      continue
+    else:
+      params.append(k)
 
-#   return render_template("register_bulk.html", form=form)
+  template_list = list(set(params)-set(bad_params))
+
+  print(",".join(template_list))
+
+  template_csv_path = os.path.join(app.root_path, 'static/CSVs/template.csv')
+
+  with open(template_csv_path, "w") as f:
+    f.write(",".join(template_list))
+
+  return send_file(
+      template_csv_path,
+      mimetype='text/csv',
+      download_name='nasme_bulk_template.csv',
+      as_attachment=True
+  )
+
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
@@ -330,6 +354,7 @@ def parse_csv(csv_file):
 def register_bulk(error_message=""):
   if current_user.role == "USER":
     return(redirect(url_for("home")))
+
   form = UploadCsvForm()
 
   if form.validate_on_submit():
@@ -405,6 +430,40 @@ def view_member(member_id):
     return render_template('profile.html', member=member)
   else:
     return redirect(url_for('home'))
+
+@app.route('/admin/manage_admin/<int:admin_id>/edit', methods=("GET", "POST"))
+@login_required
+def edit_admin(admin_id):
+  admin = User.query.get_or_404(admin_id)
+
+  form = UpdateAdminForm()
+  form.current_member = admin
+
+  if form.validate_on_submit():
+    if form.picture.data:
+      picture_file = save_picture(form.picture.data)
+      admin.image_file = picture_file
+
+    admin.username = form.username.data
+    admin.email = form.email.data
+    admin.phone = form.phone.data
+    admin.password = form.password.data
+    
+    db.session.add(admin)
+    db.session.commit()
+    flash("Account successfuly modified", "success")
+    return(redirect(url_for("view_member", member_id=admin.id)))
+  elif request.method == 'GET':
+    form.username.data = admin.username
+    form.email.data = admin.email
+    form.phone.data = admin.phone
+    form.password.data = admin.password
+
+  image_file = url_for('static', filename='profile_pics/' + admin.image_file)
+  return render_template('edit_admin_detail.html', admin=admin, form=form, image_file=image_file)
+
+
+
 
 
 #implement select multiple units

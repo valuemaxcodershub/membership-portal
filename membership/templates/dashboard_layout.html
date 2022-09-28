@@ -51,19 +51,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//skycons-icons-->
 </head>
 <body>
-	<!--  navigation  -->
-    {% if current_user.is_authenticated %}
-      {% if current_user.role == "USER" %}
-        <a  href="{{ url_for('home') }}">Home</a>
-      {% else %}
-        <a  href="{{ url_for('admin') }}">Home</a>
-      {% endif %}
-      <a  href="{{ url_for('account') }}">Account</a>
-      <a href="{{ url_for('logout') }}">Logout</a>
-    {% else %}
-      <a href="{{ url_for('login') }}">User Login</a>
-      <a style="margin-left:400px;" href="{{ url_for('admin_login') }}">Admin Login</a>
-    {% endif %}
 
     <!-- flashed messages  -->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -103,18 +90,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
         <ul>
           <li>
-          <a class="subnav-text" href="{{ url_for('register_member') }}" target="_blank">
+          <a class="subnav-text" href="{{ url_for('register_member') }}">
           add member
           </a>
           </li>
           <li>
-          <a class="subnav-text" href="{{ url_for('manage_members') }}" target="_blank">
+          <a class="subnav-text" href="{{ url_for('manage_members') }}">
           manage members
           </a>
           </li>
           <li>
-            <a class="subnav-text" href="view_member.html" target="_blank">
-            view members
+            <a class="subnav-text" href="{{ url_for('register_bulk') }}" >
+            Bulk Registration
             </a>
             </li>
         </ul>
@@ -130,10 +117,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </a>
           <ul>
             <li>
-              <a class="subnav-text" href="{{ url_for('register_admin') }}" target="_blank">add admin</a>
+              <a class="subnav-text" href="{{ url_for('register_admin') }}" >add admin</a>
             </li>
             <li>
-              <a class="subnav-text" href="{{ url_for('manage_admins') }}" target="_blank">manage admin</a>
+              <a class="subnav-text" href="{{ url_for('manage_admins') }}" >manage admin</a>
             </li>
           </ul>
         </li>
@@ -146,7 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
         <ul>
           <li>
-            <a class="subnav-text" href="{{ url_for('manage_units') }}" target="_blank">
+            <a class="subnav-text" href="{{ url_for('manage_units') }}" >
               manage cluster or unit
             </a>
           </li>
@@ -155,12 +142,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               add cluster or unit
             </a>
           </li>
-          <li>
-            <a class="subnav-text" href="unit_members.html" target="_blank">
-              Unit members
-            </a>
-          </li>
-          
         </ul>
       </li>
       <li>
@@ -171,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </span>
         </a>
       </li>
-      <li>
+      <!-- <li>
         <a href="{{ url_for('register_bulk') }}">
           <i class="icon-table nav-icon"></i>
           <span class="nav-text">
@@ -202,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           Error Page
           </span>
         </a>
-      </li>
+      </li> -->
       
     </ul>
     <ul class="logout">
@@ -229,8 +210,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <nav class="navbar navbar-expand-lg navbar-light bg-" >
           <div class="container-fluid">
             <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="60px" /></a>
-            <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form method="POST" action="{{url_for('search_members')}}" class="d-flex">
+            <input name="search_query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
             </form>
           </div>

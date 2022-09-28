@@ -170,8 +170,7 @@
 			<div>
 				<br>
 				<div class="roch">
-					<h1>Edit Member Details</h1>
-					<p>your profile is how users see you across the site,it's up to you how much or how little information you choose to provide...</p>
+					<h1>Edit Admin Details</h1>
 				</div>
 				<br>
 				<div class="container">
@@ -252,86 +251,6 @@
     {% else %}
       {{ form.password }}
     {% endif %}
-
-    <br />
-    <br />
-    {{ form.current_salary.label }}
-    <br />
-    {% if form.current_salary.errors %}
-      {{ form.current_salary }}
-      {% for error in form.current_salary.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.current_salary }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.experience.label }}
-    <br />
-    {% if form.experience.errors %}
-      {{ form.experience }}
-      {% for error in form.experience.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.experience }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.occupation.label }}
-    <br />
-    {% if form.occupation.errors %}
-      {{ form.occupation }}
-      {% for error in form.occupation.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.occupation }}
-    {% endif %}
-    
-
-
-    <br />
-    <br />
-    {{ form.work_address.label }}
-    <br />
-    {% if form.work_address.errors %}
-      {{ form.work_address }}
-      {% for error in form.work_address.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.work_address }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.home_address.label }}
-    <br />
-    {% if form.home_address.errors %}
-      {{ form.home_address }}
-      {% for error in form.home_address.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.home_address }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.unit.label }}
-    <br />
-      {% if form.unit.errors %}
-        {{ form.unit(type="number", id="unit", placeholder="Unit") }}
-        {% for error in form.unit.errors %}
-            <span>{{ error }}</span>
-        {% endfor %}
-      {% else %}
-        {{ form.unit(type="number", id="unit", placeholder="Unit") }}
-      {% endif %}
 
     <br />
     <br />

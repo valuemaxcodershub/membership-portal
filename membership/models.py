@@ -33,6 +33,14 @@ class User(db.Model, UserMixin):
   home_address = db.Column(db.String())
   work_address = db.Column(db.String())
 
+
+  def display_units(self):
+    unit_names = []
+    for unit in self.units.all():
+      unit_names.append(unit.name)
+
+    return ", ".join(unit_names)
+
   
   @property
   def is_superadmin(self):
