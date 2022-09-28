@@ -33,8 +33,9 @@ def super_admin_role_required(func):
 @app.route("/")
 @app.route("/home")
 def home():
-  if current_user.role == "ADMIN":
-    return redirect(url_for('dashboard'))
+  if current_user.is_authenticated:
+    if current_user.role == "ADMIN":
+      return redirect(url_for('dashboard'))
 
   return render_template("home.html")
 
