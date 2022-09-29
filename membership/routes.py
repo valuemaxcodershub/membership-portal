@@ -15,17 +15,23 @@ from functools import wraps
 def admin_role_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
+      if current_user.is_authenticated:
         if not current_user.role == "ADMIN":
             abort(403)
         return func(*args, **kwargs)
+      else:
+        abort(403)
     return decorated_view
 
 def super_admin_role_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
+      if current_user.is_authenticated:
         if not current_user.is_superadmin:
             abort(403)
         return func(*args, **kwargs)
+      else:
+        abort(403)
     return decorated_view
 
 
@@ -37,15 +43,13 @@ def home():
     if current_user.role == "ADMIN":
       return redirect(url_for('dashboard'))
 
-  return render_template("home.html")
+  return redirect(url_for("admin_login"))
 
 @app.route("/account")
 @login_required
 def account():
   if current_user.role == "USER":
     return render_template("user_account.html")
-  elif current_user.role == "ADMIN":
-    return render_template("admin_account.html")
 
 @app.route("/logout")
 def logout():
@@ -109,16 +113,18 @@ def autocomplete():
 def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter_by(username=query).paginate(page=page, per_page=5)
+  results = User.query.filter_by(role="USER").filter(User.username.contains(query))
+  result_count = results.count()
+  members = results.paginate(page=page, per_page=5)
 
-  return render_template("search_results.html", members=results, query=query, title=f"Search Results for {query}")
+  return render_template("search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
 
 
 @app.route("/admin", methods=["GET", "POST"])
 def admin_login():
   if current_user.is_authenticated:
     if current_user.role == "ADMIN":
-      return redirect(url_for('admin'))
+      return redirect(url_for('dashboard'))
     else:
       flash("You need to be an admin to view this page.")
       return redirect(url_for('home'))
@@ -295,6 +301,13 @@ def register_member():
   if current_user.role == "USER":
     return(redirect(url_for("home")))
   form = UserRegistrationForm()
+
+  #for unit selection
+  my_choices = [] 
+  for unit in Unit.query.all():
+    my_choices.append(unit.name)
+
+  form.unit.choices = my_choices
   if form.validate_on_submit():
     user = User(username=form.username.data, email=form.email.data, phone=form.phone.data)
     unit = Unit.query.filter_by(name=form.unit.data).all()[0]
@@ -303,7 +316,7 @@ def register_member():
     db.session.add(user)
     db.session.commit()
     flash(f"Account created for {form.username.data} successfully. Password for {form.username.data} is {user.password}", "success")
-    return(redirect(url_for("admin")))
+    return(redirect(url_for("manage_members")))
     
   return render_template("add-member.html", title="Register New Member", form=form)
 
@@ -398,8 +411,12 @@ def register_bulk(error_message=""):
 @admin_role_required
 @login_required
 def dashboard():
-  total_members = len(User.query.filter_by(role="USER").all())
-  return render_template("index.html", total_members=total_members)
+  total_members = User.query.filter_by(role="USER").count()
+  total_units = User.query.filter_by(role="USER").count()
+
+  return render_template("index.html", total_members=total_members,
+                                       total_units=total_units,
+                                        )
 
 @app.route("/admin/manage_members")
 @admin_role_required
@@ -448,6 +465,7 @@ def view_member(member_id):
     return redirect(url_for('home'))
 
 @app.route('/admin/manage_admin/<int:admin_id>/edit', methods=("GET", "POST"))
+@app.route('/admin/account')
 @login_required
 def edit_admin(admin_id):
   admin = User.query.get_or_404(admin_id)
@@ -492,13 +510,14 @@ def edit_member(member_id):
     return redirect(url_for('home'))
   member = User.query.get_or_404(member_id)
 
+  form = UpdateMemberForm()
+
+  #for unit selection
   my_choices = [] 
   for unit in Unit.query.all():
     my_choices.append(unit.name)
 
-  form = UpdateMemberForm(my_choices=my_choices)
-
-  #for validation methods
+  form.unit.choices = my_choices
   form.current_member = member
 
   if form.validate_on_submit():

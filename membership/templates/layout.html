@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<!--  navigation  -->
-    {% if current_user.is_authenticated %}
+   <!--  {% if current_user.is_authenticated %}
       {% if current_user.role == "USER" %}
         <a  href="{{ url_for('home') }}">Home</a>
       {% else %}
@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     {% else %}
       <a href="{{ url_for('login') }}">User Login</a>
       <a style="margin-left:400px;" href="{{ url_for('admin_login') }}">Admin Login</a>
-    {% endif %}
+    {% endif %} -->
 
     <!-- flashed messages  -->
     {% with messages = get_flashed_messages(with_categories=true) %}

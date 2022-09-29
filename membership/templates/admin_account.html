@@ -1,4 +1,273 @@
-{% extends "layout.html" %}
+{% extends "dashboard_layout.html" %}
 {% block content %}
-  <h1>{{ current_user.username}} Account settings. Change admin account settings below</h1>
+<style>
+  .rooc{
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .roch{
+    text-align: center;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(59, 130, 59);
+  }
+  .ordd{
+    text-align: center;
+    background-color: whitesmoke;
+    padding: 10px;
+  }
+  .ordd label{
+    /* text-align: center; */
+    font-weight: bold;
+    color: rgb(59, 130, 59);
+  }
+  .ordd input{
+    padding: 5px;
+    width: 60%;
+    border-radius: 4px;
+    outline: none;
+    border: 2px solid rgb(59, 130, 59);
+  }
+  
+  #sola{
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  color: rgb(245, 238, 238);
+  font-weight: bold;
+  background: #0b5836;
+  border: none;
+  transition: ease-out 0.3s;
+  /* border: 3px solid #09ef20; */
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+}
+#sola:hover{
+  color: rgb(15, 15, 15);
+}
+#sola::before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left:50% ;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: #09ef20;
+}
+#sola:hover::before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  z-index:-1 ;
+}
+/*  */
+#sala{
+  padding: 10px;
+  margin-top: 10px;
+  width: 40%;
+  color: rgb(245, 238, 238);
+  font-weight: bold;
+  background: #0b5836;
+  border: none;
+  transition: ease-out 0.3s;
+  /* border: 3px solid #09ef20; */
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+}
+#sala:hover{
+  color: rgb(15, 15, 15);
+}
+#sala::before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left:50% ;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: "";
+  background-color: #09ef20;
+}
+#sala:hover::before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  z-index:-1 ;
+}
+@media screen and (max-width:620px){
+  .ordd{
+    margin-top: 20%;
+  }
+}
+#sommy{
+        width: 40%;
+        height: 10vh;
+        border: none;
+        color: rgb(6, 6, 6);
+    font-weight: bold;
+        border-radius: 4px;
+        transition: ease-out 0.3s;
+        /* font-size: 5%; */
+        outline: none;
+        border: 3px solid #354d35;
+        position: relative;
+        z-index: 1;
+      }
+    #sommy:hover{
+        color:rgb(251, 246, 246) ;
+    outline: none;
+    border: none;
+        cursor: pointer;
+      }
+      #sommy::before{
+        transition: 0.5s all ease;
+        position: absolute;
+        top: 0;
+        left:50% ;
+        right: 50%;
+        bottom: 0;
+        opacity: 0;
+        content: "";
+        background-color: #1ee613;
+      }
+      #sommy:hover::before{
+        transition: 0.5s all ease;
+        left: 0;
+        right: 0;
+        opacity: 1;
+        z-index:-1 ;
+      }
+</style>
+
+    <script>
+    $(function () {
+      $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+      if (!screenfull.enabled) {
+        return false;
+      }
+
+      
+
+      $('#toggle').click(function () {
+        screenfull.toggle($('#container')[0]);
+      }); 
+    });
+    </script>
+<!-- charts -->
+
+<link rel="stylesheet" href="css/morris.css">
+<!-- //charts -->
+<!--skycons-icons-->
+
+      <div>
+        <br>
+        <div class="roch">
+          <h1>Edit Admin Details</h1>
+        </div>
+        <br>
+        <div class="container">
+          <div class="rooc">
+            <div class="row">
+              <div class="col-md-4">
+                <form method="POST" action="" enctype="multipart/form-data">
+                <div class="mom">
+                  <img src="{{ image_file }}" alt="image" width="70%">
+                <br>
+                <br>
+                    {{ form.hidden_tag() }}
+                    {{ form.picture.label() }}
+                    {{ form.picture(type="file", id="sola") }}
+                    {% if form.picture.errors %}
+                      {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                      {% endfor %}
+                    {% endif %}
+                    <br />
+                    <br />
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="ordd">
+                    
+
+    
+
+    <br />
+    <br />
+    {{ form.username.label }}
+    <br />
+    {% if form.username.errors %}
+      {{ form.username }}
+      {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.username }}
+    {% endif %}
+
+    <br />
+    <br />
+    {{ form.phone.label }}
+    <br />
+    {% if form.phone.errors %}
+      {{ form.phone }}
+      {% for error in form.phone.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.phone }}
+    {% endif %}
+    
+    <br />
+    <br />
+    {{ form.email.label }}
+    <br />
+    {% if form.email.errors %}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.email }}
+    {% endif %}
+
+    <br />
+    <br />
+    {{ form.password.label }}
+    <br />
+    {% if form.password.errors %}
+      {{ form.password }}
+      {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.password }}
+    {% endif %}
+
+    <br />
+    <br />
+    <br />
+
+
+    {{ form.submit(type="submit", id="sommy") }}
+
+
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
 {% endblock content %}

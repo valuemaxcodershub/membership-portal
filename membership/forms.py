@@ -39,14 +39,11 @@ class AdminRegistrationForm(FlaskForm):
 
 
 class UserRegistrationForm(FlaskForm):
-  my_choices = []
-  for unit in Unit.query.all():
-    my_choices.append(unit.name)
 
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
   email = StringField("Email", validators=[DataRequired(), Email()])
   phone = StringField(validators=[DataRequired()])
-  unit = SelectField("Unit", validators=[DataRequired()],choices=my_choices)
+  unit = SelectField("Unit", validators=[DataRequired()])
   submit = SubmitField("Add Member")
 
   def validate_username(self, username):
@@ -80,24 +77,14 @@ class AdminLoginForm(FlaskForm):
 
 
 #try fixing no update using init
-#
-#
-#
-#
-#
-#
-#
 class UpdateMemberForm(FlaskForm):
-  my_choices = [] 
-  for unit in Unit.query.all():
-    my_choices.append(unit.name)
 
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
   email = StringField("Email", validators=[DataRequired(), Email()])
   picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
   phone = StringField(validators=[DataRequired()])
   password = StringField("Password", validators=[DataRequired()])
-  unit = SelectField("Unit", validators=[DataRequired()],choices=my_choices)
+  unit = SelectField("Unit", validators=[DataRequired()])
   current_salary = StringField()
   occupation = StringField()
   home_address = StringField()
