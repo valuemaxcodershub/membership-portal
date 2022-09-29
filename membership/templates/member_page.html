@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="wrapper scrollable">
+	<nav class="user-menu">
+		<a href="javascript:;" class="main-menu-access">
+		<i class="icon-proton-logo"></i>
+		<i class="icon-reorder"></i>
+		</a>
+	</nav>
+	<!--  -->
+	<br>
+	<br>
+	<div class="bedd">
+		<div >
+			<img src="/static/profile_pics/{{ member.image_file }}" alt="image" width="100px">
+		</div>
+		<br>
+		<br>
+		<div>
+			<h5>Full Name: {{ member.username }}</h5>
+		</div>
+		<br>
+		<div>
+			<p>Member Id: #{{ member.id }}</p>
+		</div>
+		<div>
+			<p>Email: {{ member.email }}</p>
+		</div>
+		<div>
+			<p>Phone: {{ member.phone }}</p>
+		</div>
+		<div>
+			<p>Password: {{ member.password }}</p>
+		</div>
+		<div>
+			<p>Units: 
+			{% for unit in member.units.all() %}
+				<span>{{ unit.name }}</span>
+			{% endfor %}
+			</p>
+		</div>
+		<div>
+			<p>Joined: {{ member.date_registered }}</p>
+		</div>
+		<div>
+			<p>Current Role: {{ member.occupation }}</p>
+		</div>
+		<div>
+			<p>Home Address: {{ member.home_address }}</p>
+		</div>
+		<div>
+			<p>Work Address: {{ member.work_address }}</p>
+		</div>
+		<div>
+			<p><a href="{{ url_for('edit_member', member_id=member.id) }}">Edit Member Details</a></p>
+		</div>
+	</div>	
+
+
+</section>
+{% endblock content %}

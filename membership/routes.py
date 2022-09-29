@@ -92,7 +92,11 @@ def save_picture(form_picture):
 
     return picture_fn
 
-
+@app.route("/member_page/<int:member_id>")
+def member_page(member_id):
+  member = User.query.get_or_404(member_id)
+  
+  return render_template("member_page.html", member=member)
 
 # ADMIN ADMIN ADMIN #
 @admin_role_required

@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       {% if current_user.role == "USER" %}
         <a  href="{{ url_for('home') }}">Home</a>
       {% else %}
-        <a  href="{{ url_for('admin') }}">Home</a>
+        <a  href="{{ url_for('dashboard') }}">Home</a>
       {% endif %}
       <a  href="{{ url_for('account') }}">Account</a>
       <a href="{{ url_for('logout') }}">Logout</a>
