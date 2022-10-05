@@ -57,7 +57,7 @@
 							<th>Email</th>
 							<th>Units</th>
 							<th>Profile Details</th>
-							<th>Member Url</th>
+<!-- 							<th>Member Url</th> -->
 						  </tr>
 						</thead>
 						<tbody>
@@ -75,8 +75,8 @@
 
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 							</td>
-							<td><a href="{{ url_for("member_page", member_id=member.id) }}">http://localhost:8080{{ url_for("member_page", member_id=member.id) }}</a></td>
-						  </tr>
+							<!-- <td><a href="{{ url_for('member_page', member_id=member.id) }}">http://localhost:8080{{ url_for("member_page", member_id=member.id) }}</a></td>
+						  </tr> -->
 						  {% endfor %}
 					  </table>
 

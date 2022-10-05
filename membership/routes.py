@@ -45,6 +45,14 @@ def home():
 
   return redirect(url_for("admin_login"))
 
+@app.route("/business-members")
+def business_members():
+  members = User.query.filter_by(role="USER").all()
+
+  return render_template("business_member.html", members=members)
+
+
+
 @app.route("/account")
 @login_required
 def account():
