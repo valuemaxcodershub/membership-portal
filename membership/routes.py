@@ -314,23 +314,29 @@ def register_member():
     return(redirect(url_for("home")))
   form = UserRegistrationForm()
 
-  #for unit selection
-  my_choices = [] 
-  for unit in Unit.query.all():
-    my_choices.append(unit.name)
+  all_units = Unit.query.all()
 
-  form.unit.choices = my_choices
+
   if form.validate_on_submit():
     user = User(username=form.username.data, email=form.email.data, phone=form.phone.data)
-    unit = Unit.query.filter_by(name=form.unit.data).all()[0]
-    user.units.append(unit)
+    selected_units = request.form.getlist('mymultiselect')
+
+
+    inputted_units = []
+    for unit_name in selected_units:
+      unit = Unit.query.filter_by(name=unit_name).all()[0]
+      inputted_units.append(unit)
+
+    for unit in inputted_units:
+      user.units.append(unit)
+
     user.password = secrets.token_urlsafe(8)
     db.session.add(user)
     db.session.commit()
     flash(f"Account created for {form.username.data} successfully. Password for {form.username.data} is {user.password}", "success")
     return(redirect(url_for("manage_members")))
     
-  return render_template("add-member.html", title="Register New Member", form=form)
+  return render_template("add-member.html", title="Register New Member", form=form, units=all_units)
 
 
 def parse_csv(csv_file):
@@ -524,12 +530,8 @@ def edit_member(member_id):
 
   form = UpdateMemberForm()
 
-  #for unit selection
-  my_choices = [] 
-  for unit in Unit.query.all():
-    my_choices.append(unit.name)
+  units = Unit.query.all()
 
-  form.unit.choices = my_choices
   form.current_member = member
 
   if form.validate_on_submit():
@@ -546,6 +548,17 @@ def edit_member(member_id):
     member.current_salary = form.current_salary.data
     member.home_address = form.home_address.data
     member.work_address = form.work_address.data
+
+    selected_units = request.form.getlist('mymultiselect')
+
+
+    inputted_units = []
+    for unit_name in selected_units:
+      unit = Unit.query.filter_by(name=unit_name).all()[0]
+      inputted_units.append(unit)
+
+    for unit in inputted_units:
+      member.units.append(unit)
     
     db.session.add(member)
     db.session.commit()
@@ -563,7 +576,7 @@ def edit_member(member_id):
     form.work_address.data = member.work_address
 
   image_file = url_for('static', filename='profile_pics/' + member.image_file)
-  return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file)
+  return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
 
 def send_reset_email(user):
   token = user.get_reset_token()

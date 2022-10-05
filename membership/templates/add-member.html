@@ -1,5 +1,6 @@
 {% extends "dashboard_layout.html" %}
 {% block content %}	
+
 		<style>
         body{
             overflow-y: hidden;
@@ -93,6 +94,11 @@
             font-size: 9px;
             height: 13px;
         }
+
+		select {
+		  width: 300px;
+		}
+
         </style>
 
 		<script>
@@ -164,22 +170,15 @@
                             {% endif %}
                             <span class="error"></span>
                         </div>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="input-control">
-                            {% if form.unit.errors %}
-                              {{ form.unit(type="number", id="unit", placeholder="Unit") }}
-                              <span class="error" ></span>
-                              {% for error in form.unit.errors %}
-                                  <span>{{ error }}</span>
-                              {% endfor %}
-                            {% else %}
-                              {{ form.unit(type="number", id="unit", placeholder="Unit") }}
-                              <span class="error" ></span>
-                            {% endif %}
-                            <span class="error"></span>
-                        </div>
+
+                        <div class="container mt-5">
+                        	<h5>Select Unit</h5>
+						  <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
+						  	{% for unit in units %}
+						  		<option value="{{unit.name}}">{{unit.name}}</option>
+						  	{% endfor %}
+						  </select>
+						</div>
                         <br>
                         <br>
                         <br>
@@ -189,6 +188,11 @@
                 </div>
 			</div>	
 			<script>
+				<!-- Initialize the plugin: -->
+			<script type="text/javascript">
+			    $(document).ready(function() {
+			        $('#example-getting-started').multiselect();
+			    });
 				const form = document.getElementById('form');
 				const username = document.getElementById('username');
 				const  phone = document.getElementById('phone');
@@ -267,5 +271,7 @@
 				};
 
 			</script>
+
+			
 
 {% endblock content %}

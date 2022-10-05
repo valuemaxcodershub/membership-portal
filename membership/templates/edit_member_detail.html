@@ -321,17 +321,18 @@
     {% endif %}
 
     <br />
-    <br />
-    {{ form.unit.label }}
-    <br />
-      {% if form.unit.errors %}
-        {{ form.unit(type="number", id="unit", placeholder="Unit") }}
-        {% for error in form.unit.errors %}
-            <span>{{ error }}</span>
-        {% endfor %}
-      {% else %}
-        {{ form.unit(type="number", id="unit", placeholder="Unit") }}
-      {% endif %}
+      <div class="container mt-5">
+        <h5>Select Unit</h5>
+        <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
+          {% for unit in units %}
+            {% if unit in member.units.all() %}
+              <option value="{{unit.name}}" selected>{{unit.name}}</option>
+            {% else %}
+              <option value="{{unit.name}}">{{unit.name}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
 
     <br />
     <br />

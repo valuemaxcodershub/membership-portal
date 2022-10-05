@@ -43,7 +43,6 @@ class UserRegistrationForm(FlaskForm):
   username = StringField("Username", validators=[DataRequired(), Length(min=2,max=20)])
   email = StringField("Email", validators=[DataRequired(), Email()])
   phone = StringField(validators=[DataRequired()])
-  unit = SelectField("Unit", validators=[DataRequired()])
   submit = SubmitField("Add Member")
 
   def validate_username(self, username):
@@ -84,7 +83,6 @@ class UpdateMemberForm(FlaskForm):
   picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
   phone = StringField(validators=[DataRequired()])
   password = StringField("Password", validators=[DataRequired()])
-  unit = SelectField("Unit", validators=[DataRequired()])
   current_salary = StringField()
   occupation = StringField()
   home_address = StringField()

@@ -1,1 +1,1 @@
-experience,date_of_birth,email,current_salary,units,image_file,occupation,work_address,home_address,password,phone,username
+home_address,date_of_birth,image_file,email,phone,experience,password,work_address,units,occupation,current_salary,username
