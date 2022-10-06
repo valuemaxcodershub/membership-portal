@@ -1,269 +1,254 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-<title>NASME</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap-css -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-<!-- //bootstrap-css -->
-<!-- bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<!--// bootstrap -->
-<!-- Custom CSS -->
-<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
-<!-- font CSS -->
-<!-- fontawesome -->
-<script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
-<!-- font awesome -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<!-- font-awesome icons -->
-<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
-<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font-awesome.css') }}">
-<!-- //font-awesome icons -->
-		<script>
-		$(function () {
-			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
-
-			if (!screenfull.enabled) {
-				return false;
-			}
-
-			
-
-			$('#toggle').click(function () {
-				screenfull.toggle($('#container')[0]);
-			});	
-		});
-		</script>
-<!-- charts -->
-<script src="{{ url_for('static', filename='js/raphael-min.js') }}" ></script>
-<script src="{{ url_for('static', filename='js/morris.js') }}" ></script>
-<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/morris.css') }}">
-<!-- //charts -->
-<!--skycons-icons-->
-<script src="{{ url_for('static', filename='js/skycons.js') }}" ></script>
-<!--//skycons-icons-->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Member</title>
+      <!-- bootstrap -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <!--// bootstrap -->
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
+    <!-- font awesome -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
+    <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/business.css') }}">
+    <!-- //font-awesome icons -->
 </head>
 <body>
-
-    <!-- flashed messages  -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <em>{{ message }}</em>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-
-    <body class="dashboard-page">
-  <script>
-          var theme = $.cookie('protonTheme') || 'default';
-          $('body').removeClass (function (index, css) {
-              return (css.match (/\btheme-\S+/g) || []).join(' ');
-          });
-          if (theme !== 'default') $('body').addClass(theme);
-        </script>
-  <!-- <nav class="main-menu ">
-    <ul>
-      <li>
-        <a href="{{ url_for('dashboard') }}">
-          <i class="fa fa-home nav_icon"></i>
-          <span class="nav-text">
-          Dashboard
-          </span>
-        </a>
-      </li>
-      <li class="has-subnav">
-        <a href="javascript:;">
-        <i class="fa fa-cogs" aria-hidden="true"></i>
-        <span class="nav-text">
-          Member
-        </span>
-        <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
-        </a>
-        <ul>
-          <li>
-          <a class="subnav-text" href="{{ url_for('register_member') }}">
-          add member
-          </a>
-          </li>
-          <li>
-          <a class="subnav-text" href="{{ url_for('manage_members') }}">
-          manage members
-          </a>
-          </li>
-          <li>
-            <a class="subnav-text" href="{{ url_for('register_bulk') }}" >
-            Bulk Registration
-            </a>
+  <div class="ricky fixed-top">
+    <nav>
+    <div class=" container rocky">
+        <div id="top-bar">
+          <div id="top-bar-inner" class="finax-container">
+              <div class="top-bar-inner-wrap">
+                  
+      <div class="top-bar-content">
+                  <span class="phone content"> <i class="fa fa-phone" aria-hidden="true"></i> +2348160831342 or +2348032428096</span>
+                  <span class="email_content"> <i class="fa fa-envelope-o" aria-hidden="true"></i> info@nasmeoyo.org</span>
+                  <i class="fa fa-facebook-square" aria-hidden="true" id="down" style="color:white ; font-size: 20px;"></i>
+          </div>
+            
+    </div>
+    </nav>
+</div>
+<br>
+<!-- navbar -->
+<div class="donee">
+  <div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="mufu">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse oyo" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-        </ul>
-      </li>
-      {% if current_user.is_superadmin %}
-        <li class="has-subnav">
-          <a href="javascript:;">
-          <i class="fa fa-check-square-o nav_icon"></i>
-          <span class="nav-text">
-          Admin
-          </span>
-          <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
-          </a>
-          <ul>
-            <li>
-              <a class="subnav-text" href="{{ url_for('register_admin') }}" >add admin</a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">About Us</a>
             </li>
-            <li>
-              <a class="subnav-text" href="{{ url_for('manage_admins') }}" >manage admin</a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Unit & Cluster</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="">
+                Membership
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Membership Types</a></li>
+                <li><a class="dropdown-item" href="#">Membership Benefit</a></li>
+                <li><a class="dropdown-item" href="#">Membership Registration</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">NASME Cooperative</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="">
+                News & update
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Blog</a></li>
+                <li><a class="dropdown-item" href="#">Gallery</a></li>
+                
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Contact us</a>
             </li>
           </ul>
-        </li>
-      {% endif %}
-      <li class="has-subnav">
-        <a href="javascript:;">
-          <i class="fa fa-file-text-o nav_icon"></i>
-            <span class="nav-text">Unit</span>
-          <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
-        </a>
-        <ul>
-          <li>
-            <a class="subnav-text" href="{{ url_for('manage_units') }}" >
-              manage cluster or unit
-            </a>
-          </li>
-          <li>
-            <a class="subnav-text" href="{{ url_for('register_unit') }}">
-              add cluster or unit
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="finance.html" target="_blank">
-          <i class="fa fa-bar-chart nav_icon"></i>
-          <span class="nav-text">
-            Finance
-          </span>
-        </a>
-      </li> -->
-      <!-- <li>
-        <a href="{{ url_for('register_bulk') }}">
-          <i class="icon-table nav-icon"></i>
-          <span class="nav-text">
-          Bulk Registration
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="tables.html">
-          <i class="icon-table nav-icon"></i>
-          <span class="nav-text">
-          Tables
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="maps.html">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          <span class="nav-text">
-          Maps
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="error.html">
-          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="nav-text">
-          Error Page
-          </span>
-        </a>
-      </li> -->
-      
-    <!-- </ul>
-    <div style="position:absolute;left:0;bottom:0;">
-      <ul >
-      <li>
-      <a href="{{ url_for('edit_admin' , admin_id=current_user.id )}}">
-      <i class="fa fa-user-circle nav-icon"></i>
-      <span class="nav-text">
-      Account
-      </span>
-      </a>
-      </li>
-    </ul>
-    <ul class="logout">
-      <li>
-      <a href="{{ url_for('logout') }}">
-      <i class="icon-off nav-icon"></i>
-      <span class="nav-text">
-      Logout
-      </span>
-      </a>
-      </li>
-    </ul>
-    </div>
-  </nav> -->
-  <section class="wrapper scrollable">
-    <nav class="user-menu">
-      <a href="javascript:;" class="main-menu-access">
-      <i class="icon-proton-logo"></i>
-      <i class="icon-reorder"></i>
-      </a>
-    </nav>
-    <section class="title-bar">
-      <div class="ric" >
-        
-        <nav class="navbar navbar-expand-lg navbar-light bg-" >
-          <div class="container-fluid">
-            <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="60px" /></a>
-            <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
-            <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
-            </form>
-          </div>
-          </nav>  
-        
+          
+          
+        </div>
       </div>
-        <div class="clearfix"> </div>
-    </section>
-    <!--  -->
+    </nav>
+  </div>
+</div>
+<br>
+<!--  -->
+<div class="musa">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div > 
+          <div class="dropdown ibadan">
+            <li class="btn btn-secondary dropdown-toggle glow-on-hover d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
+             Suit By Cluster
+            
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">unit 1</a></li>
+              <li><a class="dropdown-item" href="#">Unit 2</a></li>
+              <li><a class="dropdown-item" href="#">Unit 3</a></li>
+            </ul>
+          </li>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <a class="btn btn-success" id="glow-on-hover" href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight:bold;" data-bs-toggle="tooltip" data-bs-placement="top" title="Login to member account">
+            Members login
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <form class="d-flex" id="money">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success glow-on-hover" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Search for business member">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+<br>
+<br>
+<div class="container agile-tables">
+  
+  <h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold; margin-top: 20px;" class="text-center">Business Members</h3>
+  <div class="w3l-table-info table-responsive">
     
-    <!-- other pages extend here -->
-    {% block content %}{% endblock %}
+      <table id="tuble" class="table table-success table-striped table-hover shadow-lg p-3 mb-5 bg-body rounded">
+    <thead>
+      <tr>
+      <th>Business Name</th>
+      <th>Phone No</th>
+      <th>Email</th>
+      <th>Cluster</th>
+      <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td>ricky Smith</td>
+      <td>09075294429</td>
+      <td>ricky@gmail.com</td>
+      <td>8/4/1994</td>
+      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[ Click ]</a></td>
+      </tr>
+      <tr>
+      <td>John Stone</td>
+      <td>09034567430</td>
+      <td>Male@gmail.com</td>
+      <td>5/7/1980</td>
+      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[ Click ]</a></td>
+      </tr>
+      <tr>
+      <td>John obi</td>
+      <td>0805463523</td>
+      <td>John@gmail.com</td>
+      <td>5/7/1980</td>
+      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[ Click ]</a></td>
+      </tr>
+      <tr>
+      <td>John Stone</td>
+      <td>09034567430</td>
+      <td>Male@gmail.com</td>
+      <td>5/7/1980</td>
+      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[ Click ]</a></td>
+      </tr>
+      <tr>
+      <td>John Stone</td>
+      <td>09034567430</td>
+      <td>Male@gmail.com</td>
+      <td>5/7/1980</td>
+      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[ Click ]</a></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  </div>
 
-    <br>
-    <br>
-    </section>
+  <!-- footer -->
+  <div class="foot">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <input type="text">
+          <br>
+          <br>
+          <br>
+          <div class="socket_1">
+            <p>The Nigeria association of small  and medium   enterprises(nasme) was registered in 1996 as a business  membership organisation (BMO), to co-operate and foster the promotion of micro, small and medium enterprises ( MSMEs) in Nigeria NASME is the only leading Nigerian private sector. <a href="#" >read more.</a></p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <h6>LASTEST POST</h6>
+          <br>
+          <div class="socket_2">
+            <p>WELCOME TO NASME NEWS AND <br> UPDATES</p>
+            <h6 style="color: rgb(9, 210, 9); font-weight:bold;">October 15, 2020</h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <h6>QUICK LINKS</h6>
+          <br>
+          <div class="socket_3">
+            <ul>
+              <li>HOME</li>
+              <li>ABOUT US</li>
+              <li>UNIT & CLUSTER</li>
+              <li>MEMBERSHIP</li>
+              <ul>
+              <li>MEMBERSHIP TYPES</li>
+              <li>MEMBERSHIP BENEFITS</li>
+              <li>MEMBERSHIP REGISTRATION</li>
+              </ul>
+              <li>NASME COPORATIVE</li>
+              <li>NEWS & UPDATES</li>
+              <ul>
+              <li>BLOG</li>
+              <li>GALLERY</li>
+              </ul>
+              <li>CONTACT US</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <h6>CONTACT INFORMATION</h6>
+          <br>
+          <div class="socket_5">
+            <p>NASME Oyo State ChapterBlock c, Suits 5 & 6, Oyo State Permanent Trade Fair Complex (EXPOYO), Sango – U.I Road, Ibadan, Oyo State, Nigeria. Tel: +2348160831342 or +2348032428096 , info@nasmeoyo.org</p>
 
-    <!-- Auto-Complete -->
-  <script>
-    $(function() {
-        $.ajax({
-            url: '{{ url_for("autocomplete") }}'
-            }).done(function (data){
-                console.log(data);
-                $('#member_autocomplete').autocomplete({
-                    source: data,
-                    minLength: 2
-                });
-            });
-        });
-  </script>
+            <p>Meeting Day: Last Thursday of Every Month</p>
 
-    <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
-    <script src="{{ url_for('static', filename='js/jquery2.0.3.min.js') }}" ></script>
-    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
-    <script src="{{ url_for('static', filename='js/modernizr.js') }}" ></script>
-    <script src="{{ url_for('static', filename='js/jquery.cookie.js') }}" ></script>
-    <script src="{{ url_for('static', filename='js/screenfull.js') }}" ></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.js') }}" ></script>
-    <script src="{{ url_for('static', filename='js/proton.js') }}" ></script>
+            <p>Time: 2pm Prompt</p>
 
+            <p>Cooperative Meeting : 1pm (Same Day)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
+</html>
