@@ -41,6 +41,14 @@ class User(db.Model, UserMixin):
 
     return ", ".join(unit_names)
 
+  #for csv export
+  def unit_names(self):
+    unit_names = []
+    for unit in self.units.all():
+      unit_names.append(unit.name)
+
+    return unit_names
+
   
   @property
   def is_superadmin(self):

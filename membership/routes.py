@@ -1,4 +1,5 @@
-from flask import Response, render_template, redirect, url_for, flash, request, abort, send_file
+from flask import Response, render_template, redirect, url_for, flash, request, abort, send_file, make_response
+from io import StringIO     # allows you to store response object in memory instead of on disk
 import os
 import json
 from PIL import Image
@@ -402,32 +403,17 @@ def download_template():
   )
 
 
-@app.route('/admin/export-db')
-def download_template():
-  params = []
-  bad_params = ["id", "date_registered", "role", "is_superadmin", "verify_reset_token", "get_reset_token", "_sa_class_manager", "display_units", "_is_superadmin"]
-
-  for k,v in User.__dict__.items():
-    if k.startswith("__") and k.endswith("__"):
-      continue
-    else:
-      params.append(k)
-
-  template_list = list(set(params)-set(bad_params))
-
-  print(",".join(template_list))
-
-  template_csv_path = os.path.join(app.root_path, 'static/CSVs/template.csv')
-
-  with open(template_csv_path, "w") as f:
-    f.write(",".join(template_list))
-
-  return send_file(
-      template_csv_path,
-      mimetype='text/csv',
-      download_name='nasme_bulk_template.csv',
-      as_attachment=True
-  )
+@app.route('/admin/export-database')
+def export_db():
+  si = StringIO()
+  cw = csv.writer(si)
+  records = User.query.all()   # or a filtered set, of course
+  # any table method that extracts an iterable will work
+  cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+  response = make_response(si.getvalue())
+  response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
+  response.headers["Content-type"] = "text/csv"
+  return response
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
