@@ -47,9 +47,17 @@ def home():
 
 @app.route("/business-members")
 def business_members():
-  members = User.query.filter_by(role="USER").all()
+  # members = User.query.filter_by(role="USER").all()
+  # units = Unit.query.all()
 
-  return render_template("business_member.html", members=members)
+  return render_template("business_member.html")
+
+@app.route("/business-profile")
+def business_profile():
+  # members = User.query.filter_by(role="USER").all()
+  # units = Unit.query.all()
+
+  return render_template("business_profile.html")
 
 
 
@@ -393,6 +401,33 @@ def download_template():
       as_attachment=True
   )
 
+
+@app.route('/admin/export-db')
+def download_template():
+  params = []
+  bad_params = ["id", "date_registered", "role", "is_superadmin", "verify_reset_token", "get_reset_token", "_sa_class_manager", "display_units", "_is_superadmin"]
+
+  for k,v in User.__dict__.items():
+    if k.startswith("__") and k.endswith("__"):
+      continue
+    else:
+      params.append(k)
+
+  template_list = list(set(params)-set(bad_params))
+
+  print(",".join(template_list))
+
+  template_csv_path = os.path.join(app.root_path, 'static/CSVs/template.csv')
+
+  with open(template_csv_path, "w") as f:
+    f.write(",".join(template_list))
+
+  return send_file(
+      template_csv_path,
+      mimetype='text/csv',
+      download_name='nasme_bulk_template.csv',
+      as_attachment=True
+  )
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
