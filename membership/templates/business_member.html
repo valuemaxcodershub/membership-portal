@@ -20,7 +20,7 @@
     <!-- //font-awesome icons -->
 </head>
 <body>
-  <div class="ricky fixed-top">
+  <div class="ricky ">
     <nav>
     <div class=" container rocky">
         <div id="top-bar">
@@ -40,7 +40,7 @@
 <!-- navbar -->
 <div class="donee">
   <div class="container">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" id="mufu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  id="mufu">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +48,12 @@
         </button>
         <div class="collapse navbar-collapse oyo" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">Home</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Member's Page</a></li>
+                
+              </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">About Us</a>
@@ -57,8 +61,8 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Unit & Cluster</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="">
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">
                 Membership
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -70,8 +74,8 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">NASME Cooperative</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="">
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">
                 News & update
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -93,24 +97,43 @@
 </div>
 <br>
 <!--  -->
-<div class="musa">
+<div class="musa" id="musa">
   <div class="container">
     <div class="row">
-      <div class="col">
-        <div > 
-          <div class="dropdown ibadan">
-            <li class="btn btn-secondary dropdown-toggle glow-on-hover d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
-             Sort By Cluster
-            
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">unit 1</a></li>
-              <li><a class="dropdown-item" href="#">Unit 2</a></li>
-              <li><a class="dropdown-item" href="#">Unit 3</a></li>
-            </ul>
-          </li>
+      <div class="col-sm-6 col-md-6-">
+        <div class="row">
+          <div class="col">
+            <div > 
+              <div>
+                <a class="btn btn-success" id="glow-on-hover" href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight:bold;" data-bs-toggle="tooltip" data-bs-placement="top" title="Login to member account">
+                  Members login
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="dropdown ibadan">
+              <li class="btn btn-secondary dropdown-toggle glow-on-hover d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
+               Sort By Cluster
+              
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">unit 1</a></li>
+                <li><a class="dropdown-item" href="#">Unit 2</a></li>
+                <li><a class="dropdown-item" href="#">Unit 3</a></li>
+              </ul>
+            </li>
+            </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+      <div class="col-sm-6 col-md-6-">
+        <div>
+          <div class="search-box ">
+            <button class="btn-search "><i class="fas fa-search"></i></button>
+            <input type="text" class="input-search" placeholder="Search for members...">
+          </div>
+=======
       <div class="col">
           <a class="btn btn-success" id="glow-on-hover" href="{{ url_for('login') }}" role="button"  data-toggle="dropdown" aria-expanded="false" style="color: white; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Login to member account" >
             Members login
@@ -122,6 +145,7 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success glow-on-hover" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Search for business member">Search</button>
           </form>
+>>>>>>> d66ff5135f7d81993e745309e7179c17cf181d77
         </div>
       </div>
     </div>
@@ -247,6 +271,23 @@
       </div>
     </div>
   </div>
+  <script>
+    // let timVine = document.getElementById("musa");
+    //   let navbar = document.getElementById("mufu");
+
+    // let navPos = navbar.getBoundingClientRect().top;
+
+    // window.addEventListener("scroll", e => {
+    //   let scrollPos = window.scrollY;
+    //   if (scrollPos > navPos) {
+    //     navbar.classList.add('sticky');
+    //     header.classList.add('navbarOffsetMargin');
+    //   } else {
+    //     navbar.classList.remove('sticky');
+    //     header.classList.remove('navbarOffsetMargin');
+    //   }
+    // });
+  </script>
 
 </body>
 </html>

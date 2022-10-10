@@ -414,21 +414,21 @@ def export_db():
   response.headers["Content-type"] = "text/csv"
   print(response.data)
 
-@app.route('/admin/export-custom', methods=["POST"])
-def export_custom():
+# @app.route('/admin/export-custom', methods=["POST"])
+# def export_custom():
 
-  members = request.form['members']
-  print(members)
+#   members = request.form['members']
+#   print(members)
 
-  # si = StringIO()
-  # cw = csv.writer(si)
-  # records = members   # or a filtered set, of course
-  # # any table method that extracts an iterable will work
-  # cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
-  # response = make_response(si.getvalue())
-  # response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
-  # response.headers["Content-type"] = "text/csv"
-  return "response"
+#   # si = StringIO()
+#   # cw = csv.writer(si)
+#   # records = members   # or a filtered set, of course
+#   # # any table method that extracts an iterable will work
+#   # cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+#   # response = make_response(si.getvalue())
+#   # response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
+#   # response.headers["Content-type"] = "text/csv"
+#   return "response"
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
