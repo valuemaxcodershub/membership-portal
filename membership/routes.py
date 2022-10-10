@@ -1,4 +1,5 @@
-from flask import Response, render_template, redirect, url_for, flash, request, abort, send_file
+from flask import Response, render_template, redirect, url_for, flash, request, abort, send_file, make_response
+from io import StringIO     # allows you to store response object in memory instead of on disk
 import os
 import json
 from PIL import Image
@@ -47,9 +48,17 @@ def home():
 
 @app.route("/business-members")
 def business_members():
-  members = User.query.filter_by(role="USER").all()
+  # members = User.query.filter_by(role="USER").all()
+  # units = Unit.query.all()
 
-  return render_template("business_member.html", members=members)
+  return render_template("business_member.html")
+
+@app.route("/business-profile")
+def business_profile():
+  # members = User.query.filter_by(role="USER").all()
+  # units = Unit.query.all()
+
+  return render_template("business_profile.html")
 
 
 
@@ -393,6 +402,18 @@ def download_template():
       as_attachment=True
   )
 
+
+@app.route('/admin/export-database')
+def export_db():
+  si = StringIO()
+  cw = csv.writer(si)
+  records = User.query.all()   # or a filtered set, of course
+  # any table method that extracts an iterable will work
+  cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+  response = make_response(si.getvalue())
+  response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
+  response.headers["Content-type"] = "text/csv"
+  return response
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
