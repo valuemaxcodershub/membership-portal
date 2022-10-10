@@ -56,7 +56,6 @@ def business_members():
 @app.route("/business-profile")
 def business_profile():
   # members = User.query.filter_by(role="USER").all()
-  # units = Unit.query.all()
 
   return render_template("business_profile.html")
 
@@ -134,7 +133,7 @@ def autocomplete():
 def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(User.username.contains(query))
+  results = User.query.filter_by(role="USER").filter(User.username.contains(query))      
   result_count = results.count()
   members = results.paginate(page=page, per_page=5)
 
@@ -413,7 +412,23 @@ def export_db():
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
-  return response
+  print(response.data)
+
+@app.route('/admin/export-custom', methods=["POST"])
+def export_custom():
+
+  members = request.form['members']
+  print(members)
+
+  # si = StringIO()
+  # cw = csv.writer(si)
+  # records = members   # or a filtered set, of course
+  # # any table method that extracts an iterable will work
+  # cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+  # response = make_response(si.getvalue())
+  # response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
+  # response.headers["Content-type"] = "text/csv"
+  return "response"
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
