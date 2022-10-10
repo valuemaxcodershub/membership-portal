@@ -105,7 +105,7 @@
           <div class="col">
             <div > 
               <div>
-                <a class="btn btn-success" id="glow-on-hover" href="#" role="button"  data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight:bold;" data-bs-toggle="tooltip" data-bs-placement="top" title="Login to member account">
+                <a class="btn btn-success" id="glow-on-hover" href="{{url_for('login')}}" role="button"  data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight:bold;" data-bs-toggle="tooltip" data-bs-placement="top" title="Login to member account">
                   Members login
                 </a>
               </div>
@@ -117,9 +117,9 @@
                Sort By Cluster
               
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">unit 1</a></li>
-                <li><a class="dropdown-item" href="#">Unit 2</a></li>
-                <li><a class="dropdown-item" href="#">Unit 3</a></li>
+                {% for unit in dashboard_units %}
+                <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
+                {% endfor %}
               </ul>
             </li>
             </div>
@@ -128,10 +128,10 @@
       </div>
       <div class="col-sm-6 col-md-6-">
         <div>
-          <div class="search-box ">
-            <button class="btn-search "><i class="fas fa-search"></i></button>
-            <input type="text" class="input-search" placeholder="Search for members...">
-          </div>
+          <form  method="#" action="#" class="search-box "autocomplete="off">
+            <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+            <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
+        </form>
         </div>
       </div>
     </div>
@@ -156,41 +156,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-      <td>ricky Smith</td>
-      <td>09075294429</td>
-      <td>ricky@gmail.com</td>
-      <td>8/4/1994</td>
-      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
-      </tr>
-      <tr>
-      <td>John Stone</td>
-      <td>09034567430</td>
-      <td>Male@gmail.com</td>
-      <td>5/7/1980</td>
-      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
-      </tr>
-      <tr>
-      <td>John obi</td>
-      <td>0805463523</td>
-      <td>John@gmail.com</td>
-      <td>5/7/1980</td>
-      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
-      </tr>
-      <tr>
-      <td>John Stone</td>
-      <td>09034567430</td>
-      <td>Male@gmail.com</td>
-      <td>5/7/1980</td>
-      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
-      </tr>
-      <tr>
-      <td>John Stone</td>
-      <td>09034567430</td>
-      <td>Male@gmail.com</td>
-      <td>5/7/1980</td>
-      <td><a href="profile.html" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
-      </tr>
+      {% for member in members %}
+            <tr>
+              <td>{{member.username}}</td>
+              <td>{{ member.phone }}</td>
+              <td>{{ member.email }}</td>
+              <td>{{ member.display_units() }}</td>
+              <td><a href="{{url_for('business_profile')}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
+            </tr>
+      {% endfor %}
     </tbody>
     </table>
   </div>

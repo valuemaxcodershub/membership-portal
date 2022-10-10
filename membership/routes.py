@@ -13,6 +13,15 @@ import csv
 from wtforms.validators import DataRequired, ValidationError
 from functools import wraps
 
+
+@app.context_processor
+def inject_menu():
+
+    # Fill in with your actual menu dictionary:
+    dashboard_units = Unit.query.all()
+
+    return dict(dashboard_units=dashboard_units)
+
 def admin_role_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
@@ -48,10 +57,10 @@ def home():
 
 @app.route("/business-members")
 def business_members():
-  # members = User.query.filter_by(role="USER").all()
+  members = User.query.filter_by(role="USER").all()
   # units = Unit.query.all()
 
-  return render_template("business_member.html")
+  return render_template("business_member.html", members= members)
 
 @app.route("/business-profile")
 def business_profile():
@@ -126,6 +135,10 @@ def autocomplete():
 
     return Response(json.dumps(members), mimetype='application/json')
 
+class DataStore():
+    a = None
+
+data = DataStore()
 
 @admin_role_required
 @login_required
@@ -133,7 +146,8 @@ def autocomplete():
 def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(User.username.contains(query))      
+  results = User.query.filter_by(role="USER").filter(User.username.contains(query)) 
+  data.a = results.all()     
   result_count = results.count()
   members = results.paginate(page=page, per_page=5)
 
@@ -414,21 +428,19 @@ def export_db():
   response.headers["Content-type"] = "text/csv"
   print(response.data)
 
-# @app.route('/admin/export-custom', methods=["POST"])
-# def export_custom():
+@app.route('/admin/export-custom', methods=["POST"])
+def export_custom():
+  members= data.a
 
-#   members = request.form['members']
-#   print(members)
-
-#   # si = StringIO()
-#   # cw = csv.writer(si)
-#   # records = members   # or a filtered set, of course
-#   # # any table method that extracts an iterable will work
-#   # cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
-#   # response = make_response(si.getvalue())
-#   # response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
-#   # response.headers["Content-type"] = "text/csv"
-#   return "response"
+  si = StringIO()
+  cw = csv.writer(si)
+  records = members   # or a filtered set, of course
+  # any table method that extracts an iterable will work
+  cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+  response = make_response(si.getvalue())
+  response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
+  response.headers["Content-type"] = "text/csv"
+  return response
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])

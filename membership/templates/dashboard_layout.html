@@ -244,9 +244,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                Sort By Cluster
               
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">unit 1</a></li>
-                <li><a class="dropdown-item" href="#">Unit 2</a></li>
-                <li><a class="dropdown-item" href="#">Unit 3</a></li>
+                {% for unit in dashboard_units %}
+                <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
+                {% endfor %}
               </ul>
             </li>
             </div>
