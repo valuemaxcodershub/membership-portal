@@ -9,8 +9,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 user_unit = db.Table("user_unit",
-  db.Column("user_id", db.Integer, db.ForeignKey("unit.id")),
-  db.Column("unit_id", db.Integer, db.ForeignKey("user.id")),
+  db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
+  db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
   )
 
 #phone number is unique
@@ -32,6 +32,7 @@ class User(db.Model, UserMixin):
   date_of_birth = db.Column(db.String(), nullable=False, default=datetime.utcnow)
   home_address = db.Column(db.String())
   work_address = db.Column(db.String())
+  _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
 
 
   def display_units(self):
@@ -42,17 +43,21 @@ class User(db.Model, UserMixin):
     return ", ".join(unit_names)
 
   #for csv export
-  def unit_names(self):
-    unit_names = []
+  def unit_ids(self):
+    unit_ids = []
     for unit in self.units.all():
-      unit_names.append(unit.name)
+      unit_ids.append(str(unit.id))
 
-    return unit_names
+    return unit_ids
 
   
   @property
   def is_superadmin(self):
       return self._is_superadmin
+
+  @property
+  def is_suspended(self):
+      return self._is_suspended
 
   @is_superadmin.setter
   def is_superadmin(self, s):
@@ -66,6 +71,19 @@ class User(db.Model, UserMixin):
     else:
       #dont change anything if it's not a string
       self._is_superadmin = s
+
+  @is_suspended.setter
+  def is_suspended(self, s):
+    #this exists because of the csv fuction that inputs strings
+    if type(s) == type(str()):
+      #change string to boolean
+      if s.lower() == "true":
+        self._is_suspended = True
+      elif s.lower() == "false":
+        self._is_suspended = False
+    else:
+      #dont change anything if it's not a string
+      self._is_suspended = s
 
   def get_reset_token(self, expires_sec=1800):
     s = Serializer(app.config['SECRET_KEY'], expires_sec)

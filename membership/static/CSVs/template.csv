@@ -1,1 +1,2 @@
-home_address,date_of_birth,image_file,email,phone,experience,password,work_address,units,occupation,current_salary,username
+username,phone,email,unit_ids,image_file,current_salary,occupation,experience,date_of_birth,home_address,work_address
+yofds,23323,sdfds@tyufuy.com,3-4-5,default.jpg,,,,2022-10-05 12:55:05.781270,,

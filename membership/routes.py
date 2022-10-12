@@ -147,7 +147,7 @@ def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
   results = User.query.filter_by(role="USER").filter(User.username.contains(query)) 
-  data.a = results.all()     
+  data.a = results #add to datastore
   result_count = results.count()
   members = results.paginate(page=page, per_page=5)
 
@@ -233,6 +233,18 @@ def edit_unit(unit_id):
 
   return render_template("edit-unit.html", form=form, unit=unit)
 
+@app.route("/admin/suspend_user", methods=['POST'])
+@admin_role_required
+@login_required
+def suspend_user():
+  user_id = int(request.form['user_id'])
+  user = User.query.get_or_404(user_id)
+  user._is_suspended = not user._is_suspended
+
+  db.session.add(user)
+  db.session.commit()
+  flash("User suspended successfuly")
+  return redirect(url_for('manage_members'))
 
 @app.route("/admin/delete_user", methods=['POST'])
 @admin_role_required
@@ -279,34 +291,6 @@ def register_unit():
     
   return render_template("add_unit.html", title="Register New Unit", form=form)
 
-
-
-
-
-
-
-
-
-# @app.route("/admin/manage_members")
-# @admin_role_required
-# @login_required
-# def manage_members():
-#   page = request.args.get('page', 1, type=int)
-#   unit_id = int(request.args.get('unit_id'))
-
-#   #search for unit members if the request is for a particular unit
-#   if unit_id:
-#     unit = Unit.query.filter_by(id=unit_id)
-#     unit_members = unit.unit_members[0]
-
-#     members = unit_members.paginate(page=page, per_page=5)
-
-#   else: #just return all members
-#     members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
-  
-  
-
-  # return render_template("manage_members.html", page=page, members=members)
 
 
 
@@ -366,12 +350,8 @@ def parse_csv(csv_file):
     csv_reader = csv.DictReader(csv_file)
 
     #compulsory items
-    params = User.__dict__
-    #items that are not to be set from the file
-    if current_user.is_superadmin:
-      bad_params = ["id", "date_registered"]
-    else:
-      bad_params = ["id", "date_registered", "role", "is_superadmin"]
+    params = ["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"]
+
 
 
     for row in csv_reader:
@@ -379,28 +359,29 @@ def parse_csv(csv_file):
       #Set the values of the items that exist in class
       for key, value in row.items():
         if key in params:
-          if key in bad_params:
-            raise ValueError(f'Either the "{key}" column doesn\'t exist in the database, or you don\'t have the required permission to access this field.')
-          else: #assign if all columns are eligible
-            print(f"{key} =  {value}")
-            setattr(user, key, value)
+          print(f"{key} =  {value}")
+          setattr(user, key, value)
+         
+            
 
+      # assign units
+      unit_ids = row["unit_ids"].split("-")
+      print(unit_ids)
+      if unit_ids != ['']:
+        for unit_id in unit_ids:
+          unit = Unit.query.get(int(unit_id))
+          if unit:
+            user.units.append(unit)
+
+
+      user.password = secrets.token_urlsafe(8)
       db.session.add(user)
 
 
 @app.route('/admin/download-template')
 def download_template():
-  params = []
-  bad_params = ["id", "date_registered", "role", "is_superadmin", "verify_reset_token", "get_reset_token", "_sa_class_manager", "display_units", "_is_superadmin"]
-
-  for k,v in User.__dict__.items():
-    if k.startswith("__") and k.endswith("__"):
-      continue
-    else:
-      params.append(k)
-
-  template_list = list(set(params)-set(bad_params))
-
+  template_list = ["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"]
+  
   print(",".join(template_list))
 
   template_csv_path = os.path.join(app.root_path, 'static/CSVs/template.csv')
@@ -422,21 +403,21 @@ def export_db():
   cw = csv.writer(si)
   records = User.query.all()   # or a filtered set, of course
   # any table method that extracts an iterable will work
-  cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+  cw.writerow(["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
+  cw.writerows([(r.username, r.phone, r.email, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
-  print(response.data)
+  return response
 
 @app.route('/admin/export-custom', methods=["POST"])
 def export_custom():
-  members= data.a
-
   si = StringIO()
   cw = csv.writer(si)
-  records = members   # or a filtered set, of course
-  # any table method that extracts an iterable will work
-  cw.writerows([(r.experience, r.date_of_birth, r.email, r.current_salary, r.unit_names(), r.image_file, r.occupation, r.work_address, r.home_address, r.password, r.phone, r.username) for r in records])
+  records = data.a.all() #fetch from data store
+  print(records[0].unit_ids())
+  cw.writerow(["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
+  cw.writerows([(r.username, r.phone, r.email, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
@@ -444,10 +425,9 @@ def export_custom():
 
 
 @app.route("/admin/register-bulk", methods=["GET", "POST"])
+@admin_role_required
 @login_required
 def register_bulk(error_message=""):
-  if current_user.role == "USER":
-    return(redirect(url_for("home")))
 
   form = UploadCsvForm()
 
@@ -466,7 +446,7 @@ def register_bulk(error_message=""):
       return render_template("register_bulk.html", form=form, error_message=error_message)
     else:
       flash("Bulk registration successful")
-      return(redirect(url_for("admin")))
+      return(redirect(url_for("manage_members")))
 
   return render_template("register_bulk.html", form=form, error_message=error_message)
 
