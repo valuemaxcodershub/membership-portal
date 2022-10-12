@@ -70,7 +70,7 @@ def business_profile():
 
 
 
-@app.route("/account")
+@app.route("/account") 
 @login_required
 def account():
   if current_user.role == "USER":
