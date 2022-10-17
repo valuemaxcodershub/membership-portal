@@ -250,7 +250,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
+<<<<<<< HEAD
                 <a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
+=======
+                <li><a href="{{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
+>>>>>>> b58b65e443817eb4ada2317227ffda0aedc56e8a
                 {% endfor %}
               </ul>
             </li>

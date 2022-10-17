@@ -81,7 +81,13 @@
 
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
 
-								<a class="btn btn-dark" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member"><i class="fa fa-lock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member"></i></a>
+								{% if member._is_suspended %}
+								<a class="btn btn-light" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#suspendmodal"  onclick="unsuspendFunction(this)"><i class="fa fa-unlock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member"></i></a>
+
+								{% else %}
+								<a class="btn btn-dark" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#suspendmodal"  onclick="suspendFunction(this)"><i class="fa fa-lock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member"></i></a>
+
+								{% endif %}
 
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"><i class="fa fa-trash-o" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"></i></a>
 								
@@ -92,8 +98,31 @@
 					  </table>
 
 
-						<!-- Modal -->
-						<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <!-- Suspend Modal -->
+						<div class="modal fade" id="suspendmodal" tabindex="-1" role="dialog" aria-labelledby="suspendModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="suspendModalLabel">Suspend ?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      		Are you sure?						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <form method="POST" action="{{ url_for('suspend_user') }}">
+						        	<input type="hidden" name="user_id" id="hiddenid">
+						        <button type="submit" class="btn btn-primary" href="#">Yes</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+						<!-- Delete Modal -->
+						<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
@@ -197,7 +226,7 @@
 					      {% if members.page == page_num %}
 					        <a class="btn btn-success mb-5"  href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
 					      {% else %}
-					        <a class="btn btn-success mb-5" href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
+					        <a class="btn btn-outline-success mb-5" href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
 					      {% endif %}
 					    {% else %}
 					      ...
@@ -215,6 +244,26 @@
 						        $('#hiddenid').val(userId);
 						        $('#exampleModalLabel').text('Delete ' + name);
 						        $("#deletemodal").modal("show");
+						    }
+
+						    function suspendFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#hiddenid').val(userId);
+						        $('#suspendModalLabel').text('Suspend ' + name);
+						        $('#suspendmodal .modal-body').text("Are you sure you want to suspend this user?");
+						        $("#suspendmodal").modal("show");
+						    }
+
+						    function unsuspendFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#hiddenid').val(userId);
+						        $('#suspendModalLabel').text('Unsuspend ' + name);
+						        $('#suspendmodal .modal-body').text("Are you sure you want to unsuspend this user?");
+						        $("#suspendmodal").modal("show");
 						    }
 
 						    function viewUserFunction(obj){
