@@ -18,6 +18,7 @@
     <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
     <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/business.css') }}">
     <!-- //font-awesome icons -->
+    
 </head>
 <body>
   <div class="ricky ">
@@ -34,20 +35,30 @@
           </div>
             
     </div>
+          </div>
+        </div>
+    </div>
     </nav>
+    <div class="fumni">
+      <form  method="#" action="#" class="search-box "autocomplete="off">
+        <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+        <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
+    </form>
+    </div>
+    
 </div>
 <br>
 <!-- navbar -->
 <div class="donee">
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"  id="mufu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  id="mufu dropstart">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse oyo" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 dropstart">
             <li class="nav-item ">
               <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">Home</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -69,6 +80,7 @@
                 <li><a class="dropdown-item" href="#">Membership Types</a></li>
                 <li><a class="dropdown-item" href="#">Membership Benefit</a></li>
                 <li><a class="dropdown-item" href="#">Membership Registration</a></li>
+                <li><a class="dropdown-item" href="#">Members Login</a></li>
               </ul>
             </li>
             <li class="nav-item">
@@ -87,6 +99,17 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Contact us</a>
             </li>
+            <div class="dropdown ibadan dropstart " >
+              <li class="btn btn-success dropdown-  d-inline-block" type="button" id=" dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
+                <i class="fa fa-database" aria-hidden="true"></i>
+              
+              <ul class="dropdown-menu dropstart" aria-labelledby="dropdownMenuButton1">
+                {% for unit in dashboard_units %}
+                <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart" target="_blank">{{unit.name}}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+            </div>
           </ul>
           
           
@@ -97,24 +120,23 @@
 </div>
 <br>
 <!--  -->
-<div class="musa" id="musa">
+<!-- <div class="musa" id="musa">
   <div class="container">
-    <div class="row">
-      <div class="col-sm-6 col-md-6-">
-        <div class="row">
-          <div class="col">
-            <div > 
-              <div>
-                <a class="btn btn-success" id="glow-on-hover" href="{{url_for('login')}}" role="button"  data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight:bold;" data-bs-toggle="tooltip" data-bs-placement="top" title="Login to member account">
-                  Members login
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
+    <div class=" row">
+
+      <div class=" col">
+        
+           <div>
+            <form  method="#" action="#" class="search-box "autocomplete="off">
+              <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+              <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
+          </form>
+          </div> 
+        </div>
+      <div class=" col">
             <div class="dropdown ibadan">
-              <li class="btn btn-secondary dropdown-toggle glow-on-hover d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
-               Sort By Cluster
+              <li class="btn btn-secondary dropdown- glow-on-hover d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
+                <i class="fa fa-database" aria-hidden="true"></i>
               
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
@@ -122,30 +144,16 @@
                 {% endfor %}
               </ul>
             </li>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-6-">
-        <div>
-          <form  method="#" action="#" class="search-box "autocomplete="off">
-            <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
-            <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--  -->
+            </div> -->
+          
+
 <br>
-<br>
-<div class="container agile-tables">
+<div class="container agile-tables " >
   
   <h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold; margin-top: 20px;" class="text-center">Business Members</h3>
   <div class="w3l-table-info table-responsive">
     
-      <table id="tuble" class="table table-success table-striped table-hover shadow-lg p-3 mb-5 bg-body rounded">
+      <table id="tuble" class="table table-success table-striped table-hover shadow-lg p-3 mb-5 bg-body rounded center table-bordered" style="width: 85%; font-size: 16px;">
     <thead>
       <tr>
       <th>Business Name</th>

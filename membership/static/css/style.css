@@ -8,8 +8,68 @@ html, body{
     font-size: 100%;
     overflow-x: hidden;
     background: rgb(254, 254, 254);
+    text-align: center;
+    align-items: center;
+}
+#savior{
+  margin-right:20% ;
+  text-decoration: none;
+}
+/* dashboard dropdown search */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
 
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+#myInput {
+  box-sizing: border-box;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-right: 20%;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+/* end of dashboard dropdown search */
 /* form for add admin */
 #farm{
   width: 300px;
@@ -93,7 +153,10 @@ html, body{
 
 .glo{
   margin-top: 20px;
-  width: 80%;
+  width: 89%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin-left: 10%;
 }
 .glory{
   background: white;
@@ -320,7 +383,7 @@ body a:hover{
 	label,small,.section-title{font-weight:normal}
 	label i,small i,.section-title i{position:relative;top:1px;margin-left:5px;color:#ccc;font-size:14px}
 	.section-title{padding-bottom:9px;margin:0 0 20px;border-bottom:1px solid #eee}
-	.section-title i{top:-1px}html,body{min-width:300px}
+	.section-title i{top:-1px}html,body{min-width:00px}
 	.wrapper{position:relative;padding:0 9px;opacity:0}
 	.no-cssanimations .wrapper{opacity:1}
 	.scrollable{overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
@@ -334,21 +397,31 @@ body a:hover{
 	@media(min-width:480px){
 		html,body{width:100%;height:100%;overflow:hidden}
 		body{position:fixed}
+    .wrapper{
+      /* width: 100%; */
+      margin-left: auto;
+      margin-right: auto;
+    }
 		.wrapper{
 			position: absolute;
 			display: block;
 			vertical-align: top;
 			top: 0;
-			left: 60px;
+			left: 0px;
 			right: 0;
 			bottom: 0;
 			padding: 0;
 			-webkit-transition: left .1s ease-in;
 			transition: left .1s ease-in;
+      /* z-index: 0; */
 		}
 		.wrapper.extended{left:110px}
 		.wrapper p{padding:0 15px}
 	}
+  .wrapper{
+    text-align: center;
+    align-items: center;
+  }
 	a{-webkit-transition:color .1s;transition:color .1s}a:hover,a:focus{text-decoration:none}a:focus{outline:0}nav{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none}nav ul,nav li{margin:0;padding:0;outline:0}
 	.display-table{display:table;border-collapse:collapse;border-spacing:0}
 	.color-transition{-webkit-transition:color .1s;transition:color .1s}
@@ -364,7 +437,8 @@ body a:hover{
 			height: 100%;
 			left: 0;
 			width: 60px;
-      /* margin-top: 8%; */
+      /* this is the side bar */
+      margin-top: 8%;
 			overflow: hidden;
 			-webkit-transition: width .05s linear;
 			transition: width .05s linear;
@@ -372,6 +446,7 @@ body a:hover{
 			background: #228c2e;
 			z-index: 11;
 		}
+    
 		nav.main-menu>ul{margin:7px 0}
 		nav.main-menu>ul.logout{position:absolute;left:0;bottom:0}
 		nav.main-menu li{position:relative;display:block;width:250px}
@@ -441,6 +516,7 @@ body a:hover{
 			right: 0;
 			max-height: 0;
 			overflow: hidden;
+      
 			-webkit-transition: max-height .2s linear;
 			transition: max-height .2s linear;
 			-webkit-transform: translateZ(0) scale(1,1);
@@ -570,10 +646,13 @@ body a:hover{
 /* .main-grid{
     padding: 4em;
 } */
+
 .dashboard-page .title-bar {
   background-color: rgb(20, 64, 23);
   -webkit-box-shadow: 0 4px 10px -2px rgba(0,0,0,0.05);
   box-shadow: 0 4px 10px -2px rgba(0,0,0,0.05);
+  /* width: 100%; */
+  
     
  }
  /* profile */
@@ -598,28 +677,86 @@ body a:hover{
 }
  /* end of nav bar for profile */
   /* navbar dropdown */
+  /* .ibadan{
+    background: rgb(4, 243, 48);
+  } */
+  .osun{
+    margin-right: 20%;
+  }
+  .osun  li ul{
+    display: none;
+    text-decoration: none;
+   
+  
+    
+}
+.osun a{
+  text-decoration: none;
+}
+.osun  li:hover ul{
+  /* display: inline-block; */
+  display: inline;
+    display: block;
+    transition: 1s;
+    font-weight: bold;
+    font-size: 20px;
+    list-style-type: none;
+    /* margin-right: 30%; */
+    background: rgb(26, 119, 43);
+    color: rgb(67, 228, 8);
+    font-weight: bold;
+} 
   .ibadan  li ul{
     display: none;
+   
   
     
 }
 .ibadan  li:hover ul{
     display: block;
     transition: 1s;
-    /* margin-top: 20px; */
+    font-weight: bold;
     margin-right: 30px;
     background: rgb(26, 119, 43);
     color: rgb(20, 20, 20);
     font-weight: bold;
 } 
-.ibadan li a{
+/* .oyo li a{
     color:rgb(68, 64, 64);
     font-weight: bold;
 }
+.oyo  li:hover ul{
+  display: block;
+  transition: 1s;
+  margin-right: 50em;
+  background: rgb(26, 119, 43);
+  color: rgb(20, 20, 20);
+  font-weight: bold;
+} 
+.oyo li a{
+  color:rgb(68, 64, 64);
+  font-weight: bold;
+} */
   /*  */
+  .mumumu{
+    list-style-type: none;
+    padding: 10px;
+    border: none;
+    color: black;
+    text-decoration: none;
+    background: rgb(76, 109, 71);
+    border: 5px;
+  }
+  .mumumu:hover{
+    color:rgb(13, 216, 13) ;
+    transition: 1s;
+    color: white;
+  }
 .ric{
   background-color: rgb(20, 64, 23);
   cursor: pointer;
+  width: 100%;
+  margin-right: 20%;
 }
 .ric a{
   margin-right:59% ;
@@ -645,6 +782,10 @@ body a:hover{
     margin-left: 29%;
     width: 70%;
     margin-top: -7%;
+  }
+  .mumumu{
+    margin-top: -29%;
+    /* z-index: 1000; */
   }
 }
 /* add member button */
@@ -1386,13 +1527,15 @@ figure.icons, .weather-text {
 }
 #tuble{
   width: 70%;
+  margin-left: auto;
+    margin-right: auto;
   /* margin-left: 15%; */
   cursor: pointer;
 }
 @media only screen and (max-width: 600px)  {
   #tuble{
     max-width: 100%;
-    margin-right: 20px;
+    
   }
   .aka h3{
     /* text-align: center; */

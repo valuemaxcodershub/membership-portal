@@ -202,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </li> -->
       
     </ul>
-    <div style="">
+    <div >
       <ul >
       <li>
       <a href="{{ url_for('edit_admin' , admin_id=current_user.id )}}">
@@ -213,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </a>
       </li>
     </ul>
-    <ul class="logout">
+    <!-- <ul class="logout">
       <li>
       <a href="{{ url_for('logout') }}">
       <i class="icon-off nav-icon"></i>
@@ -222,30 +222,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </span>
       </a>
       </li>
-    </ul>
+    </ul> -->
     </div>
   </nav>
-  <section class="wrapper scrollable">
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  <section class=" wrapper scrollable">
     <nav class="user-menu">
       <a href="javascript:;" class="main-menu-access">
       <i class="icon-proton-logo"></i>
       <i class="icon-reorder"></i>
       </a>
     </nav> 
-    <section class="title-bar">
-      <div class="ric" >
+    <section class="title-bar sticky-top">
+      <div class="ric">
         
-        <nav class="navbar navbar-expand-lg navbar-light bg-" >
+        <nav class="navbar  navbar-expand-lg navbar-light bg-" style="width: 100%;">
           <div class="container-fluid">
             <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="60px" /></a>
 
-            <div class="dropdown ibadan">
-              <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="dropdown" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
-               Sort By Units
+            <div class="dropdown ibadan" >
+              <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
+               <i class="fa fa-suitcase" aria-hidden="true"></i>
               
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
+                <a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
                 {% endfor %}
               </ul>
             </li>
@@ -254,15 +259,109 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             &nbsp;
             &nbsp;
             &nbsp;
-           
             
-            <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
+            <div class="dropdown ibadan" style="margin-right:18% ;">
+              <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
+                <i class="fas fa-search"></i>
+              
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
+                  <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
+                  </form>
+              </ul>
+            </li>
+            </div>
+            
+            <button class="mumumu btn btn-success">
+              <ul class="logout" style="list-style-type:none ;">
+                <li>
+                <a href="{{ url_for('logout') }}" style="text-decoration:none;">
+                <i class="icon-off nav-icon"></i>
+                <span class="nav-text">
+              
+                </span>
+                </a>
+                </li>
+              </ul>
+              
+             
+          </ul>
+            </button>
+            
+            <!--  -->
+            <!-- <div id="savior">
+              <div class="dropdown osun " >
+                <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                
+               <div class="row">
+                <div class="col">
+                  <ul class="dropdown-menu dropstart" aria-labelledby="dropdownMenuButton1">
+                  
+                    <ul >
+                      <li>
+                      <a href="{{ url_for('edit_admin' , admin_id=current_user.id )}}">
+                      <i class="fa fa-user-circle nav-icon"></i>
+                      <span class="nav-text">
+                      
+                      </span>
+                      </a>
+                      </li>
+                    </ul>
+                </div>
+                  
+                 
+                  
+                  <div class="col">
+                    <ul class="logout">
+                      <li>
+                      <a href="{{ url_for('logout') }}" style="text-decoration:none ;">
+                      <i class="icon-off nav-icon"></i>
+                      <span class="nav-text">
+                    
+                      </span>
+                      </a>
+                      </li>
+                    </ul>
+                   
+                </ul>
+                  </div>
+               </div>
+              </li>
+              </div>
+            </div> -->
+            <!-- <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
             <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
-            </form>
+            </form> -->
+
+            <!-- <div class="dropdown dropstart ">
+              <ul class="btn btn-secondary dropdown-  " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </ul>
+              <ul class="dropdown-menu folloo" aria-labelledby="dropdownMenuButton1" style="padding: 10px;">
+                <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
+                  <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
+                  </form>
+              </ul>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-search-plus" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><button class="dropdown-item" type="button">Action</button></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><button class="dropdown-item" type="button">Something else here</button></li>
+              </ul>
+            </div> -->
+
+
+
           </div>
           </nav>  
-        
       </div>
         <div class="clearfix"> </div>
     </section>
@@ -289,6 +388,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
   </script>
+  <script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    function filterFunction() {
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      div = document.getElementById("myDropdown");
+      a = div.getElementsByTagName("a");
+      for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          a[i].style.display = "";
+        } else {
+          a[i].style.display = "none";
+        }
+      }
+    }
+    </script>
 
   <!-- for units -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
