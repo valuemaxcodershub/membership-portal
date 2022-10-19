@@ -16,6 +16,7 @@ click==8.1.3
     # via flask
 colorama==0.4.5
     # via click
+email-validator==1.2.1
 flask==2.2.1
     # via
     #   -r requirements.in
