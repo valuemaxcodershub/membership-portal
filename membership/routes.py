@@ -13,7 +13,7 @@ import csv
 from wtforms.validators import DataRequired, ValidationError
 from functools import wraps
 
-
+#this is for sending members to pages that don't use the dashboard layout e.g. business members
 @app.context_processor
 def inject_menu():
 
@@ -21,6 +21,17 @@ def inject_menu():
     dashboard_units = Unit.query.all()
 
     return dict(dashboard_units=dashboard_units)
+
+def user_role_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+      if current_user.is_authenticated:
+        if not current_user.role == "USER":
+            abort(403)
+        return func(*args, **kwargs)
+      else:
+        abort(403)
+    return decorated_view
 
 def admin_role_required(func):
     @wraps(func)
@@ -70,11 +81,23 @@ def business_profile():
 
 
 
+@app.route("/edit-business-profile")
+@user_role_required
+@login_required
+def edit_business_profile():
+  # members = User.query.filter_by(role="USER").all()
+
+  return render_template("business-profile-form.html")
+
+
+
 @app.route("/account") 
 @login_required
-def account():
+def user_account():
   if current_user.role == "USER":
     return render_template("user_account.html")
+  else:
+    return redirect(url_for("home"))
 
 @app.route("/logout")
 def logout():
@@ -97,7 +120,7 @@ def login():
     if user and user.password == password_input:
       login_user(user)
       next_page = request.args.get('next')
-      return redirect(next_page) if next_page else redirect(url_for('home'))
+      return redirect(next_page) if next_page else redirect(url_for('user_account'))
     else:
       flash('Login Unsuccessful. Please check Phone number and password', 'danger')
     

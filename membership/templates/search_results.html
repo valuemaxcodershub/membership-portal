@@ -185,17 +185,24 @@
 
 
 					  <!-- pagination -->
+					  <div style="display: inline-flex;">
 					  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 					    {% if page_num %}
-					      {% if members.page == page_num %}
-					        <a class="btn btn-success mb-5"  href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
-					      {% else %}
-					        <a class="btn btn-success mb-5" href="{{ url_for('manage_members', page=page_num) }}">{{ page_num }}</a>
+					      <form  method="POST" action="{{ url_for('search_members', page=page_num) }}" class="d-flex" autocomplete="off">
+                  <input id="member_autocomplete" name="search_query" class="form-control me-2" type="hidden" value="{{query}}" placeholder="Search" aria-label="Search">
+                  {% if members.page == page_num %}
+					      		<button type="submit" class="btn btn-success mb-5">{{ page_num }}</button>
+					      	{% else %}
+					      		<button type="submit" class="btn btn-outline-success mb-5" >{{ page_num }}</button>
 					      {% endif %}
+					      </form>
 					    {% else %}
 					      ...
 					    {% endif %}
 					  {% endfor %}
+					  </div>
+					  
+					  
 					</div>
 				  </div>
 

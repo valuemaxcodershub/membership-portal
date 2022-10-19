@@ -33,6 +33,16 @@ class User(db.Model, UserMixin):
   home_address = db.Column(db.String())
   work_address = db.Column(db.String())
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
+  business_about = db.Column(db.String())
+  business_services = db.Column(db.String())
+  #use image list
+  business_images = db.Column(db.String())
+  business_facebook = db.Column(db.String())
+  business_twitter = db.Column(db.String())
+  business_linkedin = db.Column(db.String())
+  business_whatsapp = db.Column(db.String())
+
+
 
 
   def display_units(self):
