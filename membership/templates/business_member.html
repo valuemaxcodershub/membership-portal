@@ -100,12 +100,12 @@
               <a class="nav-link active" aria-current="page" href="#">Contact us</a>
             </li>
             <div class="dropdown ibadan btn-group dropstart" style="margin-top: 7px;">
-              <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
+              <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1"  title="clusters">
                 <i class="fa fa-database" aria-hidden="true"></i>
               
               <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart" target="_blank">{{unit.name}}</a></li>
+                <li><a href=" {{ url_for('business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -170,7 +170,7 @@
               <td>{{ member.phone }}</td>
               <td>{{ member.email }}</td>
               <td>{{ member.display_units() }}</td>
-              <td><a href="{{url_for('business_profile')}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
+              <td><a href="{{url_for('member_page', member_id=member.id)}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
             </tr>
       {% endfor %}
     </tbody>
