@@ -44,7 +44,7 @@
         <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
         <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
     </form>
-    </div>
+  </div>
     
 </div>
 <br>
@@ -105,7 +105,7 @@
               
               <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart" target="_blank">{{unit.name}}</a></li>
+                <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart" target="_blank">{{unit.name}}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -147,10 +147,13 @@
             </div> -->
           
 
-<br>
+
 <div class="container agile-tables " >
-  
-  <h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold; margin-top: 20px;" class="text-center">Business Members</h3>
+  <br>
+  <br>
+<a role="button" class="btn btn-success" href="{{ url_for('business_members') }}" title="Back to business members"><i class="fa fa-arrow-left" aria-hidden="true" title="Edit Member Profile"></i>  Back to business members</a>
+  <br>
+  <h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> {{ result_count }} results for search -- "{{query}}"</h3>
   <div class="w3l-table-info table-responsive">
     
       <table id="tuble" class="table table-success table-striped table-hover shadow-lg p-3 mb-5 bg-body rounded center table-bordered" style="width: 85%; font-size: 16px;">
@@ -164,7 +167,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for member in members %}
+      {% for member in members.items %}
             <tr>
               <td>{{member.username}}</td>
               <td>{{ member.phone }}</td>
@@ -177,6 +180,24 @@
     </table>
   </div>
   </div>
+
+  <!-- pagination -->
+            <div style="display: inline-flex;">
+            {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+              {% if page_num %}
+                <form  method="POST" action="{{ url_for('search_business_members', page=page_num) }}" class="d-flex" autocomplete="off">
+                  <input id="member_autocomplete" name="search_query" class="form-control me-2" type="hidden" value="{{query}}" placeholder="Search" aria-label="Search">
+                  {% if members.page == page_num %}
+                    <button type="submit" class="btn btn-success mb-5">{{ page_num }}</button>
+                  {% else %}
+                    <button type="submit" class="btn btn-outline-success mb-5" >{{ page_num }}</button>
+                {% endif %}
+                </form>
+              {% else %}
+                ...
+              {% endif %}
+            {% endfor %}
+            </div>
 
   <!-- footer -->
   <div class="foot">

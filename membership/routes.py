@@ -69,9 +69,32 @@ def home():
 @app.route("/business-members")
 def business_members():
   members = User.query.filter_by(role="USER").all()
-  # units = Unit.query.all()
+  units = Unit.query.all()
 
-  return render_template("business_member.html", members= members)
+  return render_template("business_member.html", members= members, units=units)
+
+@app.route("/business-members/search", methods=["POST"])
+def search_business_members():
+  query = request.form.get("search_query", False)
+  page = request.args.get('page', 1, type=int)
+  results = User.query.filter_by(role="USER").filter(User.username.contains(query)) 
+  data.a = results #add to datastore
+  result_count = results.count()
+  members = results.paginate(page=page, per_page=5)
+
+  return render_template("business_search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
+
+
+@app.route("/admin/business_unit_members/<int:unit_id>")
+def business_unit_members(unit_id):
+  page = request.args.get('page', 1, type=int)
+  unit = Unit.query.filter_by(id=unit_id)[0]
+  unit_members = unit.unit_members
+  print(unit_members)
+  members = unit_members
+
+  return render_template("business_unit_members.html", members=members, unit=unit)
+
 
 @app.route("/business-profile")
 def business_profile():
@@ -79,6 +102,12 @@ def business_profile():
 
   return render_template("business_profile.html")
 
+@app.route("/member_page/<int:member_id>")
+def member_page(member_id):
+  member = User.query.get_or_404(member_id)
+  image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  
+  return render_template("member_page.html", member=member, image_file=image_file)
 
 
 @app.route("/edit-business-profile")
@@ -140,11 +169,7 @@ def save_picture(form_picture):
 
     return picture_fn
 
-@app.route("/member_page/<int:member_id>")
-def member_page(member_id):
-  member = User.query.get_or_404(member_id)
-  
-  return render_template("member_page.html", member=member)
+
 
 # ADMIN ADMIN ADMIN #
 @admin_role_required

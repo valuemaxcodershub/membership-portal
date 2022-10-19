@@ -1,61 +1,260 @@
-{% extends "layout.html" %}
-{% block content %}
-<section class="wrapper scrollable">
-	<nav class="user-menu">
-		<a href="javascript:;" class="main-menu-access">
-		<i class="icon-proton-logo"></i>
-		<i class="icon-reorder"></i>
-		</a>
-	</nav>
-	<!--  -->
-	<br>
-	<br>
-	<div class="bedd">
-		<div >
-			<img src="/static/profile_pics/{{ member.image_file }}" alt="image" width="100px">
-		</div>
-		<br>
-		<br>
-		<div>
-			<h5>Full Name: {{ member.username }}</h5>
-		</div>
-		<br>
-		<div>
-			<p>Member Id: #{{ member.id }}</p>
-		</div>
-		<div>
-			<p>Email: {{ member.email }}</p>
-		</div>
-		<div>
-			<p>Phone: {{ member.phone }}</p>
-		</div>
-		<div>
-			<p>Password: {{ member.password }}</p>
-		</div>
-		<div>
-			<p>Units: 
-			{% for unit in member.units.all() %}
-				<span>{{ unit.name }}</span>
-			{% endfor %}
-			</p>
-		</div>
-		<div>
-			<p>Joined: {{ member.date_registered }}</p>
-		</div>
-		<div>
-			<p>Current Role: {{ member.occupation }}</p>
-		</div>
-		<div>
-			<p>Home Address: {{ member.home_address }}</p>
-		</div>
-		<div>
-			<p>Work Address: {{ member.work_address }}</p>
-		</div>
-		<div>
-			<p><a href="{{ url_for('edit_member', member_id=member.id) }}">Edit Member Details</a></p>
-		</div>
-	</div>	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Profile</title>
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <!--// bootstrap -->
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
+  <!-- font awesome -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- font-awesome icons -->
+  <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
+  <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/business.css') }}">
+  <!-- //font-awesome icons -->
+</head>
+<body>
+    <div class="ricky">
+        <nav>
+        <div class=" container rocky">
+            <div id="top-bar">
+              <div id="top-bar-inner" class="finax-container">
+                  <div class="top-bar-inner-wrap">
+                      
+          <div class="top-bar-content">
+                      <span class="phone content"> <i class="fa fa-phone" aria-hidden="true"></i> +2348160831342 or +2348032428096</span>
+                      <span class="email_content"> <i class="fa fa-envelope-o" aria-hidden="true"></i> info@nasmeoyo.org</span>
+                      <i class="fa fa-facebook-square" aria-hidden="true" id="down" style="color:white ; font-size: 20px;"></i>
+              </div>
+                
+        </div>
+              </div>
+            </div>
+        </div>
+        </nav>
+        <div class="fumni">
+          <form  method="#" action="#" class="search-box "autocomplete="off">
+            <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+            <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
+        </form>
+        </div>
+    </div>
+    <br>
+    <!-- navbar -->
+    <div class="donee">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"  id="mufu" style="background:  rgb(255, 255, 255);">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse oyo" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item ">
+                  <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">Home</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Member's Page</a></li>
+                    
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Unit & Cluster</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">
+                    Membership
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Membership Types</a></li>
+                    <li><a class="dropdown-item" href="#">Membership Benefit</a></li>
+                    <li><a class="dropdown-item" href="#">Membership Registration</a></li>
+                    <li><a class="dropdown-item" href="#">Members Login</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">NASME Cooperative</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data--toggle="dropdown" aria-expanded="">
+                    News & update
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Blog</a></li>
+                    <li><a class="dropdown-item" href="#">Gallery</a></li>
+                    
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Contact us</a>
+                </li>
+              </ul>
+              
+              
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <br>
+    <br>
+    
+    <div class="mommy">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <br>
+            <div>
+              <img src="{{image_file}}" alt="image" width="40%">
+              <br>
+              <!-- <input type="file" class="btn btn-success"> -->
+            </div>
+          </div>
+          <div class="col">
+            <div class="zaddy">
+              <h1 style="color: rgb(54, 98, 53);">{{member.username}} </h1>
+              <p>
+                {{member.business_about}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <div>
+          <div class="sonny">
+            <h2  style="color: rgb(54, 98, 53);">About The Business </h2>
+            <p>{{member.business_services}}</p>
+          </div>
+        </div>
+        <div>
+          <div class="anty">
+            <h1 style="color: rgb(54, 98, 53);">product of services</h1>
+            <div class="">
+              <div class="row">
+                <div class="col">
+                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                </div>
+                <div class="col">
+                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                </div>
+                <div class="col">
+                  <img src="../static/images/g4.jpg" alt="image" width="100%">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                </div>
+                <div class="col">
+                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                </div>
+                <div class="col">
+                  <img src="../static/images/g4.jpg" alt="image" width="100%">
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <!--  -->
+        <br>
+        <div>
+          <div class="uncle">
+            <h1 style="color: rgb(54, 98, 53);">product of services</h1>
+            <br>
+              <div class="">
+                <div class="row">
+                  <div class="col">
+                    <P>Phone number: {{member.phone}}</P>
+                  </div>
+                  <div class="col">
+                    <P><i>email: {{member.email}}</i></P>
+                  </div>
+                  <div class="col">
+                    <div>
+                      <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                      <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<br>
+    <!-- footer -->
+  <div class="foot">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <input type="text">
+          <br>
+          <br>
+          <br>
+          <div class="socket_1">
+            <p>The Nigeria association of small  and medium   enterprises(nasme) was registered in 1996 as a business  membership organisation (BMO), to co-operate and foster the promotion of micro, small and medium enterprises ( MSMEs) in Nigeria NASME is the only leading Nigerian private sector. <a href="#" >read more.</a></p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <h6>LASTEST POST</h6>
+          <br>
+          <div class="socket_2">
+            <p>WELCOME TO NASME NEWS AND <br> UPDATES</p>
+            <h6 style="color: rgb(9, 210, 9); font-weight:bold;">October 15, 2020</h6>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <h6>QUICK LINKS</h6>
+          <br>
+          <div class="socket_3">
+            <ul>
+              <li>HOME</li>
+              <li>ABOUT US</li>
+              <li>UNIT & CLUSTER</li>
+              <li>MEMBERSHIP</li>
+              <ul>
+              <li>MEMBERSHIP TYPES</li>
+              <li>MEMBERSHIP BENEFITS</li>
+              <li>MEMBERSHIP REGISTRATION</li>
+              </ul>
+              <li>NASME COPORATIVE</li>
+              <li>NEWS & UPDATES</li>
+              <ul>
+              <li>BLOG</li>
+              <li>GALLERY</li>
+              </ul>
+              <li>CONTACT US</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <h6>CONTACT INFORMATION</h6>
+          <br>
+          <div class="socket_5">
+            <p>NASME Oyo State ChapterBlock c, Suits 5 & 6, Oyo State Permanent Trade Fair Complex (EXPOYO), Sango – U.I Road, Ibadan, Oyo State, Nigeria. Tel: +2348160831342 or +2348032428096 , info@nasmeoyo.org</p>
 
+            <p>Meeting Day: Last Thursday of Every Month</p>
 
-</section>
-{% endblock content %}
+            <p>Time: 2pm Prompt</p>
+
+            <p>Cooperative Meeting : 1pm (Same Day)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
