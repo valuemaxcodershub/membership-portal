@@ -115,6 +115,11 @@ def member_page(member_id):
 # @login_required
 def edit_business_profile():
   # members = User.query.filter_by(role="USER").all()
+  if request.method == "POST":
+    member.username = request.form['username']
+    member.email = request.form['email']
+    member.password = request.form['password']
+    pass
 
   return render_template("business-profile-form.html")
 
