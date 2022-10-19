@@ -116,10 +116,26 @@ def member_page(member_id):
 def edit_business_profile():
   # members = User.query.filter_by(role="USER").all()
   if request.method == "POST":
-    member.username = request.form['username']
-    member.email = request.form['email']
-    member.password = request.form['password']
-    pass
+    member.business_name = request.form['username']
+    member.business_email = request.form['email']
+    member.business_phone = request.form["phone"]
+    member.business_about = request.form["business_about"]
+    member.business_services = request.form["business_services"]
+    member.business_facebook = request.form["business_facebook"]
+    member.business_twitter = request.form["business_twitter"]
+    member.business_linkedin = request.form["business_linkedin"]
+    member.business_whatsapp = request.form["business_whatsapp"]
+
+    image_str_list = []
+    images = request.files.getlist('images')
+    
+    for image in images:
+      if image:
+        picture_file = save_picture(image)
+        image_str_list.append(picture_file)
+    
+    member.business_images =  image_str_list
+
 
   return render_template("business-profile-form.html")
 
