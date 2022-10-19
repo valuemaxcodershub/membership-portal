@@ -99,11 +99,11 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Contact us</a>
             </li>
-            <div class="dropdown ibadan dropstart " >
-              <li class="btn btn-success dropdown-  d-inline-block" type="button" id=" dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
+            <div class="dropdown ibadan btn-group dropstart" style="margin-top: 7px;">
+              <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
                 <i class="fa fa-database" aria-hidden="true"></i>
               
-              <ul class="dropdown-menu dropstart" aria-labelledby="dropdownMenuButton1">
+              <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
                 <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart" target="_blank">{{unit.name}}</a></li>
                 {% endfor %}

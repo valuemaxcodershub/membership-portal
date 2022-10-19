@@ -51,6 +51,7 @@ body{
 }
 .oyo ul li ul{
     display: none;
+    margin-right: 20%;
   
     
 }
@@ -58,9 +59,14 @@ body{
     display: block;
     transition: 1s;
     margin-top: 1px;
+    /* margin-right: 20em; */
     background: rgb(0, 0, 0);
     color: white;
     font-weight: bold;
+    /* transform: skew(200deg); */
+    /* font-size: 10px; */
+    box-sizing: border-box;
+    
 } 
 .oyo ul li:hover{
     color: #48ff00;
@@ -164,7 +170,7 @@ body{
   }
   .input-search{
     height: 30px;
-    width: 30px;
+    width: 3px;
     border-style: none;
     padding: 10px;
     font-size: 18px;
@@ -338,7 +344,7 @@ body{
   /*  */
   .ibadan  li ul{
     display: none;
-  
+    position: relative;
     
 }
 .ibadan  li:hover ul{
@@ -349,6 +355,9 @@ body{
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     font-weight: bold;
+    position: absolute;
+    right: -30px;
+    
 } 
 .ibadan li a{
     color:rgb(246, 243, 243);
