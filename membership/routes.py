@@ -82,8 +82,8 @@ def business_profile():
 
 
 @app.route("/edit-business-profile")
-@user_role_required
-@login_required
+# @user_role_required
+# @login_required
 def edit_business_profile():
   # members = User.query.filter_by(role="USER").all()
 
