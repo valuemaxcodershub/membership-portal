@@ -10,6 +10,7 @@ html, body{
     background: rgb(254, 254, 254);
     text-align: center;
     align-items: center;
+    box-sizing: border-box;
 }
 #savior{
   margin-right:20% ;
@@ -417,7 +418,7 @@ body a:hover{
     }
   } */
 	@media(min-width:480px){
-		html,body{width:100%;height:100%;overflow:hidden}
+		html,body{width:100%;height:100%;overflow:hidden;}
 		body{position:fixed}
     .wrapper{
       /* width: 100%; */
@@ -460,7 +461,7 @@ body a:hover{
 			left: 0;
 			width: 60px;
       /* this is the side bar */
-      margin-top: 8%;
+      margin-top: 7%;
 			overflow: hidden;
 			-webkit-transition: width .05s linear;
 			transition: width .05s linear;
@@ -697,11 +698,6 @@ body a:hover{
 .reec a{
   margin-right:49% ;
 }
- /* end of nav bar for profile */
-  /* navbar dropdown */
-  /* .ibadan{
-    background: rgb(4, 243, 48);
-  } */
   .osun{
     margin-right: 20%;
   }
@@ -737,34 +733,35 @@ body a:hover{
     display: block;
     transition: 1s;
     font-weight: bold;
+    margin-top: -4px;
     /* margin-right: 30px; */
     background: rgb(26, 119, 43);
     color: rgb(20, 20, 20);
     font-weight: bold;
     box-sizing: border-box;
     position: absolute;
-    right: -60px;
+    left: -11em;
     
 } 
-.oyo li ul{
+/* .oyo li ul{
     display: none;
-    /* position: relative; */
-    /* width: 5%; */
+    position: relative;
+    
 }
 .oyo li:hover ul{
   transition: 1s;
   display: inline-flex;
-  /* background: rgb(246, 246, 246); */
+  background: rgb(246, 246, 246);
   color: rgb(10, 115, 26);
   box-sizing: border-box;
   font-weight: bold;
-  /* position: absolute;
-  left: -30px; */
+  position: absolute;
+  left: -30px;
 } 
 .oyo li a{
   color:rgb(68, 64, 64);
   font-weight: bold;
-} 
+}  */
   /*  */
   .mumumu{
     list-style-type: none;
@@ -784,25 +781,21 @@ body a:hover{
 .uyo  li:hover ul{
     display: block;
     transition: 1s;
-    /* margin-top: 20px; */
+    margin-top: -4px;
     /* margin-right: 30px; */
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     /* font-weight: bold; */
     position: absolute;
-    right: -30px;
-    
+    left: -13em;
     
 } 
 .uyo li a{
     color:rgb(246, 243, 243);
     font-weight: bold;
 }
-/* .uyo button{
-  width: 20%;
-} */
   .mumumu:hover{
-    color:rgb(13, 216, 13) ;
+    color:rgb(13, 216, 13);
     transition: 1s;
     color: white;
   }
@@ -810,23 +803,24 @@ body a:hover{
   background-color: rgb(20, 64, 23);
   cursor: pointer;
   width: 100%;
+  /* margin-left: 7%; */
+  /* margin-right: 20em; */
   
 }
+.tick{
+  margin-left: 6em;
+}
 .ric a{
-  margin-right:59% ;
+  margin-right:70% ;
+  
 }
 @media only screen and (max-width: 600px){
-  .ibadan{
-    /* visibility: hidden; */
+  .tick{
+    margin-left: 17em;
+    margin-top: -11%;
   }
   .ric a{
     margin-right:110% ;
-  }
-  .ric form{
-    visibility: visible;
-    margin-left: 29%;
-    width: 70%;
-    margin-top: -7%;
   }
   .reec a{
     margin-right:73% ;
@@ -840,6 +834,20 @@ body a:hover{
   .mumumu{
     margin-top: -29%;
     /* z-index: 1000; */
+  }
+  /* nav.main-menu{
+    margin-top: 17%;
+    
+  } */
+  /* .glo{
+    margin-left: 12%;
+  } */
+  #ond{
+    margin-left: 11%;
+    
+  } 
+  body{
+    overflow-x: visible;
   }
 }
 /* add member button */
@@ -1499,7 +1507,7 @@ figure.icons, .weather-text {
   cursor: pointer;
 }
 #tuble{
-  width: 70%;
+  /* width: 70%; */
   margin-left: auto;
     margin-right: auto;
   /* margin-left: 15%; */
@@ -1508,6 +1516,7 @@ figure.icons, .weather-text {
 @media only screen and (max-width: 600px)  {
   #tuble{
     max-width: 100%;
+    /* margin-left: 15%; */
     
   }
   .aka h3{

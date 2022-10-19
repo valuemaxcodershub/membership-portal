@@ -203,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       
     </ul>
     <div >
-      <ul >
+      <!-- <ul >
       <li>
       <a href="{{ url_for('edit_admin' , admin_id=current_user.id )}}">
       <i class="fa fa-user-circle nav-icon"></i>
@@ -212,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </span>
       </a>
       </li>
-    </ul>
+    </ul> -->
     <!-- <ul class="logout">
       <li>
       <a href="{{ url_for('logout') }}">
@@ -244,8 +244,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <div class="container-fluid">
             <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="60px" /></a>
 
+           <div class="tick">
             <div class="d-flex justify-content-center">
-              <div class="dropdown ibadan " style="float:right;">
+              <div class="dropdown ibadan " >
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
                  <i class="fa fa-suitcase" aria-hidden="true"></i>
                 
@@ -270,13 +271,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div> -->
 
               <div class="dropdown uyo" >
-                <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
+                <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search">
                   <i class="fas fa-search"></i>
-                
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
                     <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit" style="color: #A8D6B4;"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
                     </form>
                 </ul>
               </li>
@@ -308,30 +308,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </div>
               </div>
-              <!-- <div class="dropdown oyo" style="float:right;">
-                <li class="btn btn-success dropdown- d-inline-block nav-item dropdown" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
-                  <i class="fas fa-search"></i>
-                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="list-style-type:none ; width: 19%;">
-                  
-                </ul>
-              </li>
-              </div> -->
-              <!-- <button class="mumumu btn btn-success">
-                <ul class="logout" style="list-style-type:none ;">
-                  <li>
-                  <a href="{{ url_for('logout') }}" style="text-decoration:none;">
-                  <i class="icon-off nav-icon"></i>
-                  <span class="nav-text">
-                
-                  </span>
-                  </a>
-                  </li>
-                </ul>
-                
-               
-            </ul>
-              </button> -->
+             
             </div>
+           </div>
         </div>
           </nav>  
       </div>
