@@ -15,8 +15,8 @@ html, body{
   margin-right:20% ;
   text-decoration: none;
 }
-/* dashboard dropdown search */
-.dropbtn {
+/* dashboard dropdown  */
+.nose {
   background-color: #04AA6D;
   color: white;
   padding: 16px;
@@ -25,22 +25,41 @@ html, body{
   cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+.eyes {
+  position: relative;
+  display: inline-block;
 }
 
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
+.mouth {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.mouth a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.mouth a:hover {background-color: #f1f1f1;}
+.eyes:hover .mouth {display: block;}
+.eyes:hover .nose {background-color: #3e8e41;}
+
+/*  */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 9px;
+  /* font-size: 16px; */
   border: none;
-  border-bottom: 1px solid #ddd;
+  cursor: pointer;
 }
-
-#myInput:focus {outline: 3px solid #ddd;}
 
 .dropdown {
   position: relative;
@@ -50,25 +69,28 @@ html, body{
 .dropdown-content {
   display: none;
   position: absolute;
-  margin-right: 20%;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  overflow: auto;
-  border: 1px solid #ddd;
+  right: 0;
+  padding: 5x;
+  /* display: inline-block; */
+  background-color: #f9f9f9;
+  min-width: 60px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
 .dropdown-content a {
+  text-align: center;
+  align-items: center;
   color: black;
-  padding: 12px 16px;
+  padding: 4px;
   text-decoration: none;
   display: block;
+  /* display: inline-block; */
 }
 
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-
+.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 /* end of dashboard dropdown search */
 /* form for add admin */
 #farm{
@@ -685,10 +707,7 @@ body a:hover{
   }
   .osun  li ul{
     display: none;
-    text-decoration: none;
-   
-  
-    
+    text-decoration: none;  
 }
 .osun a{
   text-decoration: none;
@@ -705,9 +724,11 @@ body a:hover{
     background: rgb(26, 119, 43);
     color: rgb(67, 228, 8);
     font-weight: bold;
+    
 } 
   .ibadan  li ul{
     display: none;
+    position: relative;
    
   
     
@@ -720,23 +741,30 @@ body a:hover{
     background: rgb(26, 119, 43);
     color: rgb(20, 20, 20);
     font-weight: bold;
+    box-sizing: border-box;
+    position: absolute;
+    right: -30px;
+    
 } 
-/* .oyo li a{
-    color:rgb(68, 64, 64);
-    font-weight: bold;
+.oyo li ul{
+    display: none;
+    /* position: relative; */
+    /* width: 5%; */
 }
-.oyo  li:hover ul{
-  display: block;
+.oyo li:hover ul{
   transition: 1s;
-  margin-right: 50em;
-  background: rgb(26, 119, 43);
-  color: rgb(20, 20, 20);
+  display: inline-flex;
+  /* background: rgb(246, 246, 246); */
+  color: rgb(10, 115, 26);
+  box-sizing: border-box;
   font-weight: bold;
+  /* position: absolute;
+  left: -30px; */
 } 
 .oyo li a{
   color:rgb(68, 64, 64);
   font-weight: bold;
-} */
+} 
   /*  */
   .mumumu{
     list-style-type: none;
@@ -756,14 +784,14 @@ body a:hover{
   background-color: rgb(20, 64, 23);
   cursor: pointer;
   width: 100%;
-  margin-right: 20%;
+  
 }
 .ric a{
   margin-right:59% ;
 }
 @media only screen and (max-width: 600px){
   .ibadan{
-    visibility: hidden;
+    /* visibility: hidden; */
   }
   .ric a{
     margin-right:110% ;
@@ -803,10 +831,7 @@ body a:hover{
   position: relative;
   z-index: 1;
 }
-/* #ric:hover{
-  background: #05ed88;
-  transition: 1s;
-} */
+
 #ric::before{
   transition: 0.5s all ease;
   position: absolute;
@@ -825,85 +850,7 @@ body a:hover{
   opacity: 1;
   z-index:-1 ;
 }
-/* end of add member button */
-/* .logo {
-    float: left;
-    width: 15%;
-}
-.logo h1 a img {
-    margin-right: .5em;
-}
-.logo h1 a {
-    font-size: .9em;
-    color: #000;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-.w3l_search {
-	float: left;
-    width: 19%;
-    margin: .1em 0 0em 5em;
-    position: relative;
-}
-.w3l_search input[type="text"] {
-    outline: none;
-    padding: 10px;
-    color: #a7a7a7;
-    font-size: 14px;
-    width: 85%;
-    border: ridge 1px #e3e7ea;
-    background: #f4f7f9;
-    float: left;
-}	
-button.btn.btn-default{
-    outline: none;
-    padding: 10px 0 9px;
-    width: 15%;
-    border-radius: 4px;
-    position: relative;
-    background: #c7a2a8;
-    border: solid 1px #c7a2a8;
-    border-radius: 0;
-}
-button.btn.btn-default:hover{
-  background:#0aa21c;
-  transition: 1s;
-}
-button.btn.btn-default i.fa.fa-search{
-    color: #FFF;
-    margin: 0;
-}
-.w3l_search {
-    float: left;
-    width: 19%;
-    margin: 0.2em 0 0em 4em;
-    position: relative;
-}
-.w3l_search input[type="text"] {
-    outline: none;
-    padding: 10px;
-    color: #a7a7a7;
-    font-size: 14px;
-    width: 100%;
-    border: ridge 1px #e3e7ea;
-    border-radius: 4px;
-    background: #f4f7f9;
-    float: left;
-}	
-button.btn.btn-default{
-    outline: none;
-    padding: 10px 0 9px;
-    width: 100%;
-    border-radius: 4px;
-    position: relative;
-    background: #65aa6d;
-    border: solid 1px #0aa21c;
-    border-radius: 0;
-}
-button.btn.btn-default i.fa.fa-search{
-    color: #FFF;
-    margin: 0;
-} */
+
 .full-screen{
     float: left;
     width: 3%;
