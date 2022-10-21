@@ -12,6 +12,14 @@ html, body{
     align-items: center;
     box-sizing: border-box;
 }
+#ogle{
+
+}
+.ogle{
+  font-size: 10px;
+  /* margin-top: -10%; */
+  margin-left: 5%;
+}
 #savior{
   margin-right:20% ;
   text-decoration: none;
@@ -66,7 +74,9 @@ html, body{
   position: relative;
   display: inline-block;
 }
-
+.dropdown-content ul{
+  margin-left: 35%;
+}
 .dropdown-content {
   display: none;
   position: absolute;
@@ -74,7 +84,7 @@ html, body{
   padding: 5x;
   /* display: inline-block; */
   background-color: #f9f9f9;
-  min-width: 60px;
+  min-width: 90px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -822,6 +832,10 @@ body a:hover{
   margin-right:70% ;
   
 }
+@media (max-width: 800px) {
+  /* Smaller Resolution Desktops and Laptops */
+
+}
 @media only screen and (max-width: 600px){
   .tick{
     margin-left: 17em;
@@ -843,17 +857,7 @@ body a:hover{
     margin-top: -29%;
     /* z-index: 1000; */
   }
-  /* nav.main-menu{
-    margin-top: 17%;
-    
-  } */
-  /* .glo{
-    margin-left: 12%;
-  } */
-  /* #ond{
-    margin-left: 11%;
-    
-  }  */
+  
   body{
     overflow-x: visible;
   }
