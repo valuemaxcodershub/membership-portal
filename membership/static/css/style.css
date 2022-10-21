@@ -725,6 +725,7 @@ body a:hover{
   .ibadan  li ul{
     display: none;
     position: relative;
+    
    
   
     
@@ -743,6 +744,13 @@ body a:hover{
     left: -11em;
     
 } 
+.ibadan:hover a{
+  color: rgb(232, 226, 226);
+  /* font-weight: bold; */
+}
+/* .ibadan ul a {
+  color: white;
+} */
 /* .oyo li ul{
     display: none;
     position: relative;
