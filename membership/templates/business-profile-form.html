@@ -18,6 +18,97 @@
   <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
   <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/business.css') }}">
   <!-- //font-awesome icons -->
+  <style>
+    #form{
+             width: 90%;
+            margin: 5%;
+            padding: 10px;
+            font-size: 19px;
+            /* text-align: center;  */
+            /* margin-top: 20%; */
+            font-weight: bold;
+            background-color: rgb(181, 203, 185);
+            color: rgb(121, 146, 125);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        /* #ric{
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            background: #0b5836;
+            border: none;
+            border-radius: 4px;
+        }
+        #ric:hover{
+            background: #05ed88;
+            transition: 1s;
+        }
+        #rich{
+            background: green;
+            padding: 20px;
+            padding-bottom: 10%;
+            
+        }
+        #rich h2{
+            font-weight: bold;
+        }
+        #rach{
+            margin-top: 9%;
+            color: rgb(5, 89, 5);
+            font-weight: bold;
+            text-align: center;
+        }
+        #rach h3{
+            font-weight: bold;
+        } */
+        
+        .input-control{
+            display:flex;
+            flex-direction: column;
+        }
+        h1{
+          text-align: center;
+        }
+        .input-control input{
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control textarea{
+          border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control textarea:focus{
+          outline: 0;
+        }
+        .input-control input:focus {
+            outline: 0;
+        }
+        .input-control.success input {
+            border-color: #09c372;
+        }
+        .input-control.error input {
+            border-color: #ff3660;
+        }
+        .input-control.error {
+            color: #ff3660;
+            font-size: 9px;
+            height: 13px;
+        }
+        #viold input{
+          width: 90%;
+        }
+  </style>
 </head>
 <body>
     <div class="ricky">
@@ -69,6 +160,7 @@
                     <li><a class="dropdown-item" href="#">Membership Types</a></li>
                     <li><a class="dropdown-item" href="#">Membership Benefit</a></li>
                     <li><a class="dropdown-item" href="#">Membership Registration</a></li>
+                    <li><a class="dropdown-item" href="#">Members Login</a></li>
                   </ul>
                 </li>
                 <li class="nav-item">
@@ -96,8 +188,123 @@
       </div>
     </div>
     <br>
-    <form action="">
-      
+    <br>
+    <form action="" id="form" onsubmit="return validationForms">
+      <br>
+      <div class="container mom">
+        <div class="row">
+          <div class="col">
+            <div>
+              <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+              <br>
+              <p>Update Profile Picture</p>
+              <input type="file" name="" id="" class="btn btn-success">
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-control">
+              <input type="text" id="username" name="username" placeholder="Business Name"> <br>
+              <textarea name="" id="username" cols="30" rows="10" placeholder="Textarea"></textarea>
+              <span class="error"></span>
+          </div>
+          <div class="input-control">
+            <label for="About Business" style="text-align: center; font-weight:bold; font-size:large;">About Business</label>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Write more about your business"></textarea>
+            <span class="error"></span>
+        </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          <h1>Product Of Services</h1>
+          <br>
+          <div class="row" id="viold">
+            <div class="col-md-4">
+              <div>
+                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="" id="" class="btn btn-success">
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row" id="viold">
+            <div class="col-md-4">
+              <div>
+                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="" id="" class="btn btn-success">
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!--  -->
+        <br>
+        <div>
+          <h1>Product Of Services</h1>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-control">
+                <label for="Phone Number">Phone Number</label>
+                <input type="tel" id="username" name="username" placeholder="Phone Number">
+                <span class="error"></span>
+              </div>
+              
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="Email">Email</label>
+            <input type="email" id="username" name="username" placeholder="Email">
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="Phone Number">Phone Number</label>
+            <input type="text" id="username" name="username" placeholder="Business Name">
+            <span class="error"></span>
+          </div>
+    </div>
+      </div>
         
     </form>
 </body>

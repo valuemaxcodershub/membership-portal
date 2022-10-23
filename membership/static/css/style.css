@@ -12,6 +12,14 @@ html, body{
     align-items: center;
     box-sizing: border-box;
 }
+#ogle{
+
+}
+.ogle{
+  font-size: 10px;
+  /* margin-top: -10%; */
+  margin-left: 5%;
+}
 #savior{
   margin-right:20% ;
   text-decoration: none;
@@ -66,7 +74,9 @@ html, body{
   position: relative;
   display: inline-block;
 }
-
+.dropdown-content ul{
+  margin-left: 35%;
+}
 .dropdown-content {
   display: none;
   position: absolute;
@@ -74,7 +84,7 @@ html, body{
   padding: 5x;
   /* display: inline-block; */
   background-color: #f9f9f9;
-  min-width: 60px;
+  min-width: 90px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -725,6 +735,7 @@ body a:hover{
   .ibadan  li ul{
     display: none;
     position: relative;
+    
    
   
     
@@ -736,13 +747,20 @@ body a:hover{
     margin-top: -4px;
     /* margin-right: 30px; */
     background: rgb(26, 119, 43);
-    color: rgb(20, 20, 20);
+    color: rgb(240, 237, 237);
     font-weight: bold;
     box-sizing: border-box;
     position: absolute;
     left: -11em;
     
 } 
+.ibadan:hover a{
+  color: rgb(232, 226, 226);
+  /* font-weight: bold; */
+}
+/* .ibadan ul a {
+  color: white;
+} */
 /* .oyo li ul{
     display: none;
     position: relative;
@@ -814,7 +832,11 @@ body a:hover{
   margin-right:70% ;
   
 }
-@media only screen and (max-width: 600px){
+@media (max-width: 800px) {
+  /* Smaller Resolution Desktops and Laptops */
+
+}
+@media only screen and (max-width: 800px){
   .tick{
     margin-left: 17em;
     margin-top: -11%;
@@ -835,17 +857,7 @@ body a:hover{
     margin-top: -29%;
     /* z-index: 1000; */
   }
-  /* nav.main-menu{
-    margin-top: 17%;
-    
-  } */
-  /* .glo{
-    margin-left: 12%;
-  } */
-  /* #ond{
-    margin-left: 11%;
-    
-  }  */
+  
   body{
     overflow-x: visible;
   }

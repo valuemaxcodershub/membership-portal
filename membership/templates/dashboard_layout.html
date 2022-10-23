@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 <title>NASME</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
@@ -203,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       
     </ul>
     <div >
-      <!-- <ul >
+      <ul >
       <li>
       <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}">
       <i class="fa fa-user-circle nav-icon"></i>
@@ -212,8 +212,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </span>
       </a>
       </li>
-    </ul> -->
-    <!-- <ul class="logout">
+    </ul> 
+    <ul class="logout">
       <li>
       <a href="{{ url_for('admins.admin_logout') }}">
       <i class="icon-off nav-icon"></i>
@@ -222,7 +222,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </span>
       </a>
       </li>
-    </ul> -->
+    </ul>
     </div>
   </nav>
   &nbsp;
@@ -250,7 +250,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters">
                  <i class="fa fa-suitcase" aria-hidden="true"></i>
                 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="color: white; font-weight:bold;">
                   {% for unit in dashboard_units %}
                   <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
                   {% endfor %}
@@ -283,14 +283,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </div> 
               &nbsp;
               <div class="dropdown" style="float:right;">
-                <button class="dropbtn"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                <button class="dropbtn"> <i class="fa fa-user-circle nav-icon"></i></button>
                 <div class="dropdown-content">
                   <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
                     <li>
-                    <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none;">
-                    <i class="fa fa-user-circle nav-icon"></i>
-                    <span class="nav-text">
-                    
+                    <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
+                      <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    <span class="ogle">
+                      &nbsp;edit&nbsp;profile
                     </span>
                     </a>
                     </li>
@@ -298,10 +298,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  
                     <ul class="logout" type="button" style="list-style-type:none;;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"> 
                       <li>
-                      <a href="{{ url_for('admins.admin_logout') }}" style="text-decoration:none;">
+                      <a href="{{ url_for('admins.admin_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
                       <i class="icon-off nav-icon"></i>
-                      <span class="nav-text">
-                       
+                      <span class="ogle" id="ogle">
+                        &nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </span>
                       </a>
                       </li>
