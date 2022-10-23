@@ -20,9 +20,9 @@
   {% for page_num in admins.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {% if page_num %}
       {% if admins.page == page_num %}
-        <a class="" style="font-size:20px" href="{{ url_for('manage_admins', page=page_num) }}">{{ page_num }}</a>
+        <a class="" style="font-size:20px" href="{{ url_for('admins.manage_admins', page=page_num) }}">{{ page_num }}</a>
       {% else %}
-        <a class="" href="{{ url_for('manage_admins', page=page_num) }}">{{ page_num }}</a>
+        <a class="" href="{{ url_for('admins.manage_admins', page=page_num) }}">{{ page_num }}</a>
       {% endif %}
     {% else %}
       ...

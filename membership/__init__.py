@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'members.login'
 login_manager.login_message_category = 'info'
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
@@ -25,4 +25,16 @@ app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)
 migrate = Migrate(app, db)
 
-from membership import routes
+from membership.members.routes import members
+from membership.admins.routes import admins
+from membership.main.routes import main
+
+app.register_blueprint(members)
+app.register_blueprint(admins)
+app.register_blueprint(main)
+
+with app.app_context():
+    if db.engine.url.drivername == 'sqlite':
+        migrate.init_app(app, db, render_as_batch= True)
+    else:
+        migrate.init_app(app, db)

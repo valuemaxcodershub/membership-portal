@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from membership.models import User, Unit
+from wtforms.validators import DataRequired, Length, Email, ValidationError
+from membership.models import User
 
 class UploadCsvForm(FlaskForm):
   csv_file = FileField('Upload CSV file', validators=[DataRequired(), FileAllowed(['csv',])])
@@ -60,12 +60,6 @@ class UserRegistrationForm(FlaskForm):
     if user:
       raise ValidationError('That phone number is taken. Please choose a different one.')
 
-
-class UserLoginForm(FlaskForm):
-  phone = StringField(validators=[DataRequired()])
-  password = PasswordField("Password", validators=[DataRequired()])
-  remember = BooleanField("Remember me")
-  submit = SubmitField("Log In")
 
 
 class AdminLoginForm(FlaskForm):
@@ -137,21 +131,3 @@ class UpdateAdminForm(FlaskForm):
       user = User.query.filter_by(phone=phone.data).first()
       if user:
         raise ValidationError('That phone number is taken. Please choose a different one.')
-
-class RequestResetForm(FlaskForm):
-    email = StringField('Email',
-                        validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
-
-    def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user is None:
-            raise ValidationError('There is no account with that email. You must register first.')
-
-
-class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password',
-                                     validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Reset Password')
-

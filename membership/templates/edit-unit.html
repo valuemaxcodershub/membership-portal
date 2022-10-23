@@ -169,7 +169,7 @@
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        <form method="POST" action="{{ url_for('delete_unit', unit_id=unit.id) }}">
+						        <form method="POST" action="{{ url_for('admins.delete_unit', unit_id=unit.id) }}">
 						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
 						        </form>
 						      </div>

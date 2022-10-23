@@ -52,7 +52,7 @@
 			<p>Work Address: {{ member.work_address }}</p>
 		</div>
 		<div>
-			<p><a href="{{ url_for('edit_member', member_id=member.id) }}">Edit Member Details</a></p>
+			<p><a href="{{ url_for('admins.edit_member', member_id=member.id) }}">Edit Member Details</a></p>
 		</div>
 	</div>	
 
@@ -73,7 +73,7 @@
 						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        <form method="POST" action="{{ url_for('delete_user', user_id=member.id) }}">
+						        <form method="POST" action="{{ url_for('admins.delete_user', user_id=member.id) }}">
 						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
 						        </form>
 						      </div>
