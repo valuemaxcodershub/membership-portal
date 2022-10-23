@@ -1,4 +1,4 @@
-from flask import abort, redirect, url_for, request
+from flask import abort, redirect, url_for, request, flash
 from membership import login_manager
 from membership import db
 from membership.models import User, Unit
@@ -18,11 +18,11 @@ def admin_role_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
       if current_user.is_authenticated:
-        if not current_user.role == "ADMIN":
-            abort(403)
-        return func(*args, **kwargs)
-      else:
-        return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
+        if current_user.role == "ADMIN":
+          return func(*args, **kwargs)
+        else:
+          flash("You must log in to access this page")
+          return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
     return decorated_view
 
 def super_admin_role_required(func):
@@ -68,3 +68,15 @@ def parse_csv(csv_file):
 
       user.password = secrets.token_urlsafe(8)
       db.session.add(user)
+
+def add_member(user, selected_units):
+  inputted_units = []
+  for unit_name in selected_units:
+    unit = Unit.query.filter_by(name=unit_name).all()[0]
+    inputted_units.append(unit)
+
+  for unit in inputted_units:
+    user.units.append(unit)
+
+  db.session.add(user)
+  db.session.commit()

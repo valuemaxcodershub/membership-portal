@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from membership.members.forms import UserLoginForm
 from membership.models import User
-from flask_login import login_user, current_user, logout_user, login_required
+from flask_login import login_user, current_user, logout_user
 from membership.members.utils import user_role_required
 
 members = Blueprint('members', __name__)
@@ -28,9 +28,10 @@ def login():
   if request.method == "POST":
     phone_input = request.form['phone']
     password_input = request.form['password']
+    remember = form.remember.data
     user = User.query.filter_by(phone=phone_input).first()
     if user and user.password == password_input:
-      login_user(user)
+      login_user(user, remember=remember)
       next_page = request.args.get('next')
       return redirect(next_page) if next_page else redirect(url_for('members.user_account'))
     else:
@@ -40,12 +41,9 @@ def login():
 
 
 @members.route("/account") 
-@login_required
+@user_role_required
 def user_account():
-  if current_user.role == "USER":
     return render_template("user_account.html")
-  else:
-    return redirect(url_for("members.member_home"))
 
 @members.route("/user-logout")
 def user_logout():
@@ -54,7 +52,6 @@ def user_logout():
 
 # @members.route("/edit-business-profile")
 # @user_role_required
-# @login_required
 # def edit_business_profile():
 #   # members = User.query.filter_by(role="USER").all()
 #   if request.method == "POST":

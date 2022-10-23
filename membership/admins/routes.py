@@ -10,7 +10,7 @@ from membership.admins.utils import parse_csv
 from flask_login import login_user, current_user, login_required, logout_user
 import secrets
 import csv
-from membership.admins.utils import DataStore, admin_role_required, super_admin_role_required
+from membership.admins.utils import DataStore, admin_role_required, super_admin_role_required, add_member
 
 admins = Blueprint("admins", __name__)
 
@@ -68,9 +68,10 @@ def admin_login():
   if form.validate_on_submit():
     email_input = form.email.data
     password_input = form.password.data
+    remember = form.remember.data
     admin = User.query.filter_by(role="ADMIN").filter_by(email=email_input).first()
     if admin and admin.password == password_input:
-      login_user(admin)
+      login_user(admin, remember=remember)
       next_page = request.args.get('next')
       return redirect(next_page) if next_page else redirect(url_for('admins.dashboard'))
     else:
@@ -203,22 +204,12 @@ def register_member():
 
 
   if form.validate_on_submit():
-    user = User(username=form.username.data, email=form.email.data, phone=form.phone.data)
+    user = User(phone=form.phone.data)
     selected_units = request.form.getlist('mymultiselect')
 
+    add_member(user, selected_units)
 
-    inputted_units = []
-    for unit_name in selected_units:
-      unit = Unit.query.filter_by(name=unit_name).all()[0]
-      inputted_units.append(unit)
-
-    for unit in inputted_units:
-      user.units.append(unit)
-
-    user.password = secrets.token_urlsafe(8)
-    db.session.add(user)
-    db.session.commit()
-    flash(f"Account created for {form.username.data} successfully. Password for {form.username.data} is {user.password}", "success")
+    
     return(redirect(url_for("admins.manage_members")))
     
   return render_template("add-member.html", title="Register New Member", form=form, units=all_units)

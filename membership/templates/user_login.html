@@ -149,7 +149,8 @@
                               <span class="error" ></span>
                             {% endif %}
                         </div>
-                        <br>
+                        {{ form.remember(type="checkbox") }}
+                        {{ form.remember.label }}
                         <br>
                         {{ form.submit(type="submit", id="ric") }}
                         <a href="/reset_password" target="_blank">Forgot Password? </a>
