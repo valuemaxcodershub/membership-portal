@@ -64,7 +64,8 @@ html, body{
 .dropbtn {
   background-color: #04AA6D;
   color: white;
-  padding: 9px;
+  padding: 7px;
+  border-radius: 4px;
   /* font-size: 16px; */
   border: none;
   cursor: pointer;
@@ -171,6 +172,18 @@ html, body{
   .gluy{
     text-align: center;
   }
+  .glo{
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 868px) {
+  .glarr p{
+    /* margin-right: 30px; */
+    /* font-size: 10px; */
+  }
+  .glo{
+    margin-left: 10%;
+  }
 }
 .glory:hover{
   box-shadow: 10px 4px 4px black;
@@ -186,27 +199,32 @@ html, body{
 
 .glo{
   margin-top: 20px;
-  width: 89%;
-  /* margin-left: auto;
-  margin-right: auto; */
-  margin-left: 10%;
+  width: 100%;
+  
+  margin-left: 5%;
 }
+.doome{
+  margin-top: -100em;
+} 
+
 .glory{
   background: white;
   border: 1px solid rgb(43, 82, 43);
+  /* border-radius: max(0px, min(16px, (100% - 400px + 1px) * 9999)) / 16px; */
   border-radius: 4px;
   color: rgb(39, 59, 39);
   width: 90%;
+  max-width: 400%;
 }
 .gluy{
-  font-size: 300%;
+  font-size: 210%;
  
   margin-left: 5px;
   /* color:rgb(39, 59, 39) ; */
 }
 .glarr{
-  text-align: center;
-  
+  /* text-align: center; */
+  /* margin-right: 30%; */
   margin-top: 4%;
   /* color:rgb(39, 59, 39) ; */
   font-weight: bold;
@@ -471,7 +489,7 @@ body a:hover{
 			left: 0;
 			width: 60px;
       /* this is the side bar */
-      margin-top: 7%;
+      margin-top: 4%;
 			overflow: hidden;
 			-webkit-transition: width .05s linear;
 			transition: width .05s linear;
@@ -480,13 +498,14 @@ body a:hover{
 			z-index: 11;
 		}
     
-		nav.main-menu>ul{margin:7px 0}
-		nav.main-menu>ul.logout{position:absolute;left:0;bottom:0}
-		nav.main-menu li{position:relative;display:block;width:250px}
+		nav.main-menu>ul{margin:5px 0; }
+		nav.main-menu>ul.logout{position:absolute;left:0;bottom:0; }
+		nav.main-menu li{position:relative;display:block;width:250px;}
 		nav.main-menu li>a{
 		    position: relative;
 			display: table;
 			border-collapse: collapse;
+      /* margin-bottom: 20px; */
 			border-spacing: 0;
 			color: #fff;
 			-webkit-transform: translateZ(0) scale(1,1);
@@ -509,25 +528,27 @@ body a:hover{
 			border-collapse:collapse;
 			border-spacing:0;
 			width:210px
+      
 		}
 		nav.main-menu li li>a{
 			width: 210px;
 			color: #FFFFFF;
 			padding: .7em 0;
+      
 		}
 		nav.main-menu li li .subnav-text{
-			display:table-cell;vertical-align:middle;padding-left:20px;padding-right:40px
+			display:table-cell;vertical-align:middle;padding-left:20px;padding-right:40px; 
 		}
 		.no-touch nav.main-menu li li:hover a{
-			color:#fff;background-color:#0ece0b;
+			color:#fff;background-color:#0ece0b; 
 		}
-		.no-touch nav.main-menu li:hover>a,nav.main-menu li.active>a{color:#fff;background-color:#0ece0b;}
-		.no-touch nav.main-menu li:hover ul,nav.main-menu li.active ul{width:210px}
+		.no-touch nav.main-menu li:hover>a,nav.main-menu li.active>a{color:#fff;background-color:#0ece0b; }
+		.no-touch nav.main-menu li:hover ul,nav.main-menu li.active ul{width:210px; }
 		nav.main-menu .nav-icon,i.fa.fa-home.nav_icon,i.fa.fa-cogs,i.fa.fa-check-square-o.nav_icon,i.fa.fa-file-text-o.nav_icon,i.fa.fa-bar-chart.nav_icon,i.fa.fa-map-marker,i.fa.fa-exclamation-triangle,i.fa.fa-list-ul{
 			position:relative;display:table-cell;
 			width:60px;text-align:center;vertical-align:middle;font-size:18px;padding:.7em 0;
 		}
-		nav.main-menu .nav-icon.icon-home{font-size:20px}
+		nav.main-menu .nav-icon.icon-home{font-size:20px; }
 		nav.main-menu .nav-text{position: relative;
 			left: -1px;
 			display: table-cell;
@@ -535,6 +556,7 @@ body a:hover{
 			width: 190px;
 			visibility: hidden;
 			padding: .7em 0;
+      /* margin-top:170%; */
 		}
 		nav.main-menu .icon-angle-right,.icon-angle-down{display:table-cell;width:20px;vertical-align:middle;font-size:16px}
 		.no-touch nav.main-menu:hover,nav.main-menu.expanded{width:250px;overflow:visible}
@@ -562,6 +584,7 @@ body a:hover{
 		.no-touch nav.main-menu>ul>li:hover>a,nav.main-menu>ul>li.active>a{
 			color: #fff;
 			background-color: #0d4713;
+      
 		}
 		nav.main-menu li{display:block;width:100%}nav.main-menu li>a{
 			position: relative;
@@ -609,8 +632,8 @@ body a:hover{
 
 
 	.no-touch nav.user-menu>section>a:hover i,nav.user-menu>section>a.active i,nav.user-menu>section>a.unread i{color:#76b6ec}
-
-	nav.user-menu .main-menu-access{position:relative;float:left;padding:15px 17px;color:#666;-webkit-transition:all .1s;transition:all .1s}
+/* navbar icon in smaller screen */
+	nav.user-menu .main-menu-access{position:relative;float:left;padding:15px 17px;color:#666;   -webkit-transition:all .1s;transition:all .1s}
 	nav.user-menu .main-menu-access i{font-size:21px;width:30px}
 	nav.user-menu .main-menu-access.active{background: #228c2e;}
 	nav.user-menu .main-menu-access.active i{color:#fff}
@@ -682,6 +705,7 @@ body a:hover{
 
 .dashboard-page .title-bar {
   background-color: rgb(20, 64, 23);
+  padding: 3px;
   -webkit-box-shadow: 0 4px 10px -2px rgba(0,0,0,0.05);
   box-shadow: 0 4px 10px -2px rgba(0,0,0,0.05);
   /* width: 100%; */
@@ -708,7 +732,7 @@ body a:hover{
 .reec a{
   margin-right:49% ;
 }
-  .osun{
+  /* .osun{
     margin-right: 20%;
   }
   .osun  li ul{
@@ -717,21 +741,21 @@ body a:hover{
 }
 .osun a{
   text-decoration: none;
-}
-.osun  li:hover ul{
+} */
+/* .osun  li:hover ul{ */
   /* display: inline-block; */
-  display: inline;
+  /* display: inline;
     display: block;
     transition: 1s;
     font-weight: bold;
     font-size: 20px;
-    list-style-type: none;
+    list-style-type: none; */
     /* margin-right: 30%; */
-    background: rgb(26, 119, 43);
+    /* background: rgb(26, 119, 43);
     color: rgb(67, 228, 8);
     font-weight: bold;
     
-} 
+}  */
   .ibadan  li ul{
     display: none;
     position: relative;
@@ -820,16 +844,19 @@ body a:hover{
 .ric{
   background-color: rgb(20, 64, 23);
   cursor: pointer;
-  width: 100%;
+  max-width: 100%;
   /* margin-left: 7%; */
   /* margin-right: 20em; */
   
 }
 .tick{
-  margin-left: 6em;
+  margin-left: -20em;
+  /* margin-right:10% ; */
+ 
 }
-.ric a{
-  margin-right:70% ;
+#greeny{
+  margin-right:100% ;
+  margin-top: -1%;
   
 }
 @media (max-width: 800px) {
@@ -841,7 +868,7 @@ body a:hover{
     margin-left: 17em;
     margin-top: -11%;
   }
-  .ric a{
+  #greeny{
     margin-right:110% ;
   }
   .reec a{
@@ -857,11 +884,25 @@ body a:hover{
     margin-top: -29%;
     /* z-index: 1000; */
   }
-  
-  body{
-    overflow-x: visible;
+  .glo{
+    margin-left: 12%;
+    width: 90%;
   }
+  
 }
+ /* @media only screen and (max-width: 723px){
+.glory{
+  width: 150%;
+}
+.tick{
+  margin-top: 0px;
+  margin-left: 80%;
+  
+} 
+.glarr{
+  margin-right: -90em;
+}
+}  */
 /* add member button */
 #ric{
   padding: 10px;
@@ -1508,6 +1549,11 @@ figure.icons, .weather-text {
 }
 /* end finance */
 /* manage member th header */
+#feet{
+  width: 80%;
+  margin-left: auto;
+    margin-right: auto;
+}
 
 #tuble th{
   background: rgb(40, 85, 40);

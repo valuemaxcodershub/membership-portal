@@ -1,165 +1,172 @@
 {% extends "dashboard_layout.html" %}
 {% block content %}		
-			<div class=" glo">
-				<div class="row">
-					<a class="col-sm-4 col-md-4" id="glooo" href='{{url_for("manage_members")}}'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-user-circle" aria-hidden="true"></i> 
+			<div class="container">
+				<div class=" glo">
+					<div class="row">
+						<a class="col-sm-4 col-md-4" id="glooo" href='{{url_for("manage_members")}}'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-user-circle" aria-hidden="true"></i> 
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div data-text class="glarr">
-										<p>Total Members</p>
-										<h4>{{ total_members }}</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='{{url_for("manage_units")}}'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-archive" aria-hidden="true"></i>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Total Units</p>
-										<h4>{{ total_units }}</h4>
-									</div>
-								</div>
-						    </div>
-						</div>
-					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-pie-chart" aria-hidden="true"></i>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Revenue</p>
-										<h4>#12453664</h4>
-									</div>
-								</div>
-						    </div>
-						</div>
-					</a>
-				</div>
-				<br>
-				<br>
-				<div class="row">
-					<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("register_member") }}'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-user-circle" aria-hidden="true"></i>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Add new member</p>
+									<div class="col-sm-6 col-md-10">
+										<div data-text class="glarr">
+											<p>Total Members</p>
+											<h3>{{ total_members }}</h3>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("register_unit") }}'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-archive" aria-hidden="true"></i>
+						</a>
+						<a class="col-sm-4 col-md-4" id="glooo" href='{{url_for("manage_units")}}'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-archive" aria-hidden="true"></i>
+										</div>
 									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Add new unit</p>
-									</div>
-								</div>
-						    </div>
-						</div>
-					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-bar-chart" aria-hidden="true" ></i>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Manage Finance</p>
-									</div>
-								</div>
-						    </div>
-						</div>
-					</a>
-				</div>
-				<br>
-				<br>
-				<div class="row">
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-bar-chart" aria-hidden="true"></i>
-									</div>
-								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Today's Sales</p>
-										<h4>#0.00</h4>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Total Units</p>
+											<h3>{{ total_units }}</h3>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						</a>
+						<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-pie-chart" aria-hidden="true"></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Revenue</p>
+											<h3>#12453664</h3>
+										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>Total Return</p>
-										<h4>10,00</h4>
+							</div>
+						</a>
+					</div>
+					&nbsp;
+					
+					<div class="row">
+						<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("register_member") }}'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-user-circle" aria-hidden="true"></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Add new member</p>
+										</div>
 									</div>
 								</div>
-						    </div>
-						</div>
-					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory">
-							<div class="row">
-								<div class="col-sm-6 col-md-4">
-									<div class="gluy">
-										<i class="fa fa-bar-chart" aria-hidden="true" ></i>
+							</div>
+						</a>
+						
+						<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("register_unit") }}'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-archive" aria-hidden="true"></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Add new unit</p>
+										</div>
 									</div>
 								</div>
-								<div class="col-sm-6 col-md-8">
-									<div class="glarr">
-										<p>This Month Sales</p>
-										<h4>#0.00</h4>
+							</div>
+						</a>
+						
+						<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-bar-chart" aria-hidden="true" ></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Manage Finance</p>
+										</div>
 									</div>
 								</div>
-						    </div>
-						</div>
-					</a>
-				</div>
-			</div>	
+							</div>
+						</a>
+					</div>
+					&nbsp;
+					
+					<div class="row">
+						<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-bar-chart" aria-hidden="true"></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Today's Sales</p>
+											<h3>#0.00</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+						
+						<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>Total Return</p>
+											<h3>10,00</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+						
+						<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+							<div class="glory">
+								<div class="row">
+									<div class="col-sm-6 col-md-2">
+										<div class="gluy">
+											<i class="fa fa-bar-chart" aria-hidden="true" ></i>
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-10">
+										<div class="glarr">
+											<p>This Month Sales</p>
+											<h3>#0.00</h3>
+										</div>
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>	
+			</div>
+			
 {% endblock content %}
