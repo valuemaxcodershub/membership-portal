@@ -17,6 +17,15 @@ admins = Blueprint("admins", __name__)
 
 data = DataStore()
 
+#this is for sending members to pages that don't use the dashboard layout e.g. business members
+@admins.context_processor
+def inject_menu():
+
+    # Fill in with your actual menu dictionary:
+    dashboard_units = Unit.query.all()
+
+    return dict(dashboard_units=dashboard_units)
+
 @admins.route("/")
 @admins.route("/home")
 def home():
