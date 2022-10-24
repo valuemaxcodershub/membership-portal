@@ -17,10 +17,9 @@ user_unit = db.Table("user_unit",
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   units = db.relationship("Unit", secondary=user_unit, backref="unit_members", lazy="dynamic")
-
   username = db.Column(db.String(20), unique=True)
   email = db.Column(db.String(120), unique=True)
-  phone = db.Column(db.String(60), unique=True, nullable=False)
+  phone = db.Column(db.String(60), unique=True)
   password = db.Column(db.String(60), nullable=False, default="12345678")
   image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
   date_registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -36,6 +35,8 @@ class User(db.Model, UserMixin):
   business_name = db.Column(db.String())
   business_email = db.Column(db.String())
   business_phone = db.Column(db.String())
+  #refresh database make business_photo non-nullable
+  business_photo = db.Column(db.String(20), default='default.jpg')
   business_about = db.Column(db.String())
   business_services = db.Column(db.String())
   #use image list

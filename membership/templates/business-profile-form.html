@@ -195,16 +195,18 @@
         <div class="row">
           <div class="col">
             <div>
-              <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+              <label for="bus-photo" style="text-align: center; font-weight:bold; font-size:large;">Business Photo</label>
+              <br/>
+              <img id="bus-photo" src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
               <br>
               <p>Update Profile Picture</p>
-              <input type="file" name="" id="" class="btn btn-success">
+              <input type="file" name="business-photo" id="" class="btn btn-success">
             </div>
           </div>
           <div class="col">
             <div class="input-control">
-              <input type="text" id="username" name="username" placeholder="Business Name"> <br>
-              <textarea name="" id="username" cols="30" rows="10" placeholder="Textarea"></textarea>
+              <label for="username" style="text-align: center; font-weight:bold; font-size:large;">Business Name</label>
+              <input type="text" id="username" name="business-name" placeholder="Business Name"> <br>
               <span class="error"></span>
           </div>
           <div class="input-control">
@@ -217,92 +219,75 @@
         <br>
         <br>
         <div>
-          <h1>Product Of Services</h1>
+          <h1>Product/Service Images</h1>
           <br>
           <div class="row" id="viold">
-            <div class="col-md-4">
-              <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
-                <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
-                <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
-                <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
-              </div>
-            </div>
-          </div>
-          <br>
-          <br>
-          <div class="row" id="viold">
-            <div class="col-md-4">
-              <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
-                <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
-                <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
-                <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
-              </div>
-            </div>
+            <label for="files">Select display Image(s):</label>
+            <input class="btn btn-success" type="file" id="files" name="business-p-images" accept=".jpg, .png, .jpeg" multiple><br><br>
           </div>
         </div>
         <br>
         <!--  -->
         <br>
         <div>
-          <h1>Product Of Services</h1>
+          <h1>Links / Contact Information</h1>
           <br>
           <div class="row">
             <div class="col-md-4">
               <div class="input-control">
-                <label for="Phone Number">Phone Number</label>
-                <input type="tel" id="username" name="username" placeholder="Phone Number">
+                <label for="bus-phone">Business Phone Number</label>
+                <input type="tel" id="bus-phone" name="business-phone" placeholder="Phone Number">
                 <span class="error"></span>
               </div>
               
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="Email">Email</label>
-            <input type="email" id="username" name="username" placeholder="Email">
+            <label for="bus-email">Business Email</label>
+            <input type="email" id="bus-email" name="business-email" placeholder="Email">
             <span class="error"></span>
           </div>
           
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="Phone Number">Phone Number</label>
-            <input type="text" id="username" name="username" placeholder="Business Name">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="business-website" placeholder="website url">
             <span class="error"></span>
           </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="bus-fac">Facebook Url</label>
+            <input type="text" id="bus-fac" name="business-facebook" placeholder="https://www.facebook.com/mybusiness/">
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="bus-fac">Twitter Url</label>
+            <input type="text" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/">
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="Email">LinkedIn Url</label>
+            <input type="text" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url">
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="whatsapp">Whatsapp Number</label>
+            <input type="tel" id="whatsapp" name="business-whatsapp" placeholder="0808080">
+            <span class="error"></span>
+          </div>
+
     </div>
       </div>
         
