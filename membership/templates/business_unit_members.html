@@ -40,7 +40,7 @@
     </div>
     </nav>
     <div class="fumni">
-      <form  method="POST" action="{{ url_for('search_business_members') }}" class="search-box "autocomplete="off">
+      <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="search-box "autocomplete="off">
         <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
         <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
     </form>
@@ -105,7 +105,7 @@
               
               <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
+                <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -140,7 +140,7 @@
               
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
+                <li><a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
                 {% endfor %}
               </ul>
             </li>
@@ -151,7 +151,7 @@
 <div class="container agile-tables " >
   <br>
   <br>
-<a role="button" class="btn btn-success" href="{{ url_for('business_members') }}" title="Back to business members"><i class="fa fa-arrow-left" aria-hidden="true" title="Edit Member Profile"></i>  Back to business members</a>
+<a role="button" class="btn btn-success" href="{{ url_for('main.business_members') }}" title="Back to business members"><i class="fa fa-arrow-left" aria-hidden="true" title="Edit Member Profile"></i>  Back to business members</a>
   <br>
             {% if unit %}
                 <h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center">{{ unit.name }} Unit Member List</h3>
@@ -177,7 +177,7 @@
               <td>{{ member.phone }}</td>
               <td>{{ member.email }}</td>
               <td>{{ member.display_units() }}</td>
-              <td><a href="{{url_for('business_profile')}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
+              <td><a href="{{url_for('main.business_profile')}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
             </tr>
       {% endfor %}
     </tbody>

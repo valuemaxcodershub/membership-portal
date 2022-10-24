@@ -31,9 +31,9 @@
 						<tr>
 							<td>{{unit.name}}</td>
 							</td>
-							<td><a role="button" class="btn btn-primary" href="{{ url_for('edit_unit', unit_id=unit.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"></i></a>
+							<td><a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_unit', unit_id=unit.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"></i></a>
 
-								<a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Member Profile"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Profile"></i></a>
+								<a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Member Profile"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Profile"></i></a>
 
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{unit.id}}" dataName="{{unit.name}}" data-target="#deletemodal"  onclick="deleteFunction(this)" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"><i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"></i></a>
 							</td>
@@ -57,7 +57,7 @@
 						      		Are you sure you want to delete this unit?						      </div>
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        <form method="POST" action="{{ url_for('delete_unit') }}">
+						        <form method="POST" action="{{ url_for('admins.delete_unit') }}">
 						        	<input type="hidden" name="unit_id" id="hiddenid">
 						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
 						        </form>
@@ -70,9 +70,9 @@
 				  {% for page_num in units.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 				  {% if page_num %}
 					{% if units.page == page_num %}
-					  <a class="btn btn-success mb-5"  href="{{ url_for('manage_units', page=page_num) }}">{{ page_num }}</a>
+					  <a class="btn btn-success mb-5"  href="{{ url_for('admins.manage_units', page=page_num) }}">{{ page_num }}</a>
 					{% else %}
-					  <a class="btn btn-success mb-5" href="{{ url_for('manage_units', page=page_num) }}">{{ page_num }}</a>
+					  <a class="btn btn-success mb-5" href="{{ url_for('admins.manage_units', page=page_num) }}">{{ page_num }}</a>
 					{% endif %}
 				  {% else %}
 					...

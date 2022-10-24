@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <ul class="doome">
       <li>
-        <a href="{{ url_for('dashboard') }}">
+        <a href="{{ url_for('admins.dashboard') }}">
           <i class="fa fa-home nav_icon"></i>
           <span class="nav-text">
           Dashboard
@@ -100,17 +100,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
         <ul>
           <li>
-          <a class="subnav-text" href="{{ url_for('register_member') }}">
+          <a class="subnav-text" href="{{ url_for('admins.register_member') }}">
           Add Member
           </a>
           </li>
           <li>
-          <a class="subnav-text" href="{{ url_for('manage_members') }}">
+          <a class="subnav-text" href="{{ url_for('admins.manage_members') }}">
           Manage Members
           </a>
           </li>
           <li>
-            <a class="subnav-text" href="{{ url_for('register_bulk') }}" >
+            <a class="subnav-text" href="{{ url_for('admins.register_bulk') }}" >
             Bulk Registration
             </a>
             </li>
@@ -127,10 +127,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           </a>
           <ul>
             <li>
-              <a class="subnav-text" href="{{ url_for('register_admin') }}" >Add Admin</a>
+              <a class="subnav-text" href="{{ url_for('admins.register_admin') }}" >Add Admin</a>
             </li>
             <li>
-              <a class="subnav-text" href="{{ url_for('manage_admins') }}" >Manage Admin</a>
+              <a class="subnav-text" href="{{ url_for('admins.manage_admins') }}" >Manage Admin</a>
             </li>
           </ul>
         </li>
@@ -143,12 +143,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
         <ul>
           <li>
-            <a class="subnav-text" href="{{ url_for('manage_units') }}" >
+            <a class="subnav-text" href="{{ url_for('admins.manage_units') }}" >
               Manage Unit
             </a>
           </li>
           <li>
-            <a class="subnav-text" href="{{ url_for('register_unit') }}">
+            <a class="subnav-text" href="{{ url_for('admins.register_unit') }}">
               Add Unit
             </a>
           </li>
@@ -174,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
       </li>
       <!-- <li>
-        <a href="{{ url_for('register_bulk') }}">
+        <a href="{{ url_for('admins.register_bulk') }}">
           <i class="icon-table nav-icon"></i>
           <span class="nav-text">
           Bulk Registration
@@ -210,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div >
       <ul >
       <li>
-      <a href="{{ url_for('edit_admin' , admin_id=current_user.id )}}">
+      <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}">
       <i class="fa fa-user-circle nav-icon"></i>
       <span class="nav-text">
       Account
@@ -220,7 +220,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </ul> 
     <ul class="logout">
       <li>
-      <a href="{{ url_for('logout') }}">
+      <a href="{{ url_for('admins.admin_logout') }}">
       <i class="icon-off nav-icon"></i>
       <span class="nav-text">
       Logout
@@ -259,7 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="color: white; font-weight:bold;">
                   {% for unit in dashboard_units %}
-                  <a href=" {{ url_for('manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
+                  <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
                   {% endfor %}
                 </ul>
               </li>
@@ -271,7 +271,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <!-- <div class="eyes" style="float:right;">
                 <button class="nose"><i class="fas fa-search"></i></button>
                 <div class="mouth">
-                  <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
+                  <form  method="POST" action="{{url_for('admins.search_members')}}" class="d-flex" autocomplete="off">
                     <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
                     </form>
@@ -281,7 +281,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search">
                   <i class="fas fa-search"></i>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <form  method="POST" action="{{url_for('search_members')}}" class="d-flex" autocomplete="off">
+                  <form  method="POST" action="{{url_for('admins.search_members')}}" class="d-flex" autocomplete="off">
                     <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
                     </form>
@@ -294,7 +294,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="dropdown-content">
                   <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
                     <li>
-                    <a href="{{ url_for('edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
+                    <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
                     <span class="ogle">
                       &nbsp;edit&nbsp;profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -305,7 +305,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  
                     <ul class="logout" type="button" style="list-style-type:none;;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"> 
                       <li>
-                      <a href="{{ url_for('logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
+                      <a href="{{ url_for('admins.admin_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
                       <i class="icon-off nav-icon"></i>
                       <span class="ogle" id="ogle">
                         &nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -348,7 +348,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script>
     $(function() {
         $.ajax({
-            url: '{{ url_for("autocomplete") }}'
+            url: '{{ url_for("admins.autocomplete") }}'
             }).done(function (data){
                 console.log(data);
                 $('#member_autocomplete').autocomplete({

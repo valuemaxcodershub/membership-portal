@@ -53,15 +53,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--  navigation  -->
    <!--  {% if current_user.is_authenticated %}
       {% if current_user.role == "USER" %}
-        <a  href="{{ url_for('home') }}">Home</a>
+        <a  href="{{ url_for('members.member_home') }}">Home</a>
       {% else %}
-        <a  href="{{ url_for('dashboard') }}">Home</a>
+        <a  href="{{ url_for('admins.dashboard') }}">Home</a>
       {% endif %}
-      <a  href="{{ url_for('user_account') }}">Account</a>
-      <a href="{{ url_for('logout') }}">Logout</a>
+      <a  href="{{ url_for('members.user_account') }}">Account</a>
+      <a href="{{ url_for('members.user_logout') }}">Logout</a>
     {% else %}
-      <a href="{{ url_for('login') }}">User Login</a>
-      <a style="margin-left:400px;" href="{{ url_for('admin_login') }}">Admin Login</a>
+      <a href="{{ url_for('members.login') }}">User Login</a>
+      <a style="margin-left:400px;" href="{{ url_for('admins.admin_login') }}">Admin Login</a>
     {% endif %} -->
 
     <!-- flashed messages  -->

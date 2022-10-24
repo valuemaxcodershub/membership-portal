@@ -128,36 +128,6 @@
 						<br />
                         <br>
                         <div class="input-control">
-                        	{% if form.username.errors %}
-						      {{ form.username(type="text", id="username", placeholder="Full-name") }}
-						      {% for error in form.username.errors %}
-						          <span>{{ error }}</span>
-						      {% endfor %}
-						    {% else %}
-						      {{ form.username(type="text", id="username", placeholder="Full-name") }}
-						      <span class="error"></span>
-						    {% endif %}
-						    <span class="error"></span>                            
-                        </div>
-						<br>
-                        <br>
-                        <br>
-                        <div class="input-control">
-                        	{% if form.email.errors %}
-						      {{ form.email(type="text", id="email", placeholder="Email") }}
-						      {% for error in form.username.errors %}
-						          <span>{{ error }}</span>
-						      {% endfor %}
-						    {% else %}
-						      {{ form.email(type="text", id="email", placeholder="Email") }}
-						      <span class="error"></span>
-						    {% endif %}      
-						    <span class="error"></span>                         
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="input-control">
                             {% if form.phone.errors %}
                               {{ form.phone(type="number", id="phone", placeholder="Phone Number") }}
                               <span class="error" ></span>
