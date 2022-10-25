@@ -145,11 +145,17 @@ def delete_user():
   user_id = int(request.form['user_id'])
   user = User.query.get_or_404(user_id)
 
+  if user.role == "USER":
+    link = 'admins.manage_members'
+  else:
+    link = 'admins.manage_admins'
+
   db.session.delete(user)
   db.session.commit()
   flash("User deleted successfuly")
   page_num = request.form['page']
-  return redirect(url_for('admins.manage_members', page=page_num))
+
+  return redirect(url_for(link, page=page_num))
 
 @admins.route("/admin/delete_unit", methods=['POST'])
 @admin_role_required
@@ -296,15 +302,15 @@ def register_admin():
 
   
   if form.validate_on_submit():
-    user = User(username=form.username.data, email=form.email.data, phone=form.phone.data)
+    user = User(email=form.email.data)
     user.role = "ADMIN"
     if form.is_superadmin:
       user.is_superadmin = True
-    user.password = secrets.token_urlsafe(8)
+    # user.password = secrets.token_urlsafe(8)
     db.session.add(user)
     db.session.commit()
-    flash(f"Account created for {form.username.data} successfully. Password for {form.username.data} is {user.password}", "success")
-    return(redirect(url_for("admins.home")))
+    flash(f"Account created for {form.email.data} successfully. Password for {form.email.data} is {user.password}", "success")
+    return(redirect(url_for("admins.manage_admins")))
 
     
   return render_template("add_admin.html", title="Register New Admin", form=form)

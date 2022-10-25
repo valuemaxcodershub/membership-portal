@@ -32,7 +32,9 @@ def super_admin_role_required(func):
     @wraps(func)
     def decorated_view(*args, **kwargs):
       if current_user.is_authenticated:
-        if not current_user.is_superadmin:
+        if current_user.role == "USER":
+          return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
+        elif not current_user.is_superadmin:
             abort(403)
         return func(*args, **kwargs)
       else:

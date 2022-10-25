@@ -154,24 +154,9 @@
                         {{ form.hidden_tag() }}
 						<br />
                         <div class="input-control">
-                        	{% if form.username.errors %}
-						      {{ form.username(type="text", id="username", placeholder="Full-name") }}
-						      {% for error in form.username.errors %}
-						          <span>{{ error }}</span>
-						      {% endfor %}
-						    {% else %}
-						      {{ form.username(type="text", id="username", placeholder="Full-name") }}
-						      <span class="error"></span>
-						    {% endif %}
-						    <span class="error"></span>                            
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="input-control">
                         	{% if form.email.errors %}
 						      {{ form.email(type="text", id="email", placeholder="Email") }}
-						      {% for error in form.username.errors %}
+						      {% for error in form.email.errors %}
 						          <span>{{ error }}</span>
 						      {% endfor %}
 						    {% else %}
@@ -183,23 +168,7 @@
                         <br>
                         <br>
                         <br>
-                        <!-- <div class="input-control">
-                            {% if form.phone.errors %}
-                              {{ form.phone(type="number", id="phone", placeholder="Phone Number") }}
-                              <span class="error" ></span>
-                              {% for error in form.phone.errors %}
-                                  <span>{{ error }}</span>
-                              {% endfor %}
-                            {% else %}
-                              {{ form.phone(type="number", id="phone", placeholder="Phone Number") }}
-                              <span class="error" ></span>
-                            {% endif %}
-                            <span class="error"></span>
-                        </div> -->
                         <br>
-                        <br>
-                        <br>
-
 						<div class="radiuu" >
 							{{ form.is_superadmin(type="checkbox", id="is_superadmin") }}
 							<label for="is_superadmin" style="font-weight: bold;">Add as superadmin</label>

@@ -211,7 +211,7 @@
           </div>
           <div class="input-control">
             <label for="About Business" style="text-align: center; font-weight:bold; font-size:large;">About Business</label>
-            <textarea name="business-about" id="" cols="30" rows="10" placeholder="Write more about your business" required></textarea>
+            <textarea name="business-about" value="{{member.business_about}}" id="" cols="30" rows="10" placeholder="Write more about your business" required></textarea>
             <span class="error"></span>
         </div>
           </div>
@@ -290,7 +290,7 @@
             <div class="col-md-4">
               <div class="input-control">
                 <label for="bus-phone">Business Phone Number</label>
-                <input type="tel" id="bus-phone" name="business-phone" placeholder="Phone Number" required>
+                <input type="tel" id="bus-phone" value="{{member.business_phone}}" name="business-phone" placeholder="Phone Number" required>
                 <span class="error"></span>
               </div>
               
@@ -298,7 +298,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="bus-email">Business Email</label>
-            <input type="email" id="bus-email" name="business-email" placeholder="Email" required>
+            <input type="email" id="bus-email" value="{{member.business_email}}" name="business-email" placeholder="Email" required>
             <span class="error"></span>
           </div>
           
@@ -306,7 +306,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="website">Website</label>
-            <input type="text" id="website" name="business-website" placeholder="website url" required>
+            <input type="text" id="website" value="{{member.business_website}}" name="business-website" placeholder="website url" required>
             <span class="error"></span>
           </div>
           
@@ -314,7 +314,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="bus-fac">Facebook Url</label>
-            <input type="text" id="bus-fac" name="business-facebook" placeholder="https://www.facebook.com/mybusiness/" required>
+            <input type="text" id="bus-fac" name="business-facebook" value="{{member.business_facebook}}" placeholder="https://www.facebook.com/mybusiness/" required>
             <span class="error"></span>
           </div>
           
@@ -322,7 +322,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="bus-fac">Twitter Url</label>
-            <input type="text" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/" required>
+            <input type="text" value="{{member.business_twitter}}" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/" required>
             <span class="error"></span>
           </div>
           
@@ -330,7 +330,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="Email">LinkedIn Url</label>
-            <input type="text" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url" required>
+            <input type="text" value="{{member.business_email}}" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url" required>
             <span class="error"></span>
           </div>
           
@@ -338,7 +338,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="whatsapp">Whatsapp Number</label>
-            <input type="tel" id="whatsapp" name="business-whatsapp" placeholder="0808080" required>
+            <input type="tel" id="whatsapp" value="{{member.business_whatsapp}}" name="business-whatsapp" placeholder="0808080" required>
             <span class="error"></span>
           </div>
 
