@@ -640,7 +640,7 @@ p{
 
 	.no-touch nav.user-menu>section>a:hover i,nav.user-menu>section>a.active i,nav.user-menu>section>a.unread i{color:#76b6ec}
 /* navbar icon in smaller screen */
-	nav.user-menu .main-menu-access{position:relative;float:left;padding:15px 17px;color:#666;   -webkit-transition:all .1s;transition:all .1s}
+	nav.user-menu .main-menu-access{position:relative;float:left;padding:15px 17px;color:#666; -webkit-transition:all .1s;transition:all .1s}
 	nav.user-menu .main-menu-access i{font-size:21px;width:30px}
 	nav.user-menu .main-menu-access.active{background: #228c2e;}
 	nav.user-menu .main-menu-access.active i{color:#fff}
@@ -771,6 +771,7 @@ p{
 .ibadan  li:hover ul{
     display: block;
     transition: 1s;
+    width: 70%;
     font-weight: bold;
     margin-top: -1px;
     /* margin-right: 30px; */
@@ -785,7 +786,7 @@ p{
 } 
 .ibadan li a{
   color:rgb(246, 243, 243);
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 /* .oyo li ul{
@@ -830,7 +831,7 @@ p{
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     position: absolute;
-    left: -13em;
+    left: -6em;
     
 } 
 .uyo li a{
@@ -858,7 +859,7 @@ p{
 @media screen and (max-width:630px) {
   .tick{
     position: absolute;
-  left: 10rem;
+    left: 10rem;
   }
   #greeny{
     margin-top: -1.3rem;
@@ -1547,6 +1548,9 @@ figure.icons, .weather-text {
   margin-left: auto;
     margin-right: auto;
 }
+#lease{
+  margin-left: 20%;
+}
 
 #tuble th{
   background: rgb(40, 85, 40);
@@ -1558,9 +1562,9 @@ figure.icons, .weather-text {
   cursor: pointer;
 }
 #tuble{
-  /* width: 70%; */
+  width: 70%;
   margin-left: auto;
-    margin-right: auto;
+  margin-right: auto;
   /* margin-left: 15%; */
   cursor: pointer;
 }
@@ -1568,7 +1572,8 @@ figure.icons, .weather-text {
   #tuble{
     max-width: 100%;
     /* margin-left: 15%; */
-    
+    margin-left: auto;
+    margin-right: auto;
   }
   .aka h3{
     /* text-align: center; */

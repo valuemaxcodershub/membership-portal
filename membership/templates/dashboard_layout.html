@@ -257,11 +257,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
               <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="55px" /></a>
 
-              <div class="dropdown ibadan " >
+              <div class="dropdown ibadan "style="float:right;" >
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters" style="background: #0ece0b ;">
                  <i class="fa fa-suitcase" aria-hidden="true"></i>
                 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left:0;">
                   {% for unit in dashboard_units %}
                   <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
                   {% endfor %}
@@ -284,7 +284,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div class="dropdown uyo" >
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton2" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search" style="background: #0ece0b ;">
                   <i class="fas fa-search"></i>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2" >
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                   <form  method="POST" action="{{url_for('admins.search_members')}}" class="d-flex" autocomplete="off">
                     <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
