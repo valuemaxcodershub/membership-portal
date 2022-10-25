@@ -16,7 +16,8 @@ user_unit = db.Table("user_unit",
 #phone number is unique
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
-  units = db.relationship("Unit", secondary=user_unit, backref="unit_members", lazy="dynamic")
+  #db.backref fixes instrumentedlist error
+  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy='dynamic'), lazy="dynamic")
   username = db.Column(db.String(20), unique=True)
   email = db.Column(db.String(120), unique=True)
   phone = db.Column(db.String(60), unique=True)

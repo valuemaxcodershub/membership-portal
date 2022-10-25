@@ -36,7 +36,9 @@ def login():
       login_user(user, remember=remember)
       next_page = request.args.get('next')
       if current_user.has_filled_profile:
-        return redirect(next_page) if next_page else redirect(url_for('members.user_account'))
+        # return redirect(next_page) if next_page else redirect(url_for('members.user_account'))
+        return redirect(next_page) if next_page else redirect(url_for('members.edit_business_profile'))
+
       else:
         return redirect(url_for('members.create_business_profile'))
     else:
@@ -101,7 +103,7 @@ def create_business_profile():
 
     return redirect(url_for('members.member_home'))
 
-  return render_template("business-profile-form.html", member=member)
+  return render_template("create-business-profile-form.html", member=member)
 
 
 
@@ -110,6 +112,9 @@ def create_business_profile():
 @user_role_required
 def edit_business_profile():
   member = current_user
+
+  if not member.has_filled_profile:
+    return redirect(url_for('members.create_business_profile'))
 
   if request.method == "POST":
     member.business_name = request.form['business-name']
