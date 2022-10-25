@@ -121,7 +121,7 @@
           </div>
           <div class="col">
             <div class="zaddy">
-              <h1 style="color: rgb(54, 98, 53);">{{member.username}} </h1>
+              <h1 style="color: rgb(54, 98, 53);">{{member.business_name}} </h1>
               <p>
                 {{member.business_about}}
               </p>
@@ -130,36 +130,30 @@
         </div>
         <!--  -->
         <div>
-          <div class="sonny">
-            <h2  style="color: rgb(54, 98, 53);">About The Business </h2>
-            <p>{{member.business_services}}</p>
-          </div>
-        </div>
-        <div>
           <div class="anty">
-            <h1 style="color: rgb(54, 98, 53);">product of services</h1>
+            <h1 style="color: rgb(54, 98, 53);">Product/Service Images</h1>
             <div class="">
               <div class="row">
                 <div class="col">
-                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                  <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="img" width="100%">
                 </div>
                 <div class="col">
-                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                  <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="img" width="100%">
                 </div>
                 <div class="col">
-                  <img src="../static/images/g4.jpg" alt="image" width="100%">
+                  <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="image" width="100%">
                 </div>
               </div>
               <br>
               <div class="row">
                 <div class="col">
-                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                  <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="img" width="100%">
                 </div>
                 <div class="col">
-                  <img src="../static/images/g4.jpg" alt="img" width="100%">
+                  <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="img" width="100%">
                 </div>
                 <div class="col">
-                  <img src="../static/images/g4.jpg" alt="image" width="100%">
+                  <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="image" width="100%">
                 </div>
               </div>
               
@@ -175,14 +169,14 @@
               <div class="">
                 <div class="row">
                   <div class="col">
-                    <P>Phone number: {{member.phone}}</P>
+                    <P>Phone number: {{member.business_phone}}</P>
                   </div>
                   <div class="col">
-                    <P><i>email: {{member.email}}</i></P>
+                    <P><i>email: {{member.business_email}}</i></P>
                   </div>
                   <div class="col">
                     <div>
-                      <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                      <i href="{{member.business_facebook}}" class="fa fa-facebook-square" aria-hidden="true"></i>
                       <i class="fa fa-twitter" aria-hidden="true"></i>
                       <i class="fa fa-linkedin-square" aria-hidden="true"></i>
                       <i class="fa fa-instagram" aria-hidden="true"></i>

@@ -166,9 +166,9 @@
     <tbody>
       {% for member in members %}
             <tr>
-              <td>{{member.username}}</td>
-              <td>{{ member.phone }}</td>
-              <td>{{ member.email }}</td>
+              <td>{{member.business_name}}</td>
+              <td>{{ member.business_phone }}</td>
+              <td>{{ member.business_email }}</td>
               <td>{{ member.display_units() }}</td>
               <td><a href="{{url_for('main.member_page', member_id=member.id)}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
             </tr>
