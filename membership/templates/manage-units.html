@@ -33,7 +33,7 @@
 							</td>
 							<td><a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_unit', unit_id=unit.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"></i></a>
 
-								<a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Member Profile"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Profile"></i></a>
+								<a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Member Under Unit"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Under Unit"></i></a>
 
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{unit.id}}" dataName="{{unit.name}}" data-target="#deletemodal"  onclick="deleteFunction(this)" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"><i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"></i></a>
 							</td>
