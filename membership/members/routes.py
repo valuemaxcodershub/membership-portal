@@ -155,7 +155,7 @@ def edit_business_profile():
 
     selected_units = request.form.getlist('mymultiselect')
 
-    add_member(user, selected_units=selected_units)
+    add_member(member, selected_units=selected_units)
 
     return redirect(url_for('members.member_home'))
 

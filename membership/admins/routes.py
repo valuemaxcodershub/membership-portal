@@ -234,8 +234,8 @@ def export_custom():
   cw = csv.writer(si)
   records = data.a.all() #fetch from data store
   print(records[0].unit_ids())
-  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
-  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
+  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience", "date_of_birth"])
+  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address, r.date_of_birth) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
@@ -291,7 +291,7 @@ def manage_members():
 
 
 @admins.route("/admin/register-admin", methods=["GET", "POST"])
-@login_required
+@admin_role_required
 def register_admin():
   if current_user.role == "USER":
     return(redirect(url_for("admins.home")))
@@ -442,8 +442,8 @@ def export_db():
   cw = csv.writer(si)
   records = User.query.all()   # or a filtered set, of course
   # any table method that extracts an iterable will work
-  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
-  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
+  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience", "date_of_birth"])
+  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address, r.date_of_birth) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
