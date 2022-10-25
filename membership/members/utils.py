@@ -11,7 +11,7 @@ def user_role_required(func):
           return func(*args, **kwargs)
         else:
           flash("You must log in to access this page")
-          return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
+          return redirect(url_for('members.login', next=url_for(request.endpoint)))
       else:
         flash("You must log in to access this page")
         return redirect(url_for('members.login', next=url_for(request.endpoint)))
