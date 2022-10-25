@@ -4,19 +4,21 @@
 
   <h1><u>Member List</u></h1>
 
-  <table id="tuble" class="table table-success table-striped table-hover table-bordered" style="width: 85%; font-size: 14px;">
-    {% for member in members.items %}
-      <tr>
-        <td>
-            <img src= /static/profile_pics/{{ member.image_file }} alt="" width="50" />
-        </td>
-        <td>{{ member.username }}</td>
-        <td>{{ member.email }}</td>
-        <td>{{ member.current_role }}</td>
-        <td><a href="/admin/manage/{{ member.id }}">View Full Details</a></td>
-      </tr>
-    {% endfor %}
-  </table>
+  <div class="w3l-table-info table-responsive">
+    <table id="tuble" class="table table-success table-striped table-hover table-bordered" style="width: 85%; font-size: 14px;">
+      {% for member in members.items %}
+        <tr>
+          <td>
+              <img src= /static/profile_pics/{{ member.image_file }} alt="" width="50" />
+          </td>
+          <td>{{ member.username }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.current_role }}</td>
+          <td><a href="/admin/manage/{{ member.id }}">View Full Details</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
   {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
     {% if page_num %}
       {% if members.page == page_num %}

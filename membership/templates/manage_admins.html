@@ -1,10 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+  .center{
+    margin-left: auto;
+  margin-right: auto;
+  }
+</style>
   <h3>Welcome {{ current_user.name }}  <a href='/admin/register-admin'>Click here</a> to register a new admin </h3>
 
   <h1><u>Admin List</u></h1>
 
-  <table style="margin-left: 10%;" >
+  <table style="margin-left: 10%;" class="center">
     {% for admin in admins.items %}
       <tr>
         <td>

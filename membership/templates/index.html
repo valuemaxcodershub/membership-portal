@@ -1,5 +1,10 @@
 {% extends "dashboard_layout.html" %}
-{% block content %}		
+{% block content %}	
+			<style>
+				#glory{
+					padding-bottom: 2em;
+				}
+			</style>
 			<div class="container">
 				
 			<div class=" glo">
@@ -22,7 +27,7 @@
 						</div>
 					</a>
 					<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("admins.register_member") }}'>
-						<div class="glory">
+						<div class="glory" id="glory">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
 									<div class="gluy">
@@ -62,7 +67,7 @@
 				<div class="row">
 					
 					<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("admins.register_unit") }}'>
-						<div class="glory">
+						<div class="glory" id="glory">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
 									<div class="gluy">
@@ -95,7 +100,7 @@
 						</div>
 					</a>
 					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory">
+						<div class="glory" id="glory">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
 									<div class="gluy">
