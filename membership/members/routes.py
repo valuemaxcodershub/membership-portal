@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
+from membership import db
 from membership.members.forms import UserLoginForm
 from membership.models import User
 from flask_login import login_user, current_user, logout_user
 from membership.members.utils import user_role_required
+from membership.main.utils import save_picture
 
 members = Blueprint('members', __name__)
 
@@ -50,32 +52,98 @@ def user_logout():
     logout_user()
     return redirect(url_for('members.login'))
 
-@members.route("/edit-business-profile")
+@members.route("/create-business-profile", methods=["GET", "POST"])
 @user_role_required
-def edit_business_profile():
-  members = User.query.filter_by(role="USER").all()
+def create_business_profile():
+  member = current_user
+  if member.has_filled_profile:
+    return redirect(url_for("members.edit_business_profile"))
+
   if request.method == "POST":
     member.business_name = request.form['business-name']
-    member.business_photo = request.form['business-photo']
     member.business_email = request.form['business-email']
     member.business_website = request.form['business-website']
     member.business_phone = request.form["business-phone"]
     member.business_about = request.form["business-about"]
-    member.business_services = request.form["business-services"]
     member.business_facebook = request.form["business-facebook"]
     member.business_twitter = request.form["business-twitter"]
     member.business_linkedin = request.form["business-linkedin"]
     member.business_whatsapp = request.form["business-whatsapp"]
 
-    image_str_list = []
-    images = request.files.getlist('business-p-images')
+    if request.files['business-photo'].filename != '':
+      member.business_photo = save_picture(request.files['business-photo'])
+
+    if request.files['image-1'].filename != '':
+      member.business_product_image_1 =  save_picture(request.files['image-1'])
     
-    for image in images:
-      if image:
-        picture_file = save_picture(image)
-        image_str_list.append(picture_file)
+    if request.files['image-2'].filename != '':
+      member.business_product_image_2 =  save_picture(request.files['image-2'])
     
-    member.business_images =  image_str_list
+    if request.files['image-3'].filename != '':
+      member.business_product_image_3 =  save_picture(request.files['image-3'])
+    
+    if request.files['image-4'].filename != '':
+      member.business_product_image_4 =  save_picture(request.files['image-4'])
+    
+    if request.files['image-5'].filename != '':
+      member.business_product_image_5 =  save_picture(request.files['image-5'])
+    
+    if request.files['image-6'].filename != '':
+      member.business_product_image_6 =  save_picture(request.files['image-6'])
+
+    member.has_filled_profile = True
+
+    db.session.add(member)
+    db.session.commit()
+
+    return redirect(url_for('members.member_home'))
 
 
-  return render_template("business-profile-form.html")
+
+
+@members.route("/edit-business-profile", methods=["GET", "POST"])
+@user_role_required
+def edit_business_profile():
+  member = current_user
+
+  if request.method == "POST":
+    member.business_name = request.form['business-name']
+    member.business_email = request.form['business-email']
+    member.business_website = request.form['business-website']
+    member.business_phone = request.form["business-phone"]
+    member.business_about = request.form["business-about"]
+    member.business_facebook = request.form["business-facebook"]
+    member.business_twitter = request.form["business-twitter"]
+    member.business_linkedin = request.form["business-linkedin"]
+    member.business_whatsapp = request.form["business-whatsapp"]
+
+    if request.files['business-photo'].filename != '':
+      member.business_photo = save_picture(request.files['business-photo'])
+
+    if request.files['image-1'].filename != '':
+      member.business_product_image_1 =  save_picture(request.files['image-1'])
+    
+    if request.files['image-2'].filename != '':
+      member.business_product_image_2 =  save_picture(request.files['image-2'])
+    
+    if request.files['image-3'].filename != '':
+      member.business_product_image_3 =  save_picture(request.files['image-3'])
+    
+    if request.files['image-4'].filename != '':
+      member.business_product_image_4 =  save_picture(request.files['image-4'])
+    
+    if request.files['image-5'].filename != '':
+      member.business_product_image_5 =  save_picture(request.files['image-5'])
+    
+    if request.files['image-6'].filename != '':
+      member.business_product_image_6 =  save_picture(request.files['image-6'])
+
+    db.session.add(member)
+    db.session.commit()
+
+    return redirect(url_for('members.member_home'))
+
+
+
+
+  return render_template("business-profile-form.html", member=member)

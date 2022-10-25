@@ -189,7 +189,7 @@
     </div>
     <br>
     <br>
-    <form action="" id="form" onsubmit="return validationForms">
+    <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
       <br>
       <div class="container mom">
         <div class="row">
@@ -197,7 +197,7 @@
             <div>
               <label for="bus-photo" style="text-align: center; font-weight:bold; font-size:large;">Business Photo</label>
               <br/>
-              <img id="bus-photo" src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+              <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
               <br>
               <p>Update Profile Picture</p>
               <input type="file" name="business-photo" id="" class="btn btn-success">
@@ -206,12 +206,12 @@
           <div class="col">
             <div class="input-control">
               <label for="username" style="text-align: center; font-weight:bold; font-size:large;">Business Name</label>
-              <input type="text" id="username" name="business-name" placeholder="Business Name"> <br>
+              <input type="text" id="username" name="business-name" placeholder="Business Name" required> <br>
               <span class="error"></span>
           </div>
           <div class="input-control">
             <label for="About Business" style="text-align: center; font-weight:bold; font-size:large;">About Business</label>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Write more about your business"></textarea>
+            <textarea name="business-about" id="" cols="30" rows="10" placeholder="Write more about your business" required></textarea>
             <span class="error"></span>
         </div>
           </div>
@@ -228,26 +228,26 @@
           <div class="row" id="viold">
             <div class="col-md-4">
               <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" width="40%">
                 <br>
                 <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
+                <input type="file" name="image-1" id="" class="btn btn-success">
               </div>
             </div>
             <div class="col-md-4">
               <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" width="40%">
                 <br>
                 <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
+                <input type="file" name="image-2" id="" class="btn btn-success">
               </div>
             </div>
             <div class="col-md-4">
               <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" width="40%">
                 <br>
                 <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
+                <input type="file" name="image-3" id="" class="btn btn-success">
               </div>
             </div>
           </div>
@@ -256,26 +256,26 @@
           <div class="row" id="viold">
             <div class="col-md-4">
               <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" width="40%">
                 <br>
                 <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
+                <input type="file" name="image-4" id="" class="btn btn-success">
               </div>
             </div>
             <div class="col-md-4">
               <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" width="40%">
                 <br>
                 <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
+                <input type="file" name="image-5" id="" class="btn btn-success">
               </div>
             </div>
             <div class="col-md-4">
               <div>
-                <img src="../static/images/man-icon-vector-260nw-1040084344.webp" alt="" width="40%">
+                <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" width="40%">
                 <br>
                 <p>Update Product Picture</p>
-                <input type="file" name="" id="" class="btn btn-success">
+                <input type="file" name="image-6" id="" class="btn btn-success">
               </div>
             </div>
           </div>
@@ -290,7 +290,7 @@
             <div class="col-md-4">
               <div class="input-control">
                 <label for="bus-phone">Business Phone Number</label>
-                <input type="tel" id="bus-phone" name="business-phone" placeholder="Phone Number">
+                <input type="tel" id="bus-phone" name="business-phone" placeholder="Phone Number" required>
                 <span class="error"></span>
               </div>
               
@@ -298,7 +298,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="bus-email">Business Email</label>
-            <input type="email" id="bus-email" name="business-email" placeholder="Email">
+            <input type="email" id="bus-email" name="business-email" placeholder="Email" required>
             <span class="error"></span>
           </div>
           
@@ -306,7 +306,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="website">Website</label>
-            <input type="text" id="website" name="business-website" placeholder="website url">
+            <input type="text" id="website" name="business-website" placeholder="website url" required>
             <span class="error"></span>
           </div>
           
@@ -314,7 +314,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="bus-fac">Facebook Url</label>
-            <input type="text" id="bus-fac" name="business-facebook" placeholder="https://www.facebook.com/mybusiness/">
+            <input type="text" id="bus-fac" name="business-facebook" placeholder="https://www.facebook.com/mybusiness/" required>
             <span class="error"></span>
           </div>
           
@@ -322,7 +322,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="bus-fac">Twitter Url</label>
-            <input type="text" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/">
+            <input type="text" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/" required>
             <span class="error"></span>
           </div>
           
@@ -330,7 +330,7 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="Email">LinkedIn Url</label>
-            <input type="text" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url">
+            <input type="text" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url" required>
             <span class="error"></span>
           </div>
           
@@ -338,12 +338,13 @@
         <div class="col-md-4">
           <div class="input-control">
             <label for="whatsapp">Whatsapp Number</label>
-            <input type="tel" id="whatsapp" name="business-whatsapp" placeholder="0808080">
+            <input type="tel" id="whatsapp" name="business-whatsapp" placeholder="0808080" required>
             <span class="error"></span>
           </div>
 
     </div>
       </div>
+      <button type="submit"></button>
         
     </form>
 </body>

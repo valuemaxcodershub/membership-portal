@@ -134,11 +134,12 @@ def suspend_user():
   user_id = int(request.form['user_id'])
   user = User.query.get_or_404(user_id)
   user._is_suspended = not user._is_suspended
+  page_num = request.form['page']
 
   db.session.add(user)
   db.session.commit()
-  flash("User suspended successfuly")
-  return redirect(url_for('admins.manage_members'))
+  flash("Action Successful")
+  return redirect(url_for('admins.manage_members', page=page_num))
 
 @admins.route("/admin/delete_user", methods=['POST'])
 @admin_role_required
@@ -149,8 +150,8 @@ def delete_user():
   db.session.delete(user)
   db.session.commit()
   flash("User deleted successfuly")
-  next_page = request.args.get('next')
-  return redirect(next_page) if next_page else redirect(url_for('admins.manage_members'))
+  page_num = request.form['page']
+  return redirect(url_for('admins.manage_members', page=page_num))
 
 @admins.route("/admin/delete_unit", methods=['POST'])
 @admin_role_required

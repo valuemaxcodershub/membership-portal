@@ -57,7 +57,7 @@
 					    <table id="tuble" class="table table-success table-striped table-hover table-bordered" style="width: 85%; font-size: 14px;">
 						<thead>
 						  <tr>
-							<th scope="col">Name</th>
+							<th scope="col">Business Name</th>
 							<th scope="col">Phone</th>
 							<th scope="col">Email</th>
 							<th scope="col">Units</th>
@@ -70,9 +70,9 @@
 						<tbody>
 							{% for member in members.items %}
 						  <tr>
-							<td>{{member.username}}</td>
+							<td>{{member.business_name}}</td>
 							<td>{{ member.phone }}</td>
-							<td>{{ member.email }}</td>
+							<td>{{ member.business_email }}</td>
 							<td>
 							{{member.display_units()}}
 							</td>
@@ -115,7 +115,8 @@
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						        <form method="POST" action="{{ url_for('admins.suspend_user') }}">
-						        	<input type="hidden" name="user_id" id="hiddenid">
+						        	<input type="hidden" name="user_id" id="suspendhiddenid">
+						        	<input type="hidden" name="page" value="{{members.page}}">
 						        <button type="submit" class="btn btn-primary" href="#">Yes</button>
 						        </form>
 						      </div>
@@ -138,7 +139,8 @@
 						      <div class="modal-footer">
 						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						        <form method="POST" action="{{ url_for('admins.delete_user') }}">
-						        	<input type="hidden" name="user_id" id="hiddenid">
+						        	<input type="hidden" name="user_id" id="deletehiddenid">
+						        	<input type="hidden" name="page" value="{{members.page}}">
 						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
 						        </form>
 						      </div>
@@ -243,7 +245,7 @@
 						        let userId = obj.id;
 						        let name = obj.getAttribute("dataName");
 
-						        $('#hiddenid').val(userId);
+						        $('#deletehiddenid').val(userId);
 						        $('#exampleModalLabel').text('Delete ' + name);
 						        $("#deletemodal").modal("show");
 						    }
@@ -252,7 +254,7 @@
 						        let userId = obj.id;
 						        let name = obj.getAttribute("dataName");
 
-						        $('#hiddenid').val(userId);
+						        $('#suspendhiddenid').val(userId);
 						        $('#suspendModalLabel').text('Suspend ' + name);
 						        $('#suspendmodal .modal-body').text("Are you sure you want to suspend this user?");
 						        $("#suspendmodal").modal("show");
@@ -262,7 +264,7 @@
 						        let userId = obj.id;
 						        let name = obj.getAttribute("dataName");
 
-						        $('#hiddenid').val(userId);
+						        $('#suspendhiddenid').val(userId);
 						        $('#suspendModalLabel').text('Unsuspend ' + name);
 						        $('#suspendmodal .modal-body').text("Are you sure you want to unsuspend this user?");
 						        $("#suspendmodal").modal("show");
