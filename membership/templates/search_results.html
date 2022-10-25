@@ -1,5 +1,11 @@
 {% extends "dashboard_layout.html" %}
 {% block content %}
+<style>
+	#export{
+		margin-left: 64%;
+		/* float: right; */
+	}
+</style>
 <script>
 	$(function () {
 		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -45,12 +51,13 @@
     });
 </script>
 <!-- //tables -->
-
+<br>
 				<form method="POST" action="{{url_for('admins.export_custom')}}">
-						<input type="hidden" name="members", value={{members.items}}>	
-						<button type="submit">Export list</button>				
+					<input type="hidden" name="members", value={{members.items}}>	
+					<button class="btn btn-success" id="export" type="submit">Export list</button>				
 				</form>
-
+				<br>
+				
 				<div class="container agile-tables">
 					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> {{ result_count }} results for search -- "{{query}}"</h3>
 					<div class="w3l-table-info table-responsive">
@@ -207,6 +214,8 @@
 					  
 					</div>
 				  </div>
+				  <br>
+				  
 
 
 				  <script>
