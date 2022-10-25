@@ -62,16 +62,17 @@ def parse_csv(csv_file):
             
 
       # assign units
-      unit_ids = row["unit_ids"].split("-")
-      print(unit_ids)
-      if unit_ids != ['']:
-        for unit_id in unit_ids:
-          unit = Unit.query.get(int(unit_id))
-          if unit:
-            user.units.append(unit)
+      if "unit_ids" in params:
+        unit_ids = row["unit_ids"].split("-")
+        print(unit_ids)
+        if unit_ids != ['']:
+          for unit_id in unit_ids:
+            unit = Unit.query.get(int(unit_id))
+            if unit:
+              user.units.append(unit)
 
 
-      user.password = secrets.token_urlsafe(8)
+      # user.password = secrets.token_urlsafe(8)
       db.session.add(user)
 
 def add_member(user, selected_units):
