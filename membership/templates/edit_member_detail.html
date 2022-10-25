@@ -206,15 +206,16 @@
 
     <br />
     <br />
-    {{ form.username.label }}
     <br />
-    {% if form.username.errors %}
-      {{ form.username }}
-      {% for error in form.username.errors %}
+    {{ form.business_name.label }}
+    <br />
+    {% if form.business_name.errors %}
+      {{ form.business_name }}
+      {% for error in form.business_name.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.username }}
+      {{ form.business_name }}
     {% endif %}
 
     <br />
@@ -258,41 +259,28 @@
 
     <br />
     <br />
-    {{ form.current_salary.label }}
+    {{ form.business_email.label }}
     <br />
-    {% if form.current_salary.errors %}
-      {{ form.current_salary }}
-      {% for error in form.current_salary.errors %}
+    {% if form.business_email.errors %}
+      {{ form.business_email }}
+      {% for error in form.business_email.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.current_salary }}
+      {{ form.business_email }}
     {% endif %}
 
     <br />
     <br />
-    {{ form.experience.label }}
+    {{ form.business_about.label }}
     <br />
-    {% if form.experience.errors %}
-      {{ form.experience }}
-      {% for error in form.experience.errors %}
+    {% if form.business_about.errors %}
+      {{ form.business_about }}
+      {% for error in form.business_about.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.experience }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.occupation.label }}
-    <br />
-    {% if form.occupation.errors %}
-      {{ form.occupation }}
-      {% for error in form.occupation.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.occupation }}
+      {{ form.business_about }}
     {% endif %}
     
 

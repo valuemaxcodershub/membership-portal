@@ -62,36 +62,36 @@
     {% endif %}
 
     <br />
-    {{ form.current_salary.label }}
-    {% if form.current_salary.errors %}
-      {{ form.current_salary }}
-      {% for error in form.current_salary.errors %}
+    {{ form.business_name.label }}
+    {% if form.business_name.errors %}
+      {{ form.business_name }}
+      {% for error in form.business_name.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.current_salary }}
+      {{ form.business_name }}
     {% endif %}
 
     <br />
-    {{ form.experience.label }}
-    {% if form.experience.errors %}
-      {{ form.experience }}
-      {% for error in form.experience.errors %}
+    {{ form.business_email.label }}
+    {% if form.business_email.errors %}
+      {{ form.business_email }}
+      {% for error in form.business_email.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.experience }}
+      {{ form.business_email }}
     {% endif %}
 
     <br />
-    {{ form.occupation.label }}
-    {% if form.occupation.errors %}
-      {{ form.occupation }}
-      {% for error in form.occupation.errors %}
+    {{ form.business_about.label }}
+    {% if form.business_about.errors %}
+      {{ form.business_about }}
+      {% for error in form.business_about.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.occupation }}
+      {{ form.business_about }}
     {% endif %}
 
     
