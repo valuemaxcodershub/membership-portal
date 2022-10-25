@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from membership import db
 from membership.members.forms import UserLoginForm
-from membership.models import User
+from membership.models import User, Unit
 from flask_login import login_user, current_user, logout_user
 from membership.members.utils import user_role_required
 from membership.main.utils import save_picture
@@ -61,6 +61,8 @@ def user_logout():
 @user_role_required
 def create_business_profile():
   member = current_user
+  units = Unit.query.all()
+
   if member.has_filled_profile:
     return redirect(url_for("members.edit_business_profile"))
 
@@ -103,7 +105,7 @@ def create_business_profile():
 
     return redirect(url_for('members.member_home'))
 
-  return render_template("create-business-profile-form.html", member=member)
+  return render_template("create-business-profile-form.html", member=member, units=units)
 
 
 
@@ -112,6 +114,7 @@ def create_business_profile():
 @user_role_required
 def edit_business_profile():
   member = current_user
+  units = Unit.query.all()
 
   if not member.has_filled_profile:
     return redirect(url_for('members.create_business_profile'))
@@ -156,4 +159,4 @@ def edit_business_profile():
 
 
 
-  return render_template("business-profile-form.html", member=member)
+  return render_template("business-profile-form.html", member=member, units=units)

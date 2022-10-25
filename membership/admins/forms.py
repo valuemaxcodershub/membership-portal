@@ -63,9 +63,8 @@ class UpdateMemberForm(FlaskForm):
   password = StringField("Password", validators=[DataRequired()])
   business_name = StringField()
   business_about = StringField()
-  home_address = StringField()
+  business_address = StringField()
   date_of_birth = StringField()
-  work_address = StringField()
   business_email = StringField()
   submit = SubmitField("Edit Member")
   current_member = None

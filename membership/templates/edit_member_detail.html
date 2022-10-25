@@ -287,28 +287,15 @@
 
     <br />
     <br />
-    {{ form.work_address.label }}
+    {{ form.business_address.label }}
     <br />
-    {% if form.work_address.errors %}
-      {{ form.work_address }}
-      {% for error in form.work_address.errors %}
+    {% if form.business_address.errors %}
+      {{ form.business_address }}
+      {% for error in form.business_address.errors %}
           <span>{{ error }}</span>
       {% endfor %}
     {% else %}
-      {{ form.work_address }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.home_address.label }}
-    <br />
-    {% if form.home_address.errors %}
-      {{ form.home_address }}
-      {% for error in form.home_address.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.home_address }}
+      {{ form.business_address }}
     {% endif %}
 
     <br />

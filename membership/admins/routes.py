@@ -388,8 +388,7 @@ def edit_member(member_id):
     member.businses_about = form.business_about.data
     member.business_email = form.business_email.data
     member.business_about = form.business_about.data
-    member.home_address = form.home_address.data
-    member.work_address = form.work_address.data
+    member.business_address = form.business_address.data
 
     selected_units = request.form.getlist('mymultiselect')
 
@@ -413,8 +412,7 @@ def edit_member(member_id):
     form.business_about.data = member.business_about
     form.business_name.data = member.business_name
     form.business_email.data = member.business_email
-    form.home_address.data = member.home_address
-    form.work_address.data = member.work_address
+    form.business_address.data = member.business_address
 
   image_file = url_for('static', filename='profile_pics/' + member.image_file)
   return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
@@ -422,7 +420,7 @@ def edit_member(member_id):
 @admins.route('/admin/download-template')
 @admin_role_required
 def download_template():
-  template_list = ["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"]
+  template_list = ["phone"]
   
   print(",".join(template_list))
 

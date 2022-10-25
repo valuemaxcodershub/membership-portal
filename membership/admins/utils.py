@@ -47,7 +47,7 @@ def parse_csv(csv_file):
     csv_reader = csv.DictReader(csv_file)
 
     #compulsory items
-    params = ["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"]
+    params = ["phone"]
 
 
 
