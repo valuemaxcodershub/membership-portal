@@ -306,7 +306,7 @@ def register_admin():
     user.role = "ADMIN"
     if form.is_superadmin:
       user.is_superadmin = True
-    user.password = secrets.token_urlsafe(8)
+    # user.password = secrets.token_urlsafe(8)
     db.session.add(user)
     db.session.commit()
     flash(f"Account created for {form.email.data} successfully. Password for {form.email.data} is {user.password}", "success")
