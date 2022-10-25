@@ -35,7 +35,10 @@ def login():
     if user and user.password == password_input:
       login_user(user, remember=remember)
       next_page = request.args.get('next')
-      return redirect(next_page) if next_page else redirect(url_for('members.user_account'))
+      if current_user.has_filled_profile:
+        return redirect(next_page) if next_page else redirect(url_for('members.user_account'))
+      else:
+        return redirect(url_for('members.create_business_profile'))
     else:
       flash('Login Unsuccessful. Please check Phone number and password', 'danger')
     
@@ -97,6 +100,8 @@ def create_business_profile():
     db.session.commit()
 
     return redirect(url_for('members.member_home'))
+
+  return render_template("business-profile-form.html", member=member)
 
 
 

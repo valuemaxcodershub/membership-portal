@@ -115,7 +115,6 @@ def edit_unit(unit_id):
 
   if form.validate_on_submit():
     unit.name = form.name.data
-    unit.fees_amount = form.amount.data
     db.session.add(unit)
     db.session.commit()
     return(redirect(url_for('admins.manage_units')))
@@ -123,7 +122,6 @@ def edit_unit(unit_id):
 
   elif request.method == 'GET':
     form.name.data = unit.name
-    form.amount.data = unit.fees_amount
 
 
   return render_template("edit-unit.html", form=form, unit=unit)
@@ -173,7 +171,7 @@ def register_unit():
   form = UnitRegistrationForm()
 
   if form.validate_on_submit():
-    unit = Unit(name=form.name.data, fees_amount=form.amount.data)
+    unit = Unit(name=form.name.data)
     db.session.add(unit)
     db.session.commit()
     flash(f"{form.name.data} Unit created successfuly", "success")
@@ -231,8 +229,8 @@ def export_custom():
   cw = csv.writer(si)
   records = data.a.all() #fetch from data store
   print(records[0].unit_ids())
-  cw.writerow(["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
-  cw.writerows([(r.username, r.phone, r.email, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
+  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
+  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
@@ -378,13 +376,12 @@ def edit_member(member_id):
       picture_file = save_picture(form.picture.data)
       member.image_file = picture_file
 
-    member.username = form.username.data
     member.email = form.email.data
     member.phone = form.phone.data
     member.password = form.password.data
-    member.occupation = form.occupation.data
-    member.experience = form.experience.data
-    member.current_salary = form.current_salary.data
+    member.businses_about = form.business_about.data
+    member.business_email = form.business_email.data
+    member.business_about = form.business_about.data
     member.home_address = form.home_address.data
     member.work_address = form.work_address.data
 
@@ -404,13 +401,12 @@ def edit_member(member_id):
     flash("Account successfuly modified", "success")
     return(redirect(url_for("admins.manage_members")))
   elif request.method == 'GET':
-    form.username.data = member.username
     form.email.data = member.email
     form.phone.data = member.phone
     form.password.data = member.password
-    form.occupation.data = member.occupation
-    form.current_salary.data = member.current_salary
-    form.experience.data = member.experience
+    form.business_about.data = member.business_about
+    form.business_name.data = member.business_name
+    form.business_email.data = member.business_email
     form.home_address.data = member.home_address
     form.work_address.data = member.work_address
 
@@ -420,7 +416,7 @@ def edit_member(member_id):
 @admins.route('/admin/download-template')
 @admin_role_required
 def download_template():
-  template_list = ["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"]
+  template_list = ["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"]
   
   print(",".join(template_list))
 
@@ -443,8 +439,8 @@ def export_db():
   cw = csv.writer(si)
   records = User.query.all()   # or a filtered set, of course
   # any table method that extracts an iterable will work
-  cw.writerow(["username", "phone", "email", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
-  cw.writerows([(r.username, r.phone, r.email, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
+  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "current_salary", "occupation", "experience", "date_of_birth", "home_address", "work_address"])
+  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.current_salary, r.occupation, r.experience, r.date_of_birth, r.home_address, r.work_address) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
