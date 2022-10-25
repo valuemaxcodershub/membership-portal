@@ -219,9 +219,8 @@ def register_member():
 
   if form.validate_on_submit():
     user = User(phone=form.phone.data)
-    selected_units = request.form.getlist('mymultiselect')
 
-    add_member(user, selected_units)
+    add_member(user)
 
     
     return(redirect(url_for("admins.manage_members")))

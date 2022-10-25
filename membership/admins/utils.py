@@ -75,14 +75,15 @@ def parse_csv(csv_file):
       # user.password = secrets.token_urlsafe(8)
       db.session.add(user)
 
-def add_member(user, selected_units):
-  inputted_units = []
-  for unit_name in selected_units:
-    unit = Unit.query.filter_by(name=unit_name).all()[0]
-    inputted_units.append(unit)
+def add_member(user, selected_units=None):
+  if selected_units:
+    inputted_units = []
+    for unit_name in selected_units:
+      unit = Unit.query.filter_by(name=unit_name).all()[0]
+      inputted_units.append(unit)
 
-  for unit in inputted_units:
-    user.units.append(unit)
+    for unit in inputted_units:
+      user.units.append(unit)
 
   db.session.add(user)
   db.session.commit()

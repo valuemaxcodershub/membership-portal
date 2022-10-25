@@ -5,6 +5,7 @@ from membership.models import User, Unit
 from flask_login import login_user, current_user, logout_user
 from membership.members.utils import user_role_required
 from membership.main.utils import save_picture
+from membership.admins.utils import add_member
 
 members = Blueprint('members', __name__)
 
@@ -100,8 +101,9 @@ def create_business_profile():
 
     member.has_filled_profile = True
 
-    db.session.add(member)
-    db.session.commit()
+    selected_units = request.form.getlist('mymultiselect')
+
+    add_member(member, selected_units=selected_units)
 
     return redirect(url_for('members.member_home'))
 
@@ -151,8 +153,9 @@ def edit_business_profile():
     if request.files['image-6'].filename != '':
       member.business_product_image_6 =  save_picture(request.files['image-6'])
 
-    db.session.add(member)
-    db.session.commit()
+    selected_units = request.form.getlist('mymultiselect')
+
+    add_member(user, selected_units=selected_units)
 
     return redirect(url_for('members.member_home'))
 
