@@ -19,6 +19,12 @@ def member_home():
   return "Member Homepage"
 
 
+@members.route("/member-dashboard", methods=["GET", "POST"])
+def dashboard():
+  member = current_user
+
+  return render_template("member_index.html", member=member)
+
 @members.route("/login", methods=["GET", "POST"])
 def login():
   if current_user.is_authenticated:
