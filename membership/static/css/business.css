@@ -495,7 +495,7 @@ body{
   color: rgb(59, 74, 59);
   font-weight: bold;
 }
-.zaddy h1{
+.zaddy h1{ 
   text-align: center;
 }
 /* .zaddy p{
@@ -516,11 +516,11 @@ body{
   margin-top: 5%;
   cursor: pointer;
 }
-.anty img:hover{
+/* .anty img:hover{
   box-shadow: 0 0 2px 1px rgba(5, 187, 35, 0.954);
   transform: scaleX(-1);
   transition: 1s;
-}
+} */
 .anty h1{
   font-weight: bold;
   text-align: center;
