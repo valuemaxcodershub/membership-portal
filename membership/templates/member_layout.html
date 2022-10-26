@@ -85,134 +85,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <ul class="doome">
       <li>
-        <a href="{{ url_for('admins.dashboard') }}">
+        <a href="{{ url_for('members.dashboard') }}">
           <i class="fa fa-home nav_icon"></i>
           <span class="nav-text">
           Dashboard
           </span>
         </a>
       </li>
-      <li class="has-subnav">
-        <a href="javascript:;">
+      <li >
+        <a href="{{url_for('main.member_page', member_id=member.id)}}">
         <i class="fa fa-cogs" aria-hidden="true"></i>
         <span class="nav-text">
-          Member
+          My Page
         </span>
-        <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
-        </a>
-        <ul>
-          <li>
-          <a class="subnav-text" href="{{ url_for('admins.register_member') }}">
-          Add Member
-          </a>
-          </li>
-          <li>
-          <a class="subnav-text" href="{{ url_for('admins.manage_members') }}">
-          Manage Members
-          </a>
-          </li>
-          <li>
-            <a class="subnav-text" href="{{ url_for('admins.register_bulk') }}" >
-            Bulk Registration
-            </a>
-            </li>
-        </ul>
       </li>
-      {% if current_user.is_superadmin %}
-        <li class="has-subnav">
-          <a href="javascript:;">
-          <i class="fa fa-check-square-o nav_icon"></i>
-          <span class="nav-text">
-          Admin
-          </span>
-          <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
-          </a>
-          <ul>
-            <li>
-              <a class="subnav-text" href="{{ url_for('admins.register_admin') }}" >Add Admin</a>
-            </li>
-            <li>
-              <a class="subnav-text" href="{{ url_for('admins.manage_admins') }}" >Manage Admin</a>
-            </li>
-          </ul>
-        </li>
-      {% endif %}
-      <li class="has-subnav">
+      <li >
+        <a href="{{url_for('members.edit_business_profile')}}">
+          <i class="fa fa-file-text-o nav_icon"></i>
+            <span class="nav-text">Edit Page</span>
+        </a>
+      </li>
+      <li >
         <a href="javascript:;">
           <i class="fa fa-file-text-o nav_icon"></i>
-            <span class="nav-text">Unit</span>
-          <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
+            <span class="nav-text">My Dues</span>
         </a>
-        <ul>
-          <li>
-            <a class="subnav-text" href="{{ url_for('admins.manage_units') }}" >
-              Manage Unit
-            </a>
-          </li>
-          <li>
-            <a class="subnav-text" href="{{ url_for('admins.register_unit') }}">
-              Add Unit
-            </a>
-          </li>
-        </ul>
       </li>
-      <li class="has-subnav">
+      <li >
         <a href="javascript:;">
-          <i class="icon-font nav-icon"></i>
-            <span class="nav-text">Finance</span>
-          <i class="icon-angle-right"></i><i class="icon-angle-down"></i>
-        </a>
-        <ul>
-          <li>
-            <a class="subnav-text" href="#" >
-              Create Payment
-            </a>
-          </li>
-          <li>
-            <a class="subnav-text" href="#">
-              Generate Financial Report
-            </a>
-          </li>
-        </ul>
-      </li>
-      <!-- <li>
-        <a href="{{ url_for('admins.register_bulk') }}">
-          <i class="icon-table nav-icon"></i>
-          <span class="nav-text">
-          Bulk Registration
-          </span>
+          <i class="fa fa-file-text-o nav_icon"></i>
+            <span class="nav-text">Transaction History</span>
         </a>
       </li>
-      <li>
-        <a href="tables.html">
-          <i class="icon-table nav-icon"></i>
-          <span class="nav-text">
-          Tables
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="maps.html">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          <span class="nav-text">
-          Maps
-          </span>
-        </a>
-      </li>
-      <li>
-        <a href="error.html">
-          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="nav-text">
-          Error Page
-          </span>
-        </a>
-      </li> -->
-      
     </ul>
     <div >
       <ul >
       <li>
-      <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}">
+      <a href="{{ url_for('members.user_account')}}">
       <i class="fa fa-user-circle nav-icon"></i>
       <span class="nav-text">
       Account
@@ -222,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </ul> 
     <ul class="logout">
       <li>
-      <a href="{{ url_for('admins.admin_logout') }}">
+      <a href="{{ url_for('members.user_logout') }}">
       <i class="icon-off nav-icon"></i>
       <span class="nav-text">
       Logout
@@ -261,41 +170,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
               <div class="dropdown ibadan "style="float:right;" >
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters" style="background: #0ece0b ;">
-                 <i class="fa fa-suitcase" aria-hidden="true"></i>
+                 <i class="fa-solid fa-bell" aria-hidden="true"></i>
                 
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left:0;">
+                <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left:0;">
                   {% for unit in dashboard_units %}
                   <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
                   {% endfor %}
-                </ul>
+                </ul> -->
               </li>
               </div>
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              <!-- &nbsp;
-              &nbsp;
-              &nbsp; -->
-              <!-- <div class="eyes" style="float:right;">
-                <button class="nose"><i class="fas fa-search"></i></button>
-                <div class="mouth">
-                  <form  method="POST" action="{{url_for('admins.search_members')}}" class="d-flex" autocomplete="off">
-                    <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit" style="color: #A8D6B4;">Search</button>
-                    </form>
-                </div> -->
-
-              <div class="dropdown uyo" >
-                <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton2" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search" style="background: #0ece0b ;">
-                  <i class="fas fa-search"></i>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                  <form  method="POST" action="{{url_for('admins.search_members')}}" class="d-flex" autocomplete="off">
-                    <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-success" type="submit" style="color: #A8D6B4;"> <i class="fas fa-search"></i></button>
-                    </form>
-                </ul>
-              </li>
-              </div> 
               &nbsp;
               &nbsp;
               &nbsp;
@@ -304,7 +187,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="dropdown-content" style="left:0;">
                   <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
                     <li>
-                    <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
+                    <a href="{{ url_for('members.user_account')}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
                       <i class="fa fa-user-circle nav-icon"></i>
                     <span class="ogle">
                       &nbsp;edit&nbsp;profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -315,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  
                     <ul class="logout" type="button" style="list-style-type:none;;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"> 
                       <li>
-                      <a href="{{ url_for('admins.admin_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
+                      <a href="{{ url_for('members.user_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
                       <i class="icon-off nav-icon"></i>
                       <span class="ogle" id="ogle">
                         &nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -343,19 +226,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <br>
     </section>
     
-  <script>
-    $(function() {
-        $.ajax({
-            url: '{{ url_for("admins.autocomplete") }}'
-            }).done(function (data){
-                console.log(data);
-                $('#member_autocomplete').autocomplete({
-                    source: data,
-                    minLength: 2
-                });
-            });
-        });
-  </script>
   <script>
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */

@@ -21,10 +21,10 @@ def admin_role_required(func):
         if current_user.role == "ADMIN":
           return func(*args, **kwargs)
         else:
-          flash("You must log in to access this page")
+          flash("You must log in to access this page", "info")
           return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
       else:
-          flash("You must log in to access this page")
+          flash("You must log in to access this page", "info")
           return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
     return decorated_view
 

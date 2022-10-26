@@ -19,6 +19,12 @@ def member_home():
   return "Member Homepage"
 
 
+@members.route("/member-dashboard", methods=["GET", "POST"])
+def dashboard():
+  member = current_user
+
+  return render_template("member_index.html", member=member)
+
 @members.route("/login", methods=["GET", "POST"])
 def login():
   if current_user.is_authenticated:
@@ -155,7 +161,7 @@ def edit_business_profile():
 
     selected_units = request.form.getlist('mymultiselect')
 
-    add_member(user, selected_units=selected_units)
+    add_member(member, selected_units=selected_units)
 
     return redirect(url_for('members.member_home'))
 

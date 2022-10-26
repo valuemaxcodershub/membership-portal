@@ -68,7 +68,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
-          <em>{{ message }}</em>
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
         {% endfor %}
       {% endif %}
     {% endwith %}
