@@ -334,7 +334,7 @@ def manage_members():
 
 
 @admins.route("/admin/register-admin", methods=["GET", "POST"])
-@admin_role_required
+@super_admin_role_required
 def register_admin():
   if current_user.role == "USER":
     return(redirect(url_for("admins.home")))
@@ -346,7 +346,7 @@ def register_admin():
   if form.validate_on_submit():
     user = User(email=form.email.data)
     user.role = "ADMIN"
-    if form.is_superadmin:
+    if form.is_superadmin.data:
       user.is_superadmin = True
     # user.password = secrets.token_urlsafe(8)
     db.session.add(user)
