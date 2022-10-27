@@ -227,7 +227,7 @@
           <h1 style="color: rgb(54, 98, 53); font-weight: bold;">product of services</h1>
           <br>
             <div class="">
-              
+              {{member.business_services}}
           </div>
         </div>
         <br>
@@ -273,14 +273,17 @@
                 <P>Phone number: {{member.business_phone}}</P>
               </div>
               <div class="col">
+                <P>Address: {{member.business_address}}</P>
+              </div>
+              <div class="col">
                 <P><i>email: {{member.business_email}}</i></P>
               </div>
               <div class="col">
                 <div>
                   <a href="https://{{member.business_facebook}}" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
-                  <a href="#" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                 <a href="#" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"> <i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                  <a href="#" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                  <a href="https://{{member.business_twitter}}" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                 <a href="https://{{member.business_linkedin}}" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"> <i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                  <a href="https://{{member.business_instagram}}" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>

@@ -3,8 +3,8 @@ from io import StringIO     # allows you to store response object in memory inst
 import os
 import json
 from membership import app, db
-from membership.admins.forms import UserRegistrationForm,  AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, UploadCsvForm, UpdateAdminForm
-from membership.models import User, Unit
+from membership.admins.forms import MessageForm, UserRegistrationForm,  AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, UploadCsvForm, UpdateAdminForm
+from membership.models import User, Unit, Message
 from membership.main.utils import save_picture
 from membership.admins.utils import parse_csv
 from flask_login import login_user, current_user, login_required, logout_user
@@ -16,6 +16,49 @@ admins = Blueprint("admins", __name__)
 
 
 data = DataStore()
+
+@admins.route('/admin/send_message/<int:recipient_id>', methods=['GET', 'POST'])
+@admin_role_required
+def send_message(recipient_id):
+    user = User.query.get_or_404(recipient_id)
+    form = MessageForm()
+    if form.validate_on_submit():
+        msg = Message(author=current_user, recipient=user,
+                      body=form.message.data)
+        db.session.add(msg)
+        db.session.commit()
+        flash('Your message has been sent.')
+        return redirect(url_for('admins.dashboard'))
+    return render_template('send_message.html', title=('Send Message'),
+                           form=form, recipient=user)
+
+@admins.route('/admin/send_unit_message', methods=['GET', 'POST'])
+@admin_role_required
+def send_unit_message():
+
+    form = MessageForm()
+ 
+    if form.validate_on_submit():
+
+      selected_units = request.form.getlist('mymultiselect')
+
+      inputted_units = []
+      for unit_name in selected_units:
+        unit = Unit.query.filter_by(name=unit_name).all()[0]
+        inputted_units.append(unit)
+
+      for unit in inputted_units:
+        msg = Message(author=current_user, recipient=unit, title=form.title.data,
+                      body=form.message.data)
+        db.session.add(msg)
+        db.session.commit()
+
+      flash('Your message has been sent.')
+      return redirect(url_for('admins.dashboard'))
+
+
+    return render_template('send_message.html', title=('Send Message'),
+                           form=form)
 
 #this is for sending members to pages that don't use the dashboard layout e.g. business members
 @admins.context_processor

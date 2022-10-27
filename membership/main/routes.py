@@ -19,7 +19,7 @@ def inject_menu():
 
 @main.route("/business-members")
 def business_members():
-  members = User.query.filter_by(role="USER").filter(User.has_filled_profile==True).filter(User._is_suspended==False).all()
+  members = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).all()
   units = Unit.query.all()
 
   return render_template("business_member.html", members= members, units=units)
@@ -28,7 +28,7 @@ def business_members():
 def search_business_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(User.has_filled_profile==True).filter(User._is_suspended==False).filter(User.username.contains(query)) 
+  results = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).filter(User.username.contains(query)) 
   result_count = results.count()
   members = results.paginate(page=page, per_page=5)
 
@@ -41,7 +41,7 @@ def business_unit_members(unit_id):
   unit = Unit.query.filter_by(id=unit_id)[0]
   unit_members = unit.unit_members
   print(unit_members)
-  members = unit_members.filter(User.has_filled_profile==True).filter(User._is_suspended==False)
+  members = unit_members.filter(User.business_name!=None).filter(User._is_suspended==False)
 
   return render_template("business_unit_members.html", members=members, unit=unit)
 
