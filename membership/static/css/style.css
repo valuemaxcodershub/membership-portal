@@ -81,7 +81,7 @@ html, body{
   display: none;
   position: absolute;
   right: 0;
-  padding: 5x;
+  padding: 15px;
   /* display: inline-block; */
   background-color: #f9f9f9;
   min-width: 90px;
@@ -771,6 +771,7 @@ body a:hover{
 .ibadan  li:hover ul{
     display: block;
     transition: 1s;
+    padding: 15px;
     font-weight: bold;
     margin-top: -1px;
     /* margin-right: 30px; */
@@ -829,6 +830,7 @@ body a:hover{
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     position: absolute;
+    padding: 15px;
     left: 0em;
     
 } 
@@ -1597,6 +1599,7 @@ figure.icons, .weather-text {
   margin-right: auto; */
   /* margin-left: 15%; */
   margin: 0px auto;
+
   cursor: pointer;
 }
 @media only screen and (max-width: 600px)  {

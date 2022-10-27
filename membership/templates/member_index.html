@@ -1,30 +1,110 @@
 {% extends "member_layout.html" %}
 {% block content %}	
 			<style>
+        #glary{
+          padding-bottom: 1em;
+        }
 				#glory{
 					padding-bottom: 2em;
 				}
+        .twen{
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+          /* background: rgb(131, 187, 131); */
+          
+        }
+        #alirt{
+          width:60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .emeet{
+          font-weight: bold;
+          /* color: white; */
+        }
+        .anty img{
+          max-width:70%;
+          max-height: 70vh;
+          /* opacity :0.5; */
+        }
+        .anty img:hover{
+          box-shadow: 0 0 2px 1px rgba(5, 187, 35, 0.954);
+          transform: scaleX(-1);
+          transition: 1s;
+          transform: scale(1.5);
+          opacity: 1;
+        }
+        .mommy{
+          background: rgb(214, 250, 214);
+            padding: 5%;
+            border-radius: 7px;
+            width: 94%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .zaddy{
+            margin-top: 5%;
+            color: rgb(59, 74, 59);
+            font-weight: bold;
+          }
+          .zaddy h1{ 
+            text-align: center;
+            font-weight: bold;
+          }
+          /* .zaddy p{
+            color: #000;
+          } */
+          .sonny{
+            margin-top: 5%;
+            color: rgb(59, 74, 59);
+            font-weight: bold;
+            /* width: 80%; */
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .sonny h2{
+            text-align: center;
+            font-weight: bold;
+          }
+          .anty{
+            margin-top: 5%;
+            cursor: pointer;
+          }
+          .anty h1{
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
+            font-weight: bold;
+          }
+          .uncle{
+            font-weight: bold;
+          }
+          .uncle h1{
+            text-align: center;
+          }
 			</style>
-		<div class="container">
-
-			<div class="alert alert-warning alert-dismissible show" role="alert">
-			  <strong>Lastest Notification</strong> 
-			  <br/>
-			  You should check in on some of those fields below.
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-			    <span aria-hidden="true">&times;</span>
-			  </button>
-			</div>
-				
+      <br>
+      <div class="container">
+        <div class="alert alert-warning alert-dismissible show" role="alert" id="alirt">
+          <strong>Lastest Notification</strong> 
+          <br/>
+          You should check in on some of those fields below.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      
+		<div class="container">	
 			<div class=" glo">
 				<div class="row">
-					
 					<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("members.edit_business_profile") }}'>
 						<div class="glory" id="glory">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
 									<div class="gluy">
-										<i class="fa fa-archive" aria-hidden="true"></i>
+										<i class="fa fa-pencil-square" aria-hidden="true"></i>
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-8">
@@ -40,7 +120,7 @@
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
 									<div class="gluy">
-										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+										<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-8">
@@ -53,11 +133,11 @@
 						</div>
 					</a>
 					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
-						<div class="glory" id="glory">
+						<div class="glory" id="glary">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
 									<div class="gluy">
-										<i class="fa fa-bar-chart" aria-hidden="true" ></i>
+										<i class="fa fa-history" aria-hidden="true"></i>
 									</div>
 								</div>
 								<div class="col-sm-6 col-md-8">
@@ -69,8 +149,8 @@
 						</div>
 					</a>
 				</div>
-				
 			</div>
+<br>
 
 			<div class="mommy">
       <div class="container">
@@ -161,8 +241,10 @@
         </div>
       </div>
     </div>
-<br>
-		</div>
+<br><br>
+    <div>
+      <a type="button" class="btn btn-success" href="{{url_for('members.edit_business_profile')}}">Edit Your Profile</a>
+    </div>
 
 			
 {% endblock content %}
