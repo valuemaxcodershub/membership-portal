@@ -2,11 +2,12 @@
 {% block content %}
 <style>
 	.rooc{
-		border: 1px solid black;
-		border-radius: 4px;
+		background-color: rgb(217, 235, 218);
+		border-radius: 6px;
 		padding: 20px;
     font-size: 16px;
     margin-left: 10%;
+    width: 80%;
 	}
 	.roch{
 		text-align: center;
@@ -16,7 +17,7 @@
 	}
 	.ordd{
 		text-align: center;
-		background-color: whitesmoke;
+		background-color: rgb(217, 235, 218);
 		padding: 10px;
 	}
 	.ordd label{
@@ -196,70 +197,67 @@
                     <br />
 								</div>
 							</div>
+              <!--  -->
 							<div class="col-md-8">
-								<div class="ordd">
-										
+							<div class="ordd">
+              <!-- <br />
+              <br /> -->
+              {{ form.username.label }}
+              <br />
+              {% if form.username.errors %}
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.username }}
+              {% endif %}
 
-    
+              <br />
+              <br />
+              {{ form.phone.label }}
+              <br />
+              {% if form.phone.errors %}
+                {{ form.phone }}
+                {% for error in form.phone.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.phone }}
+              {% endif %}
+              
+              <br />
+              <br />
+              {{ form.email.label }}
+              <br />
+              {% if form.email.errors %}
+                {{ form.email }}
+                {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.email }}
+              {% endif %}
 
-    <br />
-    <br />
-    {{ form.username.label }}
-    <br />
-    {% if form.username.errors %}
-      {{ form.username }}
-      {% for error in form.username.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.username }}
-    {% endif %}
+              <br />
+              <br />
+              {{ form.password.label }}
+              <br />
+              {% if form.password.errors %}
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.password }}
+              {% endif %}
 
-    <br />
-    <br />
-    {{ form.phone.label }}
-    <br />
-    {% if form.phone.errors %}
-      {{ form.phone }}
-      {% for error in form.phone.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.phone }}
-    {% endif %}
-    
-    <br />
-    <br />
-    {{ form.email.label }}
-    <br />
-    {% if form.email.errors %}
-      {{ form.email }}
-      {% for error in form.email.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.email }}
-    {% endif %}
-
-    <br />
-    <br />
-    {{ form.password.label }}
-    <br />
-    {% if form.password.errors %}
-      {{ form.password }}
-      {% for error in form.password.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.password }}
-    {% endif %}
-
-    <br />
-    <br />
-    <br />
+              <br />
+              <br />
+              <br />
 
 
-    {{ form.submit(type="submit", id="sommy") }}
+              {{ form.submit(type="submit", id="sommy") }}
 
 
 

@@ -2,7 +2,7 @@
 {% block content %} 
     <style>
     #form{
-             width: 90%;
+             width: 80%;
             margin: 5%;
             padding: 10px;
             font-size: 19px;
@@ -14,7 +14,7 @@
             background-color: rgb(181, 203, 185); 
             color: rgb(121, 146, 125);
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 15px;
         }
         /* #ric{
             padding: 10px;
@@ -92,6 +92,9 @@
         #viold input{
           width: 90%;
         }
+        .olu{
+          width: 90%;
+        }
   </style>
     <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
       <br>
@@ -102,6 +105,9 @@
             <div>
               <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
               {{form.business_photo.label}}
+<<<<<<< HEAD
+              {{form.business_photo(class="btn btn-success olu")}}
+=======
               {% if form.business_photo.errors %}
                 {{ form.business_photo(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
                 {% for error in form.business_photo.errors %}
@@ -110,6 +116,7 @@
               {% else %}
                 {{ form.business_photo(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
               {% endif %}
+>>>>>>> 9fc83a6a451bd4ca28be85a361add1e4e58e79ce
             </div>
           </div>
           <div class="col">

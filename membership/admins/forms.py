@@ -6,7 +6,7 @@ from membership.models import User
 
 
 class MessageForm(FlaskForm):
-    title = TextAreaField('Title', validators=[
+    title = StringField('Title', validators=[
         DataRequired(), Length(min=0, max=140)])
     message = TextAreaField('Message', validators=[
         DataRequired(), Length(min=0, max=140)])
