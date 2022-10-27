@@ -94,13 +94,23 @@ def edit_business_profile():
     member.business_whatsapp = form.business_whatsapp.data
     member.business_address = form.business_address.data
     member.business_services = form.business_services.data
-    member.business_photo = save_picture(form.business_photo.data)
-    member.business_product_image_1 = save_picture(form.business_product_image_1.data)
-    member.business_product_image_2 = save_picture(form.business_product_image_2.data)
-    member.business_product_image_3 = save_picture(form.business_product_image_3.data)
-    member.business_product_image_4 = save_picture(form.business_product_image_4.data)
-    member.business_product_image_5 = save_picture(form.business_product_image_5.data)
-    member.business_product_image_6 = save_picture(form.business_product_image_6.data)
+    
+
+    #save picture if it exists
+    if form.business_photo.data:
+      member.business_photo = save_picture(form.business_photo.data)
+    if form.business_product_image_1.data:
+      member.business_product_image_1 = save_picture(form.business_product_image_1.data)
+    if form.business_product_image_2.data:
+      member.business_product_image_2 = save_picture(form.business_product_image_2.data)
+    if form.business_product_image_3.data:
+      member.business_product_image_3 = save_picture(form.business_product_image_3.data)
+    if form.business_product_image_4.data:
+      member.business_product_image_4 = save_picture(form.business_product_image_4.data)
+    if form.business_product_image_5.data:
+      member.business_product_image_5 = save_picture(form.business_product_image_5.data)
+    if form.business_product_image_6.data:
+      member.business_product_image_6 = save_picture(form.business_product_image_6.data)
 
     selected_units = request.form.getlist('mymultiselect')
 

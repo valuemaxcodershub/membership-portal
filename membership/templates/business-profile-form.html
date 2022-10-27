@@ -102,7 +102,14 @@
             <div>
               <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
               {{form.business_photo.label}}
-              {{form.business_photo(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+              {% if form.business_photo.errors %}
+                {{ form.business_photo(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                {% for error in form.business_photo.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_photo(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+              {% endif %}
             </div>
           </div>
           <div class="col">
@@ -188,7 +195,14 @@
                 <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" width="40%">
                 <br>
                 {{form.business_product_image_1.label}}
-                {{form.business_product_image_1(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% if form.business_product_image_1.errors %}
+                  {{ form.business_product_image_1(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_1.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_1(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
               </div>
             </div>
             <div class="col-md-4">
@@ -196,7 +210,14 @@
                 <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" width="40%">
                 <br>
                 {{form.business_product_image_2.label}}
-                {{form.business_product_image_2(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% if form.business_product_image_2.errors %}
+                  {{ form.business_product_image_2(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_2.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_2(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
               </div>
             </div>
             <div class="col-md-4">
@@ -204,7 +225,14 @@
                 <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" width="40%">
                 <br>
                 {{form.business_product_image_3.label}}
-                {{form.business_product_image_3(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% if form.business_product_image_3.errors %}
+                  {{ form.business_product_image_3(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_3.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_3(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
               </div>
             </div>
           </div>
@@ -216,7 +244,14 @@
                 <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" width="40%">
                 <br>
                 {{form.business_product_image_4.label}}
-                {{form.business_product_image_4(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% if form.business_product_image_4.errors %}
+                  {{ form.business_product_image_4(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_4.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_4(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
               </div>
             </div>
             <div class="col-md-4">
@@ -224,7 +259,14 @@
                 <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" width="40%">
                 <br>
                 {{form.business_product_image_5.label}}
-                {{form.business_product_image_5(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% if form.business_product_image_5.errors %}
+                  {{ form.business_product_image_5(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_5.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_5(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
               </div>
             </div>
             <div class="col-md-4">
@@ -232,7 +274,14 @@
                 <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" width="40%">
                 <br>
                 {{form.business_product_image_6.label}}
-                {{form.business_product_image_6(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% if form.business_product_image_6.errors %}
+                  {{ form.business_product_image_6(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_6.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_6(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
               </div>
             </div>
           </div>
