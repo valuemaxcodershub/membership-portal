@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from membership import db
+from datetime import datetime
 from membership.members.forms import UserLoginForm, CreateProfileForm
-from membership.models import User, Unit
+from membership.models import User, Unit, Message
 from flask_login import login_user, current_user, logout_user
 from membership.members.utils import user_role_required
 from membership.main.utils import save_picture
@@ -25,6 +26,24 @@ def dashboard():
   member = current_user
 
   return render_template("member_index.html", member=member)
+
+@members.route("/messages", methods=["GET"])
+@user_role_required
+def messages():
+  current_user.last_message_read_time = datetime.utcnow()
+  db.session.commit()
+  member = current_user
+
+  unit_messages = member.units[0].messages_received
+
+  for unit in member.units[1:]:
+    unit_messages.extend(unit.messages_received)
+
+  distinct_messages = unit_messages
+  messages = distinct_messages.order_by(Message.timestamp.desc()).all()
+
+  return render_template('messages.html', messages=messages, member=member)
+
 
 @members.route("/login", methods=["GET", "POST"])
 def login():

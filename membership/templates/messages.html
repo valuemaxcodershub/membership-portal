@@ -1,0 +1,15 @@
+{% extends "member_layout.html" %}
+
+{% block content %}
+    <h1>Messages</h1>
+    {% for post in messages %}
+    <hr>
+    <div>
+        {{post.id}}
+        <h3>{{post.title}}</h3>
+        <p>{{post.body}}</p>
+    </div>
+        
+    {% endfor %}
+
+{% endblock %}
