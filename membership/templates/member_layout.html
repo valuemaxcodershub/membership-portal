@@ -31,6 +31,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
   referrerpolicy="no-referrer" />
 <!-- for units -->
+<style>
+  .ibadan{
+    margin-top: -1%;
+  }
+  @media screen and (max-width: 630px) {
+    #dropdown{
+      margin-left: 3em;
+    }
+  }
+</style>
 		<script>
 		$(function () {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -168,21 +178,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
               <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="55px" /></a>
 
-              <div class="dropdown ibadan "style="float:right;" >
-                <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters" style="background: #0ece0b ;">
-                 <i class="fa-solid fa-bell" aria-hidden="true"></i>
-                
+              <div class=" ibadan "style="float:right;" >
+                <!-- <li class=" dropdown- d-inline-block"  id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters" > -->
+                 
+                  <button type="button" class="btn btn-success position-relative" style="background: #0ece0b ;">
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    <span class="position-absolute top-0 start-100  p-2 bg-danger badge rounded-pill bg-danger uuos">
+                      99+
+                      <span class="visually-hidden">New alerts</span>
+                    </span>
+                  </button>
                 <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left:0;">
                   {% for unit in dashboard_units %}
                   <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
                   {% endfor %}
                 </ul> -->
-              </li>
+              <!-- </li> -->
               </div>
               &nbsp;
               &nbsp;
               &nbsp;
-              <div class="dropdown" style="float:right;">
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <div class="dropdown" style="float:right;" id="dropdown">
                 <button class="dropbtn"> <i class="fa fa-user-circle nav-icon"></i></button>
                 <div class="dropdown-content" style="left:0;">
                   <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">

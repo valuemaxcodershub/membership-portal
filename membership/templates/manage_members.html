@@ -79,7 +79,10 @@
 							<td>{{member.finance}}</td>
 							<td>{{member.finance_status}}</td>
 							<td class="d-flex justify-content-center" >
+								
 								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Member Details"></i></a>
+
+								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
 
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
 
