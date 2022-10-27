@@ -1,13 +1,28 @@
 {% extends "member_layout.html" %}
 
 {% block content %}
+<style>
+    #alirt{
+          width:60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+</style>
     <h1>Messages</h1>
     {% for post in messages %}
-    <hr>
-    <div>
+
+    <div class="container">
         {{post.id}}
-        <h3>{{post.title}}</h3>
-        <p>{{post.body}}</p>
+        <div class="alert alert-warning alert-dismissible show" role="alert" id="alirt">
+          <strong><h3>{{post.title}}</h3></strong> 
+          <br/>
+          <p>{{post.body}}</p>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    <div>
     </div>
         
     {% endfor %}
