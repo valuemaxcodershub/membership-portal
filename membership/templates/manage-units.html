@@ -1,6 +1,12 @@
 
 {% extends "dashboard_layout.html" %}
 {% block content %}
+<style>
+	.addUnit{
+		margin-top: -3%;
+		margin-right: 40em;
+	}
+</style>
 <script>
 	$(function () {
 		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -65,6 +71,8 @@
 						    </div>
 						  </div>
 						</div>
+						<br>
+						
 
 				  <!-- pagination -->
 				  {% for page_num in units.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
@@ -79,6 +87,10 @@
 				  {% endif %}
 				{% endfor %}
 			  </div>
+			</div>
+			<br>
+			<div class="addUnit">
+				<button class="btn btn-success"> <a href="{{ url_for('admins.register_unit') }}" style="text-decoration:none ; color:white;">Add Unit</a></button>
 			</div>
 
 			<script>
