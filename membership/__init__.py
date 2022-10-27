@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
+from sqlalchemy import MetaData
 import os
 
 
@@ -11,6 +12,7 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "0f3c34f7789f6917e12593945aa86bdb"
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
+
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -24,6 +26,7 @@ app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)
 migrate = Migrate(app, db)
+
 
 from membership.members.routes import members
 from membership.admins.routes import admins

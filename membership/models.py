@@ -40,19 +40,38 @@ class User(db.Model, UserMixin):
   business_about = db.Column(db.String())
   business_services = db.Column(db.String())
   #use image list
-  business_product_image_1 = db.Column(db.String(20), default='default.jpg')
-  business_product_image_2 = db.Column(db.String(20), default='default.jpg')
-  business_product_image_3 = db.Column(db.String(20), default='default.jpg')
-  business_product_image_4 = db.Column(db.String(20), default='default.jpg')
-  business_product_image_5 = db.Column(db.String(20), default='default.jpg')
-  business_product_image_6 = db.Column(db.String(20), default='default.jpg')
+  business_product_image_1 = db.Column(db.String(20), nullable=False, default='default.jpg')
+  business_product_image_2 = db.Column(db.String(20), nullable=False, default='default.jpg')
+  business_product_image_3 = db.Column(db.String(20), nullable=False, default='default.jpg')
+  business_product_image_4 = db.Column(db.String(20), nullable=False, default='default.jpg')
+  business_product_image_5 = db.Column(db.String(20), nullable=False, default='default.jpg')
+  business_product_image_6 = db.Column(db.String(20), nullable=False, default='default.jpg')
   business_facebook = db.Column(db.String())
+  business_website = db.Column(db.String())
   business_twitter = db.Column(db.String())
   business_linkedin = db.Column(db.String())
   business_whatsapp = db.Column(db.String())
+  messages_sent = db.relationship('Message',
+                                    foreign_keys='Message.sender_id',
+                                    backref='author', lazy='dynamic')
+  # messages_received = db.relationship('Message',
+  #                                     foreign_keys='Message.recipient_id',
+  #                                     backref='recipient', lazy='dynamic')
+  last_message_read_time = db.Column(db.DateTime)
 
 
+  def new_messages(self):
+    last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+    #recipient should be units recieving
+    # count = 0
+    # for unit in self.units:
+    #   count += Message.query.filter_by(recipient=unit).filter(
+    #     Message.timestamp > last_read_time).count()
 
+    # return count
+
+    return Message.query.filter_by(recipient=self).filter(
+        Message.timestamp > last_read_time).count()
 
   def display_units(self):
     unit_names = []
@@ -120,14 +139,30 @@ class User(db.Model, UserMixin):
   def __repr__(self):
     return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
+
 class Unit(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), unique=True, nullable=False)
   date_created = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
   fees_amount = db.Column(db.String(),nullable=False,default="0")
+  messages_received = db.relationship('Message',
+                                      foreign_keys='Message.recipient_id',
+                                      backref='recipient', lazy='dynamic')
 
 
   def __repr__(self):
     return f"Unit('{self.name}')"
+
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('unit.id'))
+    title = db.Column(db.String(60))
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Message {}>'.format(self.body)
    
 

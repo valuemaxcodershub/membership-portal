@@ -93,22 +93,28 @@
   </style>
     <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
       <br>
+      {{form.hidden_tag()}}
       <div class="container mom">
         <div class="row">
           <div class="col">
             <div>
-              <label for="bus-photo" style="text-align: center; font-weight:bold; font-size:large;">Business Photo</label>
-              <br/>
               <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
-              <br>
-              <p>Update Profile Picture</p>
-              <input type="file" name="business-photo" id="" class="btn btn-success">
+              {{form.business_photo.label}}
+              {{form.business_photo(class="btn btn-success")}}
             </div>
           </div>
           <div class="col">
             <div class="input-control">
-              <label for="username" style="text-align: center; font-weight:bold; font-size:large;">Business Name</label>
-              <input type="text" value="{{member.business_name}}" id="username" name="business-name" placeholder="Business Name" required> <br>
+              {{ form.business_name.label }}
+              <br />
+              {% if form.business_name.errors %}
+                {{ form.business_name(required=True) }}
+                {% for error in form.business_name.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_name(required=True)}}
+              {% endif %}
               <span class="error"></span>
           </div>
           <div class="container mt-5">
@@ -124,10 +130,45 @@
         </select>
       </div>
           <div class="input-control">
-            <label for="About Business" style="text-align: center; font-weight:bold; font-size:large;">About Business</label>
-            <textarea name="business-about" value="{{member.business_about}}" id="" cols="30" rows="10" placeholder="Write more about your business" required></textarea>
+            {{ form.business_about.label }}
+              <br />
+              {% if form.business_about.errors %}
+                {{ form.business_about(required=True)}}
+                {% for error in form.business_about.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_about(required=True)}}
+              {% endif %}
             <span class="error"></span>
         </div>
+        <div class="input-control">
+            {{ form.business_services.label }}
+              <br />
+              {% if form.business_services.errors %}
+                {{ form.business_services(required=True)}}
+                {% for error in form.business_services.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_services(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+        <div class="input-control">
+            {{ form.business_address.label }}
+              <br />
+              {% if form.business_address.errors %}
+                {{ form.business_address(required=True)}}
+                {% for error in form.business_address.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_address(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+
           </div>
         </div>
         <br>
@@ -144,24 +185,24 @@
               <div>
                 <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" width="40%">
                 <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="image-1" id="" class="btn btn-success">
+                {{form.business_product_image_1.label}}
+                {{form.business_product_image_1(class="btn btn-success")}}
               </div>
             </div>
             <div class="col-md-4">
               <div>
                 <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" width="40%">
                 <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="image-2" id="" class="btn btn-success">
+                {{form.business_product_image_2.label}}
+                {{form.business_product_image_2(class="btn btn-success")}}
               </div>
             </div>
             <div class="col-md-4">
               <div>
                 <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" width="40%">
                 <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="image-3" id="" class="btn btn-success">
+                {{form.business_product_image_3.label}}
+                {{form.business_product_image_3(class="btn btn-success")}}
               </div>
             </div>
           </div>
@@ -172,24 +213,24 @@
               <div>
                 <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" width="40%">
                 <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="image-4" id="" class="btn btn-success">
+                {{form.business_product_image_4.label}}
+                {{form.business_product_image_4(class="btn btn-success")}}
               </div>
             </div>
             <div class="col-md-4">
               <div>
                 <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" width="40%">
                 <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="image-5" id="" class="btn btn-success">
+                {{form.business_product_image_5.label}}
+                {{form.business_product_image_5(class="btn btn-success")}}
               </div>
             </div>
             <div class="col-md-4">
               <div>
                 <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" width="40%">
                 <br>
-                <p>Update Product Picture</p>
-                <input type="file" name="image-6" id="" class="btn btn-success">
+                {{form.business_product_image_6.label}}
+                {{form.business_product_image_6(class="btn btn-success")}}
               </div>
             </div>
           </div>
@@ -203,64 +244,95 @@
           <div class="row">
             <div class="col-md-4">
               <div class="input-control">
-                <label for="bus-phone">Business Phone Number</label>
-                <input type="tel" id="bus-phone" value="{{member.business_phone}}" name="business-phone" placeholder="Phone Number" required>
+                {{form.business_phone.label}}
+                {{form.business_phone(required=True, type="tel", id="bus-phone")}}
                 <span class="error"></span>
               </div>
               
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="bus-email">Business Email</label>
-            <input type="email" id="bus-email" value="{{member.business_email}}" name="business-email" placeholder="Email" required>
+            {{form.business_email.label}}
+            {{form.business_email(required=True, type="email")}}
+            
             <span class="error"></span>
           </div>
           
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="website">Website</label>
-            <input type="text" id="website" value="{{member.business_website}}" name="business-website" placeholder="website url" required>
-            <span class="error"></span>
+              {{ form.business_website.label }}
+              {% if form.business_website.errors %}
+                {{ form.business_website}}
+                {% for error in form.business_website.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_website}}
+              {% endif %}
           </div>
           
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="bus-fac">Facebook Url</label>
-            <input type="text" id="bus-fac" name="business-facebook" value="{{member.business_facebook}}" placeholder="https://www.facebook.com/mybusiness/" required>
-            <span class="error"></span>
+            {{ form.business_facebook.label }}
+              {% if form.business_facebook.errors %}
+                {{ form.business_facebook}}
+                {% for error in form.business_facebook.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_facebook}}
+              {% endif %}
           </div>
           
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="bus-fac">Twitter Url</label>
-            <input type="text" value="{{member.business_twitter}}" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/" required>
-            <span class="error"></span>
+            {{ form.business_twitter.label }}
+              {% if form.business_twitter.errors %}
+                {{ form.business_twitter}}
+                {% for error in form.business_twitter.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_twitter}}
+              {% endif %}
           </div>
           
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="Email">LinkedIn Url</label>
-            <input type="text" value="{{member.business_email}}" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url" required>
-            <span class="error"></span>
+            {{ form.business_linkedin.label }}
+              {% if form.business_linkedin.errors %}
+                {{ form.business_linkedin}}
+                {% for error in form.business_linkedin.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_linkedin}}
+              {% endif %}
           </div>
           
         </div>
         <div class="col-md-4">
           <div class="input-control">
-            <label for="whatsapp">Whatsapp Number</label>
-            <input type="tel" id="whatsapp" value="{{member.business_whatsapp}}" name="business-whatsapp" placeholder="0808080" required>
-            <span class="error"></span>
+            {{ form.business_whatsapp.label }}
+              {% if form.business_whatsapp.errors %}
+                {{ form.business_facebook}}
+                {% for error in form.business_whatsapp.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_whatsapp}}
+              {% endif %}
           </div>
 
     </div>
       </div>
       <br>
       <br>
-      <button class="btn btn-success" type="submit">Submit Form</button>
+      {{form.submit(class="btn btn-success", type="submit")}}
       <br>
       <br>
         

@@ -1,8 +1,16 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from membership.models import User
+
+
+class MessageForm(FlaskForm):
+    title = TextAreaField('Title', validators=[
+        DataRequired(), Length(min=0, max=140)])
+    message = TextAreaField('Message', validators=[
+        DataRequired(), Length(min=0, max=140)])
+    submit = SubmitField('Submit')
 
 class UploadCsvForm(FlaskForm):
   csv_file = FileField('Upload CSV file', validators=[DataRequired(), FileAllowed(['csv',])])
