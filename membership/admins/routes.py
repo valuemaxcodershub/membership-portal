@@ -10,6 +10,7 @@ from membership.admins.utils import parse_csv
 from flask_login import login_user, current_user, login_required, logout_user
 import secrets
 import csv
+from sqlalchemy import or_
 from membership.admins.utils import DataStore, admin_role_required, super_admin_role_required, add_member
 
 admins = Blueprint("admins", __name__)
@@ -100,7 +101,7 @@ def autocomplete():
 def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(User.username.contains(query)) 
+  results = User.query.filter_by(role="USER").filter(or_(User.business_name.contains(query), User.phone.contains(query) )) 
   data.a = results #add to datastore
   result_count = results.count()
   members = results.paginate(page=page, per_page=5)
@@ -276,9 +277,10 @@ def export_custom():
   si = StringIO()
   cw = csv.writer(si)
   records = data.a.all() #fetch from data store
-  print(records[0].unit_ids())
-  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience", "date_of_birth"])
-  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address, r.date_of_birth) for r in records])
+  if records:
+    print(records[0].unit_ids())
+  cw.writerow(["business_name", "phone", "email", "unit_ids"])
+  cw.writerows([( r.business_name, r.phone, r.email, "-".join(r.unit_ids()) ) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"

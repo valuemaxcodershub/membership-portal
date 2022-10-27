@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from membership.models import User
 
@@ -36,9 +36,9 @@ class CreateProfileForm(FlaskForm):
   business_email = StringField("Business Email", validators=[DataRequired()])
   business_website = StringField("Website Url")
   business_phone = StringField("Business Phone Number", validators=[DataRequired()])
-  business_about = StringField("About your business")
+  business_about = TextAreaField("About your business")
   business_address = StringField("Business Location")
-  business_services = StringField("Services Rendered")
+  business_services = TextAreaField("Services Rendered")
   business_facebook = StringField("Facebook")
   business_twitter = StringField("Twitter")
   business_linkedin = StringField("LinkedIn")
