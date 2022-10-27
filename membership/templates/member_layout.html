@@ -184,13 +184,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <div class=" ibadan "style="float:right;" >
                 <!-- <li class=" dropdown- d-inline-block"  id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters" > -->
                  
-                  <button type="button" class="btn btn-success position-relative" style="background: #0ece0b ;">
+                  <a href="{{url_for('members.messages')}}" type="button" class="btn btn-success position-relative" style="background: #0ece0b ;">
                     <i class="fa-solid fa-bell" aria-hidden="true"></i>
                     <span class="position-absolute top-0 start-95  p-2 bg-danger badge rounded-pill bg-danger uuos">
                       99+
                       <span class="visually-hidden">New alerts</span>
                     </span>
-                  </button>
+                  </a>
                 <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left:0;">
                   {% for unit in dashboard_units %}
                   <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>

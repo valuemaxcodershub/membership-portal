@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from membership import db
 from datetime import datetime
-from membership.members.forms import UserLoginForm, CreateProfileForm
+from membership.members.forms import UserLoginForm, CreateProfileForm, UserAccountForm
 from membership.models import User, Unit, Message
 from flask_login import login_user, current_user, logout_user
 from membership.members.utils import user_role_required
@@ -69,10 +69,35 @@ def login():
   return render_template("user_login.html", title="Login", form=form)
 
 
-@members.route("/account") 
+@members.route("/account", methods=["GET", "POST"]) 
 @user_role_required
 def user_account():
-    return render_template("user_account.html")
+  form = UserAccountForm()
+
+  member = current_user
+  form.current_member = current_user
+
+  if form.validate_on_submit():
+    if form.picture.data:
+      picture_file = save_picture(form.picture.data)
+      member.image_file = picture_file
+
+    member.email = form.email.data
+    member.phone = form.phone.data
+    member.password = form.password.data
+    
+    db.session.add(member)
+    db.session.commit()
+    flash("Account successfuly modified", "success")
+    return(redirect(url_for("members.dashboard")))
+  elif request.method == 'GET':
+    form.email.data = member.email
+    form.phone.data = member.phone
+    form.password.data = member.password
+
+  image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  return render_template('user_account.html', member=member, form=form, image_file=image_file)
+
 
 @members.route("/user-logout")
 def user_logout():
