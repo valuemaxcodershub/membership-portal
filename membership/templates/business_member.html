@@ -45,6 +45,17 @@
         <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
     </form>
     </div>
+    <div class="dropdown ibadan btn-group dropstart" style="margin-top: 7px;">
+      <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1"  title="clusters">
+        <i class="fa fa-database" aria-hidden="true"></i>
+      
+      <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+        {% for unit in dashboard_units %}
+        <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    </div>
     
 </div>
 <br>
@@ -60,56 +71,54 @@
         <div class="collapse navbar-collapse oyo" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 dropstart">
             <li class="nav-item ">
-              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">Home</a>
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="https://nasmeoyo.org">Home</a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Member's Page</a></li>
                 
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">About Us</a>
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/aboutus">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Unit & Cluster</a>
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/blog">Unit & Cluster</a>
             </li>
             <li class="nav-item ">
               <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
                 Membership
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Membership Types</a></li>
-                <li><a class="dropdown-item" href="#">Membership Benefit</a></li>
-                <li><a class="dropdown-item" href="#">Membership Registration</a></li>
-                <li><a class="dropdown-item" href="youtube.com">Members Login</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershiptypes">Membership Types</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipbenefits">Membership Benefit</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregistration">Membership Registration</a></li>
               </ul>
             </li>
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
+                Members' Portal
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="https://membership-nasme.herokuapp.com/business-members">Current Members List</a></li>
+                <li><a class="dropdown-item" href="https://membership-nasme.herokuapp.com/login">Members Login</a></li>
+              </ul>
+            </li>
+            
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">NASME Cooperative</a>
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/nasme-coperative">NASME Cooperative</a>
             </li>
             <li class="nav-item ">
               <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
                 News & update
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Blog</a></li>
-                <li><a class="dropdown-item" href="#">Gallery</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/news/update">Blog</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/gallery-2">Gallery</a></li>
                 
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Contact us</a>
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/contact-us">Contact us</a>
             </li>
-            <div class="dropdown ibadan btn-group dropstart" style="margin-top: 7px;">
-              <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1"  title="clusters">
-                <i class="fa fa-database" aria-hidden="true"></i>
-              
-              <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-            </div>
           </ul>
           
           
