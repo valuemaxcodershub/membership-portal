@@ -18,20 +18,21 @@ admins = Blueprint("admins", __name__)
 
 data = DataStore()
 
-@admins.route('/admin/send_message/<int:recipient_id>', methods=['GET', 'POST'])
+@admins.route('/admin/send_message', methods=['GET', 'POST'])
 @admin_role_required
-def send_message(recipient_id):
+def send_message():
+    recipient_id = int(request.form['user_id'])
     user = User.query.get_or_404(recipient_id)
     form = MessageForm()
     if form.validate_on_submit():
-        msg = Message(author=current_user, recipient=user,
+        msg = Message(author=current_user, member_recipient=user, title=form.title.data,
                       body=form.message.data)
         db.session.add(msg)
         db.session.commit()
         flash('Your message has been sent.')
         return redirect(url_for('admins.dashboard'))
     return render_template('send_message.html', title=('Send Message'),
-                           form=form, recipient=user)
+                           form=form, member_recipient=user)
 
 @admins.route('/admin/send_unit_message', methods=['GET', 'POST'])
 @admin_role_required
@@ -49,7 +50,7 @@ def send_unit_message():
         inputted_units.append(unit)
 
       for unit in inputted_units:
-        msg = Message(author=current_user, recipient=unit, title=form.title.data,
+        msg = Message(author=current_user, unit_recipient=unit, title=form.title.data,
                       body=form.message.data)
         db.session.add(msg)
         db.session.commit()
@@ -327,10 +328,11 @@ def dashboard():
 @admins.route("/admin/manage_members")
 @admin_role_required
 def manage_members():
+  form = MessageForm()
   page = request.args.get('page', 1, type=int)
   members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
 
-  return render_template("manage_members.html", page=page, members=members)
+  return render_template("manage_members.html", form=form, page=page, members=members)
 
 
 

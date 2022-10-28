@@ -34,13 +34,12 @@ def messages():
   db.session.commit()
   member = current_user
 
-  unit_messages = member.units[0].messages_received
+  messages = member.messages_received
 
-  for unit in member.units[1:]:
-    unit_messages.extend(unit.messages_received)
+  for unit in member.units:
+    messages.extend(unit.messages_received)
 
-  distinct_messages = unit_messages
-  messages = distinct_messages.order_by(Message.timestamp.desc()).all()
+  messages = messages.order_by(Message.timestamp.desc()).all()
 
   return render_template('messages.html', messages=messages, member=member)
 
