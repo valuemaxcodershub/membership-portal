@@ -4,7 +4,35 @@
 	/* .dodo a{
 		display: flex;
 	} */
-</style>
+	#form{
+			  width: 360px;
+			  margin: 20vh auto 0 auto;
+			  /* height: 50vh; */
+			  padding: 10px;
+			  font-size: 12px;
+			  text-align: center;
+			  margin-top: 5%;
+			  font-weight: bold;
+			  background-color: rgb(191, 215, 178);
+			  color: rgb(55, 95, 62);
+			  border-radius: 4px;
+			  font-size: 12px;
+		  }
+		  .rech{
+			margin-left: auto;
+			margin-right: auto;
+		  }
+		  .solu{
+  
+		  }
+		  #iners{
+			margin-top:-7%;
+		  }
+		  .solu{
+			font-weight: bold;
+			font-size: 15px;
+		  }
+  </style>
 <script>
 	$(function () {
 		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -80,9 +108,9 @@
 							<td>{{member.finance_status}}</td>
 							<td class="d-flex justify-content-center" >
 								
-								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Member Details"></i></a>
+								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Edit Member Details"></i></a>
 
-								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
+								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
 
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
 
@@ -101,6 +129,58 @@
 						  </tr> -->
 						  {% endfor %}
 					  </table>
+
+					  <!-- Message Modal -->
+
+					  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-scrollable">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel"></h5>
+							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+									  <h1 style="color: rgb(55, 95, 62);">Send Message to Users</h1>
+								  
+									 <div class="rech">
+									  <div class="">
+											<form action="{{url_for('admins.send_unit_message')}}" method="POST" id="form">
+												{{ form.hidden_tag()  }}
+											   <div class="input-control">
+												{{ form.title.label (class="solu") }}
+												{{ form.title }}
+											   </div>
+											   <br/>
+											   <br>
+											   <div class="input-control">
+												{{ form.message.label (class="solu") }}
+												{{ form.message  }}
+											   </div>
+												<br />
+												  <div class="container mt-5" id="iners">
+													<h5>Select Unit</h5>
+													<select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
+													  {% for unit in dashboard_units %}
+														  <option value="{{unit.name}}">{{unit.name}}</option>
+													  {% endfor %}
+													</select>
+												  </div>
+								  
+												<br />
+												{{ form.submit(class="btn btn-success") }}
+											</form>
+									</div>
+									 </div>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  <button type="button" class="btn btn-primary">Save changes</button>
+							</div>
+						  </div>
+						</div>
+					  </div> -->
+
+					  <!-- end of message modal -->
 
 
 					  <!-- Suspend Modal -->
