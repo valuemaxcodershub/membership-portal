@@ -18,6 +18,26 @@ admins = Blueprint("admins", __name__)
 
 data = DataStore()
 
+
+@admins.route('/admin/wallet', methods=['GET', 'POST'])
+@admin_role_required
+def wallet():
+  
+  return render_template("construction.html")
+
+@admins.route('/admin/generate_finance', methods=['GET', 'POST'])
+@admin_role_required
+def generate_finance():
+  
+  return render_template("construction.html")
+
+@admins.route('/admin/create_payment', methods=['GET', 'POST'])
+@admin_role_required
+def create_payment():
+
+  return render_template("construction.html")
+
+
 @admins.route('/admin/send_message', methods=['GET', 'POST'])
 @admin_role_required
 def send_message():
@@ -102,10 +122,10 @@ def autocomplete():
 def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(or_(User.business_name.contains(query), User.phone.contains(query) )) 
+  results = User.query.filter_by(role="USER").filter(or_(User.business_name.ilike(f'%{query}%'), User.business_phone.ilike(f'%{query}%') ))
   data.a = results #add to datastore
   result_count = results.count()
-  members = results.paginate(page=page, per_page=5)
+  members = results.paginate(page=page, per_page=10)
 
   return render_template("search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
 
@@ -138,7 +158,7 @@ def admin_login():
 def manage_admins():
   page = request.args.get('page', 1, type=int)
   #return all admins except current admin
-  admins= User.query.filter_by(role="ADMIN").filter(User.id!=current_user.id).paginate(page=page, per_page=5)
+  admins= User.query.filter_by(role="ADMIN").filter(User.id!=current_user.id).paginate(page=page, per_page=10)
 
   return render_template("manage_administrators.html", title="Admin Management", admins=admins)
 
@@ -146,7 +166,7 @@ def manage_admins():
 @admin_role_required
 def manage_units():
   page = request.args.get('page', 1, type=int)
-  units= Unit.query.paginate(page=page, per_page=5)
+  units= Unit.query.paginate(page=page, per_page=10)
 
   return render_template("manage-units.html", title="Units Management", units=units)
 
@@ -330,7 +350,11 @@ def dashboard():
 def manage_members():
   form = MessageForm()
   page = request.args.get('page', 1, type=int)
-  members = User.query.filter_by(role="USER").paginate(page=page, per_page=5)
+  results = User.query.filter_by(role="USER")
+  members = results.paginate(page=page, per_page=10)
+
+  # exporting
+  data.a = results
 
   return render_template("manage_members.html", form=form, page=page, members=members)
 

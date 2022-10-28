@@ -106,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
       </li>
       <li >
-        <a href="{{url_for('main.member_page', member_id=member.id)}}" target="_blank">
+        <a href="{{url_for('main.member_page', business_name=current_user.business_name)}}" target="_blank">
         <i class="fa fa-cogs" aria-hidden="true"></i>
         <span class="nav-text">
           Open Public Profile
@@ -119,13 +119,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
       </li>
       <li >
-        <a href="javascript:;">
+        <a href="{{url_for('members.my_dues')}}">
           <i class="fa fa-file-text-o nav_icon"></i>
             <span class="nav-text">My Dues</span>
         </a>
       </li>
       <li >
-        <a href="javascript:;">
+        <a href="{{url_for('members.transaction_history')}}">
           <i class="fa fa-file-text-o nav_icon"></i>
             <span class="nav-text">Transaction History</span>
         </a>
