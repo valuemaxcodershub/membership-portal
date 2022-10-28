@@ -826,12 +826,12 @@ body a:hover{
 .uyo  li:hover ul{
     display: block;
     transition: 1s;
+    padding: 15px;
     margin-top: -2px;
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     position: absolute;
-    padding: 15px;
-    right: 60;
+    left: -12em;
     
 } 
 .uyo li a{
@@ -864,9 +864,10 @@ body a:hover{
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     position: absolute;
-    left: 0em;
+    left: -12em;
     top: 40px;
 }
+
 .ibadan  li:hover ul{
   display: block;
   transition: 1s;
