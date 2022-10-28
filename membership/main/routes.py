@@ -4,6 +4,7 @@ from membership.main.forms import ResetPasswordForm
 from membership.main.utils import send_reset_email
 from membership.models import User, Unit
 from flask_login import current_user
+from sqlalchemy import or_
 
 main = Blueprint('main', __name__)
 
@@ -28,9 +29,9 @@ def business_members():
 def search_business_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).filter(User.username.contains(query)) 
+  results = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).filter(or_(User.business_name.ilike(f'%{query}%'), User.business_phone.ilike(f'%{query}%') )) 
   result_count = results.count()
-  members = results.paginate(page=page, per_page=5)
+  members = results.paginate(page=page, per_page=10)
 
   return render_template("business_search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
 
@@ -52,9 +53,11 @@ def business_profile():
 
   return render_template("business_profile.html")
 
-@main.route("/member_page/<int:member_id>")
-def member_page(member_id):
-  member = User.query.get_or_404(member_id)
+@main.route("/member_page/<string:business_name>")
+def member_page(business_name):
+  member = User.query.filter_by(business_name=business_name)[0]
+  if not member:
+    abort(404)
   image_file = url_for('static', filename='profile_pics/' + member.image_file)
   
   return render_template("member_page.html", member=member, image_file=image_file)

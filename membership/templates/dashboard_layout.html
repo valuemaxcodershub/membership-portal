@@ -163,12 +163,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </a>
         <ul>
           <li>
-            <a class="subnav-text" href="#" >
+            <a class="subnav-text" href="{{ url_for('admins.create_payment') }}" >
               Create Payment
             </a>
           </li>
           <li>
-            <a class="subnav-text" href="#">
+            <a class="subnav-text" href="{{ url_for('admins.generate_finance') }}">
               Generate Financial Report
             </a>
           </li>

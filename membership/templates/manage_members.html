@@ -4,6 +4,10 @@
 	/* .dodo a{
 		display: flex;
 	} */
+	#export{
+		margin-left: 64%;
+		/* float: right; */
+	}
 	#form{
 			  width: 360px;
 			  margin: 20vh auto 0 auto;
@@ -78,6 +82,11 @@
     });
 </script>
 <!-- //tables -->
+				<form method="POST" action="{{url_for('admins.export_custom')}}">
+					<br>
+					<input type="hidden" name="members", value={{members.items}}>	
+					<button class="btn btn-success" id="export" type="submit">Export list</button>				
+				</form>
 				<div class="container-fluid agile-tables">
 					<br>
 					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> Members List</h3>
@@ -110,7 +119,7 @@
 								
 								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Edit Member Details"></i></a>
 
-								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.buseiness_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
+								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.business_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
 
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
 
@@ -125,14 +134,17 @@
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"><i class="fa fa-trash-o" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"></i></a>
 								
 							</td>
-							<!-- <td><a href="{{ url_for('main.member_page', member_id=member.id) }}">http://localhost:8080{{ url_for("main.member_page", member_id=member.id) }}</a></td>
+							<!-- <td><a href="{{ url_for('main.member_page', business_name=member.business_name) }}">http://localhost:8080{{ url_for("main.member_page", business_name=member.business_name) }}</a></td>
 						  </tr> -->
 						  {% endfor %}
 					  </table>
 
 					  <!-- Message Modal -->
 
+<<<<<<< HEAD
 					   <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+=======
+>>>>>>> 1da28f4a7ece3ef82b72244c75807a928422394d
 					  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-scrollable">
 						  <div class="modal-content">
@@ -141,10 +153,6 @@
 							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-									  <h1 style="color: rgb(55, 95, 62);">Send Message to User</h1>
-								  
-									 <div class="rech">
-									  <div class="">
 											<form action="{{url_for('admins.send_message')}}" method="POST" id="form">
 												{{ form.hidden_tag()  }}
 												<input type="hidden" name="user_id" id="examplehiddenid">
@@ -162,20 +170,10 @@
 												<br />
 												{{ form.submit(class="btn btn-success") }}
 											</form>
-									</div>
-									 </div>
-							</div>
-							<div class="modal-footer">
-							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							  <button type="button" class="btn btn-primary">Save changes</button>
 							</div>
 						  </div>
 						</div>
-<<<<<<< HEAD
-					  </div>  -->
-=======
 					  </div>
->>>>>>> 8621e1babacd2b4b644f319baf8755ef0b52ecac
 
 					  <!-- end of message modal -->
 
@@ -356,7 +354,6 @@
 
 						        $('#examplehiddenid').val(userId);
 						        $('#exampleModalLabel').text('Message ' + name);
-						        $('#examplemodal .modal-body').text("Send message to User");
 						        $("#examplemodal").modal("show");
 						    }
 

@@ -10,6 +10,18 @@ from membership.admins.utils import add_member
 
 members = Blueprint('members', __name__)
 
+@members.route('/dues', methods=['GET', 'POST'])
+@user_role_required
+def my_dues():
+  
+  return render_template("member_construction.html")
+
+@members.route('/transaction-history', methods=['GET', 'POST'])
+@user_role_required
+def transaction_history():
+
+  return render_template("member_construction.html")
+
 
 @members.route("/member-home", methods=["GET", "POST"])
 def member_home():
