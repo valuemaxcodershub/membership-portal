@@ -51,7 +51,7 @@
               <br />
                 <div class="container mt-5" id="iners">
                   <h5>Select Unit</h5>
-                  <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
+                  <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example" data-actions-box="true">
                     {% for unit in dashboard_units %}
                         <option value="{{unit.name}}">{{unit.name}}</option>
                     {% endfor %}
@@ -63,5 +63,6 @@
           </form>
   </div>
    </div>
+
 
 {% endblock %}

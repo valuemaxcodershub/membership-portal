@@ -110,12 +110,12 @@
 								
 								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Edit Member Details"></i></a>
 
-								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
+								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.buseiness_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
 
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
 
 								{% if member._is_suspended %}
-								<a class="btn btn-light" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#suspendmodal"  onclick="unsuspendFunction(this)"><i class="fa fa-unlock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member"></i></a>
+								<a class="btn btn-light" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.buseiness_name}}" data-target="#suspendmodal"  onclick="unsuspendFunction(this)"><i class="fa fa-unlock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member"></i></a>
 
 								{% else %}
 								<a class="btn btn-dark" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#suspendmodal"  onclick="suspendFunction(this)"><i class="fa fa-lock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member"></i></a>
@@ -132,7 +132,11 @@
 
 					  <!-- Message Modal -->
 
+<<<<<<< HEAD
 					   <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+=======
+					  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+>>>>>>> 8621e1babacd2b4b644f319baf8755ef0b52ecac
 						<div class="modal-dialog modal-dialog-scrollable">
 						  <div class="modal-content">
 							<div class="modal-header">
@@ -140,12 +144,13 @@
 							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-									  <h1 style="color: rgb(55, 95, 62);">Send Message to Users</h1>
+									  <h1 style="color: rgb(55, 95, 62);">Send Message to User</h1>
 								  
 									 <div class="rech">
 									  <div class="">
-											<form action="{{url_for('admins.send_unit_message')}}" method="POST" id="form">
+											<form action="{{url_for('admins.send_message')}}" method="POST" id="form">
 												{{ form.hidden_tag()  }}
+												<input type="hidden" name="user_id" id="examplehiddenid">
 											   <div class="input-control">
 												{{ form.title.label (class="solu") }}
 												{{ form.title }}
@@ -156,16 +161,7 @@
 												{{ form.message.label (class="solu") }}
 												{{ form.message  }}
 											   </div>
-												<br />
-												  <div class="container mt-5" id="iners">
-													<h5>Select Unit</h5>
-													<select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
-													  {% for unit in dashboard_units %}
-														  <option value="{{unit.name}}">{{unit.name}}</option>
-													  {% endfor %}
-													</select>
-												  </div>
-								  
+												<br />								  
 												<br />
 												{{ form.submit(class="btn btn-success") }}
 											</form>
@@ -178,7 +174,11 @@
 							</div>
 						  </div>
 						</div>
+<<<<<<< HEAD
 					  </div>  -->
+=======
+					  </div>
+>>>>>>> 8621e1babacd2b4b644f319baf8755ef0b52ecac
 
 					  <!-- end of message modal -->
 
@@ -212,7 +212,7 @@
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
 						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabel">Delete ?</h5>
+						        <h5 class="modal-title" id="deleteModalLabel">Delete ?</h5>
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						          <span aria-hidden="true">&times;</span>
 						        </button>
@@ -329,7 +329,7 @@
 						        let name = obj.getAttribute("dataName");
 
 						        $('#deletehiddenid').val(userId);
-						        $('#exampleModalLabel').text('Delete ' + name);
+						        $('#deleteModalLabel').text('Delete ' + name);
 						        $("#deletemodal").modal("show");
 						    }
 
@@ -351,6 +351,16 @@
 						        $('#suspendModalLabel').text('Unsuspend ' + name);
 						        $('#suspendmodal .modal-body').text("Are you sure you want to unsuspend this user?");
 						        $("#suspendmodal").modal("show");
+						    }
+
+						    function messageUserFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#examplehiddenid').val(userId);
+						        $('#exampleModalLabel').text('Message ' + name);
+						        $('#examplemodal .modal-body').text("Send message to User");
+						        $("#examplemodal").modal("show");
 						    }
 
 						    function viewUserFunction(obj){

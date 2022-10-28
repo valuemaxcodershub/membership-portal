@@ -54,9 +54,9 @@ class User(db.Model, UserMixin):
   messages_sent = db.relationship('Message',
                                     foreign_keys='Message.sender_id',
                                     backref='author', lazy='dynamic')
-  # messages_received = db.relationship('Message',
-  #                                     foreign_keys='Message.recipient_id',
-  #                                     backref='recipient', lazy='dynamic')
+  messages_received = db.relationship('Message',
+                                      foreign_keys='Message.member_recipient_id',
+                                      backref='member_recipient', lazy='dynamic')
   last_message_read_time = db.Column(db.DateTime)
 
 
@@ -146,8 +146,8 @@ class Unit(db.Model):
   date_created = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
   fees_amount = db.Column(db.String(),nullable=False,default="0")
   messages_received = db.relationship('Message',
-                                      foreign_keys='Message.recipient_id',
-                                      backref='recipient', lazy='dynamic')
+                                      foreign_keys='Message.unit_recipient_id',
+                                      backref='unit_recipient', lazy='dynamic')
 
 
   def __repr__(self):
@@ -157,7 +157,8 @@ class Unit(db.Model):
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    recipient_id = db.Column(db.Integer, db.ForeignKey('unit.id'))
+    member_recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    unit_recipient_id = db.Column(db.Integer, db.ForeignKey('unit.id'))
     title = db.Column(db.String(60))
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
