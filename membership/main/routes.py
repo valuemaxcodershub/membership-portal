@@ -29,7 +29,7 @@ def business_members():
 def search_business_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).filter(or_(User.business_name.ilike(f'%{query}%'), User.business_phone.ilike(f'%{query}%') )) 
+  results = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).filter(or_(User.business_name.ilike(f'%{query}%'), User.business_phone.ilike(f'%{query}%'), User.business_email.ilike(f'%{query}%') ))
   result_count = results.count()
   members = results.paginate(page=page, per_page=10)
 

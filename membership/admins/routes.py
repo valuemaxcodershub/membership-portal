@@ -122,7 +122,7 @@ def autocomplete():
 def search_members():
   query = request.form.get("search_query", False)
   page = request.args.get('page', 1, type=int)
-  results = User.query.filter_by(role="USER").filter(or_(User.business_name.ilike(f'%{query}%'), User.business_phone.ilike(f'%{query}%') ))
+  results = User.query.filter_by(role="USER").filter(or_(User.business_name.ilike(f'%{query}%'), User.business_phone.ilike(f'%{query}%'), User.business_email.ilike(f'%{query}%') ))
   data.a = results #add to datastore
   result_count = results.count()
   members = results.paginate(page=page, per_page=10)
