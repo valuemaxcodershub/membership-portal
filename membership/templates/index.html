@@ -121,7 +121,7 @@
 				<br>
 				<br>
 				<div class="row">
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+					<a class="col-sm-4 col-md-4" id="glooo" href="{{url_for('admins.send_unit_message')}}">
 						<div class="glory" id="glory">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">
@@ -153,7 +153,7 @@
 						    </div>
 						</div>
 					</a>
-					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+					<a class="col-sm-4 col-md-4" id="glooo" href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}">
 						<div class="glory" id="glory">
 							<div class="row">
 								<div class="col-sm-6 col-md-4">

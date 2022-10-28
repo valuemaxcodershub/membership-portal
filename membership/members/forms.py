@@ -43,7 +43,7 @@ class CreateProfileForm(FlaskForm):
   business_twitter = StringField("Twitter")
   business_linkedin = StringField("LinkedIn")
   business_whatsapp = StringField("Whatsapp")
-  business_photo = FileField('Update Business Picture', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
+  business_photo = FileField('Update Business Logo', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
   business_product_image_1 =  FileField('Display Picture 1', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
   business_product_image_2 =  FileField('Display Picture 2', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
   business_product_image_3 =  FileField('Display Picture 3', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
