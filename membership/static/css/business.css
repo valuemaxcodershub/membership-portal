@@ -52,7 +52,7 @@ body{
     
 }
 .donee{
-  /* margin-top: -5%; */
+  margin-top: -5%;
 }
 #mufu{
     margin-top:-2.6%;
@@ -132,8 +132,12 @@ body{
     text-align: center;
     font-weight: 20%;
 }
+.bosses{
+  margin-top:-2%;
+}
 #down{
-    float: right;
+    /* float: right; */
+    margin-left: 31em;
     margin-top: -3%;
     
 }
@@ -145,7 +149,7 @@ body{
 @media screen and (max-width:768px){
     .ricky{
       background: rgb(69,221,66);
-        padding: 28px;
+        padding: 30px;
         position: -webkit-sticky; /* Safari */
         position: sticky;
         top: 0;
@@ -153,9 +157,11 @@ body{
         color: white;
     }
     .fumni{
-      margin-top: -22%;
+      /* margin-top: -22%; */
         /* margin-right: 1em; */
-        float: right;
+        margin-right: 47%;
+        margin-left: 48%;
+        /* float: right; */
     }
     .rocky{
         display: none;
@@ -175,7 +181,7 @@ body{
     }
     .donee{
       position: sticky;
-      top: 19%;
+      top: 11%;
     }
     .donee{
       margin-top: -4.9%;
@@ -186,6 +192,10 @@ body{
       background: #000;
       margin-top: -3%;
     }
+    /* .bosses{
+      margin-right: 50%;
+      margin-top: 1%;
+    } */
    
 }
 

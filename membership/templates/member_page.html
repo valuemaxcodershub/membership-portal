@@ -106,20 +106,31 @@
             text-align: center;
             font-weight: bold;
           }
+          #dewn{
+            margin-left: 47em;
+          }
   </style>
 </head>
 <body>
-    <div class="ricky">
+    <!-- <div class="ricky ">
         <nav>
         <div class=" container rocky">
             <div id="top-bar">
               <div id="top-bar-inner" class="finax-container">
                   <div class="top-bar-inner-wrap">
                       
-          <div class="top-bar-content">
+          <div class="top-bar-content ">
                       <span class="phone content"> <i class="fa fa-phone" aria-hidden="true"></i> +2348160831342 or +2348032428096</span>
                       <span class="email_content"> <i class="fa fa-envelope-o" aria-hidden="true"></i> info@nasmeoyo.org</span>
-                      <i class="fa fa-facebook-square" aria-hidden="true" id="down" style="color:white ; font-size: 20px;"></i>
+
+                      
+
+                      <div class="fumni" style="margin-top: 1px;">
+                        <form  method="#" action="#" class="search-box "autocomplete="off">
+                          <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+                          <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
+                      </form>
+                      </div>
               </div>
                 
         </div>
@@ -127,14 +138,52 @@
             </div>
         </div>
         </nav>
-        <div class="fumni">
-          <form  method="#" action="#" class="search-box "autocomplete="off">
-            <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
-            <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
-        </form>
-        </div>
+        
     </div>
-    <br>
+    <br> -->
+    <div class="ricky ">
+      <nav>
+          <div class=" container d-flex justify-content-center">
+              <div id="top-bar">
+                <div id="top-bar-inner" class="finax-container">
+                  <div class="top-bar-inner-wrap">
+                            
+                    <div class="top-bar-content rocky">
+                            <span class="phone content"> <i class="fa fa-phone" aria-hidden="true"></i> +2348160831342 or +2348032428096</span>
+                            <span class="email_content"> <i class="fa fa-envelope-o" aria-hidden="true"></i> info@nasmeoyo.org</span>
+                    </div>
+                          <div>
+                            <div class="bosses">
+                              <i class="fa fa-facebook-square" aria-hidden="true" id="dewn" style="color:white ; font-size: 20px;"></i>
+                            &nbsp;
+                            <!-- <div class="dropdown ibadan btn-group dropstart" style="margin-top: -54px;" id="ibadan">
+                              <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1"  title="clusters">
+                                <i class="fa fa-database" aria-hidden="true"></i>
+                              
+                              <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+                                {% for unit in dashboard_units %}
+                                <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
+                                {% endfor %}
+                              </ul>
+                            </li>
+                            </div> -->
+                            <div class="fumni" style="">
+                              <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="search-box "autocomplete="off">
+                                <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+                                <input type="text" name="search_query" class="input-search" placeholder="Search for members..">
+                            </form>
+                            </div>
+                            </div>
+                          </div>
+                   
+                      
+                  </div>
+                </div>
+              </div>
+          </div>
+      </nav>
+      
+    </div>
     <!-- navbar -->
     <div class="donee">
       <div class="container">
