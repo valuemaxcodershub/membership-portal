@@ -15,7 +15,7 @@ html{
 
 body{
     background: rgb(198, 198, 198);
-    /* overflow-y: hidden; */
+    overflow-x: hidden;
     /* width: 100%; */
     max-width: 100%;
     height: 100%;
@@ -23,17 +23,41 @@ body{
 }
 .fumni{
   /* float: right; */
-  margin-left: 40em;
-  margin-top: -5%;
+  margin-left: 4em;
+  /* margin-top: -6.3%; */
+}
+.uyo{
+
+}
+.uyo  li ul{
+  display: none;
+  position: relative;
+  
+}
+.uyo  li:hover ul{
+  display: block;
+  transition: 1s;
+  padding: 15px;
+  margin-top: -2px;
+  background: rgb(26, 119, 43);
+  color: rgb(31, 28, 28);
+  position: absolute;
+  left: -15.4em;
+  
+} 
+.uyo li a{
+  color:rgb(246, 243, 243);
+  font-weight: bold;
 }
 .ricky{
+    position: sticky;
     background: rgb(69,221,66);
     padding: 16px;
     padding-bottom: 32px;
     position: -webkit-sticky; /* Safari */
-    position: sticky;
     top: 0;
     z-index: 3;
+    /* position: relative; */
     
     color: white;
     /* font-weight: bold; */
@@ -134,11 +158,16 @@ body{
 }
 .bosses{
   margin-top:-2%;
+  position: absolute;
+  /* margin-left: 40em; */
+  left: 0;
+  right:-60%;
+  
 }
 #down{
     /* float: right; */
-    margin-left: 31em;
-    margin-top: -3%;
+    margin-left: 1em;
+    /* margin-top: -3%; */
     
 }
 /* @media screen and (max-width:638px){
@@ -148,19 +177,26 @@ body{
   } */
 @media screen and (max-width:768px){
     .ricky{
+      position: sticky;
       background: rgb(69,221,66);
         padding: 30px;
         position: -webkit-sticky; /* Safari */
-        position: sticky;
         top: 0;
         z-index: 3;
         color: white;
+        /* position: relative; */
+    }
+    .bosses{
+      position: absolute;
+      left: 0;
+      right: -26em;
+      /* top:0px; */
     }
     .fumni{
       /* margin-top: -22%; */
         /* margin-right: 1em; */
-        margin-right: 47%;
-        margin-left: 48%;
+        /* margin-right: 47%; */
+        /* margin-left: 53.1%; */
         /* float: right; */
     }
     .rocky{
@@ -187,10 +223,11 @@ body{
       margin-top: -4.9%;
     }
     #down{
-      visibility: visible;
-      float: left;
-      background: #000;
-      margin-top: -3%;
+      visibility: hidden;
+      /* float: right; */
+    }
+    #ibadan{
+      visibility: hidden;
     }
     /* .bosses{
       margin-right: 50%;
@@ -412,7 +449,8 @@ body{
   }
   /*  */
   #ibadan{
-    margin-left: 55rem;
+    margin-left: 1rem;
+    background: #40d007;
     /* margin-top: ; */
   }
   .ibadan  li ul{
