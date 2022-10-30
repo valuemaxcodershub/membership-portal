@@ -98,8 +98,8 @@
 							<th scope="col">Phone</th>
 							<th scope="col">Email</th>
 							<th scope="col">Units</th>
-							<th scope="col">Finance</th>
-							<th scope="col">Finance Status</th>
+							<th scope="col">Pending Dues</th>
+							<th scope="col">Dues Paid</th>
 							<th scope="col">Action</th>
 <!-- 							<th>Member Url</th> -->
 						  </tr>
@@ -113,13 +113,19 @@
 							<td>
 							{{member.display_units()}}
 							</td>
-							<td>{{member.finance}}</td>
-							<td>{{member.finance_status}}</td>
+							<td>
+								<button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Click To For More Details">2023 Dues</button>
+								<a href="#" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Dues Pay">See More</a>
+							</td>
+							<td>
+								<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="Click To See Member fees">Membership fees</button>
+								<a href="#" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Transaction Pay">See More</a>
+							</td>
 							<td class="d-flex justify-content-center" >
 								
 								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Edit Member Details"></i></a>
 
-								<a type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.business_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"><i class="fa fa-comments-o" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Message To Member"></i></a>
+								<a type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.business_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"><i class="fa fa-comments-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Send Message To Member"></i></a>
 
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
 
@@ -141,10 +147,7 @@
 
 					  <!-- Message Modal -->
 
-<<<<<<< HEAD
 					   <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
->>>>>>> 1da28f4a7ece3ef82b72244c75807a928422394d
 					  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-scrollable">
 						  <div class="modal-content">
@@ -153,28 +156,67 @@
 							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-											<form action="{{url_for('admins.send_message')}}" method="POST" id="form">
-												{{ form.hidden_tag()  }}
-												<input type="hidden" name="user_id" id="examplehiddenid">
-											   <div class="input-control">
-												{{ form.title.label (class="solu") }}
-												{{ form.title }}
-											   </div>
-											   <br/>
-											   <br>
-											   <div class="input-control">
-												{{ form.message.label (class="solu") }}
-												{{ form.message  }}
-											   </div>
-												<br />								  
-												<br />
-												{{ form.submit(class="btn btn-success") }}
-											</form>
+									<form action="{{url_for('admins.send_message')}}" method="POST" id="form">
+									{{ form.hidden_tag()  }}
+									<input type="hidden" name="user_id" id="examplehiddenid">
+								   <div class="input-control">
+									{{ form.title.label (class="solu") }}
+									{{ form.title }}
+								   </div>
+								   <br/>
+								   <br>
+								   <div class="input-control">
+									{{ form.message.label (class="solu") }}
+									{{ form.message  }}
+								   </div>
+									<br />								  
+									<br />
+									{{ form.submit(class="btn btn-success") }}
+								</form>		
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+							  </div>
+						  </div>
+						</div>
+					  </div> -->
+
+
+					  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-scrollable ">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="exampleModalLabel"></h5>
+							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<form action="{{url_for('admins.send_message')}}" method="POST" id="form">
+									{{ form.hidden_tag()  }}
+									<input type="hidden" name="user_id" id="examplehiddenid">
+								   <div class="input-control">
+									{{ form.title.label (class="solu") }}
+									{{ form.title }}
+								   </div>
+								   <br/>
+								   <br>
+								   <div class="input-control">
+									{{ form.message.label (class="solu") }}
+									{{ form.message  }}
+								   </div>
+									<br />								  
+									<br />
+									{{ form.submit(class="btn btn-success") }}
+								</form>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  <button type="button" class="btn btn-primary">Save changes</button>
 							</div>
 						  </div>
 						</div>
 					  </div>
-
+					  
 					  <!-- end of message modal -->
 
 

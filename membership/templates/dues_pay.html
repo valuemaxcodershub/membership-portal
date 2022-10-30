@@ -1,0 +1,107 @@
+
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<style>
+	.addUnit{
+		margin-top: -3%;
+		margin-right: 40em;
+	}
+</style>
+<script>
+	$(function () {
+		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+		if (!screenfull.enabled) {
+			return false;
+		}
+
+		
+
+		$('#toggle').click(function () {
+			screenfull.toggle($('#container')[0]);
+		});	
+	});
+	</script>
+		<div class="container agile-tables" >
+			<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="aka">Manage Unit</h3>
+			<div class="w3l-table-info table-responsive" id="feet">	
+				<table id="tuble" style="text-align: center;" class="table table-success table-striped table-hover table-bordered " style="width: 85%; font-size: 14px;">
+					<thead>
+					  <tr>
+						<th>Unit Name</th>
+						<th>Action</th>
+					  </tr>
+					</thead>
+					<tbody>
+						{% for unit in units.items %}
+						<tr>
+							<td>{{unit.name}}</td>
+							</td>
+							<td><a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_unit', unit_id=unit.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"></i></a>
+
+								<a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="View Member Under Unit"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Under Unit"></i></a>
+
+								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{unit.id}}" dataName="{{unit.name}}" data-target="#deletemodal"  onclick="deleteFunction(this)" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"><i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"></i></a>
+							</td>
+						</tr>
+						  {% endfor %}
+							
+					</tbody>	
+				  </table>
+
+				  <!--  Delete Modal -->
+						<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Delete ?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      		Are you sure you want to delete this unit?						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <form method="POST" action="{{ url_for('admins.delete_unit') }}">
+						        	<input type="hidden" name="unit_id" id="hiddenid">
+						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<br>
+						
+
+				  <!-- pagination -->
+				  {% for page_num in units.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+				  {% if page_num %}
+					{% if units.page == page_num %}
+					  <a class="btn btn-success mb-5"  href="{{ url_for('admins.manage_units', page=page_num) }}">{{ page_num }}</a>
+					{% else %}
+					  <a class="btn btn-success mb-5" href="{{ url_for('admins.manage_units', page=page_num) }}">{{ page_num }}</a>
+					{% endif %}
+				  {% else %}
+					...
+				  {% endif %}
+				{% endfor %}
+			  </div>
+			</div>
+			<br>
+			<div class="addUnit">
+				<button class="btn btn-success"> <a href="{{ url_for('admins.register_unit') }}" style="text-decoration:none ; color:white;">Add Unit</a></button>
+			</div>
+
+			<script>
+			    function deleteFunction(obj){
+			        let unitId = obj.id;
+			        let name = obj.getAttribute("dataName");
+
+			        $('#hiddenid').val(unitId);
+			        $('#exampleModalLabel').text('Delete ' + name);
+			        $("#deletemodal").modal("show");
+			    }
+			</script>
+
+{% endblock content %}
