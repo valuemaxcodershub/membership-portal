@@ -19,6 +19,18 @@ admins = Blueprint("admins", __name__)
 data = DataStore()
 
 
+@admins.route('/admin/dues_pay', methods=['GET', 'POST'])
+@admin_role_required
+def dues_pay():
+  
+  return render_template("dues_pay.html")
+
+@admins.route('/admin/paid_dues', methods=['GET', 'POST'])
+@admin_role_required
+def paid_dues():
+  
+  return render_template("paid-dues.html")
+
 @admins.route('/admin/wallet', methods=['GET', 'POST'])
 @admin_role_required
 def wallet():
