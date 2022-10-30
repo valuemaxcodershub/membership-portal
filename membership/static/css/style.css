@@ -15,7 +15,7 @@ html, body{
     box-sizing: border-box;
 }
 .ogle{
-  font-size: 10px;
+  font-size: 12px;
   /* margin-top: -10%; */
   margin-left: 5%;
 }
@@ -76,14 +76,16 @@ html, body{
 }
 .dropdown-content ul{
   margin-left: 35%;
+  
 }
 .dropdown-content {
   display: none;
   position: absolute;
   right: 0;
   padding: 15px;
+  background: rgb(26, 119, 43);
   /* display: inline-block; */
-  background-color: #f9f9f9;
+  background: rgb(26, 119, 43);
   min-width: 90px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -92,14 +94,15 @@ html, body{
 .dropdown-content a {
   text-align: center;
   align-items: center;
-  color: black;
+  color: rgb(244, 232, 232);
   padding: 4px;
   text-decoration: none;
+  /* font-size: 28px; */
   display: block;
   /* display: inline-block; */
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover { background: rgb(26, 119, 43);}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 /* end of dashboard dropdown search */
@@ -779,7 +782,7 @@ body a:hover{
     color: rgb(24, 23, 23);
     box-sizing: border-box;
     position: absolute;
-    left: -12em;
+    right: -12em;
     
     
 } 
