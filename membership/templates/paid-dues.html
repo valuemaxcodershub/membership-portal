@@ -1,0 +1,125 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+
+<style>
+    #table{
+  margin-left: auto;
+  margin-right: auto;
+}
+#table th{
+  background: rgb(40, 85, 40);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+#table tr{
+  cursor: pointer;
+}
+#table{
+  width: 70%;
+  
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* margin-left: 15%; */
+  margin: 0px auto;
+
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px)  {
+  #table{
+    max-width: 100%;
+    /* margin-left: 15%; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+</style>
+<script>
+	$(function () {
+		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+		if (!screenfull.enabled) {
+			return false;
+		}
+
+		$('#toggle').click(function () {
+			screenfull.toggle($('#container')[0]);
+		});	
+	});
+</script>
+<!-- tables -->
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+    });
+</script>
+
+<div class="container agile-tables" >
+	<br>
+	<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="aka">Transaction Pay</h3>
+	<div class="w3l-table-info table-responsive">	
+		<table id="table" style="text-align: center;" class="table table-success table-striped table-hover table-bordered " style="width: 85%; font-size: 14px;">
+        <thead>
+          <tr>
+            <th>S/N</th>
+            <th>Date</th>
+            <th>Payment Reference</th>
+            <th>RRR</th>
+            <th>Tokens</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>28,october,2022,07:39</td>
+            <td>99075294429</td>
+            <td>8876554433345</td>
+            <td>4</td>
+            <td>8768</td>
+            <td>Successful</td>
+            <td><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="click to see more">Success</button></td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>28 april <br> 2022 07:39</td>
+            <td>99075294429</td>
+            <td>8876554433345</td>
+            <td>4</td>
+            <td>8768</td>
+            <td>Successful</td>
+            <td><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="click to see more">Success</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}
