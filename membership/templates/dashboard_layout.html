@@ -272,7 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 
                 <ul class="dropdown-menu text-lowercase" aria-labelledby="dropdownMenuButton1" >
                   {% for unit in dashboard_units %}
-                  <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
+                  <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item fw-bold" >{{unit.name}}</a>
                   {% endfor %}
                 </ul>
               </li>
@@ -313,7 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li>
                     <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
                       <i class="fa fa-user-circle nav-icon"></i>
-                    <span class="ogle">
+                    <span class="ogle fw-bold">
                       &nbsp;Edit&nbsp;Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                     </a>
@@ -324,7 +324,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <li>
                       <a href="{{ url_for('admins.admin_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
                       <i class="icon-off nav-icon"></i>
-                      <span class="ogle" id="ogle">
+                      <span class="ogle fw-bold" id="ogle">
                         &nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </span>
                       </a>
