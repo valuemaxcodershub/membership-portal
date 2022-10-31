@@ -5,6 +5,9 @@
 		margin-left: 64%;
 		/* float: right; */
 	}
+	/* td{
+		font-weight: bold;
+	} */
 	#form{
 			  width: 360px;
 			  margin: 20vh auto 0 auto;
@@ -108,12 +111,12 @@
 							{{member.display_units()}}
 							</td>
 							<td>
-								<button type="button" class="btn btn-warning text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Pay">2023 Dues</button>
+								<button type="button" class="btn btn-outline-warning text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Pay" style="color: black;">2023 Dues</button>
 								<br>
 								<a href="{{ url_for('admins.dues_pay') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Dues Pay">See More</a>
 							</td>
 							<td>
-								<button type="button" class="btn btn-success text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Print Recite">Membership fees</button>
+								<button type="button" class="btn btn-outline-success text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Print Receipt" style="color: black;">Membership fees</button>
 								<br>
 								<a href="{{ url_for('admins.paid_dues') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Transaction Pay">See More</a>
 							</td>
@@ -165,7 +168,6 @@
 										{{ form.message  }}
 									   </div>
 										<br />								  
-										<br />
 										{{ form.submit(class="btn btn-success") }}
 									</form>	
 								</div>

@@ -110,14 +110,28 @@
             font-weight: bold;
           }
           #dewn{
-            margin-left: 47em;
+            margin-left: 47em; 
           }
+          
           @media screen and (max-width:768px){
             .bosses{
               position: absolute;
               left: 0;
-              right: -30em;
-              /* top:0px; */
+              right: 0;
+              /* right: -30em; */
+              /* top:-15px; */
+              /* margin-left: auto;
+              margin-right: auto; */
+            }
+            .ricky{
+              position: sticky;
+              background: rgb(69,221,66);
+                padding: 25px;
+                position: -webkit-sticky; /* Safari */
+                top: 0;
+                z-index: 3;
+                color: white;
+                /* position: relative; */
             }
           }
   </style>
@@ -128,7 +142,6 @@
           <div class=" container">
             <div class="row">
               <div class="col-md-8 rocky">
-                <div class="">
                   <span class=""> 
                     <i class="fa fa-phone" aria-hidden="true"></i> 
                     +2348160831342 or +2348032428096
@@ -137,10 +150,9 @@
                   <span> <i class="fa fa-envelope-o" aria-hidden="true"></i> 
                     info@nasmeoyo.org
                   </span>
-                 </div>
               </div>
               <div class="col-md-4">
-                <div class="bosses">
+                <div class="bosses" id="bos">
                   <div class=" d-flex justify-content-center">
                     
                     <div class="dropdown uyo fumni" >
@@ -178,12 +190,9 @@
                   </div>
                 </div>
               </div>
-            </div>
-                    
-                          
+            </div>          
           </div>
       </nav>
-      
     </div>
     <!-- navbar -->
     <div class="donee">
@@ -198,10 +207,6 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 dropstart">
                 <li class="nav-item ">
                   <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="https://nasmeoyo.org">Home</a>
-                  <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Member's Page</a></li>
-                    
-                  </ul> -->
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/aboutus">About Us</a>
@@ -246,8 +251,6 @@
                   <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/contact-us">Contact us</a>
                 </li>
               </ul>
-              
-              
             </div>
           </div>
         </nav>
