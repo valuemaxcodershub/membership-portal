@@ -179,6 +179,25 @@ body{
       margin-top: 10%;
     }
   } */
+  @media screen and (max-width:364px){
+    .bosses{
+      position: absolute;
+      left:0;
+      right: -39;
+      margin-top: -5%;
+      margin-left: 9rem;
+      /* margin: 0px auto; */
+       /* margin-left: auto;
+      margin-right: auto; */
+    }
+    .donee{
+      position: sticky;
+      top: 8%;
+    }
+    .donee{
+      margin-top: -5%;
+    }
+  }
 @media screen and (max-width:768px){
     .ricky{
       position: sticky;
