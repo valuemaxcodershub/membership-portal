@@ -108,12 +108,12 @@
 							{{member.display_units()}}
 							</td>
 							<td>
-								<button type="button" class="btn btn-warning text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To For More Details">2023 Dues</button>
+								<button type="button" class="btn btn-warning text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Pay">2023 Dues</button>
 								<br>
 								<a href="{{ url_for('admins.dues_pay') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Dues Pay">See More</a>
 							</td>
 							<td>
-								<button type="button" class="btn btn-success text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To See Member fees">Membership fees</button>
+								<button type="button" class="btn btn-success text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Print Recite">Membership fees</button>
 								<br>
 								<a href="{{ url_for('admins.paid_dues') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Transaction Pay">See More</a>
 							</td>
@@ -135,7 +135,7 @@
 								{% endif %}
 
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"><i class="fa fa-trash-o" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"></i></a>
-								
+
 							</td>
 							<!-- <td><a href="{{ url_for('main.member_page', business_name=member.business_name) }}">http://localhost:8080{{ url_for("main.member_page", business_name=member.business_name) }}</a></td>
 						  </tr> -->
