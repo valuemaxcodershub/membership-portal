@@ -113,53 +113,61 @@
   <div class="ricky ">
     <nav>
         <div class=" container">
-                  <div class=" rocky">
-                          <span class=""> 
-                            <i class="fa fa-phone" aria-hidden="true"></i> 
-                            +2348160831342 or +2348032428096
-                          </span>
-                          &nbsp;
-                          <span> <i class="fa fa-envelope-o" aria-hidden="true"></i> 
-                            info@nasmeoyo.org
-                          </span>
-                  </div>
-                        <div class="bosses">
-                          <div class=" d-flex justify-content-center">
-                            
-                            <div class="dropdown uyo fumni" >
-                              <li class="btn btn-success dropdown- d-inline-block" type="button" id=" dropdownMenuButton2" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search" style="background: #0ece0b ;">
-                                <i class="fas fa-search"></i>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="d-flex" autocomplete="off">
-                                  <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                                  <button class="btn btn-success" type="submit" style="color: #A8D6B4;"> <i class="fas fa-search"></i></button>
-                                  </form>
-                              </ul>
-                            </li>
-                            </div> 
+          <div class="row">
+            <div class="col-md-8 rocky">
+              <div class="">
+                <span class=""> 
+                  <i class="fa fa-phone" aria-hidden="true"></i> 
+                  +2348160831342 or +2348032428096
+                </span>
+                &nbsp;
+                <span> <i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                  info@nasmeoyo.org
+                </span>
+               </div>
+            </div>
+            <div class="col-md-4">
+              <div class="bosses">
+                <div class=" d-flex justify-content-center">
+                  
+                  <div class="dropdown uyo fumni" >
+                    <li class="btn btn-success dropdown- d-inline-block" type="button" id=" dropdownMenuButton2" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search" style="background: #0ece0b ;">
+                      <i class="fas fa-search"></i>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                      <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="d-flex" autocomplete="off">
+                        <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success" type="submit" style="color: #A8D6B4;"> <i class="fas fa-search"></i></button>
+                        </form>
+                    </ul>
+                  </li>
+                  </div> 
 
-                          <!-- <div class="btn btn-success dropdown ibadan btn-group dropstart" style="margin-top: em;" id="ibadan">
-                            <li class=" dropdown-  dropstart d-inline-block" type="button" id=" dropdownMenuButton1"  title="clusters">
-                              <i class="fa fa-database" aria-hidden="true"></i>
-                            
-                            <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                              {% for unit in dashboard_units %}
-                              <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
-                              {% endfor %}
-                            </ul>
-                          </li>
-                          </div> -->
-                          <!-- <div class="fumni" style="">
-                            <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="search-box "autocomplete="off">
-                              <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
-                              <input type="text" name="search_query" class="input-search" placeholder="Search for members..">
-                          </form>
-                          </div> -->
+                <!-- <div class="btn btn-success dropdown ibadan btn-group dropstart" id="ibadan">
+                  <li class=" dropdown- d-inline-block" type="button" id=" dropdownMenuButton1"  title="clusters">
+                    <i class="fa fa-database" aria-hidden="true"></i>
+                  
+                  <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+                    {% for unit in dashboard_units %}
+                    <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                </div> -->
+                <!-- <div class="fumni" style="">
+                  <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="search-box "autocomplete="off">
+                    <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+                    <input type="text" name="search_query" class="input-search" placeholder="Search for members..">
+                </form>
+                </div> -->
 
-                          
-                          <i class="fa fa-facebook-square" aria-hidden="true" id="down" style="color:white ; font-size: 29px;"></i>
-                          </div>
-                        </div>
+                
+                <i class="fa fa-facebook" aria-hidden="true" id="down"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+                  
+                        
         </div>
     </nav>
     

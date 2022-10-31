@@ -8,11 +8,6 @@ html{
   box-sizing: border-box;
 }
 @media screen and (min-width: 960px) {}
-
-/* main {
-  flex: 1;
-} */
-
 body{
     background: rgb(198, 198, 198);
     overflow-x: hidden;
@@ -81,7 +76,7 @@ body{
 #mufu{
     margin-top:-2.6%;
     max-width: 100%;
-    margin-left: 5%;
+    /* margin-left: 5%; */
     background: rgb(255, 255, 255);
   
 }
@@ -159,6 +154,7 @@ body{
 }
 .bosses{
   margin-top:-2%;
+  margin-right: 20em;
   position: absolute;
   /* margin-left: 40em; */
   left: 0;
@@ -167,7 +163,9 @@ body{
 }
 #down{
     /* float: right; */
-    margin-left: 1em;
+    color: #f2f6f2 ;
+    font-size: 30px;
+    margin-left: 10px;
     /* margin-top: -3%; */
     
 }
@@ -190,8 +188,8 @@ body{
     .bosses{
       position: absolute;
       left: 0;
-      right: -26em;
-      /* top:0px; */
+      right: -33em;
+      margin-top: -5%;
     }
     .fumni{
       /* margin-top: -22%; */
@@ -202,7 +200,7 @@ body{
     }
     .rocky{
         display: none;
-        visibility: hidden; 
+        /* visibility: hidden;  */
     }
     #mufu{
         margin-top: -5%;
@@ -224,11 +222,11 @@ body{
       margin-top: -4.9%;
     }
     #down{
-      visibility: hidden;
-      /* float: right; */
+      /* visibility: hidden; */
+      float: right;
     }
     #ibadan{
-      visibility: hidden;
+      /* visibility: hidden; */
     }
     /* .bosses{
       margin-right: 50%;
@@ -453,7 +451,7 @@ body{
       color: rgb(31, 28, 28);
       font-weight: bold;
       position: absolute;
-      top: -150px;
+  
       
   } 
   .ibadan li a{
