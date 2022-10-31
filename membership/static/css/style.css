@@ -782,7 +782,7 @@ body a:hover{
     color: rgb(24, 23, 23);
     box-sizing: border-box;
     position: absolute;
-    right: -12em;
+    left: -13rem;
     
     
 } 
@@ -875,6 +875,7 @@ body a:hover{
   display: block;
   transition: 1s;
   /* width: 70%; */
+  padding: 15px;
   font-weight: bold;
   margin-top: -1px;
   /* margin-right: 30px; */
