@@ -103,7 +103,7 @@ def inject_menu():
 
     return dict(dashboard_units=dashboard_units)
 
-@admins.route("/")
+
 @admins.route("/home")
 def home():
   if current_user.is_authenticated:

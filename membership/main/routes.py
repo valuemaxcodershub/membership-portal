@@ -18,6 +18,7 @@ def inject_menu():
     return dict(dashboard_units=dashboard_units)
 
 
+@main.route("/")
 @main.route("/business-members")
 def business_members():
   members = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).all()
