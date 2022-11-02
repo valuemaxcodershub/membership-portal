@@ -61,6 +61,11 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
+# Database stuff
+migrations/
+site.db
+
+
 # Flask stuff:
 instance/
 .webassets-cache

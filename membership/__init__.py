@@ -8,10 +8,12 @@ from sqlalchemy import MetaData
 import os
 
 
+
+
 #i added a comment
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "0f3c34f7789f6917e12593945aa86bdb"
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///site.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('NASME_DATABASE_URI')
 
 
 db = SQLAlchemy(app)

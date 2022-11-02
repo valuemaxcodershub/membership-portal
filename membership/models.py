@@ -29,16 +29,16 @@ class User(db.Model, UserMixin):
   current_salary = db.Column(db.String(60))
   occupation = db.Column(db.String(60))
   experience = db.Column(db.String(60))
-  date_of_birth = db.Column(db.String(), nullable=False, default=datetime.utcnow)
-  business_address = db.Column(db.String())
+  date_of_birth = db.Column(db.String(77), nullable=False, default=datetime.utcnow)
+  business_address = db.Column(db.String(120))
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
   has_filled_profile = db.Column(db.Boolean(), default=False)
-  business_name = db.Column(db.String())
-  business_email = db.Column(db.String())
-  business_phone = db.Column(db.String())
+  business_name = db.Column(db.String(77))
+  business_email = db.Column(db.String(120))
+  business_phone = db.Column(db.String(77))
   business_photo = db.Column(db.String(20), default='default.jpg')
-  business_about = db.Column(db.String())
-  business_services = db.Column(db.String())
+  business_about = db.Column(db.String(300))
+  business_services = db.Column(db.String(300))
   #use image list
   business_product_image_1 = db.Column(db.String(20), nullable=False, default='default.jpg')
   business_product_image_2 = db.Column(db.String(20), nullable=False, default='default.jpg')
@@ -46,11 +46,11 @@ class User(db.Model, UserMixin):
   business_product_image_4 = db.Column(db.String(20), nullable=False, default='default.jpg')
   business_product_image_5 = db.Column(db.String(20), nullable=False, default='default.jpg')
   business_product_image_6 = db.Column(db.String(20), nullable=False, default='default.jpg')
-  business_facebook = db.Column(db.String())
-  business_website = db.Column(db.String())
-  business_twitter = db.Column(db.String())
-  business_linkedin = db.Column(db.String())
-  business_whatsapp = db.Column(db.String())
+  business_facebook = db.Column(db.String(77))
+  business_website = db.Column(db.String(77))
+  business_twitter = db.Column(db.String(77))
+  business_linkedin = db.Column(db.String(77))
+  business_whatsapp = db.Column(db.String(77))
   messages_sent = db.relationship('Message',
                                     foreign_keys='Message.sender_id',
                                     backref='author', lazy='dynamic')
@@ -144,7 +144,7 @@ class Unit(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String(50), unique=True, nullable=False)
   date_created = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
-  fees_amount = db.Column(db.String(),nullable=False,default="0")
+  fees_amount = db.Column(db.String(77),nullable=False,default="0")
   messages_received = db.relationship('Message',
                                       foreign_keys='Message.unit_recipient_id',
                                       backref='unit_recipient', lazy='dynamic')
@@ -160,7 +160,7 @@ class Message(db.Model):
     member_recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     unit_recipient_id = db.Column(db.Integer, db.ForeignKey('unit.id'))
     title = db.Column(db.String(60))
-    body = db.Column(db.String(140))
+    body = db.Column(db.String(500))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def __repr__(self):
