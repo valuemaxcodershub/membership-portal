@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
+from flask import Blueprint, render_template, redirect, url_for, flash, request, abort
 from membership import db
 from membership.main.forms import ResetPasswordForm
 from membership.main.utils import send_reset_email
@@ -54,8 +54,11 @@ def business_profile():
 
   return render_template("business_profile.html")
 
-@main.route("/member_page/<string:business_name>")
+@main.route("/member_page/<string:business_name>", endpoint='member_page')
 def member_page(business_name):
+  if business_name == "None":
+    abort(404)
+
   member = User.query.filter_by(business_name=business_name)[0]
   if not member:
     abort(404)

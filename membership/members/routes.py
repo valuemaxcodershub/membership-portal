@@ -10,6 +10,13 @@ from membership.admins.utils import add_member
 
 members = Blueprint('members', __name__)
 
+# @members.context_processor
+# def inject_menu():
+
+#     this_member = current_user
+
+#     return this_member
+
 @members.route('/dues', methods=['GET', 'POST'])
 @user_role_required
 def my_dues():
@@ -60,7 +67,7 @@ def messages():
 def login():
   if current_user.is_authenticated:
       if current_user.role == "USER":
-        return redirect(url_for('members.member_home'))
+        return redirect(url_for('members.dashboard'))
 
   form = UserLoginForm()
 
