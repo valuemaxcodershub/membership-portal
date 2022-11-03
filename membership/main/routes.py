@@ -54,7 +54,7 @@ def business_profile():
 
   return render_template("business_profile.html")
 
-@main.route("/member_page/<string:business_name>", endpoint='member_page')
+@main.route("/member_page/<business_name>", endpoint='member_page')
 def member_page(business_name):
   if business_name == "None":
     abort(404)
