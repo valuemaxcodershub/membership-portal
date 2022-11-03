@@ -15,6 +15,11 @@ def save_picture(form_picture):
 
     output_size = (125, 125)
     i = Image.open(form_picture)
+
+    #os error fix
+    if i.mode != 'RGB':
+      i = i.convert('RGB')
+
     i.thumbnail(output_size)
     i.save(picture_path)
 
