@@ -1,2 +1,0 @@
-NASME_DATABASE_URI=sqlite:///site.db
-NASME_ONLINE_URI=mysql://nasmeoyo_portal_user:portal12345@nasmeoyo.org/nasmeoyo_portal
