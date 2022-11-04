@@ -33,6 +33,10 @@
 			font-weight: bold;
 			font-size: 15px;
 		  }
+		  .addUnit{
+			margin-top: 3%;
+			margin-right: 40em;
+		}
   </style>
 <script>
 	$(function () {
@@ -143,6 +147,10 @@
 						  {% endfor %}
 					  </table>
 
+					  <br>
+						<div class="addUnit">
+							<button class="btn btn-success"> <a href='{{ url_for("admins.register_member") }}' style="text-decoration:none ; color:white;">Add Member</a></button>
+						</div>
 					  <!-- Message Modal -->
 						<div class="modal fade" id="Messagedrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Messagedrop" aria-hidden="true">
 							<div class="modal-dialog">

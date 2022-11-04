@@ -73,17 +73,16 @@ body{
 .navbar {
   min-height:100px;
 }
-.navbar .navbar-nav > li >  {
-  padding: 27px 15px;
+.navbar .navbar-nav > li >  a{
+  padding: 30px 27px;
   }
-#mufu{
+/* #mufu{
     margin-top:-2.6%;
     max-width: 100%;
-    /* height: 100%; */
-    /* margin-left: 5%; */
+    
     background: rgb(255, 255, 255);
   
-}
+} */
 
 /* navbar dropdown */
 .oyo ul{
@@ -99,7 +98,7 @@ body{
     display: block;
     transition: 1s;
     margin-top: 1px;
-    padding: 27px 15px;
+    padding: 27px 27px;
     /* margin-right: 20em; */
     background: rgb(0, 0, 0);
     color: white;
@@ -229,10 +228,10 @@ body{
         display: none;
         /* visibility: hidden;  */
     }
-    #mufu{
+    /* #mufu{
         margin-top: -5%;
        
-    }
+    } */
     .rocky i{
       display: contents;
       visibility: visible;
@@ -286,13 +285,16 @@ body{
     background: rgb(26, 119, 43);
     color: rgb(31, 28, 28);
     position: absolute;
-    left: -9em;
+    left: -7em;
     
   } 
   .uyo li a{
     color:rgb(246, 243, 243);
     font-weight: bold;
   }
+  .navbar .navbar-nav > li >  a{
+    padding: 9px;
+    }
 }
 
 .navbar-toggler {
