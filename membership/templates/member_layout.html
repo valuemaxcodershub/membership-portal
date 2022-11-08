@@ -208,21 +208,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <button class="dropbtn"> <i class="fa fa-user-circle nav-icon"></i></button>
                 <div class="dropdown-content" style="left:0;">
                   <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
-                    <li>
+                    <li class="luss">
                     <a href="{{ url_for('members.user_account')}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
                       <i class="fa fa-user-circle nav-icon"></i>
-                    <span class="ogle">
-                      &nbsp;edit&nbsp;profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="ogle w-bold">
+                      &nbsp;edit&nbsp;profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                     </a>
                     </li>
                   </ul>
                  
                     <ul class="logout" type="button" style="list-style-type:none;;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"> 
-                      <li>
+                      <li class="luss">
                       <a href="{{ url_for('members.user_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
                       <i class="icon-off nav-icon"></i>
-                      <span class="ogle" id="ogle">
+                      <span class="ogle w-bold" id="ogle">
                         &nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </span>
                       </a>

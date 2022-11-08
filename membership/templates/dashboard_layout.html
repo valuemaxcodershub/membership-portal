@@ -270,7 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="btn btn-success dropdown- d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="sort by clusters/unit" style="background: #0ece0b ;">
                  <i class="fa fa-suitcase" aria-hidden="true"></i>
                 
-                <ul class="dropdown-menu text-lowercase" aria-labelledby="dropdownMenuButton1" >
+                <ul class="dropdown-menu text-capitalize" aria-labelledby="dropdownMenuButton1" >
                   {% for unit in dashboard_units %}
                   <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item fw-bold" >{{unit.name}}</a>
                   {% endfor %}
@@ -310,18 +310,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <button class="dropbtn"> <i class="fa fa-user-circle nav-icon"></i></button>
                 <div class="dropdown-content" style="left:0;">
                   <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
-                    <li>
+                    <li class="luss">
                     <a href="{{ url_for('admins.edit_admin' , admin_id=current_user.id )}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
                       <i class="fa fa-user-circle nav-icon"></i>
                     <span class="ogle fw-bold">
-                      &nbsp;Edit&nbsp;Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;Edit&nbsp;Profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
                     </a>
                     </li>
                   </ul>
                  
                     <ul class="logout" type="button" style="list-style-type:none;;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"> 
-                      <li>
+                      <li class="luss">
                       <a href="{{ url_for('admins.admin_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
                       <i class="icon-off nav-icon"></i>
                       <span class="ogle fw-bold" id="ogle">

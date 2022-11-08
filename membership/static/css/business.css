@@ -7,7 +7,27 @@
 html{
   box-sizing: border-box;
 }
-@media screen and (min-width: 960px) {}
+/* @media screen and (min-width: 960px) {} */
+
+/* @media only screen and (min-width: 768px) and (max-width: 1024px){
+  .bosses{
+    margin-left: auto;
+  margin-right: auto;
+  }
+} */
+
+/* 
+ */
+ @media only screen and (min-width: 360px) and (max-width: 740px) { 
+  .bosses{
+    margin-left: -10em;
+  }
+  }
+ /* @media screen and (max-width:320px){
+  .bosses{
+    margin-right: 100rem;
+  }
+ } */
 body{
     background: rgb(198, 198, 198);
     overflow-x: hidden;
@@ -158,11 +178,11 @@ body{
 }
 .bosses{
   margin-top:-2%;
-  margin-right: 20em;
+  /* margin-right: 20em; */
   position: absolute;
   /* margin-left: 40em; */
-  left: 0;
-  right:-60%;
+  left: 10;
+  right:0;
   
 }
 #down{
@@ -184,7 +204,7 @@ body{
       left:0;
       right: -39;
       margin-top: -5%;
-      margin-left: 19rem;
+      margin-left: 15rem;
       /* margin: 0px auto; */
        /* margin-left: auto;
       margin-right: auto; */
@@ -209,13 +229,13 @@ body{
         /* position: relative; */
     }
     .bosses{
-      position: absolute;
-      left:0;
-      right: 33;
-      margin-top: -5%;
+     position: absolute;
+      left: 35rem;
+      right: 0;
+      margin-top: -5%; 
       /* margin: 0px auto; */
-       /* margin-left: auto;
-      margin-right: auto; */
+       margin-left: auto;
+      margin-right: auto;
     }
     .fumni{
       /* margin-top: -22%; */
@@ -233,8 +253,8 @@ body{
        
     } */
     .rocky i{
-      display: contents;
-      visibility: visible;
+      /* display: contents; */
+      display: none;
     
     }
     #fail{

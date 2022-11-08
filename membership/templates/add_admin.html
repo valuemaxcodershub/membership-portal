@@ -14,10 +14,10 @@
 			
         }
 		@media only screen and (max-width: 600px) {
-			.rech{
-				margin-left: 1em;
-				
-			}
+			/* .rech{ */
+				/* margin-left: 1em; */
+				/* width: 30%; */
+			/* } */
 			/* .form{
 				width: 60%;
 			} */
@@ -114,6 +114,15 @@
             font-size: 9px;
             height: 13px;
         }
+		@media screen and (min-width: 180px){
+			
+			/* .input-control input{
+				width: 50%;
+			}
+			#rech{
+				width: 10%;
+			} */
+		}
         </style>
 
 		<script>
@@ -147,8 +156,8 @@
 			});	
 		});
 		</script>
-			<div>
-				<div class="container rech">
+			<div class="oluuu">
+				<div class="container-sm rech" id="rech">
                     <form  id="form" method="POST">
 						<h2>ADD ADMIN</h2>
                         {{ form.hidden_tag() }}

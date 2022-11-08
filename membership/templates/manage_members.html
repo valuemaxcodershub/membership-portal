@@ -86,7 +86,7 @@
 				<form method="POST" action="{{url_for('admins.export_custom')}}">
 					<br>
 					<input type="hidden" name="members", value={{members.items}}>	
-					<button class="btn btn-success" id="export" type="submit">Export list</button>				
+					<button class="btn btn-success text-capitalize" id="export" type="submit">Export list</button>				
 				</form>
 				<div class="container-fluid agile-tables">
 					<br>
@@ -115,12 +115,12 @@
 							{{member.display_units()}}
 							</td>
 							<td>
-								<button type="button" class="btn btn-outline-warning text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Pay" style="color: black;">2023 Dues</button>
+								<button type="button" class="btn btn-outline-warning text-capitalize" data-toggle="tooltip" data-placement="top" title="Click To Pay" style="color: black;">2023 Dues</button>
 								<br>
 								<a href="{{ url_for('admins.dues_pay') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Dues Pay">See More</a>
 							</td>
 							<td>
-								<button type="button" class="btn btn-outline-success text-lowercase" data-toggle="tooltip" data-placement="top" title="Click To Print Receipt" style="color: black;">Membership fees</button>
+								<button type="button" class="btn btn-outline-success text-capitalize" data-toggle="tooltip" data-placement="top" title="Click To Print Receipt" style="color: black;">Membership fees</button>
 								<br>
 								<a href="{{ url_for('admins.paid_dues') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Transaction Pay">See More</a>
 							</td>
@@ -149,7 +149,7 @@
 
 					  <br>
 						<div class="addUnit">
-							<button class="btn btn-success"> <a href='{{ url_for("admins.register_member") }}' style="text-decoration:none ; color:white;">Add Member</a></button>
+							<button class="btn btn-success text-capitalize"> <a href='{{ url_for("admins.register_member") }}' style="text-decoration:none ; color:white;">Add Member</a></button>
 						</div>
 					  <!-- Message Modal -->
 						<div class="modal fade" id="Messagedrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Messagedrop" aria-hidden="true">

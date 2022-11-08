@@ -124,7 +124,7 @@
                     <span>{{ error }}</span>
                 {% endfor %}
               {% else %}
-                {{ form.business_photo(class="btn btn-success text-md-start", accept=".jpg, .png, .jpeg")}}
+                {{ form.business_photo(class="btn btn-success text-md-start text-capitalize", accept=".jpg, .png, .jpeg")}}
               {% endif %}
             </div>
           </div>
@@ -147,9 +147,9 @@
         <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
           {% for unit in units %}
             {% if unit in member.units.all() %}
-              <option value="{{unit.name}}" selected>{{unit.name}}</option>
+              <option value="{{unit.name}}" selected class="text-lowercase">{{unit.name}}</option>
             {% else %}
-              <option value="{{unit.name}}">{{unit.name}}</option>
+              <option value="{{unit.name}}" class="text-lowercase">{{unit.name}}</option>
             {% endif %}
           {% endfor %}
         </select>
@@ -220,7 +220,7 @@
                       <span>{{ error }}</span>
                   {% endfor %}
                 {% else %}
-                  {{ form.business_product_image_1(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                  {{ form.business_product_image_1(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
             </div>
@@ -236,7 +236,7 @@
                       <span>{{ error }}</span>
                   {% endfor %}
                 {% else %}
-                  {{ form.business_product_image_2(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                  {{ form.business_product_image_2(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
             </div>
@@ -253,7 +253,7 @@
                       <span>{{ error }}</span>
                   {% endfor %}
                 {% else %}
-                  {{ form.business_product_image_3(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                  {{ form.business_product_image_3(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
             </div>
@@ -272,7 +272,7 @@
                       <span>{{ error }}</span>
                   {% endfor %}
                 {% else %}
-                  {{ form.business_product_image_4(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                  {{ form.business_product_image_4(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
             </div>
@@ -288,7 +288,7 @@
                       <span>{{ error }}</span>
                   {% endfor %}
                 {% else %}
-                  {{ form.business_product_image_5(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                  {{ form.business_product_image_5(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
             </div>
@@ -304,7 +304,7 @@
                       <span>{{ error }}</span>
                   {% endfor %}
                 {% else %}
-                  {{ form.business_product_image_6(class="btn btn-success", accept=".jpg, .png, .jpeg")}}
+                  {{ form.business_product_image_6(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
             </div>
