@@ -5,6 +5,10 @@
 		margin-left: 64%;
 		/* float: right; */
 	}
+	.addUnit{
+			margin-top: 3%;
+			margin-right: 40em;
+		}
 </style>
 <script>
 	$(function () {
@@ -92,6 +96,9 @@
 						  </tr>
 						  {% endfor %}
 					  </table>
+					  <div class="addUnit">
+						<button class="btn btn-success"> <a href='{{ url_for("admins.register_member") }}' style="text-decoration:none ; color:white;">Add Member</a></button>
+					</div>
 
 
 						<!-- Modal -->
