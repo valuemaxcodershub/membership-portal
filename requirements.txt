@@ -61,6 +61,7 @@ markupsafe==2.1.1
 mysqlclient==2.1.1
 pillow==9.2.0
     # via -r requirements.in
+python-dotenv==0.21.0
 sqlalchemy==1.4.40
     # via
     #   -r requirements.in
