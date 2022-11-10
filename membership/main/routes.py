@@ -54,14 +54,16 @@ def business_profile():
 
   return render_template("business_profile.html")
 
-@main.route("/member_page/<business_name>", endpoint='member_page')
+@main.route("/member_page/<string:business_name>", endpoint='member_page')
 def member_page(business_name):
   if business_name == "None":
     abort(404)
 
-  member = User.query.filter_by(business_name=business_name)[0]
-  if not member:
+  try:
+    member = User.query.filter_by(business_name=business_name.replace("_", " "))[0]
+  except IndexError:
     abort(404)
+
   image_file = url_for('static', filename='profile_pics/' + member.image_file)
   
   return render_template("member_page.html", member=member, image_file=image_file)
