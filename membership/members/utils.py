@@ -13,7 +13,8 @@ def user_role_required(func):
 
           #suspended users can not log in
           if current_user._is_suspended:
-            flash("Your account has been suspended and can therefore not log in")
+            logout_user()
+            flash("Your account has been suspended and you can therefore not log in", "danger")
             return redirect(url_for('members.login'))
 
           #logic for users to first fill their form before accessing other pages
