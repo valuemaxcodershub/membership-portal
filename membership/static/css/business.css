@@ -28,6 +28,19 @@ html{
     margin-right: 100rem;
   }
  } */
+ 
+      .bosses{
+        margin-right: 20em;
+      }
+      #down{
+        /* background: #f6f8f6 ; */
+        color: #f2f6f2 ;
+        font-size: 30px;
+      }
+      #reck{
+        margin-left: 10%;
+      }
+    
 body{
     background: rgb(198, 198, 198);
     overflow-x: hidden;
@@ -38,7 +51,7 @@ body{
 }
 .fumni{
   /* float: right; */
-  margin-left: 4em;
+  /* margin-left: 4em; */
   /* margin-top: -6.3%; */
 }
 .uyo  li ul{
