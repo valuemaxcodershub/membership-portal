@@ -214,7 +214,7 @@
               <td>{{ member.business_phone }}</td>
               <td>{{ member.business_email }}</td>
               <td>{{ member.display_units() }}</td>
-              <td><a href="{{url_for('main.member_page', business_name=member.business_name)}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
+              <td><a href="{{url_for('main.member_page', business_name=member.business_name.replace(' ', '_'))}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
             </tr>
       {% endfor %}
     </tbody>

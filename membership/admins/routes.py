@@ -351,7 +351,7 @@ def register_bulk(error_message=""):
 @admin_role_required
 def dashboard():
   total_members = User.query.filter_by(role="USER").count()
-  total_units = User.query.filter_by(role="USER").count()
+  total_units = Unit.query.count()
 
   return render_template("index.html", total_members=total_members,
                                        total_units=total_units,
