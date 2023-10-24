@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h3>Welcome {{ current_user.name }}  <a href='/admin/register-member'>Click here</a> to register a new member </h3>
+
+  <h1><u>Member List</u></h1>
+
+  <div class="w3l-table-info table-responsive">
+    <table id="tuble" class="table table-success table-striped table-hover table-bordered" style="width: 85%; font-size: 14px;">
+      {% for member in members.items %}
+        <tr>
+          <td>
+              <img src= /static/profile_pics/{{ member.image_file }} alt="" width="50" />
+          </td>
+          <td>{{ member.username }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.current_role }}</td>
+          <td><a href="/admin/manage/{{ member.id }}">View Full Details</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
+      {% if members.page == page_num %}
+        <a class="" style="font-size:20px" href="{{ url_for('admins.admin', page=page_num) }}">{{ page_num }}</a>
+      {% else %}
+        <a class="" href="{{ url_for('admins.admin', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
+    {% else %}
+      ...
+    {% endif %}
+  {% endfor %}
+
+  <br>
+  {% if current_user.is_superadmin %}
+    <h3>Welcome Superadmin - {{ current_user.name }}  <a href='/admin/manage_admins'>Click here</a> to manage other admins admins</h3>
+  {% endif %}
+
+  <h3><a href='/admin/register-bulk'>Click here</a> for bulk/CSV registration</h3>
+
+
+{% endblock content %}

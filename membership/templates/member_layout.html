@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<head>
+<title>NASME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- bootstrap-css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+<!-- //bootstrap-css -->
+<!-- bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<!--// bootstrap -->
+<!-- Custom CSS -->
+<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+<!-- font CSS -->
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
+<!-- font awesome -->
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- font-awesome icons -->
+<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
+<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font-awesome.css') }}">
+<!-- //font-awesome icons -->
+<!-- for units -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
+<!-- for units -->
+<style>
+  .ibadan{
+    margin-top: -1%;
+  }
+  @media screen and (max-width: 630px) {
+    #dropdown{
+      margin-left: 3em;
+    }
+    .uuos{
+      padding: 3px;
+    }
+  }
+</style>
+		<script>
+		$(function () {
+			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+			if (!screenfull.enabled) {
+				return false;
+			}
+
+			
+
+			$('#toggle').click(function () {
+				screenfull.toggle($('#container')[0]);
+			});	
+		});
+		</script>
+<!-- charts -->
+<script src="{{ url_for('static', filename='js/raphael-min.js') }}" ></script>
+<script src="{{ url_for('static', filename='js/morris.js') }}" ></script>
+<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/morris.css') }}">
+<!-- //charts -->
+<!--skycons-icons-->
+<script src="{{ url_for('static', filename='js/skycons.js') }}" ></script>
+<!--//skycons-icons-->
+</head>
+<body>
+
+    <!-- flashed messages  -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+
+    <body class="dashboard-page">
+  <script>
+          var theme = $.cookie('protonTheme') || 'default';
+          $('body').removeClass (function (index, css) {
+              return (css.match (/\btheme-\S+/g) || []).join(' ');
+          });
+          if (theme !== 'default') $('body').addClass(theme);
+        </script>
+  <nav class="main-menu" >
+    <br>
+    <br>
+    <!-- <br>
+    <br> -->
+
+    <ul class="doome">
+      <li>
+        <a href="{{ url_for('members.dashboard') }}">
+          <i class="fa fa-home nav_icon"></i>
+          <span class="nav-text">
+          Dashboard
+          </span>
+        </a>
+      </li>
+
+      {% if current_user.business_name %}
+        
+      <li >
+        <a href="/member_page/{{current_user.business_name.replace(' ', '_')}}" target="_blank">
+        <i class="fa fa-cogs" aria-hidden="true"></i>
+        <span class="nav-text">
+          Open Public Profile
+        </span> </a>
+      </li> 
+
+      {% endif %}
+        
+      
+      
+      
+
+
+      <li >
+        <a href="{{url_for('members.edit_business_profile')}}">
+          <i class="fa fa-file-text-o nav_icon"></i>
+            <span class="nav-text">Edit Page</span>
+        </a>
+      </li>
+      <li >
+        <a href="{{url_for('members.my_dues')}}">
+          <i class="fa fa-file-text-o nav_icon"></i>
+            <span class="nav-text">My Dues</span>
+        </a>
+      </li>
+      <li >
+        <a href="{{url_for('members.transaction_history')}}">
+          <i class="fa fa-file-text-o nav_icon"></i>
+            <span class="nav-text">Transaction History</span>
+        </a>
+      </li>
+    </ul>
+    <div >
+      <ul >
+      <li>
+      <a href="{{ url_for('members.user_account')}}">
+      <i class="fa fa-user-circle nav-icon"></i>
+      <span class="nav-text">
+      Account
+      </span>
+      </a>
+      </li>
+    </ul> 
+    <ul class="logout">
+      <li>
+      <a href="{{ url_for('members.user_logout') }}">
+      <i class="icon-off nav-icon"></i>
+      <span class="nav-text">
+      Logout
+      </span>
+      </a>
+      </li>
+    </ul>
+    </div>
+  </nav>
+  <!-- &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp; -->
+  <section class=" wrapper scrollable" >
+    <nav class="user-menu">
+      <a href="javascript:;" class="main-menu-access">
+      <i class="icon-proton-logo"></i>
+      <i class="icon-reorder"></i>
+      </a>
+    </nav> 
+    <section class="title-bar sticky-top">
+      <div class="ric">
+        
+        <nav class="navbar  navbar-expand-lg navbar-light bg- " style="width: 100%;">
+          <div class="container-fluid">
+
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+            
+           <div class="tick">
+            <div class="d-flex justify-content-center">
+
+              <a class="navbar-brand" id="greeny"><img src="{{ url_for('static', filename='images/NASME.png')}}" alt="" width="55px" /></a>
+
+              <div class=" ibadan "style="float:right;" >
+                <!-- <li class=" dropdown- d-inline-block"  id="glow-on-hover dropdownMenuButton1" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="clusters" > -->
+                 
+                  <a href="{{url_for('members.messages')}}" type="button" class="btn btn-success position-relative" style="background: #0ece0b ;">
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    <span class="position-absolute top-0 start-95  p-2 bg-danger badge rounded-pill bg-danger uuos">
+                      3++++
+                      <span class="visually-hidden">New alerts</span> {{loggedinuser}} ATH THE AREA
+                    </span>
+                  </a>
+                <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="left:0;">
+                  {% for unit in dashboard_units %}
+                  <a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" >{{unit.name}}</a>
+                  {% endfor %}
+                </ul> -->
+              <!-- </li> -->
+              </div>
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              &nbsp;
+              <div class="dropdown" style="float:right;" id="dropdown">
+                <button class="dropbtn"> <i class="fa fa-user-circle nav-icon"></i></button>
+                <div class="dropdown-content" style="left:0;">
+                  <ul  class="" type="button" style="list-style-type:none ; " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Account">
+                    <li class="luss">
+                    <a href="{{ url_for('members.user_account')}}" style="text-decoration:none; margin-left: 3%;" class="d-flex justify-content-center">
+                      <i class="fa fa-user-circle nav-icon"></i>
+                    <span class="ogle w-bold">
+                      &nbsp;edit&nbsp;profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    </a>
+                    </li>
+                  </ul>
+                 
+                    <ul class="logout" type="button" style="list-style-type:none;;" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout"> 
+                      <li class="luss">
+                      <a href="{{ url_for('members.user_logout') }}" style="text-decoration:none;" class="d-flex justify-content-center">
+                      <i class="icon-off nav-icon"></i>
+                      <span class="ogle w-bold" id="ogle">
+                        &nbsp;Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                      </a>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+             
+            </div>
+           </div>
+        </div>
+      </div>
+      </nav>  
+      </div>
+        <!-- <div class="clearfix"> </div> -->
+    </section>
+    <!--  -->
+    
+    <!-- other pages extend here -->
+    {% block content %}{% endblock %}
+
+    <br>
+    <br>
+    </section>
+    
+  <script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    function filterFunction() {
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      div = document.getElementById("myDropdown");
+      a = div.getElementsByTagName("a");
+      for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          a[i].style.display = "";
+        } else {
+          a[i].style.display = "none";
+        }
+      }
+    }
+    </script>
+
+  <!-- for units -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- for units -->
+
+
+
+    <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/jquery2.0.3.min.js') }}" ></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/jquery.cookie.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/screenfull.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/proton.js') }}" ></script>
+
+
+</body>

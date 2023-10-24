@@ -1,0 +1,405 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<style>
+	#export{
+		margin-left: 64%;
+		/* float: right; */
+	}
+	/* td{
+		font-weight: bold;
+	} */
+	#form{
+			  width: 360px;
+			  margin: 20vh auto 0 auto;
+			  /* height: 50vh; */
+			  padding: 10px;
+			  font-size: 12px;
+			  text-align: center;
+			  margin-top: 5%;
+			  font-weight: bold;
+			  background-color: rgb(191, 215, 178);
+			  color: rgb(55, 95, 62);
+			  border-radius: 4px;
+			  font-size: 12px;
+		  }
+		  .rech{
+			margin-left: auto;
+			margin-right: auto;
+		  }
+		  #iners{
+			margin-top:-7%;
+		  }
+		  .solu{
+			font-weight: bold;
+			font-size: 15px;
+		  }
+		  .addUnit{
+			margin-top: 3%;
+			margin-right: 40em;
+		}
+  </style>
+<script>
+	$(function () {
+		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+		if (!screenfull.enabled) {
+			return false;
+		}
+
+		$('#toggle').click(function () {
+			screenfull.toggle($('#container')[0]);
+		});	
+	});
+</script>
+<!-- tables -->
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+    });
+</script>
+<!-- //tables -->
+				<form method="POST" action="{{url_for('admins.export_custom')}}">
+					<br>
+					<input type="hidden" name="members", value={{members.items}}>	
+					<button class="btn btn-success text-capitalize" id="export" type="submit">Export list</button>				
+				</form>
+				<div class="container-fluid agile-tables">
+					<br>
+					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> Members List</h3>
+					<div class="w3l-table-info  table-responsive"> 
+					    <table id="tuble" class="table table-success table-striped table-hover table-bordered" style="width: 85%; font-size: 14px;">
+						<thead>
+						  <tr>
+							<th scope="col">Business Name</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Email</th>
+							<th scope="col">Units</th>
+							<th scope="col">Pending Dues</th>
+							<th scope="col">Dues Paid</th>
+							<th scope="col">Action</th>
+<!-- 							<th>Member Url</th> -->
+						  </tr>
+						</thead>
+						<tbody>
+							{% for member in members.items %}
+						  <tr>
+							<td>{{member.business_name}}</td>
+							<td>{{ member.phone }}</td>
+							<td>{{ member.business_email }}</td>
+							<td>
+							{{member.display_units()}}
+							</td>
+							<td>
+								<button type="button" class="btn btn-outline-warning text-capitalize" data-toggle="tooltip" data-placement="top" title="Click To Pay" style="color: black;">2023 Dues</button>
+								<br>
+								<a href="{{ url_for('admins.dues_pay') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Dues Pay">See More</a>
+							</td>
+							<td>
+								<button type="button" class="btn btn-outline-success text-capitalize" data-toggle="tooltip" data-placement="top" title="Click To Print Receipt" style="color: black;">Membership fees</button>
+								<br>
+								<a href="{{ url_for('admins.paid_dues') }}" style="text-decoration: none; color:green; font-weight:bold;" data-toggle="tooltip" data-placement="top" title="Click To See Transaction Pay">See More</a>
+							</td>
+
+							<td class="d-flex justify-content-center" >
+								
+								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Details" ><i class="fa fa-pencil" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="Edit Member Details"></i></a>
+
+								<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#Messagedrop"  data-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.business_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"> <i class="fa fa-comments-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Send Message To Member"></i></button>
+
+								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
+
+								{% if member._is_suspended %}
+								<a class="btn btn-light" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.business_name}}" data-target="#suspendmodal"  onclick="unsuspendFunction(this)"><i class="fa fa-unlock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member"></i></a>
+
+								{% else %}
+								<a class="btn btn-dark" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#suspendmodal"  onclick="suspendFunction(this)"><i class="fa fa-lock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend Member"></i></a>
+
+								{% endif %}
+
+								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"><i class="fa fa-trash-o" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"></i></a>
+
+							</td>
+						  {% endfor %}
+					  </table>
+
+					  <br>
+						<div class="addUnit">
+							<button class="btn btn-success text-capitalize"> <a href='{{ url_for("admins.register_member") }}' style="text-decoration:none ; color:white;">Add Member</a></button>
+						</div>
+					  <!-- Message Modal -->
+						<div class="modal fade" id="Messagedrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="Messagedrop" aria-hidden="true">
+							<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="Messagedrop">Modal title</h5>
+								<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form action="{{url_for('admins.send_message')}}" method="POST" id="form">
+										{{ form.hidden_tag()  }}
+										<input type="hidden" name="user_id" id="examplehiddenid">
+									   <div class="input-control">
+										{{ form.title.label (class="solu") }}
+										{{ form.title }}
+									   </div>
+									   <br/>
+									   <br>
+									   <div class="input-control">
+										{{ form.message.label (class="solu") }}
+										{{ form.message  }}
+									   </div>
+										<br />								  
+										{{ form.submit(class="btn btn-success") }}
+									</form>	
+								</div>
+								<div class="">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+							</div>
+						</div>
+					  <!-- end of message modal -->
+
+
+					  <!-- Suspend Modal -->
+						<div class="modal fade" id="suspendmodal" tabindex="-1" role="dialog" aria-labelledby="suspendModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="suspendModalLabel">Suspend ?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      		Are you sure?						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <form method="POST" action="{{ url_for('admins.suspend_user') }}">
+						        	<input type="hidden" name="user_id" id="suspendhiddenid">
+						        	<input type="hidden" name="page" value="{{members.page}}">
+						        <button type="submit" class="btn btn-primary" href="#">Yes</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+						<!-- Delete Modal -->
+						<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="deleteModalLabel">Delete ?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      		Are you sure you want to delete this user?						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <form method="POST" action="{{ url_for('admins.delete_user') }}">
+						        	<input type="hidden" name="user_id" id="deletehiddenid">
+						        	<input type="hidden" name="page" value="{{members.page}}">
+						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+						<!--  View Member Modal -->
+						<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="staticBackdropLabel">User Details</h5>
+							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="bedd">
+									<div >
+										<img  id="modalUserImage" src="images/2.png" alt="image" width="100px">
+									</div>
+									<br>
+									<br>
+									<div>
+										<h5 id="modalUserName">...</h5>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserId">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserEmail">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserPhone">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserPassword">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserUnits">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserDateReg">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserOccupation">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserWorkAddr">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserHomeAddr">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserExperience">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserCurrentSalary">...</p>
+									</div>
+									<br>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  
+							</div>
+						  </div>
+						</div>
+					  </div>
+
+					</div>
+				  <!-- </div> -->
+
+
+					  <!-- pagination -->
+					  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+					    {% if page_num %}
+					      {% if members.page == page_num %}
+					        <a class="btn btn-success mb-5"  href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+					      {% else %}
+					        <a class="btn btn-outline-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+					      {% endif %}
+					    {% else %}
+					      ...
+					    {% endif %}
+					  {% endfor %}
+					</div>
+				  </div>
+
+
+				  <script>
+						    function deleteFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#deletehiddenid').val(userId);
+						        $('#deleteModalLabel').text('Delete ' + name);
+						        $("#deletemodal").modal("show");
+						    }
+
+						    function suspendFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#suspendhiddenid').val(userId);
+						        $('#suspendModalLabel').text('Suspend ' + name);
+						        $('#suspendmodal .modal-body').text("Are you sure you want to suspend this user?");
+						        $("#suspendmodal").modal("show");
+						    }
+
+						    function unsuspendFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#suspendhiddenid').val(userId);
+						        $('#suspendModalLabel').text('Unsuspend ' + name);
+						        $('#suspendmodal .modal-body').text("Are you sure you want to unsuspend this user?");
+						        $("#suspendmodal").modal("show");
+						    }
+
+						    function messageUserFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#examplehiddenid').val(userId);
+						        $('#exampleModalLabel').text('Message ' + name);
+						        $("#examplemodal").modal("show");
+						    }
+
+						    function viewUserFunction(obj){
+						    	let dataImage = obj.getAttribute("dataImage");
+						    	let dataName = obj.getAttribute("dataName");
+						    	let dataEmail = obj.getAttribute("dataEmail");
+						    	let dataId = obj.getAttribute("dataId");
+						    	let dataPhone = obj.getAttribute("dataPhone");
+						    	let dataPassword = obj.getAttribute("dataPassword");
+						    	let dataUnits = obj.getAttribute("dataUnits");
+						    	let dataDateReg = obj.getAttribute("dataDateReg");
+						    	let dataOccupation = obj.getAttribute("dataOccupation");
+						    	let dataHomeAddress = obj.getAttribute("dataHomeAddr");
+						    	let dataWorkAddress = obj.getAttribute("dataWorkAddr");
+						    	let dataExperience = obj.getAttribute("dataExperience");
+						    	let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
+
+
+						    	document.getElementById('modalUserImage').src = dataImage;
+						    	$('#modalUserName').text('Name:  ' + dataName);
+						    	$('#modalUserEmail').text('Email:  ' + dataEmail);
+						    	$('#modalUserId').text('Name:  ' + dataName);
+						    	$('#modalUserPhone').text('Phone:  ' + dataPhone);
+						    	$('#modalUserPassword').text('Password:  ' + dataPassword);
+						    	$('#modalUserUnits').text('Units:  ' + dataUnits);
+						    	$('#modalUserDateReg').text('Date Joined:  ' + dataDateReg);
+						    	$('#modalUserOccupation').text('Occupation:  ' + dataOccupation);
+						    	$('#modalUserHomeAddr').text('Home Address:  ' + dataHomeAddress);
+						    	$('#modalUserWorkAddr').text('Work Address:  ' + dataWorkAddress);
+						    	$('#modalUserExperience').text('Experience:  ' + dataExperience);
+						    	$('#modalUserCurrentSalary').text('Current Salary:  ' + dataCurrentSalary);
+
+
+
+
+						    }
+						</script>
+		
+		
+{% endblock content %}

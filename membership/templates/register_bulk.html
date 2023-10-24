@@ -1,0 +1,30 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+
+<div>
+    <div class="container-fluid rech" id="farm" style="margin-top: 10%;">
+      <form method="POST" action="" enctype="multipart/form-data">
+          <h2 data-text="Add member">Bulk Registration</h2>
+          {{ form.hidden_tag() }}
+
+          <div class="input-control">
+            <label for="Upload CSV">Upload CSV file</label>
+            {{ form.csv_file(type="file", accept=".csv", class="btn btn-success") }}
+            {% if form.csv_file.errors %}
+              {% for error in form.csv_file.errors %}
+                <span class="text-danger">{{ error }}</span></br>
+              {% endfor %}
+            {% endif %}
+            <span class="error">{{ error_message }}</span>
+          </div>
+
+          <br />
+          {{ form.submit(type="submit", id="ric") }}
+      </form>
+  </div>
+  <br>
+  <p style="text-align: center;"><a href="{{url_for('admins.download_template')}}">Click here</a> to download a template for the csv format</p>
+</div>
+
+
+{% endblock  %}

@@ -1,0 +1,259 @@
+{% extends "member_layout.html" %}
+{% block content %}	
+			<style>
+        #glary{
+          padding-bottom: 1em;
+        }
+				#glory{
+					padding-bottom: 2em;
+				}
+        .twen{
+          width: 90%;
+          padding: 15px;
+          margin-left: auto;
+          margin-right: auto;
+          /* background: rgb(131, 187, 131); */
+          
+        }
+        #alirt{
+          width:60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .emeet{
+          font-weight: bold;
+          /* color: white; */
+        }
+        .anty img{
+          max-width:70%;
+          max-height: 70vh;
+          /* opacity :0.5; */
+        }
+        .anty img:hover{
+          box-shadow: 0 0 2px 1px rgba(5, 187, 35, 0.954);
+          transform: scaleX(-1);
+          transition: 1s;
+          transform: scale(1.5);
+          opacity: 1;
+        }
+        .mommy{
+          background: rgb(214, 250, 214);
+            padding: 5%;
+            border-radius: 7px;
+            width: 94%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .zaddy{
+            margin-top: 5%;
+            color: rgb(59, 74, 59);
+            font-weight: bold;
+          }
+          .zaddy h1{ 
+            text-align: center;
+            font-weight: bold;
+          }
+          /* .zaddy p{
+            color: #000;
+          } */
+          .sonny{
+            margin-top: 5%;
+            color: rgb(59, 74, 59);
+            font-weight: bold;
+            /* width: 80%; */
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .sonny h2{
+            text-align: center;
+            font-weight: bold;
+          }
+          .anty{
+            margin-top: 5%;
+            cursor: pointer;
+          }
+          .anty h1{
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
+            font-weight: bold;
+          }
+          .uncle{
+            font-weight: bold;
+          }
+          .uncle h1{
+            text-align: center;
+          }
+          .teean p{
+            text-align: center;
+            font-weight: bold;
+          }
+			</style>
+      <br>
+      <div class="container">
+        <div class="alert alert-warning alert-dismissible show" role="alert" id="alirt">
+          <strong>Lastest Notification</strong> 
+          <br/>
+          You should check in on some of those fields below.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      
+		<div class="container">	
+			<div class=" glo">
+				<div class="row">
+					<a class="col-sm-4 col-md-4" id="glooo" href='{{ url_for("members.edit_business_profile") }}'>
+						<div class="glory" id="glory">
+							<div class="row">
+								<div class="col-sm-6 col-md-4">
+									<div class="gluy">
+										<i class="fa fa-pencil-square" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-8">
+									<div class="glarr">
+										<p>Edit Page</p>
+									</div>
+								</div>
+						    </div>
+						</div>
+					</a>
+					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+						<div class="glory">
+							<div class="row">
+								<div class="col-sm-6 col-md-4">
+									<div class="gluy">
+										<i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-8">
+									<div class="glarr">
+										<p>My Dues</p>
+										<h4>#12453664</h4>
+									</div>
+								</div>
+						    </div>
+						</div>
+					</a>
+					<a class="col-sm-4 col-md-4" id="glooo" href='#'>
+						<div class="glory" id="glary">
+							<div class="row">
+								<div class="col-sm-6 col-md-4">
+									<div class="gluy">
+										<i class="fa fa-history" aria-hidden="true"></i>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-8">
+									<div class="glarr">
+										<p>Transaction History</p>
+									</div>
+								</div>
+						    </div>
+						</div>
+					</a>
+				</div>
+			</div>
+<br>
+
+    <div class="twen">
+      <div class="mommy">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <br>
+              <div>
+                <!-- <img src="{{image_file}}" alt="image" width="40%"> -->
+                <img src="../static/profile_pics/{{member.business_photo}}" alt="image" width="40%">
+                <br>
+                <!-- <input type="file" class="btn btn-success"> -->
+              </div>
+            </div>
+            <div class="teean">
+              <P>Website: {{member.business_website}}</P>
+            </div>
+            <div class="col">
+              <div class="zaddy">
+                <h1 style="color: rgb(54, 98, 53);">{{member.business_name}} </h1>
+                <p>
+                  {{member.business_about}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="uncle">
+            <h1 style="color: rgb(54, 98, 53);">product of services</h1>
+            <br>
+              <div class="">
+                {{member.business_services}}
+            </div>
+          </div>
+          <br>
+          <!--  -->
+          <div>
+            <div class="anty">
+              <h1 style="color: rgb(54, 98, 53);">Product/Service Images</h1>
+              <div class="">
+                <div class="row">
+                  <div class="col">
+                    <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="img" width="100%">
+                  </div>
+                  <div class="col">
+                    <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="img" width="100%">
+                  </div>
+                  <div class="col">
+                    <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="image" width="100%">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col">
+                    <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="img" width="100%">
+                  </div>
+                  <div class="col">
+                    <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="img" width="100%">
+                  </div>
+                  <div class="col">
+                    <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="image" width="100%">
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <br>
+          <br>
+          <br>
+          <div>
+              <div class="row">
+                <div class="col">
+                  <P>Phone number: {{member.business_phone}}</P>
+                </div>
+                <div class="col">
+                  <P>Address: {{member.business_address}}</P>
+                </div>
+                <div class="col">
+                  <P><i>email: {{member.business_email}}</i></P>
+                </div>
+                  <div>
+                    <a href="https://{{member.business_facebook}}"  target="_blank" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                    <a href="https://{{member.business_twitter}}" target="_blank" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-twitter" aria-hidden="true" style="text-decoration: none; color:rgb(21, 178, 21);"></i></a>
+                   <a href="https://{{member.business_linkedin}}" target="_blank" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"> <i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="https://{{member.business_website}}" target="_blank" style="text-decoration: none; color:rgb(21, 178, 21); font-size:30px;"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+<br><br>
+    <div>
+      <a type="button" class="btn btn-success" href="{{url_for('members.edit_business_profile')}}">Edit Your Profile</a>
+    </div>
+
+			
+{% endblock content %}

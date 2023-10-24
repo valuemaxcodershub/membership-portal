@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Edit member details.</h1>
+  <form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <img src="{{ image_file }}">
+    
+    {{ form.picture.label() }}
+    {{ form.picture }}
+    {% if form.picture.errors %}
+      {% for error in form.picture.errors %}
+        <span class="text-danger">{{ error }}</span> <br/>
+      {% endfor %}
+    {% endif %}
+    <br />
+    <br />
+
+    
+
+    <br />
+    {{ form.username.label }}
+    {% if form.username.errors %}
+      {{ form.email }}
+      {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.username }}
+    {% endif %}
+
+    <br />
+    {{ form.phone.label }}
+    {% if form.phone.errors %}
+      {{ form.phone }}
+      {% for error in form.phone.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.phone }}
+    {% endif %}
+    
+    <br />
+    {{ form.email.label }}
+    {% if form.email.errors %}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.email }}
+    {% endif %}
+
+    <br />
+    {{ form.password.label }}
+    {% if form.password.errors %}
+      {{ form.password }}
+      {% for error in form.password.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.password }}
+    {% endif %}
+
+    <br />
+    {{ form.business_name.label }}
+    {% if form.business_name.errors %}
+      {{ form.business_name }}
+      {% for error in form.business_name.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.business_name }}
+    {% endif %}
+
+    <br />
+    {{ form.business_email.label }}
+    {% if form.business_email.errors %}
+      {{ form.business_email }}
+      {% for error in form.business_email.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.business_email }}
+    {% endif %}
+
+    <br />
+    {{ form.business_about.label }}
+    {% if form.business_about.errors %}
+      {{ form.business_about }}
+      {% for error in form.business_about.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.business_about }}
+    {% endif %}
+
+    
+  
+    
+    <br />
+    {{ form.submit }}
+  </form> 
+
+{% endblock content %}

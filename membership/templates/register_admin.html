@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>Enter new admin details.</h1>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+
+    <br />
+    {{ form.username.label }}
+    {% if form.username.errors %}
+      {{ form.username }}
+      {% for error in form.username.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.username }}
+    {% endif %}
+    
+    <br />
+    {{ form.phone.label }}
+    {% if form.phone.errors %}
+      {{ form.phone }}
+      {% for error in form.phone.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.phone }}
+    {% endif %}
+
+    <br />
+    {{ form.email.label }}
+    {% if form.email.errors %}
+      {{ form.email }}
+      {% for error in form.email.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.email }}
+    {% endif %}
+
+    <br />
+    {{ form.is_superadmin(type="checkbox") }}
+    {{ form.is_superadmin.label }}
+    
+    
+    <br />
+    {{ form.submit }}
+  </form> 
+
+{% endblock content %}

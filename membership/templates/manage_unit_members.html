@@ -1,0 +1,236 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<script>
+	$(function () {
+		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+		if (!screenfull.enabled) {
+			return false;
+		}
+
+		$('#toggle').click(function () {
+			screenfull.toggle($('#container')[0]);
+		});	
+	});
+</script>
+<!-- tables -->
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+    });
+</script>
+<!-- //tables -->
+				<div class="container-fluid agile-tables" id="ond">
+					<br>
+					
+						{% if unit %}
+								<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center">{{ unit.name }} Unit Member List</h3>
+						{% else %}
+								<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center">Members List</h3>
+						{% endif %}
+								<br>
+					<div class="w3l-table-info table-responsive"> 
+					    <table id="tuble" class="table table-success table-striped table-hover table-bordered " style="width: 85%; font-size: 14px;">
+						<thead>
+						  <tr>
+							<th>Name</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Units</th>
+							<th>Action</th>
+						  </tr>
+						</thead>
+						<tbody>
+							{% for member in members %}
+						  <tr>
+							<td>{{member.business_name}}</td>
+							<td>{{ member.business_phone }}</td>
+							<td>{{ member.business_email }}</td>
+							<td>
+							{{member.display_units()}}
+							</td>
+							<td >
+								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_member', member_id=member.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"></i></a>
+
+								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-toggle="tooltip" data-placement="top" title="View Member Details"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Detail"></i></a>
+
+								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"><i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete Member Details"></i></a>
+							</td>
+						  </tr>
+						  {% endfor %}
+						</tbody>
+					  </table>
+
+
+
+						<!--  Delete Modal -->
+						<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Delete ?</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      		Are you sure you want to delete this user?						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <form method="POST" action="{{ url_for('admins.delete_user') }}">
+						        	<input type="hidden" name="user_id" id="hiddenid">
+						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+						<!--  View Member Modal -->
+						<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog">
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <h5 class="modal-title" id="staticBackdropLabel">User Details</h5>
+							  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="bedd">
+									<div >
+										<img  id="modalUserImage" src="images/2.png" alt="image" width="100px">
+									</div>
+									<br>
+									<br>
+									<div>
+										<h5 id="modalUserName">...</h5>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserId">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserEmail">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserPhone">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserPassword">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserUnits">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserDateReg">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserOccupation">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserWorkAddr">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserHomeAddr">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserExperience">...</p>
+									</div>
+									<br>
+									<div>
+										<p id="modalUserCurrentSalary">...</p>
+									</div>
+									<br>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							  
+							</div>
+						  </div>
+						</div>
+					  </div>
+
+					</div>
+				  </div>
+
+				  <script>
+						    function deleteFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#hiddenid').val(userId);
+						        $('#exampleModalLabel').text('Delete ' + name);
+						        $("#deletemodal").modal("show");
+						    }
+
+						    function viewUserFunction(obj){
+						    	let dataImage = obj.getAttribute("dataImage");
+						    	let dataName = obj.getAttribute("dataName");
+						    	let dataEmail = obj.getAttribute("dataEmail");
+						    	let dataId = obj.getAttribute("dataId");
+						    	let dataPhone = obj.getAttribute("dataPhone");
+						    	let dataPassword = obj.getAttribute("dataPassword");
+						    	let dataUnits = obj.getAttribute("dataUnits");
+						    	let dataDateReg = obj.getAttribute("dataDateReg");
+						    	let dataOccupation = obj.getAttribute("dataOccupation");
+						    	let dataHomeAddress = obj.getAttribute("dataHomeAddr");
+						    	let dataWorkAddress = obj.getAttribute("dataWorkAddr");
+						    	let dataExperience = obj.getAttribute("dataExperience");
+						    	let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
+
+
+						    	document.getElementById('modalUserImage').src = dataImage;
+						    	$('#modalUserName').text('Name:  ' + dataName);
+						    	$('#modalUserEmail').text('Email:  ' + dataEmail);
+						    	$('#modalUserId').text('Name:  ' + dataName);
+						    	$('#modalUserPhone').text('Phone:  ' + dataPhone);
+						    	$('#modalUserPassword').text('Password:  ' + dataPassword);
+						    	$('#modalUserUnits').text('Units:  ' + dataUnits);
+						    	$('#modalUserDateReg').text('Date Joined:  ' + dataDateReg);
+						    	$('#modalUserOccupation').text('Occupation:  ' + dataOccupation);
+						    	$('#modalUserHomeAddr').text('Home Address:  ' + dataHomeAddress);
+						    	$('#modalUserWorkAddr').text('Work Address:  ' + dataWorkAddress);
+						    	$('#modalUserExperience').text('Experience:  ' + dataExperience);
+						    	$('#modalUserCurrentSalary').text('Current Salary:  ' + dataCurrentSalary);
+
+
+
+
+						    }
+						</script>
+						</script>
+		
+{% endblock content %}

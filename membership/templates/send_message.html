@@ -1,0 +1,68 @@
+{% extends "dashboard_layout.html" %}
+
+{% block content %}
+<style>
+  #form{
+            width: 360px;
+            margin: 20vh auto 0 auto;
+			/* height: 50vh; */
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5%;
+            font-weight: bold;
+            background-color: rgb(191, 215, 178);
+            color: rgb(55, 95, 62);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .rech{
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .solu{
+
+        }
+        #iners{
+          margin-top:-7%;
+        }
+        .solu{
+          font-weight: bold;
+          font-size: 15px;
+        }
+</style>
+<br>
+    <h1 style="color: rgb(55, 95, 62);">Send Message to Users</h1>
+
+   <div class="rech">
+    <div class="">
+          <form action="{{url_for('admins.send_unit_message')}}" method="POST" id="form">
+              {{ form.hidden_tag()  }}
+             <div class="input-control">
+              {{ form.title.label (class="solu") }}
+              {{ form.title }}
+             </div>
+             <br/>
+             <br>
+             <div class="input-control">
+              {{ form.message.label (class="solu") }}
+              {{ form.message  }}
+             </div>
+              <br />
+                <div class="container mt-5" id="iners">
+                  <h5>Select Unit</h5>
+                  <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example" data-actions-box="true">
+                    {% for unit in dashboard_units %}
+                        <option value="{{unit.name}}">{{unit.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+              <br />
+              {{ form.submit(class="btn btn-success") }}
+          </form>
+  </div>
+   </div>
+
+
+{% endblock %}

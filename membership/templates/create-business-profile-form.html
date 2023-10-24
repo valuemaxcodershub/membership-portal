@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Profile Form</title>
+    <!-- bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<!--// bootstrap -->
+<!-- for units -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" integrity="sha512-mR/b5Y7FRsKqrYZou7uysnOdCIJib/7r5QeJMFvLNHNhtye3xJp1TdJVPLtetkukFn227nKpXD9OjUc09lx97Q==" crossorigin="anonymous"
+  referrerpolicy="no-referrer" />
+<!-- for units -->
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
+  <!-- font awesome -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- font-awesome icons -->
+  <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
+  <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/business.css') }}">
+  <!-- //font-awesome icons -->
+  <style>
+    #form{
+             width: 90%;
+            margin: 5%;
+            padding: 10px;
+            font-size: 19px;
+            /* text-align: center;  */
+            /* margin-top: 20%; */
+            font-weight: bold;
+            background-color: rgb(181, 203, 185);
+            color: rgb(121, 146, 125);
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        /* #ric{
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            background: #0b5836;
+            border: none;
+            border-radius: 4px;
+        }
+        #ric:hover{
+            background: #05ed88;
+            transition: 1s;
+        }
+        #rich{
+            background: green;
+            padding: 20px;
+            padding-bottom: 10%;
+            
+        }
+        #rich h2{
+            font-weight: bold;
+        }
+        #rach{
+            margin-top: 9%;
+            color: rgb(5, 89, 5);
+            font-weight: bold;
+            text-align: center;
+        }
+        #rach h3{
+            font-weight: bold;
+        } */
+        
+        .input-control{
+            display:flex;
+            flex-direction: column;
+        }
+        h1{
+          text-align: center;
+        }
+        .input-control input{
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control textarea{
+          border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control textarea:focus{
+          outline: 0;
+        }
+        .input-control input:focus {
+            outline: 0;
+        }
+        .input-control.success input {
+            border-color: #09c372;
+        }
+        .input-control.error input {
+            border-color: #ff3660;
+        }
+        .input-control.error {
+            color: #ff3660;
+            font-size: 9px;
+            height: 13px;
+        }
+        #viold input{
+          width: 90%;
+        }
+  
+    .bosses{
+      margin-right: 20em;
+    }
+    #down{
+      /* background: #f6f8f6 ; */
+      color: #f2f6f2 ;
+      font-size: 30px;
+    }
+  </style>
+  
+</head>
+<body>
+<div class="ricky ">
+  <nav>
+      <div class=" container">
+        <div class="row">
+          <div class="col-md-8 rocky">
+            <div class="">
+              <span class=""> 
+                <i class="fa fa-phone" aria-hidden="true"></i> 
+                +2348160831342 or +2348032428096
+              </span>
+              &nbsp;
+              <span> <i class="fa fa-envelope-o" aria-hidden="true"></i> 
+                info@nasmeoyo.org
+              </span>
+             </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bosses">
+              <div class=" d-flex justify-content-center">
+                
+                <div class="dropdown uyo fumni" >
+                  <li class="btn btn-success dropdown- d-inline-block" type="button" id=" dropdownMenuButton2" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search" style="background: #0ece0b ;">
+                    <i class="fas fa-search"></i>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="d-flex" autocomplete="off">
+                      <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-success" type="submit" style="color: #A8D6B4;"> <i class="fas fa-search"></i></button>
+                      </form>
+                  </ul>
+                </li>
+                </div> 
+
+              <div class="btn btn-success dropdown ibadan btn-group dropstart" id="ibadan">
+                <li class=" dropdown- d-inline-block" type="button" id=" dropdownMenuButton1"  title="sort by clusters/unit">
+                  <i class="fa fa-database" aria-hidden="true"></i>
+                
+                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+                  {% for unit in dashboard_units %}
+                  <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+              </div>
+              <!-- <div class="fumni" style="">
+                <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="search-box "autocomplete="off">
+                  <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
+                  <input type="text" name="search_query" class="input-search" placeholder="Search for members..">
+              </form>
+              </div> -->
+
+              
+              <i class="fa fa-facebook" aria-hidden="true" id="down"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+                
+                      
+      </div>
+  </nav>
+  
+</div>
+<!-- navbar -->
+<div class="donee">
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light"  id="mufu dropstart">
+    <div class="container-fluid"> 
+      <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse d-inline-flex justify-content-end oyo" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 dropstart">
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="https://nasmeoyo.org/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="https://nasmeoyo.org">Home</a>
+              <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Member's Page</a></li>
+                
+              </ul> -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/about-us/">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/blog">Unit & Cluster</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
+                Membership
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershiptypes">Membership Types</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipbenefits">Membership Benefit</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration/">NASME COOPERATIVE</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration/">Membership Registration</a></li>
+              </ul>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
+                Members' Portal
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/business-members">Current Members List</a></li>
+                <li><a class="dropdown-item" href="/login">Members Login</a></li>
+                <li><a class="dropdown-item" href="https://portal.nasmeoyo.org/admin">Login as Admin</a></li>
+              </ul>
+            </li>
+            
+           
+            <li class="nav-item ">
+              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
+                News & update
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/news-update/">Blog</a></li>
+                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/gallery-2">Gallery</a></li>
+                
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/contact-us">Contact us</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+</div>
+<br>
+    <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
+      <br>
+      <div class="container mom">
+        <div class="row">
+          <div class="col">
+            <div>
+              <label for="bus-photo" style="text-align: center; font-weight:bold; font-size:large;">Business Photo</label>
+              <br/>
+              <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
+              <br>
+              <p>Update Profile Picture</p>
+              <input type="file" name="business-photo" id="" class="btn btn-success">
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-control">
+              <label for="username" style="text-align: center; font-weight:bold; font-size:large;">Business Name</label>
+              <input type="text" id="username" name="business-name" placeholder="Business Name" required> <br>
+              <span class="error"></span>
+          </div>
+          <div class="container mt-5">
+        <h5>Select Unit</h5>
+        <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
+          {% for unit in units %}
+            {% if unit in member.units.all() %}
+              <option value="{{unit.name}}" selected>{{unit.name}}</option>
+            {% else %}
+              <option value="{{unit.name}}">{{unit.name}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+          <div class="input-control">
+            <label for="About Business" style="text-align: center; font-weight:bold; font-size:large;">About Business</label>
+            <textarea name="business-about" id="" cols="30" rows="10" placeholder="Write more about your business" required></textarea>
+            <span class="error"></span>
+        </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          <h1>Product/Service Images</h1>
+          <br>
+          <!-- <div class="row" id="viold">
+            <label for="files">Select display Image(s):</label>
+            <input class="btn btn-success" type="file" id="files" name="business-p-images" accept=".jpg, .png, .jpeg" multiple><br><br>
+          </div> -->
+          <div class="row" id="viold">
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="image-1" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="image-2" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="image-3" id="" class="btn btn-success">
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row" id="viold">
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="image-4" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="image-5" id="" class="btn btn-success">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" width="40%">
+                <br>
+                <p>Update Product Picture</p>
+                <input type="file" name="image-6" id="" class="btn btn-success">
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!--  -->
+        <br>
+        <div>
+          <h1>Links / Contact Information</h1>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-control">
+                <label for="bus-phone">Business Phone Number</label>
+                <input type="tel" id="bus-phone" name="business-phone" placeholder="Phone Number" required>
+                <span class="error"></span>
+              </div>
+              
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="bus-email">Business Email</label>
+            <input type="email" id="bus-email" name="business-email" placeholder="Email" required>
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="business-website" placeholder="website url" required>
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="bus-fac">Facebook Url</label>
+            <input type="text" id="bus-fac" name="business-facebook" placeholder="https://www.facebook.com/mybusiness/" required>
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="bus-fac">Twitter Url</label>
+            <input type="text" id="twitter-fac" name="business-twitter" placeholder="https://www.twitter.com/mybusiness/" required>
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="Email">LinkedIn Url</label>
+            <input type="text" id="LinkedIn" name="business-linkedin" placeholder="https://linkedin.com/url" required>
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            <label for="whatsapp">Whatsapp Number</label>
+            <input type="tel" id="whatsapp" name="business-whatsapp" placeholder="0808080" required>
+            <span class="error"></span>
+          </div>
+
+    </div>
+      </div>
+      <br>
+      <br>
+      <button class="btn btn-success" type="submit">Submit Form</button>
+      <br>
+      <br>
+        
+    </form>
+</body>
+  <!-- for units -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- for units -->
+</html>

@@ -1,0 +1,485 @@
+{% extends "member_layout.html" %}
+{% block content %} 
+    <style>
+    #form{
+             width: 80%;
+            margin: 5%;
+            padding: 10px;
+            font-size: 19px;
+            /* text-align: center;  */
+            /* margin-top: 20%; */
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: bold;
+            background-color: rgb(181, 203, 185); 
+            color: rgb(121, 146, 125);
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        /* #ric{
+            padding: 10px;
+            margin-top: 10px;
+            width: 100%;
+            color: white;
+            font-weight: bold;
+            background: #0b5836;
+            border: none;
+            border-radius: 4px;
+        }
+        #ric:hover{
+            background: #05ed88;
+            transition: 1s;
+        }
+        #rich{
+            background: green;
+            padding: 20px;
+            padding-bottom: 10%;
+            
+        }
+        #rich h2{
+            font-weight: bold;
+        }
+        #rach{
+            margin-top: 9%;
+            color: rgb(5, 89, 5);
+            font-weight: bold;
+            text-align: center;
+        }
+        #rach h3{
+            font-weight: bold;
+        } */
+        
+        .input-control{
+            display:flex;
+            flex-direction: column;
+        }
+        h1{
+          text-align: center;
+        }
+        .input-control input{
+            border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control textarea{
+          border: 2px solid #f0f0f0;
+            border-radius: 4px;
+            display: block;
+            font-size: 12px;
+            padding: 10px;
+            width: 100%;
+        }
+        .input-control textarea:focus{
+          outline: 0;
+        }
+        .input-control input:focus {
+            outline: 0;
+        }
+        .input-control.success input {
+            border-color: #09c372;
+        }
+        .input-control.error input {
+            border-color: #ff3660;
+        }
+        .input-control.error {
+            color: #ff3660;
+            font-size: 9px;
+            height: 13px;
+        }
+        #viold input{
+          width: 90%;
+        }
+        .olu{
+          width: 90%;
+        }
+        #bus-photo{
+          border-radius: 300%;
+          width: 40%;
+          background: white;
+        }
+        
+        #saul input{
+          width: 90%;
+        }
+  </style>
+
+
+  
+
+
+
+    <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
+      <br>
+      {{form.hidden_tag()}}
+      <div class="container mom">
+        <div class="row">
+          <div class="col " id="saul">
+            <div>
+              {{form.business_photo.label}}
+              <br>
+              <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
+              <br>
+              <br>
+
+              {% if form.business_photo.errors %}
+                {{ form.business_photo(class="btn btn-success text-md-start", accept=".jpg, .png, .jpeg") }}
+                {% for error in form.business_photo.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_photo(class="btn btn-success text-md-start text-capitalize", accept=".jpg, .png, .jpeg")}}
+              {% endif %}
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-control">
+              {{ form.business_name.label }}
+              
+              {% if form.business_name.errors %}
+                {{ form.business_name(required=True) }}
+                {% for error in form.business_name.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_name(required=True)}}
+              {% endif %}
+              <span class="error"></span>
+          </div>
+          <div class="container mt-5">
+        <h5>Select Unit</h5>
+        <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
+          {% for unit in units %}
+            {% if unit in member.units.all() %}
+              <option value="{{unit.name}}" selected class="text-lowercase">{{unit.name}}</option>
+            {% else %}
+              <option value="{{unit.name}}" class="text-lowercase">{{unit.name}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+
+          <div class="input-control">
+            {{ form.business_about.label }}
+              
+              {% if form.business_about.errors %}
+                {{ form.business_about(required=True)}}
+                {% for error in form.business_about.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_about(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+        <br>
+
+
+
+
+
+        
+          <div class="input-control">
+            {{ form.email.label }}
+              
+              {% if form.email.errors %}
+                {{ form.email(required=True)}}
+                {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.email(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+        <br>
+        
+          <div class="input-control">
+            {{ form.password.label }}
+              
+              {% if form.password.errors %}
+                {{ form.password(required=True)}}
+                {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.password(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+        <br>
+
+
+        
+          <div class="input-control">
+            {{ form.date_of_birth.label }}
+              
+              {% if form.date_of_birth.errors %}
+                {{ form.date_of_birth(required=True)}}
+                {% for error in form.date_of_birth.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.date_of_birth(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+        <br>
+
+
+        
+
+
+
+
+
+
+
+
+        <div class="input-control">
+            {{ form.business_services.label }}
+            
+              {% if form.business_services.errors %}
+                {{ form.business_services(required=True)}}
+                {% for error in form.business_services.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_services(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+        <br>
+        <div class="input-control">
+            {{ form.business_address.label }}
+             
+              {% if form.business_address.errors %}
+                {{ form.business_address(required=True)}}
+                {% for error in form.business_address.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_address(required=True)}}
+              {% endif %}
+            <span class="error"></span>
+        </div>
+
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          <h1>Product/Service Images</h1>
+          <br>
+          <!-- <div class="row" id="viold">
+            <label for="files">Select display Image(s):</label>
+            <input class="btn btn-success" type="file" id="files" name="business-p-images" accept=".jpg, .png, .jpeg" multiple><br><br>
+          </div> -->
+          <div class="row" id="viold">
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" width="40%">
+                <br>
+                {{form.business_product_image_1.label}}
+                {% if form.business_product_image_1.errors %}
+                  {{ form.business_product_image_1(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_1.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_1(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" width="40%">
+                <br>
+                {{form.business_product_image_2.label}}
+                {% if form.business_product_image_2.errors %}
+                  {{ form.business_product_image_2(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_2.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_2(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
+              </div>
+            </div>
+            
+            
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" width="40%">
+                <br>
+                {{form.business_product_image_3.label}}
+                {% if form.business_product_image_3.errors %}
+                  {{ form.business_product_image_3(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_3.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_3(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row" id="viold">
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" width="40%">
+                <br>
+                {{form.business_product_image_4.label}}
+                {% if form.business_product_image_4.errors %}
+                  {{ form.business_product_image_4(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_4.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_4(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" width="40%">
+                <br>
+                {{form.business_product_image_5.label}}
+                {% if form.business_product_image_5.errors %}
+                  {{ form.business_product_image_5(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_5.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_5(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div>
+                <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" width="40%">
+                <br>
+                {{form.business_product_image_6.label}}
+                {% if form.business_product_image_6.errors %}
+                  {{ form.business_product_image_6(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
+                  {% for error in form.business_product_image_6.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+                {% else %}
+                  {{ form.business_product_image_6(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!--  -->
+        <br>
+        <div>
+          <h1>Links / Contact Information</h1>
+          <br>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-control">
+                {{form.business_phone.label}}
+                {{form.business_phone(required=True, type="tel", id="bus-phone")}}
+                <span class="error"></span>
+              </div>
+              
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            {{form.business_email.label}}
+            {{form.business_email(required=True, type="email")}}
+            
+            <span class="error"></span>
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+              {{ form.business_website.label }}
+              {% if form.business_website.errors %}
+                {{ form.business_website}}
+                {% for error in form.business_website.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_website}}
+              {% endif %}
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            {{ form.business_facebook.label }}
+              {% if form.business_facebook.errors %}
+                {{ form.business_facebook}}
+                {% for error in form.business_facebook.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_facebook}}
+              {% endif %}
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            {{ form.business_twitter.label }}
+              {% if form.business_twitter.errors %}
+                {{ form.business_twitter}}
+                {% for error in form.business_twitter.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_twitter}}
+              {% endif %}
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            {{ form.business_linkedin.label }}
+              {% if form.business_linkedin.errors %}
+                {{ form.business_linkedin}}
+                {% for error in form.business_linkedin.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_linkedin}}
+              {% endif %}
+          </div>
+          
+        </div>
+        <div class="col-md-4">
+          <div class="input-control">
+            {{ form.business_whatsapp.label }}
+              {% if form.business_whatsapp.errors %}
+                {{ form.business_facebook}}
+                {% for error in form.business_whatsapp.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+              {% else %}
+                {{ form.business_whatsapp}}
+              {% endif %}
+          </div>
+
+    </div>
+      </div>
+      <br>
+      <br>
+      {{form.submit(class="btn btn-success", type="submit")}}
+      <br>
+      <br>
+        
+    </form>
+{% endblock content %}
