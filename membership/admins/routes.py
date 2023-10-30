@@ -313,10 +313,8 @@ def register_member():
 
 
   if form.validate_on_submit():
-    user = User(phone=form.phone.data)
-
-    add_member(user)
-
+    
+    add_member(form.phone.data)
     
     return(redirect(url_for("admins.manage_members")))
     
@@ -504,6 +502,15 @@ def edit_member(member_id):
       unit = Unit.query.filter_by(name=unit_name).all()[0]
       print('Unit: ', unit)
       inputted_units.append(unit)
+
+
+    for d in member.units:
+      print('D IN THE : ', d)
+      
+      print('About to clear member units')
+      member.units.remove(d)
+      print('Cleared member units...')
+
 
     for unit in inputted_units:
       member.units.append(unit)

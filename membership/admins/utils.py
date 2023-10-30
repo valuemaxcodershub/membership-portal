@@ -73,29 +73,26 @@ def parse_csv(csv_file):
       # user.password = secrets.token_urlsafe(8)
       db.session.add(user)
 
+
+
 def add_member(user, selected_units=None):
 
-  member = User.query.get_or_404(user.id)
+# checking whether the passed in user's phone number exists or not and creating new instance if not exists.
+  if User.query.filter_by(phone = user).first():
+    member = User.query.filter_by(phone= user).first()
+  else:
+    member = User(phone = user)
+
+  db.session.add(member)
+  db.session.commit()
+  
+  # checking whether units have been selected when a member's account is being updated
   if selected_units:
     inputted_units = []
     for unit_name in selected_units:
       unit = Unit.query.filter_by(name=unit_name).all()[0]
       inputted_units.append(unit)
-
-    print('From the appended, we have: ', inputted_units)
     
-    # member.units.delete_all()
-    # db.session.remove()
-    print('previous units: ', member.units.all())
-
-    print('Trying to addit now.')
     member.units = inputted_units
-    print('WoW!!!!!! Sucessfully done.....')
-    # for unit in inputted_units:
-    #   member.units.append(unit)
-
-    #   print('Added to ::; ', member.units.all())
-
-    # print('At the end:::: ', member.units.all())
-  db.session.add(member)
-  db.session.commit()
+    db.session.commit()
+    

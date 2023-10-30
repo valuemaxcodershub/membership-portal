@@ -152,7 +152,7 @@
         <h5>Select Unit</h5>
         <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
           {% for unit in units %}
-            {% if unit in member.units.all() %}
+            {% if unit in member.units %}
               <option value="{{unit.name}}" selected class="text-lowercase">{{unit.name}}</option>
             {% else %}
               <option value="{{unit.name}}" class="text-lowercase">{{unit.name}}</option>

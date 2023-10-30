@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 # from sqlalchemy.ext.hybrid import hybrid_property
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -13,11 +14,11 @@ user_unit = db.Table("user_unit",
   db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
   )
 
-#phone number is unique
+#phone number and business_email are unique
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   #db.backref fixes instrumentedlist error
-  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy='dynamic'), lazy="dynamic")
+  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
   username = db.Column(db.String(20), unique=True)
   email = db.Column(db.String(120), unique=True)
   phone = db.Column(db.String(60), unique=True)
@@ -77,7 +78,8 @@ class User(db.Model, UserMixin):
 
   def display_units(self):
     unit_names = []
-    for unit in self.units.all():
+    # for unit in self.units.all():
+    for unit in self.units:
       unit_names.append(unit.name)
 
     return ", ".join(unit_names)
@@ -85,7 +87,8 @@ class User(db.Model, UserMixin):
   #for csv export
   def unit_ids(self):
     unit_ids = []
-    for unit in self.units.all():
+    # for unit in self.units.all():
+    for unit in self.units:
       unit_ids.append(str(unit.id))
 
     return unit_ids
@@ -139,7 +142,7 @@ class User(db.Model, UserMixin):
       return User.query.get(user_id)
 
   def __repr__(self):
-    return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+    return f"User('{self.username} {self.phone}')"
 
 
 class Unit(db.Model):
