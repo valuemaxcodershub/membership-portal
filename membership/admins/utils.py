@@ -78,10 +78,10 @@ def parse_csv(csv_file):
 def add_member(user, selected_units=None):
 
 # checking whether the passed in user's phone number exists or not and creating new instance if not exists.
-  if User.query.filter_by(phone = user).first():
-    member = User.query.filter_by(phone= user).first()
+  if User.query.filter_by(business_phone = user).first():
+    member = User.query.filter_by(business_phone= user).first()
   else:
-    member = User(phone = user)
+    member = User(business_phone = user)
 
   db.session.add(member)
   db.session.commit()

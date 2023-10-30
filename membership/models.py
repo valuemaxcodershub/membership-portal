@@ -20,10 +20,10 @@ class User(db.Model, UserMixin):
   #db.backref fixes instrumentedlist error
   units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
   username = db.Column(db.String(20), unique=True)
-  email = db.Column(db.String(120), unique=True)
-  phone = db.Column(db.String(60), unique=True)
+  # email = db.Column(db.String(120), unique=True)
+  # phone = db.Column(db.String(60), unique=True)
   password = db.Column(db.String(60), nullable=False, default="12345678")
-  image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+  # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
   date_registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   role = db.Column(db.String(6), nullable=False, default="USER")
   _is_superadmin = db.Column("is_superadmin", db.Boolean, nullable=False, default=False)
@@ -35,9 +35,9 @@ class User(db.Model, UserMixin):
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
   has_filled_profile = db.Column(db.Boolean(), default=False)
   business_name = db.Column(db.String(77))
-  business_email = db.Column(db.String(120))
-  business_phone = db.Column(db.String(77))
-  business_photo = db.Column(db.String(20), default='default.jpg')
+  business_email = db.Column(db.String(120), unique = True)
+  business_phone = db.Column(db.String(77), unique = True)
+  business_photo = db.Column(db.String(20), nullable = False, default='default.jpg')
   business_about = db.Column(db.String(300))
   business_services = db.Column(db.String(300))
   #use image list
@@ -142,7 +142,7 @@ class User(db.Model, UserMixin):
       return User.query.get(user_id)
 
   def __repr__(self):
-    return f"User('{self.username} {self.phone}')"
+    return f"User('{self.username} {self.business_phone}')"
 
 
 class Unit(db.Model):

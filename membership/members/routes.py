@@ -86,7 +86,7 @@ def login():
     remember = form.remember.data
 
     
-    user = User.query.filter_by(phone=phone_input).first()
+    user = User.query.filter_by(business_phone=phone_input).first()
     if user and user.password == password_input:
       login_user(user, remember=remember)
       next_page = request.args.get('next')
@@ -108,10 +108,13 @@ def user_account():
   if form.validate_on_submit():
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
-      member.image_file = picture_file
+      # member.image_file = picture_file
+      member.business_photo = picture_file
 
-    member.email = form.email.data
-    member.phone = form.phone.data
+    # member.email = form.email.data
+    member.business_email = form.email.data
+    # member.phone = form.phone.data
+    member.business_phone = form.phone.data
     member.password = form.password.data
     
     db.session.add(member)
@@ -119,11 +122,14 @@ def user_account():
     flash("Account successfuly modified", "success")
     return(redirect(url_for("members.dashboard")))
   elif request.method == 'GET':
-    form.email.data = member.email
-    form.phone.data = member.phone
+    # form.email.data = member.email
+    form.email.data = member.business_email
+    # form.phone.data = member.phone
+    form.phone.data = member.business_phone
     form.password.data = member.password
 
-  image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  # image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  image_file = url_for('static', filename='profile_pics/' + member.business_photo )
   return render_template('user_account.html', member=member, form=form, image_file=image_file)
 
 
@@ -143,7 +149,7 @@ def edit_business_profile():
   if request.method == "GET":
     if member.business_name:
       form.business_name.data = member.business_name
-      form.email.data = member.email
+      # form.email.data = member.email
       form.business_email.data = member.business_email
       form.business_website.data = member.business_website
       form.business_phone.data = member.business_phone 
@@ -163,7 +169,7 @@ def edit_business_profile():
       
       member.business_name = form.business_name.data
       member.business_email = form.business_email.data
-      member.email = form.email.data
+      # member.email = form.email.data
       member.business_website = form.business_website.data
       member.business_phone = form.business_phone.data
       member.business_about = form.business_about.data
@@ -197,7 +203,8 @@ def edit_business_profile():
 
       selected_units = request.form.getlist('mymultiselect')
 
-      add_member(member.phone, selected_units=selected_units)
+      # add_member(member.phone, selected_units=selected_units)
+      add_member(member.business_phone, selected_units=selected_units)
 
       
 

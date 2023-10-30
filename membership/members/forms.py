@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextA
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from membership.models import User
 
+#The phone and email fields here represents the business phone and email fields
 class UserAccountForm(FlaskForm):
   email = StringField("Email", validators=[DataRequired(), Email()])
   picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
@@ -19,14 +20,14 @@ class UserAccountForm(FlaskForm):
         raise ValidationError('That username is taken. Please choose a different one.')
 
   def validate_email(self, email):
-    if email.data != self.current_member.email:
-      user = User.query.filter_by(email=email.data).first()
+    if email.data != self.current_member.business_email:
+      user = User.query.filter_by(business_email=email.data).first()
       if user:
         raise ValidationError('That email is taken. Please choose a different one.')
 
   def validate_phone(self, phone):
-    if phone.data != self.current_member.phone:
-      user = User.query.filter_by(phone=phone.data).first()
+    if phone.data != self.current_member.business_phone:
+      user = User.query.filter_by(business_phone=phone.data).first()
       if user:
         raise ValidationError('That phone number is taken. Please choose a different one.')
 
@@ -37,7 +38,7 @@ class CreateProfileForm(FlaskForm):
   business_website = StringField("Website Url")
   business_phone = StringField("Business Phone Number", validators=[DataRequired()])
   password = StringField("Password", validators=[DataRequired()])
-  email = StringField("Email", validators=[DataRequired(), Email()])
+  # email = StringField("Email", validators=[DataRequired(), Email()])
   date_of_birth = StringField()
   business_about = TextAreaField("About your business")
   business_address = StringField("Business Location")
@@ -55,7 +56,7 @@ class CreateProfileForm(FlaskForm):
   business_product_image_6 =  FileField('Display Picture 6', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
   submit = SubmitField("Edit Form")
 
-
+# the phone field here also represents the business email
 class UserLoginForm(FlaskForm):
   phone = StringField(validators=[DataRequired()])
   password = PasswordField("Password", validators=[DataRequired()])

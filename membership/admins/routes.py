@@ -12,6 +12,7 @@ import secrets
 import csv
 from sqlalchemy import or_
 from membership.admins.utils import DataStore, admin_role_required, super_admin_role_required, add_member
+from membership.members.routes import edit_business_profile
 
 admins = Blueprint("admins", __name__)
 
@@ -435,11 +436,14 @@ def edit_admin(admin_id):
   if form.validate_on_submit():
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
-      admin.image_file = picture_file
+      # admin.image_file = picture_file
+      admin.business_photo = picture_file
 
     admin.username = form.username.data
-    admin.email = form.email.data
-    admin.phone = form.phone.data
+    # admin.email = form.email.data
+    admin.business_email = form.email.data
+    # admin.phone = form.phone.data
+    admin.business_phone = form.phone.data
     admin.password = form.password.data
     
     db.session.add(admin)
@@ -449,7 +453,8 @@ def edit_admin(admin_id):
   elif request.method == 'GET':
     form.username.data = admin.username
     form.email.data = admin.email
-    form.phone.data = admin.phone
+    # form.phone.data = admin.phone
+    form.phone.data = admin.business_phone
     form.password.data = admin.password
 
   image_file = url_for('static', filename='profile_pics/' + admin.image_file)
@@ -480,18 +485,20 @@ def edit_member(member_id):
 
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
-      member.image_file = picture_file
+      # member.image_file = picture_file
       member.business_photo = picture_file
 
-    member.email = form.email.data
-    member.phone = form.phone.data
+    # member.business_email = form.email.data
+    # member.email = form.email.data
+    # member.phone = form.phone.data
+    # member.business_phone = form.phone.data
     member.password = form.password.data
     member.business_name = form.business_name.data
     member.business_about = form.business_about.data
-    member.business_email = form.business_email.data
+    member.business_email = form.email.data
     member.business_about = form.business_about.data
     member.business_address = form.business_address.data
-    member.business_phone = form.business_phone.data
+    member.business_phone = form.phone.data
     member.date_of_birth = form.date_of_birth.data
 
 
@@ -522,20 +529,22 @@ def edit_member(member_id):
   
 
   elif request.method == 'GET':
-    form.email.data = member.email
-    form.phone.data = member.phone
+    # form.email.data = member.business_email
+    # form.email.data = member.email
+    # form.phone.data = member.phone
     form.password.data = member.password
     form.date_of_birth.data = member.date_of_birth
     form.business_about.data = member.business_about
     form.business_name.data = member.business_name
-    form.business_email.data = member.business_email
+    form.email.data = member.business_email
     form.business_address.data = member.business_address
-    form.business_phone.data = member.business_phone
+    form.phone.data = member.business_phone
     
     db.session.add(member)
     db.session.commit()
 
-  image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  # image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  image_file = url_for('static', filename='profile_pics/' + member.business_photo)
   return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
 
 @admins.route('/admin/download-template')

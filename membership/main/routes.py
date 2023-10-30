@@ -67,7 +67,8 @@ def member_page(business_name):
   except IndexError:
     abort(404)
 
-  image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  # image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  image_file = url_for('static', filename='profile_pics/' + member.business_photo)
   
   return render_template("member_page.html", member=member, image_file=image_file)
 
