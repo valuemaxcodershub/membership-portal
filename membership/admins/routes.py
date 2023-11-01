@@ -330,7 +330,7 @@ def export_custom():
   if records:
     print(records[0].unit_ids())
   cw.writerow(["business_name", "phone", "email", "unit_ids"])
-  cw.writerows([( r.business_name, r.phone, r.email, "-".join(r.unit_ids()) ) for r in records])
+  cw.writerows([( r.business_name, r.business_phone, r.business_email, "-".join(r.unit_ids()) ) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
@@ -401,7 +401,7 @@ def register_admin():
 
   
   if form.validate_on_submit():
-    user = User(email=form.email.data)
+    user = User(business_email=form.email.data)
     user.role = "ADMIN"
     if form.is_superadmin.data:
       user.is_superadmin = True
@@ -452,12 +452,12 @@ def edit_admin(admin_id):
     return(redirect(url_for("admins.manage_admins", member_id=admin.id)))
   elif request.method == 'GET':
     form.username.data = admin.username
-    form.email.data = admin.email
+    form.email.data = admin.business_email
     # form.phone.data = admin.phone
     form.phone.data = admin.business_phone
     form.password.data = admin.password
 
-  image_file = url_for('static', filename='profile_pics/' + admin.image_file)
+  image_file = url_for('static', filename='profile_pics/' + admin.business_photo)
   return render_template('edit_admin_detail.html', admin=admin, form=form, image_file=image_file)
 
 

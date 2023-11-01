@@ -113,13 +113,13 @@ class UpdateAdminForm(FlaskForm):
         raise ValidationError('That username is taken. Please choose a different one.')
 
   def validate_email(self, email):
-    if email.data != self.current_member.email:
-      user = User.query.filter_by(email=email.data).first()
+    if email.data != self.current_member.business_email:
+      user = User.query.filter_by(business_email=email.data).first()
       if user:
         raise ValidationError('That email is taken. Please choose a different one.')
 
   def validate_phone(self, phone):
-    if phone.data != self.current_member.phone:
-      user = User.query.filter_by(phone=phone.data).first()
+    if phone.data != self.current_member.business_phone:
+      user = User.query.filter_by(business_phone=phone.data).first()
       if user:
         raise ValidationError('That phone number is taken. Please choose a different one.')

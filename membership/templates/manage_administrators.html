@@ -63,12 +63,12 @@
 							{% for admin in admins.items %}
 						  <tr>
 							<td>{{admin.username}}</td>
-							<td>{{ admin.phone }}</td>
-							<td>{{ admin.email }}</td>
+							<td>{{ admin.business_phone }}</td>
+							<td>{{ admin.business_email }}</td>
 							<td>
 								<a role="button" class="btn btn-primary" href="{{ url_for('admins.edit_admin', admin_id=admin.id) }}" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit Member Profile"></i></a>
 
-								<a type="button" class="btn btn-warning"  dataId="{{admin.id}}" dataImage="/static/profile_pics/{{admin.image_file }}" dataName="{{ admin.username }}" dataEmail="{{admin.email}}" dataPhone="{{admin.phone}}" dataPassword="{{ admin.password }}" dataUnits="{{admin.display_units()}}" dataDateReg="{{ admin.date_registered }}" dataOccupation="{{ admin.occupation }}" dataHomeAddr="{{ admin.home_address }}" dataWorkAddre="{{ admin.work_address }}" dataExperience = "{{admin.experience}}" dataCurrentSalary="{{admin.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-toggle="tooltip" data-placement="top" title="View Member Profile"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Profile"></i></a>
+								<a type="button" class="btn btn-warning"  dataId="{{admin.id}}" dataImage="/static/profile_pics/{{admin.business_photo }}" dataName="{{ admin.username }}" dataEmail="{{admin.business_email}}" dataPhone="{{admin.business_phone}}" dataPassword="{{ admin.password }}" dataUnits="{{admin.display_units()}}" dataDateReg="{{ admin.date_registered }}" dataOccupation="{{ admin.occupation }}" dataHomeAddr="{{ admin.home_address }}" dataWorkAddre="{{ admin.work_address }}" dataExperience = "{{admin.experience}}" dataCurrentSalary="{{admin.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-toggle="tooltip" data-placement="top" title="View Member Profile"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="View Member Profile"></i></a>
 
 								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{admin.id}}" dataName="{{admin.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"><i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete Member Profile"></i></a>
 							</td>
