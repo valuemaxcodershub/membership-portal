@@ -11,6 +11,7 @@ def load_user(user_id):
 user_unit = db.Table("user_unit",
   db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
   db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
+  
   )
 
 #phone number is unique
