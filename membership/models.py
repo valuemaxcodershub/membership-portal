@@ -20,7 +20,7 @@ user_unit = db.Table("user_unit",
 #phone number and business_email are unique
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
-  #db.backref fixes instrumentedlist error
+  #db.backref fixes instrumentedlist error --- now fixed
   units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
   username = db.Column(db.String(20), unique=True)
   # email = db.Column(db.String(120), unique=True)
