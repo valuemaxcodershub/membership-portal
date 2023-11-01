@@ -14,6 +14,9 @@ user_unit = db.Table("user_unit",
   db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
   )
 
+
+
+
 #phone number and business_email are unique
 class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
