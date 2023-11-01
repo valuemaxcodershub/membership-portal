@@ -4,6 +4,10 @@ from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 # from sqlalchemy.ext.hybrid import hybrid_property
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> clone-main-branch
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -11,6 +15,7 @@ def load_user(user_id):
 user_unit = db.Table("user_unit",
   db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
   db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
+<<<<<<< HEAD
   
   )
 
@@ -24,6 +29,23 @@ class User(db.Model, UserMixin):
   phone = db.Column(db.String(60), unique=True)
   password = db.Column(db.String(60), nullable=False, default="12345678")
   image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+=======
+  )
+
+
+
+
+#phone number and business_email are unique
+class User(db.Model, UserMixin):
+  id = db.Column(db.Integer, primary_key=True)
+  #db.backref fixes instrumentedlist error --- now fixed
+  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
+  username = db.Column(db.String(20), unique=True)
+  # email = db.Column(db.String(120), unique=True)
+  # phone = db.Column(db.String(60), unique=True)
+  password = db.Column(db.String(60), nullable=False, default="12345678")
+  # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+>>>>>>> clone-main-branch
   date_registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   role = db.Column(db.String(6), nullable=False, default="USER")
   _is_superadmin = db.Column("is_superadmin", db.Boolean, nullable=False, default=False)
@@ -35,9 +57,15 @@ class User(db.Model, UserMixin):
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
   has_filled_profile = db.Column(db.Boolean(), default=False)
   business_name = db.Column(db.String(77))
+<<<<<<< HEAD
   business_email = db.Column(db.String(120))
   business_phone = db.Column(db.String(77))
   business_photo = db.Column(db.String(20), default='default.jpg')
+=======
+  business_email = db.Column(db.String(120), unique = True)
+  business_phone = db.Column(db.String(77), unique = True)
+  business_photo = db.Column(db.String(20), nullable = False, default='default.jpg')
+>>>>>>> clone-main-branch
   business_about = db.Column(db.String(300))
   business_services = db.Column(db.String(300))
   #use image list
@@ -60,9 +88,17 @@ class User(db.Model, UserMixin):
                                       backref='member_recipient', lazy='dynamic')
   last_message_read_time = db.Column(db.DateTime)
 
+<<<<<<< HEAD
 
   def new_messages(self):
     last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+=======
+  
+  
+  def new_messages(self):
+    last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+    
+>>>>>>> clone-main-branch
     #recipient should be units recieving
     # count = 0
     # for unit in self.units:
@@ -76,7 +112,12 @@ class User(db.Model, UserMixin):
 
   def display_units(self):
     unit_names = []
+<<<<<<< HEAD
     for unit in self.units.all():
+=======
+    # for unit in self.units.all():
+    for unit in self.units:
+>>>>>>> clone-main-branch
       unit_names.append(unit.name)
 
     return ", ".join(unit_names)
@@ -84,7 +125,12 @@ class User(db.Model, UserMixin):
   #for csv export
   def unit_ids(self):
     unit_ids = []
+<<<<<<< HEAD
     for unit in self.units.all():
+=======
+    # for unit in self.units.all():
+    for unit in self.units:
+>>>>>>> clone-main-branch
       unit_ids.append(str(unit.id))
 
     return unit_ids
@@ -138,7 +184,11 @@ class User(db.Model, UserMixin):
       return User.query.get(user_id)
 
   def __repr__(self):
+<<<<<<< HEAD
     return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+=======
+    return f"User('{self.username} {self.business_phone}')"
+>>>>>>> clone-main-branch
 
 
 class Unit(db.Model):

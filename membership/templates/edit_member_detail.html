@@ -244,9 +244,15 @@
       {{ form.email }}
     {% endif %}
 
+<<<<<<< HEAD
     <!-- <br /> -->
     <!-- <br /> -->
     <!-- {{ form.password.label }}
+=======
+    <br /> 
+    <br /> 
+    {{ form.password.label }}
+>>>>>>> clone-main-branch
     <br />
     {% if form.password.errors %}
       {{ form.password }}
@@ -255,10 +261,56 @@
       {% endfor %}
     {% else %}
       {{ form.password }}
+<<<<<<< HEAD
     {% endif %} -->
 
     <br />
     <br />
+=======
+    {% endif %} 
+
+
+
+
+    <br />
+    <br />
+    {{ form.date_of_birth.label }}
+    <br />
+    {% if form.date_of_birth.errors %}
+      {{ form.date_of_birth }}
+      {% for error in form.date_of_birth.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.date_of_birth }}
+    {% endif %}
+    
+
+
+    <br />
+    <br />
+
+    {# 
+    <br />
+    <br />
+    {{ form.business_phone.label }}
+    <br />
+    {% if form.business_phone.errors %}
+      {{ form.business_phone }}
+      {% for error in form.business_phone.errors %}
+          <span>{{ error }}</span>
+      {% endfor %}
+    {% else %}
+      {{ form.business_phone }}
+    {% endif %}
+
+    #}
+
+    <br />
+
+    {#
+    <br />
+>>>>>>> clone-main-branch
     {{ form.business_email.label }}
     <br />
     {% if form.business_email.errors %}
@@ -270,6 +322,11 @@
       {{ form.business_email }}
     {% endif %}
 
+<<<<<<< HEAD
+=======
+    #}
+
+>>>>>>> clone-main-branch
     <br />
     <br />
     {{ form.business_about.label }}
@@ -303,7 +360,11 @@
         <h5>Select Unit</h5>
         <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
           {% for unit in units %}
+<<<<<<< HEAD
             {% if unit in member.units.all() %}
+=======
+            {% if unit in member.units %}
+>>>>>>> clone-main-branch
               <option value="{{unit.name}}" selected>{{unit.name}}</option>
             {% else %}
               <option value="{{unit.name}}">{{unit.name}}</option>

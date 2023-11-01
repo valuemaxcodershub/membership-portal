@@ -109,7 +109,11 @@
 							{% for member in members.items %}
 						  <tr>
 							<td>{{member.business_name}}</td>
+<<<<<<< HEAD
 							<td>{{ member.phone }}</td>
+=======
+							<td>{{ member.business_phone }}</td>
+>>>>>>> clone-main-branch
 							<td>{{ member.business_email }}</td>
 							<td>
 							{{member.display_units()}}
@@ -131,7 +135,11 @@
 
 								<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#Messagedrop"  data-placement="top" title="Send Message To Member" id="{{member.id}}" dataName="{{member.business_name}}" data-toggle="modal" data-target="#exampleModal" onclick="messageUserFunction(this)"> <i class="fa fa-comments-o" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Send Message To Member"></i></button>
 
+<<<<<<< HEAD
 								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.image_file }}" dataName="{{ member.username }}" dataEmail="{{member.email}}" dataPhone="{{member.phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
+=======
+								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.business_photo }}" dataName="{{ member.username }}" dataEmail="{{member.business_email}}" dataPhone="{{member.business_phone}}" dataPassword="{{ member.password }}" dataUnits="{{member.display_units()}}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
+>>>>>>> clone-main-branch
 
 								{% if member._is_suspended %}
 								<a class="btn btn-light" href="#" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member" data-toggle="modal" id="{{member.id}}" dataName="{{member.business_name}}" data-target="#suspendmodal"  onclick="unsuspendFunction(this)"><i class="fa fa-unlock" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Unsuspend Member"></i></a>
@@ -384,7 +392,11 @@
 						    	document.getElementById('modalUserImage').src = dataImage;
 						    	$('#modalUserName').text('Name:  ' + dataName);
 						    	$('#modalUserEmail').text('Email:  ' + dataEmail);
+<<<<<<< HEAD
 						    	$('#modalUserId').text('Name:  ' + dataName);
+=======
+						    	// $('#modalUserId').text('Name:  ' + dataName);
+>>>>>>> clone-main-branch
 						    	$('#modalUserPhone').text('Phone:  ' + dataPhone);
 						    	$('#modalUserPassword').text('Password:  ' + dataPassword);
 						    	$('#modalUserUnits').text('Units:  ' + dataUnits);

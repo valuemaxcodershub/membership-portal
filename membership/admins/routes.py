@@ -12,6 +12,10 @@ import secrets
 import csv
 from sqlalchemy import or_
 from membership.admins.utils import DataStore, admin_role_required, super_admin_role_required, add_member
+<<<<<<< HEAD
+=======
+from membership.members.routes import edit_business_profile
+>>>>>>> clone-main-branch
 
 admins = Blueprint("admins", __name__)
 
@@ -216,6 +220,10 @@ def suspend_user():
   flash("Action Successful")
   return redirect(url_for('admins.manage_members', page=page_num))
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> clone-main-branch
 @admins.route("/admin/delete_user", methods=['POST'])
 @admin_role_required
 def delete_user():
@@ -227,8 +235,18 @@ def delete_user():
   else:
     link = 'admins.manage_admins'
 
+<<<<<<< HEAD
   db.session.delete(user)
   db.session.commit()
+=======
+    
+
+  db.session.delete(user)
+  db.session.commit()
+
+
+
+>>>>>>> clone-main-branch
   flash("User deleted successfuly")
   page_num = request.form['page']
 
@@ -237,12 +255,33 @@ def delete_user():
 @admins.route("/admin/delete_unit", methods=['POST'])
 @admin_role_required
 def delete_unit():
+<<<<<<< HEAD
   unit_id = int(request.form['unit_id'])
   unit = Unit.query.get_or_404(unit_id)
 
   db.session.delete(unit)
   db.session.commit()
   flash("Unit deleted successfuly")
+=======
+
+  print('OKAY: ', request.form.get('unit_id'))
+  # print(request.args.get('unit_id'))
+
+  if request.form.get('unit_id'):
+
+    print('DELETE UNIT CLICKED')
+    print(request.form['unit_id'])
+    print(type(request.form['unit_id']))
+
+    # print(request.form)
+    unit_id = int(request.form['unit_id'])
+    unit = Unit.query.get_or_404(unit_id)
+    print('Unit: ', unit, 'ID: ', unit.id)
+    db.session.delete(unit)
+    db.session.commit()
+    flash("Unit deleted successfuly")
+  
+>>>>>>> clone-main-branch
   next_page = request.args.get('next')
   return redirect(next_page) if next_page else redirect(url_for('admins.manage_units'))
 
@@ -295,10 +334,15 @@ def register_member():
 
 
   if form.validate_on_submit():
+<<<<<<< HEAD
     user = User(phone=form.phone.data)
 
     add_member(user)
 
+=======
+    
+    add_member(form.phone.data)
+>>>>>>> clone-main-branch
     
     return(redirect(url_for("admins.manage_members")))
     
@@ -313,7 +357,11 @@ def export_custom():
   if records:
     print(records[0].unit_ids())
   cw.writerow(["business_name", "phone", "email", "unit_ids"])
+<<<<<<< HEAD
   cw.writerows([( r.business_name, r.phone, r.email, "-".join(r.unit_ids()) ) for r in records])
+=======
+  cw.writerows([( r.business_name, r.business_phone, r.business_email, "-".join(r.unit_ids()) ) for r in records])
+>>>>>>> clone-main-branch
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
@@ -384,7 +432,11 @@ def register_admin():
 
   
   if form.validate_on_submit():
+<<<<<<< HEAD
     user = User(email=form.email.data)
+=======
+    user = User(business_email=form.email.data)
+>>>>>>> clone-main-branch
     user.role = "ADMIN"
     if form.is_superadmin.data:
       user.is_superadmin = True
@@ -419,11 +471,22 @@ def edit_admin(admin_id):
   if form.validate_on_submit():
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
+<<<<<<< HEAD
       admin.image_file = picture_file
 
     admin.username = form.username.data
     admin.email = form.email.data
     admin.phone = form.phone.data
+=======
+      # admin.image_file = picture_file
+      admin.business_photo = picture_file
+
+    admin.username = form.username.data
+    # admin.email = form.email.data
+    admin.business_email = form.email.data
+    # admin.phone = form.phone.data
+    admin.business_phone = form.phone.data
+>>>>>>> clone-main-branch
     admin.password = form.password.data
     
     db.session.add(admin)
@@ -432,11 +495,20 @@ def edit_admin(admin_id):
     return(redirect(url_for("admins.manage_admins", member_id=admin.id)))
   elif request.method == 'GET':
     form.username.data = admin.username
+<<<<<<< HEAD
     form.email.data = admin.email
     form.phone.data = admin.phone
     form.password.data = admin.password
 
   image_file = url_for('static', filename='profile_pics/' + admin.image_file)
+=======
+    form.email.data = admin.business_email
+    # form.phone.data = admin.phone
+    form.phone.data = admin.business_phone
+    form.password.data = admin.password
+
+  image_file = url_for('static', filename='profile_pics/' + admin.business_photo)
+>>>>>>> clone-main-branch
   return render_template('edit_admin_detail.html', admin=admin, form=form, image_file=image_file)
 
 
@@ -449,11 +521,16 @@ def edit_admin(admin_id):
 @admins.route('/admin/manage/<int:member_id>/edit', methods=("GET", "POST"))
 @login_required
 def edit_member(member_id):
+<<<<<<< HEAD
+=======
+  print('In edit member page.')
+>>>>>>> clone-main-branch
   if current_user.role == "USER":
     return redirect(url_for('admins.home'))
   member = User.query.get_or_404(member_id)
 
   form = UpdateMemberForm()
+<<<<<<< HEAD
 
   units = Unit.query.all()
 
@@ -480,6 +557,51 @@ def edit_member(member_id):
       unit = Unit.query.filter_by(name=unit_name).all()[0]
       inputted_units.append(unit)
 
+=======
+  units = Unit.query.all()
+  form.current_member = member
+
+  if form.validate_on_submit():
+    
+    # Trying to update both the business_photo and image_file fields when there is a new upload
+
+    if form.picture.data:
+      picture_file = save_picture(form.picture.data)
+      # member.image_file = picture_file
+      member.business_photo = picture_file
+
+    # member.business_email = form.email.data
+    # member.email = form.email.data
+    # member.phone = form.phone.data
+    # member.business_phone = form.phone.data
+    member.password = form.password.data
+    member.business_name = form.business_name.data
+    member.business_about = form.business_about.data
+    member.business_email = form.email.data
+    member.business_about = form.business_about.data
+    member.business_address = form.business_address.data
+    member.business_phone = form.phone.data
+    member.date_of_birth = form.date_of_birth.data
+
+
+    selected_units = request.form.getlist('mymultiselect')
+
+    inputted_units = []
+    for unit_name in selected_units:
+      unit = Unit.query.filter_by(name=unit_name).all()[0]
+      print('Unit: ', unit)
+      inputted_units.append(unit)
+
+
+    for d in member.units:
+      print('D IN THE : ', d)
+      
+      print('About to clear member units')
+      member.units.remove(d)
+      print('Cleared member units...')
+
+
+>>>>>>> clone-main-branch
     for unit in inputted_units:
       member.units.append(unit)
     
@@ -487,6 +609,7 @@ def edit_member(member_id):
     db.session.commit()
     flash("Account successfuly modified", "success")
     return(redirect(url_for("admins.manage_members")))
+<<<<<<< HEAD
   elif request.method == 'GET':
     form.email.data = member.email
     form.phone.data = member.phone
@@ -497,6 +620,27 @@ def edit_member(member_id):
     form.business_address.data = member.business_address
 
   image_file = url_for('static', filename='profile_pics/' + member.image_file)
+=======
+  
+
+  elif request.method == 'GET':
+    # form.email.data = member.business_email
+    # form.email.data = member.email
+    # form.phone.data = member.phone
+    form.password.data = member.password
+    form.date_of_birth.data = member.date_of_birth
+    form.business_about.data = member.business_about
+    form.business_name.data = member.business_name
+    form.email.data = member.business_email
+    form.business_address.data = member.business_address
+    form.phone.data = member.business_phone
+    
+    db.session.add(member)
+    db.session.commit()
+
+  # image_file = url_for('static', filename='profile_pics/' + member.image_file)
+  image_file = url_for('static', filename='profile_pics/' + member.business_photo)
+>>>>>>> clone-main-branch
   return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
 
 @admins.route('/admin/download-template')

@@ -33,12 +33,20 @@ class AdminRegistrationForm(FlaskForm):
       raise ValidationError('That username is taken. Please choose a different one.')
 
   def validate_email(self, email):
+<<<<<<< HEAD
     user = User.query.filter_by(email=email.data).first()
+=======
+    user = User.query.filter_by(business_email=email.data).first()
+>>>>>>> clone-main-branch
     if user:
       raise ValidationError('That email is taken. Please choose a different one.')
 
   def validate_phone(self, phone):
+<<<<<<< HEAD
     user = User.query.filter_by(phone=phone.data).first()
+=======
+    user = User.query.filter_by(business_phone=phone.data).first()
+>>>>>>> clone-main-branch
     if user:
       raise ValidationError('That phone number is taken. Please choose a different one.')
 
@@ -49,7 +57,11 @@ class UserRegistrationForm(FlaskForm):
   submit = SubmitField("Add Member")
 
   def validate_phone(self, phone):
+<<<<<<< HEAD
     user = User.query.filter_by(phone=phone.data).first()
+=======
+    user = User.query.filter_by(business_phone=phone.data).first()
+>>>>>>> clone-main-branch
     if user:
       raise ValidationError('That phone number is taken. Please choose a different one.')
 
@@ -72,8 +84,14 @@ class UpdateMemberForm(FlaskForm):
   business_name = StringField()
   business_about = StringField()
   business_address = StringField()
+<<<<<<< HEAD
   date_of_birth = StringField()
   business_email = StringField()
+=======
+  # business_phone = StringField()
+  date_of_birth = StringField()
+  # business_email = StringField()
+>>>>>>> clone-main-branch
   submit = SubmitField("Edit Member")
   current_member = None
 
@@ -84,14 +102,24 @@ class UpdateMemberForm(FlaskForm):
         raise ValidationError('That username is taken. Please choose a different one.')
 
   def validate_email(self, email):
+<<<<<<< HEAD
     if email.data != self.current_member.email:
       user = User.query.filter_by(email=email.data).first()
+=======
+    if email.data != self.current_member.business_email:
+      user = User.query.filter_by(business_email=email.data).first()
+>>>>>>> clone-main-branch
       if user:
         raise ValidationError('That email is taken. Please choose a different one.')
 
   def validate_phone(self, phone):
+<<<<<<< HEAD
     if phone.data != self.current_member.phone:
       user = User.query.filter_by(phone=phone.data).first()
+=======
+    if phone.data != self.current_member.business_phone:
+      user = User.query.filter_by(business_phone=phone.data).first()
+>>>>>>> clone-main-branch
       if user:
         raise ValidationError('That phone number is taken. Please choose a different one.')
 
@@ -112,13 +140,23 @@ class UpdateAdminForm(FlaskForm):
         raise ValidationError('That username is taken. Please choose a different one.')
 
   def validate_email(self, email):
+<<<<<<< HEAD
     if email.data != self.current_member.email:
       user = User.query.filter_by(email=email.data).first()
+=======
+    if email.data != self.current_member.business_email:
+      user = User.query.filter_by(business_email=email.data).first()
+>>>>>>> clone-main-branch
       if user:
         raise ValidationError('That email is taken. Please choose a different one.')
 
   def validate_phone(self, phone):
+<<<<<<< HEAD
     if phone.data != self.current_member.phone:
       user = User.query.filter_by(phone=phone.data).first()
+=======
+    if phone.data != self.current_member.business_phone:
+      user = User.query.filter_by(business_phone=phone.data).first()
+>>>>>>> clone-main-branch
       if user:
         raise ValidationError('That phone number is taken. Please choose a different one.')
