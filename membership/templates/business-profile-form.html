@@ -105,15 +105,12 @@
           width: 90%;
         }
   </style>
-<<<<<<< HEAD
-=======
 
 
   
 
 
 
->>>>>>> clone-main-branch
     <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
       <br>
       {{form.hidden_tag()}}
@@ -155,11 +152,7 @@
         <h5>Select Unit</h5>
         <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
           {% for unit in units %}
-<<<<<<< HEAD
-            {% if unit in member.units.all() %}
-=======
             {% if unit in member.units %}
->>>>>>> clone-main-branch
               <option value="{{unit.name}}" selected class="text-lowercase">{{unit.name}}</option>
             {% else %}
               <option value="{{unit.name}}" class="text-lowercase">{{unit.name}}</option>
@@ -168,10 +161,6 @@
         </select>
       </div>
       <br>
-<<<<<<< HEAD
-=======
-
->>>>>>> clone-main-branch
           <div class="input-control">
             {{ form.business_about.label }}
               
@@ -186,8 +175,6 @@
             <span class="error"></span>
         </div>
         <br>
-<<<<<<< HEAD
-=======
 
 
 
@@ -253,7 +240,6 @@
 
 
 
->>>>>>> clone-main-branch
         <div class="input-control">
             {{ form.business_services.label }}
             

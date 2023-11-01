@@ -14,15 +14,10 @@ def inject_menu():
 
     # Fill in with your actual menu dictionary:
     dashboard_units = Unit.query.all()
-<<<<<<< HEAD
-
-    return dict(dashboard_units=dashboard_units)
-=======
     logged_in_user = current_user
     
    
     return dict(dashboard_units=dashboard_units, loggedinuser = logged_in_user)
->>>>>>> clone-main-branch
 
 
 @main.route("/")
@@ -30,10 +25,7 @@ def inject_menu():
 def business_members():
   members = User.query.filter_by(role="USER").filter(User.business_name!=None).filter(User._is_suspended==False).all()
   units = Unit.query.all()
-<<<<<<< HEAD
-=======
   
->>>>>>> clone-main-branch
 
   return render_template("business_member.html", members= members, units=units)
 
@@ -75,12 +67,8 @@ def member_page(business_name):
   except IndexError:
     abort(404)
 
-<<<<<<< HEAD
-  image_file = url_for('static', filename='profile_pics/' + member.image_file)
-=======
   # image_file = url_for('static', filename='profile_pics/' + member.image_file)
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
->>>>>>> clone-main-branch
   
   return render_template("member_page.html", member=member, image_file=image_file)
 
@@ -97,12 +85,6 @@ def reset_request():
   if request.method == "POST":
     email_input = request.form['email']
     user = User.query.filter_by(email=email_input).first()
-<<<<<<< HEAD
-    if user:
-      send_reset_email(user)
-      flash('An email has been sent with instructions to reset your password.', 'info')
-      return redirect(url_for('members.member-home'))
-=======
 
     
     if user:
@@ -112,7 +94,6 @@ def reset_request():
         return redirect(url_for('admins.admin_login'))
       else:
         return redirect(url_for('members.login'))
->>>>>>> clone-main-branch
     else:
       flash('There is no account with that email. You must register first.', 'info')
   return render_template('reset_request.html', title='Reset Password')

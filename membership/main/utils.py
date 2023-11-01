@@ -35,12 +35,8 @@ def send_reset_email(user):
 {url_for('main.reset_token', token=token, _external=True)}
 If you did not make this request then simply ignore this email and no changes will be made.
 '''
-<<<<<<< HEAD
-  mail.send(msg)
-=======
   
   try:
     mail.send(msg)
   except:
      return "Sorry, can't perform this action! Please, connect to the internet and try again."
->>>>>>> clone-main-branch

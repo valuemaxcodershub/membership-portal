@@ -51,11 +51,6 @@ def parse_csv(csv_file):
     #compulsory items
     params = ["phone"]
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> clone-main-branch
     for row in csv_reader:
       user = User()
       #Set the values of the items that exist in class
@@ -63,11 +58,6 @@ def parse_csv(csv_file):
         if key in params:
           print(f"{key} =  {value}")
           setattr(user, key, value)
-<<<<<<< HEAD
-         
-            
-=======
->>>>>>> clone-main-branch
 
       # assign units
       if "unit_ids" in params:
@@ -83,9 +73,6 @@ def parse_csv(csv_file):
       # user.password = secrets.token_urlsafe(8)
       db.session.add(user)
 
-<<<<<<< HEAD
-def add_member(user, selected_units=None):
-=======
 
 
 def add_member(user, selected_units=None):
@@ -100,22 +87,12 @@ def add_member(user, selected_units=None):
   db.session.commit()
   
   # checking whether units have been selected when a member's account is being updated
->>>>>>> clone-main-branch
   if selected_units:
     inputted_units = []
     for unit_name in selected_units:
       unit = Unit.query.filter_by(name=unit_name).all()[0]
       inputted_units.append(unit)
-<<<<<<< HEAD
-
-    for unit in inputted_units:
-      user.units.append(unit)
-
-  db.session.add(user)
-  db.session.commit()
-=======
     
     member.units = inputted_units
     db.session.commit()
     
->>>>>>> clone-main-branch
