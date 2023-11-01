@@ -15,21 +15,6 @@ def load_user(user_id):
 user_unit = db.Table("user_unit",
   db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
   db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
-<<<<<<< HEAD
-  
-  )
-
-#phone number is unique
-class User(db.Model, UserMixin):
-  id = db.Column(db.Integer, primary_key=True)
-  #db.backref fixes instrumentedlist error
-  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy='dynamic'), lazy="dynamic")
-  username = db.Column(db.String(20), unique=True)
-  email = db.Column(db.String(120), unique=True)
-  phone = db.Column(db.String(60), unique=True)
-  password = db.Column(db.String(60), nullable=False, default="12345678")
-  image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-=======
   )
 
 
@@ -45,7 +30,6 @@ class User(db.Model, UserMixin):
   # phone = db.Column(db.String(60), unique=True)
   password = db.Column(db.String(60), nullable=False, default="12345678")
   # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
->>>>>>> clone-main-branch
   date_registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   role = db.Column(db.String(6), nullable=False, default="USER")
   _is_superadmin = db.Column("is_superadmin", db.Boolean, nullable=False, default=False)
