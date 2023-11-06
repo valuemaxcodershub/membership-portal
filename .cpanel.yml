@@ -1,6 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/nasmeoyo/public_html/
+    #- export DEPLOYPATH=/home/nasmeoyo/public_html/
+    - export DEPLOYPATH=/home/nasmeoyo/membership_portal/
     - /bin/cp -R * $DEPLOYPATH
  
