@@ -156,7 +156,7 @@ def admin_login():
     email_input = form.email.data
     password_input = form.password.data
     remember = form.remember.data
-    admin = User.query.filter_by(role="ADMIN").filter_by(email=email_input).first()
+    admin = User.query.filter_by(role="ADMIN").filter_by(business_email=email_input).first()
     if admin and admin.password == password_input:
       login_user(admin, remember=remember)
       next_page = request.args.get('next')
@@ -572,8 +572,8 @@ def export_db():
   cw = csv.writer(si)
   records = User.query.all()   # or a filtered set, of course
   # any table method that extracts an iterable will work
-  cw.writerow(["phone", "email", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience", "date_of_birth"])
-  cw.writerows([(r.phone, r.email, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address, r.date_of_birth) for r in records])
+  cw.writerow(["phone", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience", "date_of_birth"])
+  cw.writerows([(r.phone, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address, r.date_of_birth) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
