@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
     <br />
-    <img src= /static/profile_pics/{{ member.image_file }}>
+    <img src= "/static/profile_pics/{{ member.image_file }}"/>
     <p><b>Member Id: #{{ member.id }}</b></p>
-    <p><b>Full Name: {{ member.username }}</b</p>
+    <p><b>Full Name: {{ member.username }}</b></p>
     <p>Email: {{ member.email }}</p>
     <p>Phone: {{ member.phone }}</p>
     <p>Password: {{ member.password }}</p>
