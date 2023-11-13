@@ -29,13 +29,13 @@ def inject_menu():
 @user_role_required
 def my_dues():
   
-  return render_template("member_construction.html")
+  return render_template("member/member_construction.html")
 
 @members.route('/transaction-history', methods=['GET', 'POST'])
 @user_role_required
 def transaction_history():
 
-  return render_template("member_construction.html")
+  return render_template("member/member_construction.html")
 
 
 @members.route("/member-home", methods=["GET", "POST"])
@@ -52,7 +52,7 @@ def member_home():
 def dashboard():
   member = current_user
 
-  return render_template("member_index.html", member=member)
+  return render_template("member/member_index.html", member=member)
 
 @members.route("/messages", methods=["GET"])
 @user_role_required
@@ -94,7 +94,7 @@ def login():
     else:
       flash('Login Unsuccessful. Please check Phone number and password', 'danger')
     
-  return render_template("user_login.html", title="Login", form=form)
+  return render_template("member/user_login.html", title="Login", form=form)
 
 
 @members.route("/account", methods=["GET", "POST"]) 
@@ -130,7 +130,7 @@ def user_account():
 
   # image_file = url_for('static', filename='profile_pics/' + member.image_file)
   image_file = url_for('static', filename='profile_pics/' + member.business_photo )
-  return render_template('user_account.html', member=member, form=form, image_file=image_file)
+  return render_template('member/user_account.html', member=member, form=form, image_file=image_file)
 
 
 @members.route("/user-logout")
@@ -211,7 +211,7 @@ def edit_business_profile():
 
     else:
       print('FORM ERROR: ', form.errors)
-  return render_template("business-profile-form.html", member=member, units=units, form=form)
+  return render_template("member/business-profile-form.html", member=member, units=units, form=form)
 
 
 

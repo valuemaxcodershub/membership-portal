@@ -24,13 +24,13 @@ data = DataStore()
 @admin_role_required
 def dues_pay():
   
-  return render_template("dues_pay.html")
+  return render_template("admin/dues_pay.html")
 
 @admins.route('/admin/paid_dues', methods=['GET', 'POST'])
 @admin_role_required
 def paid_dues():
   
-  return render_template("paid-dues.html")
+  return render_template("admin/paid-dues.html")
 
 @admins.route('/admin/wallet', methods=['GET', 'POST'])
 @admin_role_required
@@ -64,7 +64,7 @@ def send_message():
         db.session.commit()
         flash('Your message has been sent.')
         return redirect(url_for('admins.dashboard'))
-    return render_template('send_message.html', title=('Send Message'),
+    return render_template('admin/send_message.html', title=('Send Message'),
                            form=form, member_recipient=user)
 
 @admins.route('/admin/send_unit_message', methods=['GET', 'POST'])
@@ -92,7 +92,7 @@ def send_unit_message():
       return redirect(url_for('admins.dashboard'))
 
 
-    return render_template('send_message.html', title=('Send Message'),
+    return render_template('admin/send_message.html', title=('Send Message'),
                            form=form)
 
 #this is for sending members to pages that don't use the dashboard layout e.g. business members
@@ -126,8 +126,6 @@ def autocomplete():
     members = []
     for member in  User.query.filter_by(role="USER").all():
       members.append(member.username)
-    print(members)
-
     return Response(json.dumps(members), mimetype='application/json')
 
 @admin_role_required
@@ -163,7 +161,7 @@ def admin_login():
       return redirect(next_page) if next_page else redirect(url_for('admins.dashboard'))
     else:
       flash('Login Unsuccessful. Please check email and password', 'danger')
-  return render_template("admin_login.html", title="Admin Login", form=form)
+  return render_template("admin/admin_login.html", title="Admin Login", form=form)
 
 #only for superadmin
 @admins.route("/admin/manage_admins")
@@ -173,7 +171,7 @@ def manage_admins():
   #return all admins except current admin
   admins= User.query.filter_by(role="ADMIN").filter(User.id!=current_user.id).paginate(page=page, per_page=10)
 
-  return render_template("manage_administrators.html", title="Admin Management", admins=admins)
+  return render_template("admin/manage_administrators.html", title="Admin Management", admins=admins)
 
 @admins.route("/admin/manage_units")
 @admin_role_required
@@ -181,7 +179,7 @@ def manage_units():
   page = request.args.get('page', 1, type=int)
   units= Unit.query.paginate(page=page, per_page=10)
 
-  return render_template("manage-units.html", title="Units Management", units=units)
+  return render_template("admin/manage-units.html", title="Units Management", units=units)
 
 
 @admins.route("/admin/edit_unit/<int:unit_id>", methods=["GET", "POST"])
@@ -202,7 +200,7 @@ def edit_unit(unit_id):
     form.name.data = unit.name
 
 
-  return render_template("edit-unit.html", form=form, unit=unit)
+  return render_template("admin/edit-unit.html", form=form, unit=unit)
 
 @admins.route("/admin/suspend_user", methods=['POST'])
 @admin_role_required
@@ -280,7 +278,7 @@ def register_unit():
   else:
     print("form not validated on submit")
     
-  return render_template("add_unit.html", title="Register New Unit", form=form)
+  return render_template("admin/add_unit.html", title="Register New Unit", form=form)
 
 
 
@@ -296,7 +294,7 @@ def manage_unit_members(unit_id):
   print(unit_members)
   members = unit_members
 
-  return render_template("manage_unit_members.html", title="Units Management", members=members, unit=unit)
+  return render_template("admin/manage_unit_members.html", title="Units Management", members=members, unit=unit)
 
 
 
@@ -318,7 +316,7 @@ def register_member():
     
     return(redirect(url_for("admins.manage_members")))
     
-  return render_template("add-member.html", title="Register New Member", form=form, units=all_units)
+  return render_template("admin/add-member.html", title="Register New Member", form=form, units=all_units)
 
 @admins.route('/admin/export-custom', methods=["POST"])
 @admin_role_required
@@ -358,7 +356,7 @@ def register_bulk(error_message=""):
       flash("Bulk registration successful")
       return(redirect(url_for("admins.manage_members")))
 
-  return render_template("register_bulk.html", form=form, error_message=error_message)
+  return render_template("admin/register_bulk.html", form=form, error_message=error_message)
 
 
 
@@ -369,7 +367,7 @@ def dashboard():
   total_members = User.query.filter_by(role="USER").count()
   total_units = Unit.query.count()
 
-  return render_template("index.html", total_members=total_members,
+  return render_template("admin/index.html", total_members=total_members,
                                        total_units=total_units,
                                         )
 
@@ -384,7 +382,7 @@ def manage_members():
   # exporting
   data.a = results
 
-  return render_template("manage_members.html", form=form, page=page, members=members)
+  return render_template("admin/manage_members.html", form=form, page=page, members=members)
 
 
 
@@ -411,7 +409,7 @@ def register_admin():
     return(redirect(url_for("admins.manage_admins")))
 
     
-  return render_template("add_admin.html", title="Register New Admin", form=form)
+  return render_template("admin/add_admin.html", title="Register New Admin", form=form)
 
 
 @admins.route('/admin/manage/<int:member_id>')
@@ -457,7 +455,7 @@ def edit_admin(admin_id):
     form.password.data = admin.password
 
   image_file = url_for('static', filename='profile_pics/' + admin.business_photo)
-  return render_template('edit_admin_detail.html', admin=admin, form=form, image_file=image_file)
+  return render_template('admin/edit_admin_detail.html', admin=admin, form=form, image_file=image_file)
 
 
 
@@ -544,7 +542,7 @@ def edit_member(member_id):
 
   # image_file = url_for('static', filename='profile_pics/' + member.image_file)
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
-  return render_template('edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
+  return render_template('admin/edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
 
 @admins.route('/admin/download-template')
 @admin_role_required

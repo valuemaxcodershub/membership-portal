@@ -27,7 +27,7 @@ def business_members():
   units = Unit.query.all()
   
 
-  return render_template("business_member.html", members= members, units=units)
+  return render_template("main/business_member.html", members= members, units=units)
 
 @main.route("/business-members/search", methods=["POST"])
 def search_business_members():
@@ -37,7 +37,7 @@ def search_business_members():
   result_count = results.count()
   members = results.paginate(page=page, per_page=10)
 
-  return render_template("business_search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
+  return render_template("main/business_search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
 
 
 @main.route("/business_unit_members/<int:unit_id>")
@@ -48,14 +48,14 @@ def business_unit_members(unit_id):
   print(unit_members)
   members = unit_members.filter(User.business_name!=None).filter(User._is_suspended==False)
 
-  return render_template("business_unit_members.html", members=members, unit=unit)
+  return render_template("main/business_unit_members.html", members=members, unit=unit)
 
 
 @main.route("/business-profile")
 def business_profile():
   # members = User.query.filter_by(role="USER").all()
 
-  return render_template("business_profile.html")
+  return render_template("main/business_profile.html")
 
 @main.route("/member_page/<string:business_name>", endpoint='member_page')
 def member_page(business_name):
@@ -70,7 +70,7 @@ def member_page(business_name):
   # image_file = url_for('static', filename='profile_pics/' + member.image_file)
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
   
-  return render_template("member_page.html", member=member, image_file=image_file)
+  return render_template("main/member_page.html", member=member, image_file=image_file)
 
 
 
@@ -96,7 +96,7 @@ def reset_request():
         return redirect(url_for('members.login'))
     else:
       flash('There is no account with that email. You must register first.', 'info')
-  return render_template('reset_request.html', title='Reset Password')
+  return render_template('main/reset_request.html', title='Reset Password')
 
 
 @main.route("/reset_password/<token>", methods=['GET', 'POST'])
@@ -116,4 +116,4 @@ def reset_token(token):
     db.session.commit()
     flash('Your password has been updated! You are now able to log in', 'success')
     return redirect(url_for('members.member-home'))
-  return render_template('reset_token.html', title='Reset Password', form=form)
+  return render_template('main/reset_token.html', title='Reset Password', form=form)
