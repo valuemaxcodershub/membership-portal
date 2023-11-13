@@ -19,7 +19,6 @@ def inject_menu():
 
       last_read_time = this_member.last_message_read_time or datetime(1900, 1, 1)
 
-
       print('Count of messages: ', Message.query.filter_by(member_recipient_id= this_member.id).filter(
           Message.timestamp > last_read_time).count())
 
@@ -108,12 +107,9 @@ def user_account():
   if form.validate_on_submit():
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
-      # member.image_file = picture_file
       member.business_photo = picture_file
 
-    # member.email = form.email.data
     member.business_email = form.email.data
-    # member.phone = form.phone.data
     member.business_phone = form.phone.data
     member.password = form.password.data
     
@@ -121,14 +117,13 @@ def user_account():
     db.session.commit()
     flash("Account successfuly modified", "success")
     return(redirect(url_for("members.dashboard")))
+  
   elif request.method == 'GET':
-    # form.email.data = member.email
     form.email.data = member.business_email
-    # form.phone.data = member.phone
     form.phone.data = member.business_phone
     form.password.data = member.password
 
-  # image_file = url_for('static', filename='profile_pics/' + member.image_file)
+
   image_file = url_for('static', filename='profile_pics/' + member.business_photo )
   return render_template('member/user_account.html', member=member, form=form, image_file=image_file)
 
@@ -148,7 +143,6 @@ def edit_business_profile():
   if request.method == "GET":
     if member.business_name:
       form.business_name.data = member.business_name
-      # form.email.data = member.email
       form.business_email.data = member.business_email
       form.business_website.data = member.business_website
       form.business_phone.data = member.business_phone 
@@ -168,7 +162,6 @@ def edit_business_profile():
       
       member.business_name = form.business_name.data
       member.business_email = form.business_email.data
-      # member.email = form.email.data
       member.business_website = form.business_website.data
       member.business_phone = form.business_phone.data
       member.business_about = form.business_about.data
@@ -183,7 +176,6 @@ def edit_business_profile():
 
       if form.business_photo.data:
         member.business_photo = save_picture(form.business_photo.data)
-        member.image_file = save_picture(form.business_photo.data)
       
       print('User updated sucessfully.')
 
@@ -202,7 +194,6 @@ def edit_business_profile():
 
       selected_units = request.form.getlist('mymultiselect')
 
-      # add_member(member.phone, selected_units=selected_units)
       add_member(member.business_phone, selected_units=selected_units)
 
       
@@ -212,55 +203,3 @@ def edit_business_profile():
     else:
       print('FORM ERROR: ', form.errors)
   return render_template("member/business-profile-form.html", member=member, units=units, form=form)
-
-
-
-
-# @members.route("/edit-business-profile", methods=["GET", "POST"])
-# @user_role_required
-# def edit_business_profile():
-#   member = current_user
-#   units = Unit.query.all()
-
-#   if request.method == "POST":
-#     member.business_name = request.form['business-name']
-#     member.business_email = request.form['business-email']
-#     member.business_website = request.form['business-website']
-#     member.business_phone = request.form["business-phone"]
-#     member.business_about = request.form["business-about"]
-#     member.business_facebook = request.form["business-facebook"]
-#     member.business_twitter = request.form["business-twitter"]
-#     member.business_linkedin = request.form["business-linkedin"]
-#     member.business_whatsapp = request.form["business-whatsapp"]
-
-#     if request.files['business-photo'].filename != '':
-#       member.business_photo = save_picture(request.files['business-photo'])
-
-#     if request.files['image-1'].filename != '':
-#       member.business_product_image_1 =  save_picture(request.files['image-1'])
-    
-#     if request.files['image-2'].filename != '':
-#       member.business_product_image_2 =  save_picture(request.files['image-2'])
-    
-#     if request.files['image-3'].filename != '':
-#       member.business_product_image_3 =  save_picture(request.files['image-3'])
-    
-#     if request.files['image-4'].filename != '':
-#       member.business_product_image_4 =  save_picture(request.files['image-4'])
-    
-#     if request.files['image-5'].filename != '':
-#       member.business_product_image_5 =  save_picture(request.files['image-5'])
-    
-#     if request.files['image-6'].filename != '':
-#       member.business_product_image_6 =  save_picture(request.files['image-6'])
-
-#     selected_units = request.form.getlist('mymultiselect')
-
-#     add_member(member, selected_units=selected_units)
-
-#     return redirect(url_for('members.member_home'))
-
-
-
-
-#   return render_template("business-profile-form.html", member=member, units=units)

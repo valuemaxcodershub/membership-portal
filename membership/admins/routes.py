@@ -195,7 +195,6 @@ def edit_unit(unit_id):
     db.session.commit()
     return(redirect(url_for('admins.manage_units')))
 
-
   elif request.method == 'GET':
     form.name.data = unit.name
 
@@ -226,8 +225,6 @@ def delete_user():
   else:
     link = 'admins.manage_admins'
 
-    
-
   db.session.delete(user)
   db.session.commit()
 
@@ -257,7 +254,7 @@ def delete_unit():
     print('Unit: ', unit, 'ID: ', unit.id)
     db.session.delete(unit)
     db.session.commit()
-    flash("Unit deleted successfuly")
+    flash("Unit deleted successfully")
   
   next_page = request.args.get('next')
   return redirect(next_page) if next_page else redirect(url_for('admins.manage_units'))
@@ -297,26 +294,20 @@ def manage_unit_members(unit_id):
   return render_template("admin/manage_unit_members.html", title="Units Management", members=members, unit=unit)
 
 
-
-
-
 @admins.route("/admin/register-member", methods=["GET", "POST"])
 @admin_role_required
 def register_member():
   if current_user.role == "USER":
     return(redirect(url_for("admins.home")))
   form = UserRegistrationForm()
-
   all_units = Unit.query.all()
 
-
   if form.validate_on_submit():
-    
     add_member(form.phone.data)
-    
     return(redirect(url_for("admins.manage_members")))
     
   return render_template("admin/add-member.html", title="Register New Member", form=form, units=all_units)
+
 
 @admins.route('/admin/export-custom', methods=["POST"])
 @admin_role_required
@@ -332,6 +323,7 @@ def export_custom():
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
   return response
+
 
 @admins.route("/admin/register-bulk", methods=["GET", "POST"])
 @admin_role_required
@@ -408,7 +400,6 @@ def register_admin():
     flash(f"Account created for {form.email.data} successfully. Password for {form.email.data} is {user.password}", "success")
     return(redirect(url_for("admins.manage_admins")))
 
-    
   return render_template("admin/add_admin.html", title="Register New Admin", form=form)
 
 
@@ -420,6 +411,7 @@ def view_member(member_id):
     return render_template('profile.html', member=member)
   else:
     return redirect(url_for('admins.home'))
+
 
 @admins.route('/admin/manage_admin/<int:admin_id>/edit', methods=("GET", "POST"))
 @admins.route('/admin/account')
@@ -433,13 +425,10 @@ def edit_admin(admin_id):
   if form.validate_on_submit():
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
-      # admin.image_file = picture_file
       admin.business_photo = picture_file
 
     admin.username = form.username.data
-    # admin.email = form.email.data
     admin.business_email = form.email.data
-    # admin.phone = form.phone.data
     admin.business_phone = form.phone.data
     admin.password = form.password.data
     
@@ -447,10 +436,10 @@ def edit_admin(admin_id):
     db.session.commit()
     flash("Account successfuly modified", "success")
     return(redirect(url_for("admins.manage_admins", member_id=admin.id)))
+  
   elif request.method == 'GET':
     form.username.data = admin.username
     form.email.data = admin.business_email
-    # form.phone.data = admin.phone
     form.phone.data = admin.business_phone
     form.password.data = admin.password
 
@@ -467,7 +456,6 @@ def edit_admin(admin_id):
 @admins.route('/admin/manage/<int:member_id>/edit', methods=("GET", "POST"))
 @login_required
 def edit_member(member_id):
-  print('In edit member page.')
   if current_user.role == "USER":
     return redirect(url_for('admins.home'))
   member = User.query.get_or_404(member_id)
@@ -482,13 +470,8 @@ def edit_member(member_id):
 
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
-      # member.image_file = picture_file
       member.business_photo = picture_file
 
-    # member.business_email = form.email.data
-    # member.email = form.email.data
-    # member.phone = form.phone.data
-    # member.business_phone = form.phone.data
     member.password = form.password.data
     member.business_name = form.business_name.data
     member.business_about = form.business_about.data
@@ -498,37 +481,28 @@ def edit_member(member_id):
     member.business_phone = form.phone.data
     member.date_of_birth = form.date_of_birth.data
 
-
     selected_units = request.form.getlist('mymultiselect')
 
     inputted_units = []
     for unit_name in selected_units:
       unit = Unit.query.filter_by(name=unit_name).all()[0]
-      print('Unit: ', unit)
       inputted_units.append(unit)
 
 
     for d in member.units:
-      print('D IN THE : ', d)
-      
-      print('About to clear member units')
       member.units.remove(d)
-      print('Cleared member units...')
-
-
+    
     for unit in inputted_units:
       member.units.append(unit)
     
     db.session.add(member)
     db.session.commit()
-    flash("Account successfuly modified", "success")
+    flash("Account successfully modified", "success")
+    
     return(redirect(url_for("admins.manage_members")))
   
 
   elif request.method == 'GET':
-    # form.email.data = member.business_email
-    # form.email.data = member.email
-    # form.phone.data = member.phone
     form.password.data = member.password
     form.date_of_birth.data = member.date_of_birth
     form.business_about.data = member.business_about
@@ -540,7 +514,6 @@ def edit_member(member_id):
     db.session.add(member)
     db.session.commit()
 
-  # image_file = url_for('static', filename='profile_pics/' + member.image_file)
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
   return render_template('admin/edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
 
