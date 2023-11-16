@@ -14,8 +14,32 @@ user_unit = db.Table("user_unit",
   )
 
 
+
+class UserUpdate(db.Model):
+  PENDING = 'PENDING'
+  APPROVED = 'APPROVED'
+  DISAPPROVED = 'DISAPPROVED'
+
+  id = db.Column(db.Integer, primary_key=True)
+  userid = db.Column(db.Integer, db.ForeignKey('user.id'))
+  update = db.Column(db.String(8000))
+  update_status = db.Column(db.String(60), nullable=False, default = PENDING)
+  date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+  def __repr__(self):
+    
+    return str(self.userid) + " has updated their profile."
+
+
+
 #phone number and business_email are unique
 class User(db.Model, UserMixin):
+
+  USER_UPDATE_APPROVED = 'True'
+  USER_UPDATE_DISAPPROVED = 'False'
+  USER_UPDATE_PENDING = 'Pending'
+  # NOT_YET_UPDATED = 'None'
+
   id = db.Column(db.Integer, primary_key=True)
   #db.backref fixes instrumentedlist error --- now fixed
   units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
@@ -31,6 +55,9 @@ class User(db.Model, UserMixin):
   business_address = db.Column(db.String(120))
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
   has_filled_profile = db.Column(db.Boolean(), default=False)
+
+  #newly added field to track whether the user's update is approved
+  update_is_approved = db.Column(db.String(50), nullable=False, default='NOT_YET_UPDATED')
   business_name = db.Column(db.String(77))
   business_email = db.Column(db.String(120), unique = True)
   business_phone = db.Column(db.String(77), unique = True)
@@ -155,7 +182,7 @@ class Unit(db.Model):
   def __repr__(self):
     return f"Unit('{self.name}')"
 
-
+    
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))

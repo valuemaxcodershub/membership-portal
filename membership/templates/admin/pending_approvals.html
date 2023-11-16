@@ -1,0 +1,351 @@
+{% extends "dashboard_layout.html" %} {% block content %}
+<style>
+	#export {
+		margin-left: 64%;
+	}
+
+	#form {
+		width: 360px;
+		margin: 20vh auto 0 auto;
+		/* height: 50vh; */
+		padding: 10px;
+		font-size: 12px;
+		text-align: center;
+		margin-top: 5%;
+		font-weight: bold;
+		background-color: rgb(191, 215, 178);
+		color: rgb(55, 95, 62);
+		border-radius: 4px;
+		font-size: 12px;
+	}
+
+	.rech {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#iners {
+		margin-top: -7%;
+	}
+
+	.solu {
+		font-weight: bold;
+		font-size: 15px;
+	}
+</style>
+
+<!-- tables -->
+<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+<link rel="stylesheet" type="text/css" href="css/basictable.css" />
+<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+
+<form method="POST" action="{{url_for('admins.export_custom')}}">
+	<br />
+	<input type="hidden" name="members" value="{{pending_updates_list.items}}" />
+	<button class="btn btn-success text-capitalize" id="export" type="submit">
+		Export list
+	</button>
+</form>
+<div class="container-fluid agile-tables">
+	<br />
+	<h3 style="text-align: center; color: rgb(31, 55, 31); font-weight: bold" class="text-center">
+		Pending Profiles
+	</h3>
+	<div class="w3l-table-info table-responsive">
+		<table id="tuble" class="table table-success table-striped table-hover table-bordered"
+			style="width: 85%; font-size: 14px">
+			<thead>
+				<tr>
+					<th scope="col">Business Name here</th>
+
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for member in pending_updates_list.items %}
+				<tr>
+					<td>Member with ID "{{member.userid}}" has updated their profile</td>
+
+					<td class="d-flex justify-content-center">
+						
+						<a type="button" 
+						{% if member.update_status == 'APPROVED' %}
+						class="btn btn-primary disabled approveBtn"
+						{% else %}
+						class="btn btn-primary approveBtn"
+						{% endif %}
+						
+						 data-toggle="modal" id="{{member.id}}"
+							dataName="{{member.username}}" data-target="#approvemodal" data-bs-toggle="tooltip" data-profileid="{{member.id}}"
+							data-bs-placement="top" title="Approve update"><i class="fa fa-thumbs-up" aria-hidden="true"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Approve update"
+								></i></a>
+
+							
+
+						<a type="button" class="btn btn-warning" dataId="{{member.id}}"
+							dataImage="/static/profile_pics/{{member.business_photo }}" dataName="{{ member.username }}"
+							dataEmail="{{member.business_email}}" dataPhone="{{member.business_phone}}"
+							dataPassword="{{ member.password }}" dataUnits="{{member}}"
+							dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}"
+							dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}"
+							dataExperience="{{member.experience}}" dataCurrentSalary="{{member.current_salary}}"
+							data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i
+								class="fa fa-eye" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
+								title="Click To View User Details"></i></a>
+
+
+						<a type="button" class="disapproveBtn"
+						style="background: red" data-toggle="modal"
+							id="{{member.id}}" dataName="{{member.username}}" data-target="#disapprovemodal" data-profileid="{{member.id}}"
+							 data-bs-toggle="tooltip" data-bs-placement="top"
+							title="Disapprove update"><i class="fa fa-thumbs-down" aria-hidden="true"
+								data-bs-toggle="tooltip" data-bs-placement="top"  title="Disapprove update"></i></a>
+					</td>
+
+					
+				</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<br />
+
+		<!-- Disapprove Modal -->
+		<div class="modal fade" id="disapprovemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="deleteModalLabel">Disapprove ?</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Are you sure you want to disapprove this update?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							Close
+						</button>
+						<form method="POST" id="disapprove_profile_update_form" action="{{ url_for('admins.pending_approvals') }}">
+							<!-- <input type="hidden" name="user_id" id="deletehiddenid" />
+							<input type="hidden" name="page" value="{{pending_updates_list.page}}" /> -->
+							<button type="submit" class="btn btn-primary " href="#">
+								Yes, Disapprove
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Approve modal -->
+
+		<div class="modal fade" id="approvemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="approveModalLabel">Approve ?</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Are you sure you want to approve this update?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							Close
+						</button>
+						<form method="POST" action="{{ url_for('admins.pending_approvals') }}" id="approve_profile_update_form">
+							{# <input type="hidden" name="user_id" id="deletehiddenid" />
+							<input type="hidden" name="page" value="{{members.page}}" /> #}
+
+							<button type="submit" class="btn btn-primary" id="">
+								Yes, Approve
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--  View Member Modal -->
+		<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">User Details</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="bedd">
+							<div>
+								<img id="modalUserImage" src="images/2.png" alt="image" width="100px" />
+							</div>
+							<br />
+							<br />
+							<div>
+								<h5 id="modalUserName">...</h5>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserId">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserEmail">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserPhone">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserPassword">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserUnits">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserDateReg">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserOccupation">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserWorkAddr">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserHomeAddr">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserExperience">...</p>
+							</div>
+							<br />
+							<div>
+								<p id="modalUserCurrentSalary">...</p>
+							</div>
+							<br />
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- </div> -->
+
+		<!-- pagination -->
+		{% for page_num in pending_updates_list.iter_pages(left_edge=1,
+		right_edge=1, left_current=1, right_current=2) %} {% if page_num %} {% if
+		pending_updates_list.page == page_num %}
+		<a class="btn btn-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+		{% else %}
+		<a class="btn btn-outline-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num
+			}}</a>
+		{% endif %} {% else %} ... {% endif %} {% endfor %}
+	</div>
+</div>
+
+<script>
+
+	var user_profile_data_id = 0
+
+	console.log('user profile is first: ', user_profile_data_id)
+	var approveBtns = document.querySelectorAll(".approveBtn");
+
+	for (let btn of approveBtns) {
+		btn.addEventListener("click", function (ev) {
+			var pid = ev.target.dataset.profileid;
+			console.log('PID: ', pid)
+			user_profile_data_id = Number(pid)
+			console.log('user profile is now: ', user_profile_data_id)
+		});
+	}
+
+	var disapproveBtns = document.querySelectorAll(".disapproveBtn");
+	console.log('Disapprove buttons: ', disapproveBtns)
+
+	for (let btn of disapproveBtns) {
+		btn.addEventListener("click", function (ev) {
+			var pid = ev.target.dataset.profileid;
+			user_profile_data_id = Number(pid)
+			console.log('user profile is now: ', user_profile_data_id)
+		});
+	}
+
+
+	
+
+	var form = document.getElementById('approve_profile_update_form')
+	document.getElementById('approve_profile_update_form').addEventListener('submit', (e)=> {
+		
+		var pidfield = document.createElement('input')
+		pidfield.type = "hidden"
+		pidfield.name = "profile_updateid"
+		pidfield.value = user_profile_data_id
+		
+		form.appendChild(pidfield)
+	})
+
+	var form1 = document.getElementById('disapprove_profile_update_form')
+	document.getElementById('disapprove_profile_update_form').addEventListener('submit', (e)=> {
+		
+		var pidfield = document.createElement('input')
+		pidfield.type = "hidden"
+		pidfield.name = "profile_updateid_disapprove"
+		pidfield.value = user_profile_data_id
+		
+		form1.appendChild(pidfield)
+	})
+
+
+
+	function viewUserFunction(obj) {
+		let dataImage = obj.getAttribute("dataImage");
+		let dataName = obj.getAttribute("dataName");
+		let dataEmail = obj.getAttribute("dataEmail");
+		let dataId = obj.getAttribute("dataId");
+		let dataPhone = obj.getAttribute("dataPhone");
+		let dataPassword = obj.getAttribute("dataPassword");
+		let dataUnits = obj.getAttribute("dataUnits");
+		let dataDateReg = obj.getAttribute("dataDateReg");
+		let dataOccupation = obj.getAttribute("dataOccupation");
+		let dataHomeAddress = obj.getAttribute("dataHomeAddr");
+		let dataWorkAddress = obj.getAttribute("dataWorkAddr");
+		let dataExperience = obj.getAttribute("dataExperience");
+		let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
+
+		document.getElementById("modalUserImage").src = dataImage;
+		$("#modalUserName").text("Name:  " + dataName);
+		$("#modalUserEmail").text("Email:  " + dataEmail);
+		// $('#modalUserId').text('Name:  ' + dataName);
+		$("#modalUserPhone").text("Phone:  " + dataPhone);
+		$("#modalUserPassword").text("Password:  " + dataPassword);
+		$("#modalUserUnits").text("Units:  " + dataUnits);
+		$("#modalUserDateReg").text("Date Joined:  " + dataDateReg);
+		$("#modalUserOccupation").text("Occupation:  " + dataOccupation);
+		$("#modalUserHomeAddr").text("Home Address:  " + dataHomeAddress);
+		$("#modalUserWorkAddr").text("Work Address:  " + dataWorkAddress);
+		$("#modalUserExperience").text("Experience:  " + dataExperience);
+		$("#modalUserCurrentSalary").text("Current Salary:  " + dataCurrentSalary);
+	}
+</script>
+
+{% endblock content %}

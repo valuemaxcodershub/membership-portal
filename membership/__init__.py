@@ -11,15 +11,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# user = 'root'
-# password = ''
+user = 'root'
+password = ''
 
 #i added a comment
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "0f3c34f7789f6917e12593945aa86bdb"
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('NASME_DATABASE_URI')
-# app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{user}:{password}@localhost/nasme'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('NASME_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{user}:{password}@localhost/nasme'
 
 
 db = SQLAlchemy(app)
@@ -49,3 +49,4 @@ with app.app_context():
         migrate.init_app(app, db, render_as_batch= True)
     else:
         migrate.init_app(app, db)
+        print('About to migrate to db')

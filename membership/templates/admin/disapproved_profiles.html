@@ -1,0 +1,147 @@
+{% extends "dashboard_layout.html" %}
+{% block content %}
+<style>
+	#export{
+		margin-left: 64%;
+	}
+  </style>
+
+
+<!-- //tables -->
+				<form method="POST" action="{{url_for('admins.export_custom')}}">
+					<br>
+					<input type="hidden" name="members", value={{members.items}}>	
+					<button class="btn btn-success text-capitalize" id="export" type="submit">Export list</button>				
+				</form>
+				<div class="container-fluid agile-tables">
+					<br>
+					<h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold;" class="text-center"> Members List</h3>
+					<div class="w3l-table-info  table-responsive"> 
+					    <table id="tuble" class="table table-success table-striped table-hover table-bordered" style="width: 85%; font-size: 14px;">
+						<thead>
+						  <tr>
+							<th scope="col">Member ID</th>
+							<th scope="col">Update</th> 
+							<th scope="col">Status</th> 
+							<th scope="col">Date</th> 
+							<th scope="col">Action</th>
+<!-- 							<th>Member Url</th> -->
+						  </tr>
+						</thead>
+						<tbody>
+							{% for member in members.items %}
+						  <tr>
+							<td>{{member.userid}}</td>
+							<td>{{ member.update }}</td>
+							<td>{{ member.update_status }}</td>
+							<td>{{ member.date_created }}</td>
+							
+
+							<td class="d-flex justify-content-center" >
+								
+								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.business_photo }}" dataName="{{ member.username }}" dataEmail="{{member.business_email}}" dataPhone="{{member.business_phone}}" dataPassword="{{ member.password }}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
+								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"><i class="fa fa-trash-o" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"></i></a>
+
+							</td>
+						  {% endfor %}
+					  </table>
+
+					  <br>
+		
+					</div>
+				  <!-- </div> -->
+
+
+					  <!-- pagination -->
+					  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+					    {% if page_num %}
+					      {% if members.page == page_num %}
+					        <a class="btn btn-success mb-5"  href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+					      {% else %}
+					        <a class="btn btn-outline-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+					      {% endif %}
+					    {% else %}
+					      ...
+					    {% endif %}
+					  {% endfor %}
+					</div>
+				  </div>
+
+
+				  <script>
+						    function deleteFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#deletehiddenid').val(userId);
+						        $('#deleteModalLabel').text('Delete ' + name);
+						        $("#deletemodal").modal("show");
+						    }
+
+						    function suspendFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#suspendhiddenid').val(userId);
+						        $('#suspendModalLabel').text('Suspend ' + name);
+						        $('#suspendmodal .modal-body').text("Are you sure you want to suspend this user?");
+						        $("#suspendmodal").modal("show");
+						    }
+
+						    function unsuspendFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#suspendhiddenid').val(userId);
+						        $('#suspendModalLabel').text('Unsuspend ' + name);
+						        $('#suspendmodal .modal-body').text("Are you sure you want to unsuspend this user?");
+						        $("#suspendmodal").modal("show");
+						    }
+
+						    function messageUserFunction(obj){
+						        let userId = obj.id;
+						        let name = obj.getAttribute("dataName");
+
+						        $('#examplehiddenid').val(userId);
+						        $('#exampleModalLabel').text('Message ' + name);
+						        $("#examplemodal").modal("show");
+						    }
+
+						    function viewUserFunction(obj){
+						    	let dataImage = obj.getAttribute("dataImage");
+						    	let dataName = obj.getAttribute("dataName");
+						    	let dataEmail = obj.getAttribute("dataEmail");
+						    	let dataId = obj.getAttribute("dataId");
+						    	let dataPhone = obj.getAttribute("dataPhone");
+						    	let dataPassword = obj.getAttribute("dataPassword");
+						    	let dataUnits = obj.getAttribute("dataUnits");
+						    	let dataDateReg = obj.getAttribute("dataDateReg");
+						    	let dataOccupation = obj.getAttribute("dataOccupation");
+						    	let dataHomeAddress = obj.getAttribute("dataHomeAddr");
+						    	let dataWorkAddress = obj.getAttribute("dataWorkAddr");
+						    	let dataExperience = obj.getAttribute("dataExperience");
+						    	let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
+
+
+						    	document.getElementById('modalUserImage').src = dataImage;
+						    	$('#modalUserName').text('Name:  ' + dataName);
+						    	$('#modalUserEmail').text('Email:  ' + dataEmail);
+						    	// $('#modalUserId').text('Name:  ' + dataName);
+						    	$('#modalUserPhone').text('Phone:  ' + dataPhone);
+						    	$('#modalUserPassword').text('Password:  ' + dataPassword);
+						    	$('#modalUserUnits').text('Units:  ' + dataUnits);
+						    	$('#modalUserDateReg').text('Date Joined:  ' + dataDateReg);
+						    	$('#modalUserOccupation').text('Occupation:  ' + dataOccupation);
+						    	$('#modalUserHomeAddr').text('Home Address:  ' + dataHomeAddress);
+						    	$('#modalUserWorkAddr').text('Work Address:  ' + dataWorkAddress);
+						    	$('#modalUserExperience').text('Experience:  ' + dataExperience);
+						    	$('#modalUserCurrentSalary').text('Current Salary:  ' + dataCurrentSalary);
+
+
+
+
+						    }
+						</script>
+		
+		
+{% endblock content %}

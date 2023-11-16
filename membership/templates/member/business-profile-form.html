@@ -107,10 +107,6 @@
   </style>
 
 
-  
-
-
-
     <form action="/edit-business-profile" method="POST" id="form" onsubmit="return validationForms" enctype="multipart/form-data">
       <br>
       {{form.hidden_tag()}}
@@ -175,28 +171,6 @@
             <span class="error"></span>
         </div>
         <br>
-
-
-
-{#
-
-        
-          <div class="input-control">
-            {{ form.email.label }}
-              
-              {% if form.email.errors %}
-                {{ form.email(required=True)}}
-                {% for error in form.email.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-              {% else %}
-                {{ form.email(required=True)}}
-              {% endif %}
-            <span class="error"></span>
-        </div>
-        <br>
-
-        #}
         
           <div class="input-control">
             {{ form.password.label }}
@@ -229,15 +203,6 @@
             <span class="error"></span>
         </div>
         <br>
-
-
-        
-
-
-
-
-
-
 
 
         <div class="input-control">

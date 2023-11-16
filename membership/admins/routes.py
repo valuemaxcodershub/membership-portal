@@ -4,7 +4,7 @@ import os
 import json
 from membership import app, db
 from membership.admins.forms import MessageForm, UserRegistrationForm,  AdminLoginForm, UnitRegistrationForm, AdminRegistrationForm, UpdateMemberForm, UploadCsvForm, UpdateAdminForm
-from membership.models import User, Unit, Message
+from membership.models import User, Unit, Message, UserUpdate
 from membership.main.utils import save_picture
 from membership.admins.utils import parse_csv
 from flask_login import login_user, current_user, login_required, logout_user
@@ -239,19 +239,9 @@ def delete_user():
 @admin_role_required
 def delete_unit():
 
-  print('OKAY: ', request.form.get('unit_id'))
-  # print(request.args.get('unit_id'))
-
   if request.form.get('unit_id'):
-
-    print('DELETE UNIT CLICKED')
-    print(request.form['unit_id'])
-    print(type(request.form['unit_id']))
-
-    # print(request.form)
     unit_id = int(request.form['unit_id'])
     unit = Unit.query.get_or_404(unit_id)
-    print('Unit: ', unit, 'ID: ', unit.id)
     db.session.delete(unit)
     db.session.commit()
     flash("Unit deleted successfully")
@@ -379,6 +369,173 @@ def manage_members():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@admins.route('/admin/approved_profiles')
+@super_admin_role_required
+def approved_profiles():
+  form = MessageForm()
+  user_updates = UserUpdate.query.filter_by(update_status = UserUpdate.APPROVED)
+  page = request.args.get('page', 1, type=int)
+  approved_updates_list = user_updates.paginate(page=page, per_page=10)
+
+  return render_template('admin/approved_profiles.html', members = approved_updates_list, form=form)
+
+
+@admins.route('/admin/disapproved_profiles')
+@super_admin_role_required
+def disapproved_profiles():
+  form = MessageForm()
+  user_updates = UserUpdate.query.filter_by(update_status = UserUpdate.DISAPPROVED)
+  page = request.args.get('page', 1, type=int)
+  disapproved_updates_list = user_updates.paginate(page=page, per_page=10)
+
+  return render_template('admin/disapproved_profiles.html', members = disapproved_updates_list, form=form)
+
+
+@admins.route('/admin/pending_approvals', methods=['GET', 'POST'])
+@super_admin_role_required
+def pending_approvals():
+  form = MessageForm()
+  user_updates = UserUpdate.query.filter_by(update_status = UserUpdate.PENDING)
+  page = request.args.get('page', 1, type=int)
+  pending_updates_list = user_updates.paginate(page=page, per_page=10)
+
+  if request.method == 'POST':
+    if request.form.get('profile_updateid'):
+      profileid = request.form.get('profile_updateid')
+      user_update = UserUpdate.query.filter_by(id = profileid)[0]
+      owner_of_update = User.query.filter_by(id = user_update.userid)[0]
+      user_data = json.loads(user_update.update)
+      
+      for key, value in user_data.items():
+        setattr(owner_of_update, key, value)
+      
+      owner_of_update.has_filled_profile = True
+      owner_of_update.update_is_approved = User.USER_UPDATE_APPROVED
+      user_update.update_status = UserUpdate.APPROVED
+      db.session.add_all([owner_of_update, user_update])
+      db.session.commit()
+
+      
+    if request.form.get('profile_updateid_disapprove'):
+      profileid = request.form.get('profile_updateid_disapprove')
+      user_update = UserUpdate.query.filter_by(id = profileid)[0]
+      owner_of_update = User.query.filter_by(id = user_update.userid)[0]
+      owner_of_update.update_is_approved = User.USER_UPDATE_DISAPPROVED
+      user_update.update_status = UserUpdate.DISAPPROVED
+      db.session.add(user_update)
+      db.session.commit()
+
+    return redirect(url_for('admins.pending_approvals'))
+
+  return render_template('admin/pending_approvals.html', pending_updates_list = pending_updates_list, form=form)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @admins.route("/admin/register-admin", methods=["GET", "POST"])
 @super_admin_role_required
 def register_admin():
@@ -443,7 +600,7 @@ def edit_admin(admin_id):
     form.phone.data = admin.business_phone
     form.password.data = admin.password
 
-  image_file = url_for('static', filename='profile_pics/' + admin.business_photo)
+  image_file = url_for('static', filename='profile_pics/' + str(admin.business_photo))
   return render_template('admin/edit_admin_detail.html', admin=admin, form=form, image_file=image_file)
 
 
