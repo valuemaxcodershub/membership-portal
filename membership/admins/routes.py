@@ -12,7 +12,6 @@ import secrets
 import csv
 from sqlalchemy import or_
 from membership.admins.utils import DataStore, admin_role_required, super_admin_role_required, add_member
-from membership.members.routes import edit_business_profile
 
 admins = Blueprint("admins", __name__)
 
@@ -268,8 +267,6 @@ def register_unit():
   return render_template("admin/add_unit.html", title="Register New Unit", form=form)
 
 
-
-
 #No member pagination because of model initialization 
 #to do this, see https://stackoverflow.com/questions/46862900/why-i-am-getting-instrumentedlist-object-has-no-attribute-paginate-filter-by
 @admins.route("/admin/manage_unit_members/<int:unit_id>")
@@ -368,54 +365,6 @@ def manage_members():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @admins.route('/admin/approved_profiles')
 @super_admin_role_required
 def approved_profiles():
@@ -446,6 +395,7 @@ def pending_approvals():
   page = request.args.get('page', 1, type=int)
   pending_updates_list = user_updates.paginate(page=page, per_page=10)
 
+
   if request.method == 'POST':
     if request.form.get('profile_updateid'):
       profileid = request.form.get('profile_updateid')
@@ -455,7 +405,10 @@ def pending_approvals():
       
       for key, value in user_data.items():
         setattr(owner_of_update, key, value)
-      
+        
+      if user_data.get('selected_units'):
+          add_member(owner_of_update.business_phone, user_data.get('selected_units'))
+          
       owner_of_update.has_filled_profile = True
       owner_of_update.update_is_approved = User.USER_UPDATE_APPROVED
       user_update.update_status = UserUpdate.APPROVED
@@ -475,64 +428,6 @@ def pending_approvals():
     return redirect(url_for('admins.pending_approvals'))
 
   return render_template('admin/pending_approvals.html', pending_updates_list = pending_updates_list, form=form)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -605,8 +500,6 @@ def edit_admin(admin_id):
 
 
 
-
-
 #implement select multiple units
 #user can have multiple units but the form doesn't show that,
 #it makes it look like the user can pick just 1 unit
@@ -622,8 +515,6 @@ def edit_member(member_id):
   form.current_member = member
 
   if form.validate_on_submit():
-    
-    # Trying to update both the business_photo and image_file fields when there is a new upload
 
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
@@ -644,7 +535,6 @@ def edit_member(member_id):
     for unit_name in selected_units:
       unit = Unit.query.filter_by(name=unit_name).all()[0]
       inputted_units.append(unit)
-
 
     for d in member.units:
       member.units.remove(d)
@@ -686,12 +576,7 @@ def download_template():
   with open(template_csv_path, "w") as f:
     f.write(",".join(template_list))
 
-  return send_file(
-      template_csv_path,
-      mimetype='text/csv',
-      download_name='nasme_bulk_template.csv',
-      as_attachment=True
-  )
+  return send_file( template_csv_path, mimetype='text/csv', download_name='nasme_bulk_template.csv', as_attachment=True )
 
 @admins.route('/admin/export-database')
 @admin_role_required

@@ -56,7 +56,7 @@
 			style="width: 85%; font-size: 14px">
 			<thead>
 				<tr>
-					<th scope="col">Business Name here</th>
+					<th scope="col">Business Name</th>
 
 					<th scope="col">Action</th>
 				</tr>
@@ -68,18 +68,10 @@
 
 					<td class="d-flex justify-content-center">
 						
-						<a type="button" 
-						{% if member.update_status == 'APPROVED' %}
-						class="btn btn-primary disabled approveBtn"
-						{% else %}
-						class="btn btn-primary approveBtn"
-						{% endif %}
-						
-						 data-toggle="modal" id="{{member.id}}"
+						<a type="button" class="btn btn-primary approveBtn" data-toggle="modal" id="{{member.id}}"
 							dataName="{{member.username}}" data-target="#approvemodal" data-bs-toggle="tooltip" data-profileid="{{member.id}}"
-							data-bs-placement="top" title="Approve update"><i class="fa fa-thumbs-up" aria-hidden="true"
-								data-bs-toggle="tooltip" data-bs-placement="top" title="Approve update"
-								></i></a>
+							data-bs-placement="top" title="Approve update"><i class="fa fa-thumbs-up approveBtn" aria-hidden="true"
+								data-bs-toggle="tooltip" data-bs-placement="top" title="Approve update" data-profileid="{{member.id}}" ></i></a>
 
 							
 
@@ -100,8 +92,8 @@
 						style="background: red" data-toggle="modal"
 							id="{{member.id}}" dataName="{{member.username}}" data-target="#disapprovemodal" data-profileid="{{member.id}}"
 							 data-bs-toggle="tooltip" data-bs-placement="top"
-							title="Disapprove update"><i class="fa fa-thumbs-down" aria-hidden="true"
-								data-bs-toggle="tooltip" data-bs-placement="top"  title="Disapprove update"></i></a>
+							title="Disapprove update"><i class="fa fa-thumbs-down disapproveBtn" aria-hidden="true"
+								data-bs-toggle="tooltip" data-bs-placement="top" data-profileid="{{member.id}}"  title="Disapprove update"></i></a>
 					</td>
 
 					
@@ -255,9 +247,9 @@
 		{% for page_num in pending_updates_list.iter_pages(left_edge=1,
 		right_edge=1, left_current=1, right_current=2) %} {% if page_num %} {% if
 		pending_updates_list.page == page_num %}
-		<a class="btn btn-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+		<a class="btn btn-success mb-5" href="{{ url_for('admins.pending_approvals', page=page_num) }}">{{ page_num }}</a>
 		{% else %}
-		<a class="btn btn-outline-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num
+		<a class="btn btn-outline-success mb-5" href="{{ url_for('admins.pending_approvals', page=page_num) }}">{{ page_num
 			}}</a>
 		{% endif %} {% else %} ... {% endif %} {% endfor %}
 	</div>
@@ -267,26 +259,21 @@
 
 	var user_profile_data_id = 0
 
-	console.log('user profile is first: ', user_profile_data_id)
 	var approveBtns = document.querySelectorAll(".approveBtn");
 
 	for (let btn of approveBtns) {
 		btn.addEventListener("click", function (ev) {
 			var pid = ev.target.dataset.profileid;
-			console.log('PID: ', pid)
 			user_profile_data_id = Number(pid)
-			console.log('user profile is now: ', user_profile_data_id)
 		});
 	}
 
 	var disapproveBtns = document.querySelectorAll(".disapproveBtn");
-	console.log('Disapprove buttons: ', disapproveBtns)
 
 	for (let btn of disapproveBtns) {
 		btn.addEventListener("click", function (ev) {
 			var pid = ev.target.dataset.profileid;
 			user_profile_data_id = Number(pid)
-			console.log('user profile is now: ', user_profile_data_id)
 		});
 	}
 

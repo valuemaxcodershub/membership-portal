@@ -17,9 +17,7 @@ def inject_menu():
     this_member = current_user
 
     if this_member.is_authenticated:
-
       last_read_time = this_member.last_message_read_time or datetime(1900, 1, 1)
-
       print('Count of messages: ', Message.query.filter_by(member_recipient_id= this_member.id).filter(
           Message.timestamp > last_read_time).count())
 
@@ -54,20 +52,20 @@ def dashboard():
 
   return render_template("member/member_index.html", member=member)
 
+
 @members.route("/messages", methods=["GET"])
 @user_role_required
 def messages():
   current_user.last_message_read_time = datetime.utcnow()
   db.session.commit()
+  
   member = current_user
-
   messages = member.messages_received
 
   for unit in member.units:
     messages.extend(unit.messages_received)
 
   messages = messages.order_by(Message.timestamp.desc()).all()
-
   return render_template('messages.html', messages=messages, member=member)
 
 
@@ -79,13 +77,11 @@ def login():
 
   form = UserLoginForm()
 
-
   if request.method == "POST":
     phone_input = request.form['phone']
     password_input = request.form['password']
     remember = form.remember.data
 
-    
     user = User.query.filter_by(business_phone=phone_input).first()
     if user and user.password == password_input:
       login_user(user, remember=remember)
@@ -163,73 +159,38 @@ def edit_business_profile():
 
       userd = {}
       
-      if member.business_name != form.business_name.data:
-        userd.update({'business_name': form.business_name.data})
-      
-      if member.business_email != form.business_email.data:
-        userd.update({'business_email': form.business_email.data})
-      if member.business_website != form.business_website.data:
-        userd.update({'business_website': form.business_website.data})
-      if member.business_phone != form.business_phone.data:
-        userd.update({'business_phone': form.business_phone.data})
-      if member.business_about != form.business_about.data:
-        userd.update({'business_about': form.business_about.data})
-      if member.business_facebook != form.business_facebook.data:
-        userd.update({'business_facebook': form.business_facebook.data})
-      if member.business_twitter != form.business_twitter.data:
-        userd.update({'business_twitter': form.business_twitter.data})
-      if member.business_linkedin != form.business_linkedin.data:
-        userd.update({'business_linkedin': form.business_linkedin.data})
-      if member.business_whatsapp != form.business_whatsapp.data:
-        userd.update({'business_whatsapp': form.business_whatsapp.data})
-      if member.business_address != form.business_address.data:
-        userd.update({'business_address': form.business_address.data})
-      if member.business_services != form.business_services.data:
-        userd.update({'business_services': form.business_services.data })
+      for field in request.form:
+        if field == 'csrf_token' or field == 'mymultiselect' or field == 'submit':
+          continue
 
+        if getattr(form, field).data != getattr(member, field):
+          userd.update({getattr(form, field).name : getattr(form, field).data})
+         
       member.password = form.password.data
       member.update_is_approved = User.USER_UPDATE_PENDING
       member.has_filled_profile = True
-      # member.date_of_birth = form.date_of_birth.data
+      
 
       if form.business_photo.data:
-        # member.business_photo = save_picture(form.business_photo.data)
         photo = save_picture(form.business_photo.data)
         userd.update({'business_photo': photo})
       
       
-      if form.business_product_image_1.data:
-        business_product_image_1 = save_picture(form.business_product_image_1.data)
-        userd.update({'business_product_image_1': business_product_image_1})
-      if form.business_product_image_2.data:
-        business_product_image_2 = save_picture(form.business_product_image_2.data)
-        userd.update({'business_product_image_2': business_product_image_2})
-      if form.business_product_image_3.data:
-        business_product_image_3 = save_picture(form.business_product_image_3.data)
-        userd.update({'business_product_image_3': business_product_image_3})
-      if form.business_product_image_4.data:
-        business_product_image_4 = save_picture(form.business_product_image_4.data)
-        userd.update({'business_product_image_4': business_product_image_4})
-      if form.business_product_image_5.data:
-        business_product_image_5 = save_picture(form.business_product_image_5.data)
-        userd.update({'business_product_image_5': business_product_image_5})
-      if form.business_product_image_6.data:
-        business_product_image_6 = save_picture(form.business_product_image_6.data)
-        userd.update({'business_product_image_6': business_product_image_6})
+      for i in range(1, 7):
+        if getattr(form, f'business_product_image_{i}').data != None:
+
+          userd.update({f'business_product_image_{i}':  save_picture(getattr(form, f'business_product_image_{i}').data)})
 
       selected_units = request.form.getlist('mymultiselect')
       userd.update({'selected_units': selected_units})
 
       user_data_json = json.dumps(userd)
-     
       
       new_update_from_user = UserUpdate(userid = member.id, update=user_data_json)
-      db.session.add(member)
-      db.session.add(new_update_from_user)
+      db.session.add_all([member, new_update_from_user])
       db.session.commit()
 
-      # add_member(member.business_phone, selected_units=selected_units)
-
+      flash('Your update has been sent to the admins for approval.')
       return redirect(url_for('members.dashboard'))
 
     else:

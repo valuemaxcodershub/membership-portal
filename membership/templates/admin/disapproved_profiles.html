@@ -56,9 +56,9 @@
 					  {% for page_num in members.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
 					    {% if page_num %}
 					      {% if members.page == page_num %}
-					        <a class="btn btn-success mb-5"  href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+					        <a class="btn btn-success mb-5"  href="{{ url_for('admins.disapproved_profiles', page=page_num) }}">{{ page_num }}</a>
 					      {% else %}
-					        <a class="btn btn-outline-success mb-5" href="{{ url_for('admins.manage_members', page=page_num) }}">{{ page_num }}</a>
+					        <a class="btn btn-outline-success mb-5" href="{{ url_for('admins.disapproved_profiles', page=page_num) }}">{{ page_num }}</a>
 					      {% endif %}
 					    {% else %}
 					      ...
@@ -78,25 +78,7 @@
 						        $("#deletemodal").modal("show");
 						    }
 
-						    function suspendFunction(obj){
-						        let userId = obj.id;
-						        let name = obj.getAttribute("dataName");
-
-						        $('#suspendhiddenid').val(userId);
-						        $('#suspendModalLabel').text('Suspend ' + name);
-						        $('#suspendmodal .modal-body').text("Are you sure you want to suspend this user?");
-						        $("#suspendmodal").modal("show");
-						    }
-
-						    function unsuspendFunction(obj){
-						        let userId = obj.id;
-						        let name = obj.getAttribute("dataName");
-
-						        $('#suspendhiddenid').val(userId);
-						        $('#suspendModalLabel').text('Unsuspend ' + name);
-						        $('#suspendmodal .modal-body').text("Are you sure you want to unsuspend this user?");
-						        $("#suspendmodal").modal("show");
-						    }
+						   
 
 						    function messageUserFunction(obj){
 						        let userId = obj.id;
