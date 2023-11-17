@@ -14,7 +14,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAM }}
-        password: ${{ secrets.FTP_PASSWOR }}
+        server: ftp.nasmeoyo.org
+        username: dadaoluwatobijohn@portal.nasmeoyo.org
+        password: Tobi@4195
         server-dir: /membership_portal/
