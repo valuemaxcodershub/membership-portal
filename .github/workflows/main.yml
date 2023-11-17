@@ -17,4 +17,3 @@ jobs:
         server: ftp.nasmeoyo.org
         username: dadaoluwatobijohn@portal.nasmeoyo.org
         password: Tobi@4195
-        server-dir: /membership_portal/
