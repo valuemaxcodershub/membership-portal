@@ -19,6 +19,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "0f3c34f7789f6917e12593945aa86bdb"
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('NASME_DATABASE_URI')
+
+print('For SQLAlchemy database uri:  ', str(app.config['SQLALCHEMY_DATABASE_URI']))
+print('For environ get nasme database uri:  ', str(os.environ.get('NASME_DATABASE_URI')))
 # app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{user}:{password}@localhost/nasme'
 
 
