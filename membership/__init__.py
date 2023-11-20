@@ -24,7 +24,6 @@ print('For SQLAlchemy database uri:  ', str(app.config['SQLALCHEMY_DATABASE_URI'
 print('For environ get nasme database uri:  ', str(os.environ.get('NASME_DATABASE_URI')))
 # app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{user}:{password}@localhost/nasme'
 
-
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)

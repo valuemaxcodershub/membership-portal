@@ -17,3 +17,8 @@ jobs:
         server: ftp.nasmeoyo.org
         username: dadaoluwatobijohn@portal.nasmeoyo.org
         password: Tobi@4195
+    - name: Migrate to db
+      run: |
+        source /home/nasmeoyo/virtualenv/membership_portal/3.10/bin/activate && cd /home/nasmeoyo/membership_portal
+        export FLASK_APP=passenger_wsgi.py
+        flask db migrate
