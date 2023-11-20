@@ -19,6 +19,6 @@ jobs:
         password: Tobi@4195
     - name: Migrate to db
       run: |
-        source /virtualenv/membership_portal/3.10/bin/activate && cd /membership_portal
+        source virtualenv/membership_portal/3.10/bin/activate && cd /membership_portal
         export FLASK_APP=passenger_wsgi.py
         flask db migrate
