@@ -11,14 +11,17 @@ jobs:
     - uses: actions/checkout@v2.1.0
       with:
         fetch-depth: 2
+
+    - name: Migrate to db
+      run: |
+        source /home/nasmeoyo/virtualenv/membership_portal/3.10/bin/activate && cd /home/nasmeoyo/membership_portal
+        export FLASK_APP=passenger_wsgi.py
+        flask db migrate
+        
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ftp.nasmeoyo.org
         username: dadaoluwatobijohn@portal.nasmeoyo.org
         password: Tobi@4195
-    - name: Migrate to db
-      run: |
-        source /home/nasmeoyo/virtualenv/membership_portal/3.10/bin/activate && cd /home/nasmeoyo/membership_portal
-        export FLASK_APP=passenger_wsgi.py
-        flask db migrate
+    
