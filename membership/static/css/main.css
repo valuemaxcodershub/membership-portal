@@ -1,0 +1,31 @@
+.dashboard {
+    padding: 25px;
+    width: 100%;
+    display: grid;
+    gap: 35px;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.myCard {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -moz-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    color: rgb(20, 64, 23);
+    border: 1px solid silver;
+    padding-inline: 1rem;
+}
+
+.myCard:hover {
+    /* background: rgba(34, 140, 46); */
+    background: rgba(20, 20, 20, 0.09);
+    /* color: white; */
+    box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -moz-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    border: none;
+}

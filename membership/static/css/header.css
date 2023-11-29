@@ -1,0 +1,47 @@
+.navbar input::placeholder {
+    font-variant: small-caps;
+}
+
+.navbar-brand {
+    width: 50px;
+}
+
+.navbar-brand img {
+    width: 100%
+}
+
+input,
+button {
+    border: none;
+    outline: none;
+}
+
+#btn-search {
+    background: white;
+}
+
+@media screen and (max-width:550px) {
+    .navbar #search {
+        display: none;
+    }
+
+    .navbar #search.active {
+        display: block;
+    }
+
+    .navbar #search~#btn-search {
+        color: white;
+        background: transparent;
+    }
+
+    .navbar #search.active~#btn-search {
+        background: white;
+        color: black;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .navbar-brand.none {
+        width: 0;
+    }
+}
