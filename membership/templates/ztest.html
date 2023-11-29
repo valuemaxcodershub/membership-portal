@@ -11,11 +11,17 @@
     <link rel="stylesheet" href="../static/css/header.css">
     <link rel="stylesheet" href="../static/css/side.css">
     <link rel="stylesheet" href="../static/css/main.css">
+
+    <style>
+        .main-content * {
+            font-family: 'imprima';
+        }
+    </style>
 </head>
 
 <body>
     <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px;">
-        <div class="container-fluid d-flex px-md-5 px-2">
+        <div class="container d-flex px-md-5 px-3">
             <a class="navbar-brand p-0" id="navBrand" href="#">
                 <img class="" src="../static/web_images/nasme-removebg-preview.png" alt="">
             </a>
@@ -49,13 +55,13 @@
             <span>NasmeOyo</span>
         </div>
         <ul class="px-0 mb-0">
-            <li>
-                <a href="#">
+            <li class="log">
+                <label>
                     <i class="bi bi-house-check"></i>
                     <span class="nav-item" aria-label="Home">Dashboard</span>
-                </a>
+                </label>
             </li>
-            <li class="hasDrop">
+            <li class="hasDrop log">
                 <label class="toggleDrop" for="drop1">
                     <i class="bi bi-file-person"></i>
                     <span class="nav-item" aria-label="Home">Member</span>
@@ -67,7 +73,7 @@
                     <a href="#" class="cont">Bulk Registration</a>
                 </div>
             </li>
-            <li class="hasDrop">
+            <li class="hasDrop log">
                 <label for="drop2" class="toggleDrop">
                     <i class="bi bi-person-lines-fill"></i>
                     <span class="nav-item">Admin</span>
@@ -77,7 +83,7 @@
                     <a href="#" class="cont">Manage Admin</a>
                 </div>
             </li>
-            <li class="hasDrop">
+            <li class="hasDrop log">
                 <label for="drop3" class="toggleDrop">
                     <i class="bi bi-stack"></i>
                     <span class="nav-item">Unit</span>
@@ -87,7 +93,7 @@
                     <a href="#" class="cont">Manage Unit</a>
                 </div>
             </li>
-            <li class="hasDrop">
+            <li class="hasDrop log">
                 <label for="drop4" class="toggleDrop">
                     <i class="bi bi-person-circle"></i>
                     <span class="nav-item">Profile</span>
@@ -98,7 +104,7 @@
                     <a href="#" class="cont">Disapproved Profiles</a>
                 </div>
             </li>
-            <li class="hasDrop">
+            <li class="hasDrop log">
                 <label for="drop5" class="toggleDrop">
                     <i class="bi bi-cash-coin"></i>
                     <span class="nav-item">Finance</span>
@@ -108,23 +114,23 @@
                     <a href="#" class="cont">Generate Financial Report</a>
                 </div>
             </li>
-            <li>
-                <a href="#">
+            <li class="log">
+                <label>
                     <i class="bi bi-chat-left-text"></i>
                     <span class="nav-item">Send Messages</span>
-                </a>
+                </label>
             </li>
-            <li>
-                <a href="#">
+            <li class="log">
+                <label>
                     <i class="bi bi-chat"></i>
                     <span class="nav-item">Account</span>
-                </a>
+                </label>
             </li>
-            <li>
-                <a href="#">
+            <li class="log">
+                <label>
                     <i class="bi bi-escape"></i>
                     <span class="nav-item">Logout</span>
-                </a>
+                </label>
             </li>
         </ul>
     </div>
@@ -132,84 +138,84 @@
     <div class="main-content">
         <div class="dashboard">
             <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-people-fill fs-2"></i>
+                <div class="my-3">
+                    <i class="bi bi-people-fill fs-4"></i>
                 </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Total Member(s)</h5>
-                    <h5>0</h5>
-                </div>
-            </div>
-            <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-briefcase-fill fs-2"></i>
-                </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>My Wallet</h5>
-                    <h5>0</h5>
+                <div class="text-center my-2">
+                    <p>Total Member(s)</p>
+                    <p>0</p>
                 </div>
             </div>
             <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-stack fs-2"></i>
+                <div class="my-3">
+                    <i class="bi bi-briefcase-fill fs-4"></i>
                 </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Total Unit(s)</h5>
-                    <h5>0</h5>
-                </div>
-            </div>
-            <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-layers-fill fs-2"></i>
-                </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Add New Unit</h5>
-                    <h5>0</h5>
+                <div class="text-center my-2">
+                    <p>My Wallet</p>
+                    <p>0</p>
                 </div>
             </div>
             <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-person-fill fs-2"></i>
+                <div class="my-3">
+                    <i class="bi bi-stack fs-4"></i>
                 </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Add New Member</h5>
-                    <!-- <h5>0</h5> -->
-                </div>
-            </div>
-            <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-cash-coin fs-2"></i>
-                </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Create Finance</h5>
-                    <h5>0</h5>
+                <div class="text-center my-2">
+                    <p>Total Unit(s)</p>
+                    <p>0</p>
                 </div>
             </div>
             <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-chat-left-text-fill fs-2"></i>
+                <div class="my-3">
+                    <i class="bi bi-layers-fill fs-4"></i>
                 </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Send Message</h5>
-                    <h5>0</h5>
-                </div>
-            </div>
-            <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-cash fs-2"></i>
-                </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>Financial Report</h5>
-                    <h5>0</h5>
+                <div class="text-center my-2">
+                    <p>Add New Unit</p>
+                    <p>0</p>
                 </div>
             </div>
             <div class="rounded myCard">
-                <div class="m-3">
-                    <i class="bi bi-person-circle fs-2"></i>
+                <div class="my-3">
+                    <i class="bi bi-person-fill fs-4"></i>
                 </div>
-                <div class="text-center mb-2 mt-4">
-                    <h5>My Profile</h5>
-                    <h5>0</h5>
+                <div class="text-center my-2">
+                    <p>Add New Member</p>
+                    <!-- <p>0</p> -->
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-cash-coin fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Create Finance</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-chat-left-text-fill fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Send Message</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-cash fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Financial Report</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-person-circle fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>My Profile</p>
+                    <p>0</p>
                 </div>
             </div>
         </div>
@@ -302,10 +308,17 @@
         let sideDrops = document.querySelectorAll('.sideDrop')
         let toggleDrops = document.querySelectorAll('.toggleDrop')
         let smallToggler = document.getElementById('togglerLg');
+        let tog = document.querySelectorAll('.log')
 
         btn.onclick = function () {
             sidebar.classList.toggle('active')
         };
+
+        tog.forEach(function (tog) {
+            tog.onclick = function () {
+                sidebar.classList.add('active');
+            };
+        });
         //TOGGlER
 
 
