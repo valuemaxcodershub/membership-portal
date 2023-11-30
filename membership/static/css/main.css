@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'imprima';
+    src: url('../webfontkit-20231026-110529/imprima-regular-webfont.woff2') format('woff2'),
+        url('../webfontkit-20231026-110529/imprima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dashboard {
+    margin: 50px;
+    display: grid;
+    gap: 45px;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.myCard {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    box-shadow: 3px 3px 0px 0px rgba(20, 64, 23);
+    -webkit-box-shadow: 3px 3px 0px 0px rgba(20, 64, 23);
+    -moz-box-shadow: 3px 3px 0px 0px rgba(20, 64, 23);
+    color: rgb(20, 64, 23);
+    border: 1px solid silver;
+    padding-inline: 1rem;
+}
+
+.myCard:hover {
+    background: rgba(20, 20, 20, 0.09);
+    box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -moz-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    border: none;
+}
+
+.myCard p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.myCard .text-center p:first-of-type {
+    font-weight: 500;
+}
