@@ -174,7 +174,7 @@ body {
         top: 75px;
         left: 0;
         height: auto;
-        width: 100%;
+        /* width: 100%; */
         background: #228c2e;
         padding: 0.4rem 0.3rem;
         transition: all 0.6s ease;
