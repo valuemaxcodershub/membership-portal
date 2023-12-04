@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/side.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+
+    <style>
+        .main-content * {
+            font-family: 'imprima';
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px;">
+        <div class="container d-flex px-md-5 px-3">
+            <a class="navbar-brand p-0" id="navBrand" href="#">
+                <img class="" src="../static/web_images/nasme-removebg-preview.png" alt="">
+            </a>
+
+
+            <div class="d-flex" style="position: relative;">
+                <form class="d-flex rounded mx-lg-2 mx-1">
+                    <input class="form-control rounded-0 rounded-start border-0 w-100" id="search"
+                        style="box-shadow: none;" type="search" placeholder="Search" aria-label="Search">
+                    <button class="rounded-0 rounded-end btn border-0" id="btn-search" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+
+                <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" title="Sort by Clusters/Units">
+                    <i class="bi bi-collection-fill text-light"></i>
+                </button>
+                <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" title="Admin Profile">
+                    <i class="bi bi-person-workspace text-light"></i>
+                </button>
+                <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" id="togglerLg" title="Toggler">
+                    <i class="bi bi-list text-light"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <div class="top">
+            <i class="bi bi-list" id="btn"></i>
+            <span>NasmeOyo</span>
+        </div>
+        <ul class="px-0 mb-0">
+            <li class="log">
+                <label>
+                    <i class="bi bi-house-check"></i>
+                    <span class="nav-item" aria-label="Home">Dashboard</span>
+                </label>
+            </li>
+            <li class="hasDrop log">
+                <label class="toggleDrop" for="drop1">
+                    <i class="bi bi-file-person"></i>
+                    <span class="nav-item" aria-label="Home">Member</span>
+                </label>
+
+                <div class="sideDrop shadow-sm">
+                    <a href="#" class="cont">Add Member</a>
+                    <a href="#" class="cont">Manage Member</a>
+                    <a href="#" class="cont">Bulk Registration</a>
+                </div>
+            </li>
+            <li class="hasDrop log">
+                <label for="drop2" class="toggleDrop">
+                    <i class="bi bi-person-lines-fill"></i>
+                    <span class="nav-item">Admin</span>
+                </label>
+                <div class="sideDrop shadow-sm ">
+                    <a href="#" class="cont">Add Admin</a>
+                    <a href="#" class="cont">Manage Admin</a>
+                </div>
+            </li>
+            <li class="hasDrop log">
+                <label for="drop3" class="toggleDrop">
+                    <i class="bi bi-stack"></i>
+                    <span class="nav-item">Unit</span>
+                </label>
+                <div class="sideDrop shadow-sm">
+                    <a href="#" class="cont">Add Unit</a>
+                    <a href="#" class="cont">Manage Unit</a>
+                </div>
+            </li>
+            <li class="hasDrop log">
+                <label for="drop4" class="toggleDrop">
+                    <i class="bi bi-person-circle"></i>
+                    <span class="nav-item">Profile</span>
+                </label>
+                <div class="sideDrop shadow-sm">
+                    <a href="#" class="cont">Pending Approvals</a>
+                    <a href="#" class="cont">Approved Profiles</a>
+                    <a href="#" class="cont">Disapproved Profiles</a>
+                </div>
+            </li>
+            <li class="hasDrop log">
+                <label for="drop5" class="toggleDrop">
+                    <i class="bi bi-cash-coin"></i>
+                    <span class="nav-item">Finance</span>
+                </label>
+                <div class="sideDrop shadow-sm">
+                    <a href="#" class="cont">Create Payment</a>
+                    <a href="#" class="cont">Generate Financial Report</a>
+                </div>
+            </li>
+            <li class="log">
+                <label>
+                    <i class="bi bi-chat-left-text"></i>
+                    <span class="nav-item">Send Messages</span>
+                </label>
+            </li>
+            <li class="log">
+                <label>
+                    <i class="bi bi-chat"></i>
+                    <span class="nav-item">Account</span>
+                </label>
+            </li>
+            <li class="log">
+                <label>
+                    <i class="bi bi-escape"></i>
+                    <span class="nav-item">Logout</span>
+                </label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard">
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-people-fill fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Total Member(s)</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-briefcase-fill fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>My Wallet</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-stack fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Total Unit(s)</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-layers-fill fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Add New Unit</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-person-fill fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Add New Member</p>
+                    <!-- <p>0</p> -->
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-cash-coin fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Create Finance</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-chat-left-text-fill fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Send Message</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-cash fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Financial Report</p>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-person-circle fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>My Profile</p>
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <br><br><br><br><br>
+        <!-- <p>Lorem, ipsum dolor sit, amet consectetur adipisicing elit. Iusto possimus ipsa assumenda excepturi dolorum
+            harum ipsum sed natus! Nostrum, illo quisquam nobis hic doloribus nisi numquam quibusdam, dolore officia
+            architecto ab ipsum ad, unde in temporibus incidunt accusamus magni amet exercitationem soluta deserunt?
+            Quos officiis praesentium nisi, optio sint dolor, facere voluptatum ipsa necessitatibus ullam harum delectus
+            cum, repellat quam est perferendis sequi! Natus aut dolore nam voluptatum, earum nobis excepturi eos.
+            Repellendus ullam dolore error quam voluptatum architecto beatae. Mollitia eum neque sed deleniti sapiente
+            perspiciatis voluptatibus, quasi aliquam rerum nostrum delectus qui culpa ullam corporis impedit tenetur.
+            Eius?
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt maxime repellendus voluptas nulla nemo,
+            asperiores harum velit, illo, obcaecati enim quae non. Quae velit vero illo, nam aut, vel assumenda qui
+            sequi suscipit, quasi accusamus vitae voluptatibus soluta ipsa incidunt sint adipisci eos temporibus nihil
+            iusto commodi totam modi. Fuga saepe facere expedita dolore magnam quas consequuntur labore. Fuga itaque
+            temporibus quo illo inventore saepe illum amet eveniet repellat adipisci eaque magnam porro, exercitationem
+            molestias labore doloribus non officia harum perspiciatis esse totam. Sequi natus officiis porro, qui
+            repudiandae aut fugiat animi aspernatur vel, explicabo cupiditate cumque doloremque, est aliquid alias
+            laborum laudantium vitae labore. Aspernatur, sequi, ea nemo labore nisi nam explicabo repudiandae alias
+            reiciendis maiores saepe sapiente dicta. Ipsum doloribus, praesentium minima nostrum accusamus ratione
+            aspernatur illum iste, aliquid numquam magni? Ad cumque quam perferendis commodi saepe et fuga praesentium
+            nostrum harum unde quia repellat laboriosam incidunt earum consectetur nisi molestias assumenda, fugiat esse
+            nulla obcaecati? Recusandae velit dolore dolores nemo voluptatem, odio voluptate, autem minima doloribus
+            totam ullam nulla earum aliquam eligendi. Neque commodi quo omnis sed explicabo quod nam, voluptatum
+            obcaecati repellendus animi mollitia cupiditate officiis eveniet, officia et inventore voluptate eligendi
+            libero laudantium tempore corrupti quas ex. Dolorem, odit fugit dolorum aliquam eum, provident maxime cum
+            aut dolor distinctio adipisci mollitia iure. Neque voluptatum eveniet porro minus quis possimus rerum nihil
+            voluptatem, itaque illum cumque. Magni, nesciunt sed a ab consequatur numquam iusto voluptatibus error
+            perferendis earum dignissimos molestiae provident molestias, maiores esse quas qui impedit fuga laboriosam
+            iure facere doloribus repellat? Molestiae et doloremque sunt velit aut, perspiciatis quasi in omnis nam eius
+            totam ea, rerum maiores tempora iusto odit quidem? Repudiandae unde maiores, maxime ducimus quos id esse
+            praesentium quod, odio dolorum perferendis, a tempora qui. At, consequuntur. In debitis beatae expedita
+            sapiente. Consequuntur illo deleniti architecto nobis ad quas nisi. Culpa, voluptate maiores corrupti
+            dolorum exercitationem iure amet? Inventore odio exercitationem animi officia, voluptates perspiciatis,
+            mollitia vitae modi sequi officiis non numquam dolores ex corporis suscipit necessitatibus. Repellendus a
+            nulla fugiat molestias id. Saepe, cumque quo qui tenetur autem facere. Adipisci culpa ullam tenetur
+            necessitatibus amet, laborum perspiciatis unde nam nisi a ea possimus est sequi tempore recusandae quos
+            placeat rerum aliquam dignissimos quae consectetur, dolorum dolorem quod! Sint facilis nisi quo quis
+            molestias soluta veniam dolorem nulla architecto? Quia veniam vitae provident eos odio suscipit, minus alias
+            consequuntur placeat maxime ex repellendus ut atque eius quod delectus laborum quae quam! Saepe suscipit
+            quas dignissimos sit esse dicta animi asperiores accusantium iste, molestiae ea veniam, at, velit magnam
+            similique sunt eligendi minima quidem incidunt. Architecto ipsam recusandae reprehenderit pariatur et amet
+            cumque laudantium quidem aperiam minima. Nulla dolor earum sequi accusamus quam, molestias tempora error vel
+            tempore iste id in provident atque autem dicta. Praesentium aspernatur, ipsa fugit eaque eum rem, dicta amet
+            dolorem est ipsum, velit labore fugiat consequatur ea? Voluptas recusandae incidunt et tempore maxime est,
+            commodi illo explicabo assumenda eius suscipit nihil ea harum. Facere aperiam fugiat architecto quam. Lorem
+            ipsum, dolor sit amet consectetur adipisicing elit. Illum maxime in autem molestias obcaecati necessitatibus
+            amet debitis impedit voluptas dicta quidem fugiat iste, nisi, ipsum placeat at dolor delectus voluptatibus
+            facilis corrupti? A, odit molestiae? Quis inventore, suscipit provident dolor, debitis, assumenda nihil vel
+            doloribus cumque ex similique fugit ab enim cum maiores iure reiciendis! Laborum consequatur consequuntur
+            repellendus? Quis aliquid nemo ex suscipit sequi sed, cumque earum alias a, nostrum, cupiditate fugiat eos.
+            Assumenda tempore, dicta a eveniet nesciunt magni praesentium! Ipsum nulla maxime tempora aperiam explicabo
+            aspernatur ad in rerum corporis distinctio reiciendis praesentium quia quas, ipsa hic, sint beatae illum ab
+            tempore. Nihil error dolores natus expedita cumque nisi esse deleniti, accusamus vitae! Corrupti vitae neque
+            ab dolorum sunt id, quaerat totam, recusandae est deserunt numquam inventore dolor vero corporis omnis
+            repellat, esse molestias. Repellendus necessitatibus magnam laborum ad. Deleniti corporis magni non quam
+            accusamus incidunt numquam ipsum maiores, corrupti maxime, odio eligendi praesentium sunt tempora alias
+            quidem quo, eum aliquam ex sed facilis? Expedita voluptatibus minima saepe velit, maiores aperiam blanditiis
+            error architecto iusto eveniet amet et temporibus ducimus consequuntur reprehenderit magnam nam dolor optio
+            dignissimos similique? Asperiores accusantium vitae aliquam, nulla consequuntur ea adipisci fugiat?</p> -->
+    </div>
+
+
+
+    <script>
+        // Navbar Search Toggler
+        let searchInput = document.getElementById('search')
+        let btnSearch = document.getElementById('btn-search')
+        let navBrand = document.getElementById('navBrand')
+
+        btnSearch.addEventListener('click', (e) => {
+            e.preventDefault()
+            searchInput.classList.toggle('active')
+            navBrand.classList.toggle('none')
+        })
+        // Navbar Search Toggler Ends
+
+
+        // TOGGLER
+        let btn = document.querySelector('#btn')
+        let sidebar = document.querySelector('.sidebar')
+        let sideDrops = document.querySelectorAll('.sideDrop')
+        let toggleDrops = document.querySelectorAll('.toggleDrop')
+        let smallToggler = document.getElementById('togglerLg');
+        let tog = document.querySelectorAll('.log')
+
+        btn.onclick = function () {
+            sidebar.classList.toggle('active')
+        };
+
+        tog.forEach(function (tog) {
+            tog.onclick = function () {
+                sidebar.classList.add('active');
+            };
+        });
+        //TOGGlER
+
+
+        // TOGGLER AT SM
+        smallToggler.onclick = function () {
+            if (window.innerWidth <= 450) {
+                sidebar.style.display =
+                    (sidebar.style.display === 'none' || sidebar.style.display === '') ? 'block' : 'none';
+
+                sidebar.classList.add('active');
+            }
+        };
+
+        // TOGGLER AT SM ENDS
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

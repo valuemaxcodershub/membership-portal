@@ -1,0 +1,124 @@
+/* ADMIN DASHBOARD */
+
+@font-face {
+    font-family: 'imprima';
+    src: url('../webfontkit-20231026-110529/imprima-regular-webfont.woff2') format('woff2'),
+        url('../webfontkit-20231026-110529/imprima-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dashboard {
+    margin: 50px;
+    display: grid;
+    gap: 45px;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.myCard {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    box-shadow: 3px 3px 0px 0px rgba(20, 64, 23);
+    -webkit-box-shadow: 3px 3px 0px 0px rgba(20, 64, 23);
+    -moz-box-shadow: 3px 3px 0px 0px rgba(20, 64, 23);
+    color: rgb(20, 64, 23);
+    border: 1px solid silver;
+    padding-inline: 1rem;
+    text-decoration: none;
+}
+
+.myCard:hover {
+    background: rgba(20, 20, 20, 0.09);
+    box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -webkit-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    -moz-box-shadow: 5px 5px 0px 0px rgba(20, 64, 23);
+    border: none;
+}
+
+.myCard p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.myCard .text-center p:first-of-type {
+    font-weight: 500;
+}
+
+/* ADMIN DASHBOARD  ENDS */
+
+
+
+
+/* LOGIN INTERFACE */
+
+.form-control:focus,
+.form-check-input:focus,
+.form-select:focus {
+    border-color: rgb(34, 140, 46);
+    box-shadow: 0 0 0 .25rem rgba(34, 140, 46, .25)
+}
+
+.form-check-input:checked {
+    background: #228c2e;
+    outline: none;
+}
+
+.form-check-input[type="checkbox"]:before {
+    position: relative;
+    display: block;
+    width: 10px;
+    height: 10px;
+    content: "";
+}
+
+.form-check-input[type="checkbox"]:after {
+    position: relative;
+    display: block;
+    left: -1.7px;
+    top: -12px;
+    width: 15px;
+    height: 15px;
+    content: "";
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.form-check-input[type="checkbox"]:checked:after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e")
+}
+
+.logo-col {
+    padding: 5rem;
+}
+
+.form-styled {
+    background: #228c2e;
+    height: 100vh;
+    margin-bottom: 0;
+}
+
+.alert {
+    position: absolute;
+}
+
+@media screen and (max-width:766px) {
+    .form-styled {
+        height: auto;
+        padding-block: 7rem;
+    }
+}
+
+/* LOGIN INTERFACE ENDS */
+
+
+
+
+/* EDIT MEMBER PAGE */
+
+
+
+/* EDIT MEMBER PAGE ENDS */

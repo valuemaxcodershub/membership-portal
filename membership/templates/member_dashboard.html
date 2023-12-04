@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/side.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+</head>
+
+<body>
+    <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px;">
+        <div class="container d-flex px-md-5 px-3">
+            <a class="navbar-brand p-0" id="navBrand" href="#">
+                <img class="" src="../static/web_images/nasme-removebg-preview.png" alt="">
+            </a>
+
+            <div class="d-flex" style="position: relative;">
+                <button type="button" class="btn btn- position-relative rounded-0 rounded-end ms-md-3 mx-0"
+                    title="Notifications">
+                    <i class="fs-4 bi bi-bell-fill text-light"></i>
+                    <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger mt-2">
+                        9+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                </button>
+                <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" title="Edit Profile">
+                    <i class=" fs-4 bi bi-person-fill-gear text-light"></i>
+                </button>
+                <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" id="togglerLg" title="Toggler">
+                    <i class=" fs-4 bi bi-list text-light"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <div class="top">
+            <i class="bi bi-list" id="btn"></i>
+            <span>NasmeOyo</span>
+        </div>
+        <ul class="px-0 mb-0">
+            <li class="log">
+                <a href="#">
+                    <i class="bi bi-house-check"></i>
+                    <span class="nav-item" aria-label="Home">Dashboard</span>
+                </a>
+            </li>
+            <li class="log">
+                <a href="#">
+                    <i class="bi bi-box-arrow-up-right"></i>
+                    <span class="nav-item text-nowrap">Public Profile</span>
+                </a>
+            </li>
+            <li class="log">
+                <a href="#">
+                    <i class="bi bi-pencil-square"></i>
+                    <span class="nav-item">Edit Profile</span>
+                </a>
+            </li>
+            <li class="log">
+                <a href="#">
+                    <i class="bi bi-wallet"></i>
+                    <span class="nav-item">My Dues</span>
+                </a>
+            </li>
+            <li class="log">
+                <a href="#">
+                    <i class="bi bi-list"></i>
+                    <span class="nav-item text-center text-nowrap">Transaction log</span>
+                </a>
+            </li>
+            <li class="log">
+                <a href="#">
+                    <i class="bi bi-escape"></i>
+                    <span class="nav-item">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="main-content">
+        <div class="alert alert-warning d-flex align-items-center w-100 rounded-top-0 alert-dismissible fade show py-2"
+            role="alert">
+            <i class="flex-shrink-0 bi bi-exclamation-triangle-fill fs-4"></i>
+            <div class="fs-5 text-center w-100" style="font-variant: small-caps;">
+                <strong class="d-block">Latest Notifications</strong>
+                An example danger alert with an icon
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="dashboard">
+            <a href="#" class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-pencil-square fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Edit Page</p>
+                    <p style="visibility: hidden;">0</p>
+                </div>
+            </a>
+            <a href="#" class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-wallet fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>My Dues</p>
+                    <p>0</p>
+                </div>
+            </a>
+            <a href="#" class="rounded myCard">
+                <div class="my-3">
+                    <i class="bi bi-list fs-4"></i>
+                </div>
+                <div class="text-center my-2">
+                    <p>Transaction History</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center py-5 m-1">
+                <div class="col-lg-10">
+                    <h4 class="text-center">UPDATE BUSINESS INFO</h4>
+                    <div class="row shadow bg-light rounded-3 py-lg-3 px-lg-4 p-3">
+                        <div class="col-md-6">
+                            <img src="../static/profile_pics/default.jpg" alt=""
+                                class="rounded-3 shadow-sm w-75 justify-self-center">
+
+                            <div class="form-control my-4 border-0 form-control-sm bg-transparent">
+                                <div class="mb-3">
+                                    <label for="date_of_birth" class="form-label fw-bold text-uppercase ">Date of
+                                        Birth</label>
+                                    <p class="fs-6 text-capitalize">default</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="update_password"
+                                        class="form-label fw-bold text-uppercase">Password</label>
+                                    <p class="fs-6 text-capitalize">default</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label fw-bold text-uppercase">Unit</label>
+                                    <p class="fs-6 text-capitalize">default</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <form action="" class="form-control form-control-sm border-0 bg-transparent">
+                                <div class="mb-3">
+                                    <label class="fw-bold text-uppercase form-label" for="business_name">Business
+                                        Name</label>
+                                    <p class="fs-5 text-uppercase">Valuemax Communications</p>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="business_location" class="fw-bold text-uppercase form-label">Business
+                                        Location</label>
+                                    <p class="fs-6 text-capitalize">Opp UI Post Office, Agbowo UI Ibadan</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label fw-bold text-uppercase ">About Your Business</label>
+                                    <p class="fs-6   text-capitalize">Welcome to [Your Business Name], where innovation
+                                        and excellence converge in [industry/niche]. We're dedicated to
+                                        [briefly describe your main focus], delivering [key product or service] that
+                                        sets new standards. Join us in redefining
+                                        [industry/niche] with [Your Business Name]'s commitment to quality and
+                                        innovation</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label fw-bold text-uppercase ">Services Rendered</label>
+                                    <ul>
+                                        <li class="text-capitalize fs-6">Responsive Web Design</li>
+                                        <li class="text-capitalize fs-6">User Interface (UI) Development</li>
+                                        <li class="text-capitalize fs-6">Cross-Browser Compatibility</li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center py-5 m-1">
+                <div class="col-lg-10">
+                    <h4 class="text-center">PRODUCTS & SERVICE IMAGES</h4>
+                    <div
+                        class="row row-cols-lg-4 row-cols-md-3 row-cols-2 shadow bg-light rounded-3 py-lg-3 px-lg-4 p-3  justify-content-around">
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                        <div class="col-md text-center p-3 d-flex flex-column">
+                            <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row justify-content-center py-5 m-1">
+                <div class="col-lg-10">
+                    <h4 class="text-center">LINKS & CONTACT INFORMATION</h4>
+                    <div class="shadow bg-light rounded-3 py-lg-3 px-lg-4 row p-3">
+                        <form class="row g-3 form-control d-flex bg-transparent border-0">
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Business Phone Number</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-telephone-fill me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Business E-mail</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-envelope-fill me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Business Website Url</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-globe me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Facebook</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-facebook me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label">LinkedIn</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-linkedin me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Twitter</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-twitter me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label">Whatsapp</label>
+                                <div class="d-flex mb-3">
+                                    <i class="bi bi-whatsapp me-3"></i>
+                                    <p class="text-capitalize">default</p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center pb-5">
+                <div class="col-lg-10">
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn shadow rounded-3 px-5 p-3 btn-success text-uppercase text-center m-0">
+                                Edit Your Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <script>
+        // TOGGLER
+        let btn = document.querySelector('#btn')
+        let sidebar = document.querySelector('.sidebar')
+        let sideDrops = document.querySelectorAll('.sideDrop')
+        let toggleDrops = document.querySelectorAll('.toggleDrop')
+        let smallToggler = document.getElementById('togglerLg');
+        let tog = document.querySelectorAll('.log')
+
+        btn.onclick = function () {
+            sidebar.classList.toggle('active')
+        };
+
+        tog.forEach(function (tog) {
+            tog.onclick = function () {
+                sidebar.classList.add('active');
+            };
+        });
+        //TOGGlER
+
+
+        // TOGGLER AT SM
+        smallToggler.onclick = function () {
+            if (window.innerWidth <= 450) {
+                sidebar.style.display =
+                    (sidebar.style.display === 'none' || sidebar.style.display === '') ? 'block' : 'none';
+                sidebar.classList.add('active');
+            }
+        };
+
+        // TOGGLER AT SM ENDS
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
