@@ -153,6 +153,7 @@ def admin_login():
     email_input = form.email.data
     password_input = form.password.data
     remember = form.remember.data
+    
     admin = User.query.filter_by(role="ADMIN").filter_by(business_email=email_input).first()
     if admin and admin.password == password_input:
       login_user(admin, remember=remember)
@@ -160,6 +161,7 @@ def admin_login():
       return redirect(next_page) if next_page else redirect(url_for('admins.dashboard'))
     else:
       flash('Login Unsuccessful. Please check email and password', 'danger')
+ 
   return render_template("admin/admin_login.html", title="Admin Login", form=form)
 
 #only for superadmin
@@ -346,9 +348,11 @@ def dashboard():
   total_members = User.query.filter_by(role="USER").count()
   total_units = Unit.query.count()
 
-  return render_template("dashboard_layout.html", total_members=total_members,
-                                       total_units=total_units,
-                                        )
+  # return render_template("dashboard_layout.html", total_members=total_members,
+  #                                      total_units=total_units,
+  #                                       )
+  return render_template("admin/index.html", total_members=total_members, total_units=total_units )
+
 
 @admins.route("/admin/manage_members")
 @admin_role_required

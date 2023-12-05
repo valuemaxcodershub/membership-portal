@@ -79,7 +79,7 @@ def reset_request():
     if current_user.role == "ADMIN":
       return redirect(url_for('admins.home'))
     elif current_user.role == "USER":
-      return redirect(url_for('members.member-home'))
+      return redirect(url_for('members.member_home'))
 
   if request.method == "POST":
     email_input = request.form['email']
