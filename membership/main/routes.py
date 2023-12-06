@@ -5,6 +5,8 @@ from membership.main.utils import send_reset_email
 from membership.models import User, Unit
 from flask_login import current_user
 from sqlalchemy import or_
+import json
+
 
 main = Blueprint('main', __name__)
 
@@ -54,7 +56,7 @@ def business_unit_members(unit_id):
 
 @main.route("/business-profile")
 def business_profile():
-  # members = User.query.filter_by(role="USER").all()
+  members = User.query.filter_by(role="USER").all()
 
   return render_template("main/business_profile.html")
 
@@ -69,8 +71,10 @@ def member_page(business_name):
     abort(404)
 
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
+  about_list = member.business_services.split(',')
   
-  return render_template("main/member_page.html", member=member, image_file=image_file)
+  
+  return render_template("main/member_page.html", member=member, image_file=image_file, services= about_list)
 
 
 
