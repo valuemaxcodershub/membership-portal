@@ -53,7 +53,7 @@ def create_payment():
 @admins.route('/admin/send_message', methods=['GET', 'POST'])
 @admin_role_required
 def send_message():
-    recipient_id = int(request.form['user_id'])
+    recipient_id = int(request.form.get('user_id', 1)) #just adding it for now
     user = User.query.get_or_404(recipient_id)
     form = MessageForm()
     if form.validate_on_submit():
