@@ -130,6 +130,8 @@ def user_logout():
     logout_user()
     return redirect(url_for('members.login'))
 
+
+
 @members.route("/edit-business-profile", methods=["GET", "POST"])
 @user_role_required
 def edit_business_profile():
@@ -138,6 +140,7 @@ def edit_business_profile():
   form = CreateProfileForm()
 
   if request.method == "GET":
+    print('We are iin get.')
     if member.business_name:
       form.business_name.data = member.business_name
       form.business_email.data = member.business_email
@@ -154,9 +157,10 @@ def edit_business_profile():
       form.date_of_birth.data = member.date_of_birth
       form.password.data = member.password
 
-  if request.method == 'POST':
+  elif request.method == 'POST':
+    print('Form has been posted')
     if form.validate_on_submit():
-
+      
       userd = {}
       
       for field in request.form:
