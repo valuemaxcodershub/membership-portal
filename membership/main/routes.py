@@ -16,6 +16,7 @@ def inject_menu():
     dashboard_units = Unit.query.all()
     logged_in_user = current_user
     
+    
    
     return dict(dashboard_units=dashboard_units, loggedinuser = logged_in_user)
 
