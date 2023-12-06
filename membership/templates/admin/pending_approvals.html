@@ -39,6 +39,8 @@
 <link rel="stylesheet" type="text/css" href="css/basictable.css" />
 <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
 
+<div class="main-content">
+
 <form method="POST" action="{{url_for('admins.export_custom')}}">
 	<br />
 	<input type="hidden" name="members" value="{{pending_updates_list.items}}" />
@@ -253,6 +255,8 @@
 			}}</a>
 		{% endif %} {% else %} ... {% endif %} {% endfor %}
 	</div>
+</div>
+
 </div>
 
 <script>

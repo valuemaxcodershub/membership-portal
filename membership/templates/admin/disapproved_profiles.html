@@ -8,6 +8,7 @@
 
 
 <!-- //tables -->
+<div class="main-content">
 				<form method="POST" action="{{url_for('admins.export_custom')}}">
 					<br>
 					<input type="hidden" name="members", value={{members.items}}>	
@@ -68,6 +69,7 @@
 				  </div>
 
 
+				</div>
 				  <script>
 						    function deleteFunction(obj){
 						        let userId = obj.id;

@@ -19,13 +19,13 @@ admins = Blueprint("admins", __name__)
 data = DataStore()
 
 
-@admins.route('/admin/dues_pay', methods=['GET', 'POST'])
+@admins.route('/admin/dues_pay/', methods=['GET', 'POST'])
 @admin_role_required
 def dues_pay():
   
   return render_template("admin/dues_pay.html")
 
-@admins.route('/admin/paid_dues', methods=['GET', 'POST'])
+@admins.route('/admin/paid_dues/', methods=['GET', 'POST'])
 @admin_role_required
 def paid_dues():
   
@@ -104,7 +104,7 @@ def inject_menu():
     return dict(dashboard_units=dashboard_units)
 
 
-@admins.route("/home")
+@admins.route("/home/")
 def home():
   if current_user.is_authenticated:
     if current_user.role == "ADMIN":
@@ -112,7 +112,7 @@ def home():
 
   return redirect(url_for("admins.admin_login"))
 
-@admins.route("/admin-logout")
+@admins.route("/admin-logout/")
 @admin_role_required
 def admin_logout():
   logout_user()
@@ -140,7 +140,7 @@ def search_members():
   return render_template("search_results.html", result_count=result_count, members=members, query=query, title=f"Search Results for {query}")
 
 
-@admins.route("/admin", methods=["GET", "POST"])
+@admins.route("/admin/", methods=["GET", "POST"])
 def admin_login():
   if current_user.is_authenticated:
     if current_user.role == "ADMIN":
@@ -165,7 +165,7 @@ def admin_login():
   return render_template("admin/admin_login.html", title="Admin Login", form=form)
 
 #only for superadmin
-@admins.route("/admin/manage_admins")
+@admins.route("/admin/manage_admins/")
 @super_admin_role_required
 def manage_admins():
   page = request.args.get('page', 1, type=int)
@@ -174,7 +174,7 @@ def manage_admins():
 
   return render_template("admin/manage_administrators.html", title="Admin Management", admins=admins)
 
-@admins.route("/admin/manage_units")
+@admins.route("/admin/manage_units/")
 @admin_role_required
 def manage_units():
   page = request.args.get('page', 1, type=int)
