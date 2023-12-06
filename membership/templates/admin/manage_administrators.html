@@ -1,5 +1,7 @@
-{% extends "dashboard_layout.html" %}
+{% extends '/dashboard_layout.html' %}
+
 {% block content %}
+
 <script>
 	$(function () {
 		$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -14,9 +16,10 @@
 	});
 </script>
 <!-- tables -->
-<link rel="stylesheet" type="text/css" href="css/table-style.css" />
-<link rel="stylesheet" type="text/css" href="css/basictable.css" />
-<script type="text/javascript" src="js/jquery.basictable.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../static/css/table-style.css" />
+
+<link rel="stylesheet" type="text/css" href="../../static/css/basictable.css" />
+<script type="text/javascript" src="../../static/js/jquery.basictable.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
       $('#table').basictable();
@@ -44,6 +47,7 @@
       });
     });
 </script>
+
 <!-- //tables -->
 <div class="main-content">
 				<div class="container agile-tables">
