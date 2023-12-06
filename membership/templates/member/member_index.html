@@ -340,7 +340,7 @@
                 </a>
             </li>
             <li class="log">
-                <a href="#">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
                     <i class="bi bi-escape"></i>
                     <span class="nav-item">Logout</span>
                 </a>
@@ -558,6 +558,30 @@
         </div>
 
     </div>
+
+
+       <!-- Modal -->
+       <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-uppercase" id="exampleModalLabel">Log Out</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Ready to wrap up your session? Confirm your logout
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <a href="{{url_for('members.user_logout')}}"  class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- End of Modal -->
+
+
+
 
 
 
