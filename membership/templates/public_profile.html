@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!-- <link rel="stylesheet" href="../static/css/header.css"> -->
 
     <style>
         .navbar input::placeholder {
@@ -37,17 +36,6 @@
 
         .dropdown-menu .dropdown-item:focus {
             background: #228c2e;
-        }
-
-        @media screen and (max-width:800px) {
-            .header input {
-                display: none;
-            }
-
-            .header .search-icon {
-                background: transparent;
-                color: white;
-            }
         }
 
         @media screen and (max-width:991px) {
@@ -94,9 +82,6 @@
 
                 <button class="btn ms-md-3 mx-0" type="submit" title="Sort by Clusters/Units">
                     <i class="bi bi-collection-fill text-light"></i>
-                </button>
-                <button class="btn ms-md-3 mx-0" type="submit" title="Admin Profile">
-                    <i class="bi bi-person-workspace text-light"></i>
                 </button>
                 <button class="btn ms-md-3 mx-0" type="submit" title="Toggler">
                     <i class="bi bi-facebook text-light"></i>
@@ -175,6 +160,105 @@
             </div>
         </div>
     </nav>
+
+
+    <main class="m-lg-auto m-4">
+        <div class="container bg-light my-5 rounded p-2">
+            <div class="row p-3 my-3">
+                <div class="col-lg-3 col-md-4">
+                    <img src="../static/profile_pics/default.jpg" class="rounded-3 shadow-sm w-100 justify-self-center"
+                        alt="">
+                </div>
+                <div class="col-lg-9 col-md-8 text-center px-3">
+                    <h2 style="font-variant: small-caps;">ValueMax Communications enterprises</h2>
+                    <p class="my-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum ab earum facere non,
+                        dolorem
+                        recusandae provident nam quis consectetur. Ducimus sapiente minus explicabo minima velit
+                        praesentium quia libero sed quo repellendus nihil voluptatibus, ab corporis deleniti amet
+                        quibusdam nemo inventore quasi officiis! Sapiente aspernatur laboriosam nam hic harum natus
+                        eaque?</p>
+                </div>
+            </div>
+            <div class="row p-3 justify-content-center my-3">
+                <div class="col-lg-12">
+                    <ul class="row row-cols-auto" style="list-style-image: linear-gradient(red, green);">
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                        <li class="m-4 ">Web Development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 class="text-center">PRODUCTS & SERVICE IMAGES</h4>
+            <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 py-lg-3 px-lg-4 p-3 justify-content-around">
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+                <div class="col-md text-center p-3 d-flex flex-column">
+                    <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-3">
+                </div>
+            </div>
+
+            <div class="row justify-content-center py-3 m-3">
+                <h4 class="text-center">LINKS & CONTACT INFORMATION</h4>
+                <div class="row  g-3 ">
+                    <div class=" ">
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-facebook me-3"></i>
+                            <i class="bi bi-whatsapp me-3"></i>
+                            <i class="bi bi-linkedin me-3"></i>
+                            <i class="bi bi-twitter me-3"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-3 d-flex row-cols-auto justify-content-between">
+                    <div class=" ">
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-telephone-fill me-3"></i>
+                            <p class="text-capitalize">default</p>
+                        </div>
+                    </div>
+                    <div class=" ">
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-envelope-fill me-3"></i>
+                            <p class="text-capitalize">default</p>
+                        </div>
+                    </div>
+                    <div class=" ">
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-geo-alt-fill me-3"></i>
+                            <p class="text-capitalize">default</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
 
 
 
