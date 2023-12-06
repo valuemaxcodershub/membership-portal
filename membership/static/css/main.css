@@ -61,6 +61,11 @@
     box-shadow: 0 0 0 .25rem rgba(34, 140, 46, .25)
 }
 
+.btn-close:focus {
+    border: none;
+    box-shadow: none;
+}
+
 .form-check-input:checked {
     background: #228c2e;
     outline: none;

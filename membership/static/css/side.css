@@ -221,3 +221,8 @@ body {
     }
 
 }
+
+.sidebar li>a:hover,
+.sidebar li>label:hover {
+    border-left: 1px solid red;
+}
