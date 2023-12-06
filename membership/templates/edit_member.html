@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+<div class="main-content">
   <h1>Edit member details.</h1>
   <form method="POST" action="" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
@@ -100,5 +101,7 @@
     <br />
     {{ form.submit }}
   </form> 
+
+</div>
 
 {% endblock content %}
