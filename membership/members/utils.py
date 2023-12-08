@@ -21,11 +21,11 @@ def user_role_required(func):
           if current_user.business_name == None and request.endpoint != 'members.edit_business_profile' and request.method!="POST":
 
             if current_user.has_filled_profile and (current_user.update_is_approved == User.USER_UPDATE_PENDING ):
-              flash("Your profile update is awaiting admin approval")
+              flash("Your profile update is awaiting admin approval", category="info")
             elif current_user.has_filled_profile and current_user.update_is_approved == User.USER_UPDATE_DISAPPROVED:
-              flash("Your profile update has been rejected by admin. Please, fill in valid details and try again.")
+              flash("Your profile update has been rejected by admin. Please, fill in valid details and try again.", category="warning")
             else:
-              flash("You must first complete this form before you can proceed")
+              flash("You must first complete this form before you can proceed", category="warning")
               
             return redirect(url_for('members.edit_business_profile'))
 
@@ -33,11 +33,11 @@ def user_role_required(func):
         
 
         else:
-          flash("You must log in to access this page", "info")
+          flash("You must log in to access this page", category="info")
           return redirect(url_for('members.login', next=url_for(request.endpoint)))
         
         
       else:
-        flash("You must log in to access this page", "info")
+        flash("You must log in to access this page", category="info")
         return redirect(url_for('members.login', next=url_for(request.endpoint)))
     return decorated_view

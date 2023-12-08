@@ -454,6 +454,8 @@
 #}
 
 
+{#
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -541,7 +543,17 @@
     </div>
 
 
+  
+
     <div class="main-content">
+      #}
+
+      {% extends 'member_base.html' %}
+
+      
+      {% block content_body %}
+        
+   
       <div class="container">
 
      
@@ -671,12 +683,12 @@
                                  {# <textarea class="form-control" id="" rows="5"></textarea> #}
 
                                     {% if form.business_about.errors %}
-                                    {{ form.business_about(required=True, class='form-control')}}
+                                    {{ form.business_about(required=True, class='form-control', style='height: 150px;')}}
                                     {% for error in form.business_about.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                   {% else %}
-                                    {{ form.business_about(required=True, class='form-control')}}
+                                    {{ form.business_about(required=True, class='form-control', style='height: 150px;')}}
                                   {% endif %}
                                 <span class="error"></span>
 
@@ -688,12 +700,12 @@
                                     <caption><span class="text-danger">*</span>Use comma (,) to separate the list of services</caption>
 
                                     {% if form.business_services.errors %}
-                                    {{ form.business_services(required=True, class='form-control')}}
+                                    {{ form.business_services(required=True, class='form-control', style='height: 150px;')}}
                                     {% for error in form.business_services.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                   {% else %}
-                                    {{ form.business_services(required=True, class='form-control')}}
+                                    {{ form.business_services(required=True, class='form-control', style='height: 150px;')}}
                                   {% endif %}
                                 <span class="error"></span>
 
@@ -1008,7 +1020,10 @@
             </div>
           </form>
         </div>
-    </div>
+    
+        {% endblock content_body %}
+        
+    {#  </div>
 
 
 
@@ -1055,3 +1070,5 @@
 </body>
 
 </html>
+
+#}

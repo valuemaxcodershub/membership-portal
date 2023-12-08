@@ -60,8 +60,12 @@ def business_profile():
 
   return render_template("main/business_profile.html")
 
-@main.route("/member_page/<string:business_name>", endpoint='member_page')
+
+
+
+@main.route("/m/<string:business_name>", endpoint='member_page')
 def member_page(business_name):
+
   if business_name == "None":
     abort(404)
 
@@ -71,7 +75,11 @@ def member_page(business_name):
     abort(404)
 
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
-  about_list = member.business_services.split(',')
+  
+  try:
+    about_list = member.business_services.split(',')
+  except:
+    about_list = ""
   
   
   return render_template("main/member_page.html", member=member, image_file=image_file, services= about_list)
@@ -93,13 +101,13 @@ def reset_request():
     
     if user:
       send_reset_email(user)
-      flash('An email has been sent with instructions to reset your password.', 'info')
+      flash('An email has been sent with instructions to reset your password.', category= 'info')
       if user.role == 'ADMIN': 
         return redirect(url_for('admins.admin_login'))
       else:
         return redirect(url_for('members.login'))
     else:
-      flash('There is no account with that email. You must register first.', 'info')
+      flash('There is no account with that email. You must register first.', category= 'info')
   return render_template('main/reset_request.html', title='Reset Password')
 
 
@@ -112,12 +120,12 @@ def reset_token(token):
       return redirect(url_for('members.member-home'))
   user = User.verify_reset_token(token)
   if user is None:
-    flash('That is an invalid or expired token', 'warning')
+    flash('That is an invalid or expired token', category='warning')
     return redirect(url_for('main.reset_request'))
   form = ResetPasswordForm()
   if form.validate_on_submit():
     user.password = form.password.data
     db.session.commit()
-    flash('Your password has been updated! You are now able to log in', 'success')
+    flash('Your password has been updated! You are now able to log in', category='success')
     return redirect(url_for('members.member-home'))
   return render_template('main/reset_token.html', title='Reset Password', form=form)

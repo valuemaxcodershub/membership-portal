@@ -31,6 +31,8 @@
 
 #}
 
+{#
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -122,6 +124,15 @@
 
 
     <div class="main-content">
+        #}
+
+        {% extends 'member_base.html' %}
+
+        
+        {% block content_body %}
+            
+        
+            
         <div class="alert alert-warning d-flex align-items-center w-100 rounded-top-0 alert-dismissible fade show py-2"
             role="alert" style="position: relative;">
             <i class="flex-shrink-0 bi bi-exclamation-triangle-fill fs-4"></i>
@@ -214,6 +225,10 @@
                 </button>
             </div> #}
         </div>
+
+        {% endblock content_body %}
+
+        {#
     </div>
 
 
@@ -262,3 +277,5 @@
 </body>
 
 </html>
+
+#}

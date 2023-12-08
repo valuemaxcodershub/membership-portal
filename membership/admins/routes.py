@@ -61,7 +61,7 @@ def send_message():
                       body=form.message.data)
         db.session.add(msg)
         db.session.commit()
-        flash('Your message has been sent.')
+        flash('Your message has been sent.', category="info")
         return redirect(url_for('admins.dashboard'))
     return render_template('admin/send_message.html', title=('Send Message'),
                            form=form, member_recipient=user)
@@ -87,7 +87,7 @@ def send_unit_message():
         db.session.add(msg)
         db.session.commit()
 
-      flash('Your message has been sent.')
+      flash('Your message has been sent.', category="info")
       return redirect(url_for('admins.dashboard'))
 
 
@@ -112,11 +112,12 @@ def home():
 
   return redirect(url_for("admins.admin_login"))
 
+
 @admins.route("/admin-logout/")
 @admin_role_required
 def admin_logout():
   logout_user()
-  return redirect(url_for('admins.home'))
+  return redirect(url_for('main.business_members'))
 
 
 @admin_role_required
@@ -202,25 +203,37 @@ def edit_unit(unit_id):
 
   return render_template("admin/edit-unit.html", form=form, unit=unit)
 
+
+
 @admins.route("/admin/suspend_user", methods=['POST'])
 @admin_role_required
 def suspend_user():
-  user_id = int(request.form['user_id'])
-  user = User.query.get_or_404(user_id)
-  user._is_suspended = not user._is_suspended
-  page_num = request.form['page']
+  
+  if request.method == 'POST':
+    user_id = int(request.form.get('user_id'))
+    print('The user id is: ', user_id)
+    user = User.query.get_or_404(user_id)
+    user._is_suspended = not user._is_suspended
+    page_num = request.form.get('page')
 
-  db.session.add(user)
-  db.session.commit()
-  flash("Action Successful")
+    db.session.add(user)
+    db.session.commit()
+    flash("Action Successful", category="success")
   return redirect(url_for('admins.manage_members', page=page_num))
+
+
 
 @admins.route("/admin/delete_user", methods=['POST'])
 @admin_role_required
 def delete_user():
   user_id = int(request.form['user_id'])
   user = User.query.get_or_404(user_id)
+  userprofileupdates = UserUpdate.query.filter_by(userid = user.id).all()
 
+  if userprofileupdates:
+    for update in userprofileupdates:
+      db.session.delete(update)
+  
   if user.role == "USER":
     link = 'admins.manage_members'
   else:
@@ -231,8 +244,8 @@ def delete_user():
 
 
 
-  flash("User deleted successfuly")
-  page_num = request.form['page']
+  flash("User deleted successfully", category="success")
+  page_num = request.form.get('page', 1)
 
   return redirect(url_for(link, page=page_num))
 
@@ -245,7 +258,7 @@ def delete_unit():
     unit = Unit.query.get_or_404(unit_id)
     db.session.delete(unit)
     db.session.commit()
-    flash("Unit deleted successfully")
+    flash("Unit deleted successfully", category="success")
   
   next_page = request.args.get('next')
   return redirect(next_page) if next_page else redirect(url_for('admins.manage_units'))
@@ -261,7 +274,7 @@ def register_unit():
     unit = Unit(name=form.name.data)
     db.session.add(unit)
     db.session.commit()
-    flash(f"{form.name.data} Unit created successfuly", "success")
+    flash(f"{form.name.data} Unit created successfuly", category ="success")
     return(redirect(url_for("admins.manage_units")))
   else:
     print("form not validated on submit")
@@ -334,7 +347,7 @@ def register_bulk(error_message=""):
       error_message = f"There is an error with the input file -> \n{e}"
       return render_template("register_bulk.html", form=form, error_message=error_message)
     else:
-      flash("Bulk registration successful")
+      flash("Bulk registration successfully", category="success")
       return(redirect(url_for("admins.manage_members")))
 
   return render_template("admin/register_bulk.html", form=form, error_message=error_message)
@@ -400,6 +413,7 @@ def pending_approvals():
   pending_updates_list = user_updates.paginate(page=page, per_page=10)
 
 
+
   if request.method == 'POST':
     if request.form.get('profile_updateid'):
       profileid = request.form.get('profile_updateid')
@@ -431,7 +445,7 @@ def pending_approvals():
 
     return redirect(url_for('admins.pending_approvals'))
 
-  return render_template('admin/pending_approvals.html', pending_updates_list = pending_updates_list, form=form)
+  return render_template('admin/pending_approvals.html', pending_updates_list = pending_updates_list, form=form, page=page)
 
 
 
@@ -453,7 +467,7 @@ def register_admin():
     # user.password = secrets.token_urlsafe(8)
     db.session.add(user)
     db.session.commit()
-    flash(f"Account created for {form.email.data} successfully. Password for {form.email.data} is {user.password}", "success")
+    flash(f"Account created for {form.email.data} successfully. Password for {form.email.data} is {user.password}", category="success")
     return(redirect(url_for("admins.manage_admins")))
 
   return render_template("admin/add_admin.html", title="Register New Admin", form=form)
@@ -490,7 +504,7 @@ def edit_admin(admin_id):
     
     db.session.add(admin)
     db.session.commit()
-    flash("Account successfuly modified", "success")
+    flash("Account successfully modified", category="success")
     return(redirect(url_for("admins.manage_admins", member_id=admin.id)))
   
   elif request.method == 'GET':
@@ -548,7 +562,7 @@ def edit_member(member_id):
     
     db.session.add(member)
     db.session.commit()
-    flash("Account successfully modified", "success")
+    flash("Account successfully modified", category="success")
     
     return(redirect(url_for("admins.manage_members")))
   
