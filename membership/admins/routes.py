@@ -56,6 +56,7 @@ def send_message():
     recipient_id = int(request.form.get('user_id', 1)) #just adding it for now
     user = User.query.get_or_404(recipient_id)
     form = MessageForm()
+    dashboard_units = Unit.query.all()
     if form.validate_on_submit():
         msg = Message(author=current_user, member_recipient=user, title=form.title.data,
                       body=form.message.data)
@@ -63,8 +64,9 @@ def send_message():
         db.session.commit()
         flash('Your message has been sent.', category="info")
         return redirect(url_for('admins.dashboard'))
+    
     return render_template('admin/send_message.html', title=('Send Message'),
-                           form=form, member_recipient=user)
+                           form=form, member_recipient=user, dashboard_units = dashboard_units)
 
 @admins.route('/admin/send_unit_message', methods=['GET', 'POST'])
 @admin_role_required

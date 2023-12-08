@@ -1,6 +1,7 @@
 {% extends "dashboard_layout.html" %}
 
 {% block content %}
+<div class="main-content">
 <style>
   #form{
             width: 360px;
@@ -32,11 +33,9 @@
         }
 </style>
 <br>
-    <h1 style="color: rgb(55, 95, 62);">Send Message to Users</h1>
-
-    <div class="main-content">
-   <div class="rech">
-    <div class="">
+  
+   
+      <h1 style="color: rgb(55, 95, 62);">Send Message to Users</h1>
           <form action="{{url_for('admins.send_unit_message')}}" method="POST" id="form">
               {{ form.hidden_tag()  }}
              <div class="input-control">
@@ -62,8 +61,8 @@
               <br />
               {{ form.submit(class="btn btn-success") }}
           </form>
-  </div>
-   </div>
-  </div>
+ 
+ 
+        </div>
 
 {% endblock %}
