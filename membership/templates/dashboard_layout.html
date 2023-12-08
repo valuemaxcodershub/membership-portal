@@ -4,23 +4,54 @@
 <head>
   <title>NASME</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="keywords"
-    content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }> </script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
+<!--// bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+<!-- font CSS -->
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
 
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/header.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/side.css')}}">
+   <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> 
+    <link rel="stylesheet" href="{{url_for('static', filename='css/header.css')}}"> 
+    <link rel="stylesheet" href="{{url_for('static', filename='css/side.css')}}"> 
     
+    {# <script src="{{ url_for('static', filename='js/raphael-min.js') }}" ></script>  
+    <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/morris.css') }}">
+    <script src="{{ url_for('static', filename='js/skycons.js') }}" ></script>
     
+    #}
 </head>
 
+
+
 <body>
+
+   {# <script>
+        var theme = $.cookie('protonTheme') || 'default';
+        $('body').removeClass (function (index, css) {
+            return (css.match ('/\btheme-\S+/g') || []).join(' ');
+        });
+        if (theme !== 'default') $('body').addClass(theme);
+      </script>
+      #}
+
 
   <!-- flashed messages  -->
   {% with messages = get_flashed_messages(with_categories=true) %}
@@ -37,18 +68,18 @@
   
 
 
-    <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px;">
+    <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px; z-index: -1;">
       <div class="container d-flex px-md-5 px-3">
           <a class="navbar-brand p-0" id="navBrand" href="#">
-              <img class="" src="../static/web_images/nasme-removebg-preview.png" alt="">
+              <img class="" src="{{url_for('static', filename='web_images/nasme-removebg-preview.png')}}" alt="">
           </a>
 
 
           <div class="d-flex" style="position: relative;">
-              <form class="d-flex rounded mx-lg-2 mx-1">
+              <form class="d-flex rounded mx-lg-2 mx-1" method="POST" action="url_for('admins.search_members')">
                   <input class="form-control rounded-0 rounded-start border-0 w-100" id="search"
-                      style="box-shadow: none;" type="search" placeholder="Search" aria-label="Search">
-                  <button class="rounded-0 rounded-end btn border-0" id="btn-search" type="submit">
+                      style="box-shadow: none;" type="text" placeholder="Search" aria-label="Search">
+                  <button class="rounded-0 rounded-end btn border-0" style="background-color: green;" id="btn-search" type="submit">
                       <i class="bi bi-search"></i>
                   </button>
               </form>
@@ -92,30 +123,30 @@
               </div>
           </li>
           <li class="hasDrop log">
-              <label for="drop2" class="toggleDrop">
+              <a for="drop2" class="toggleDrop">
                   <i class="bi bi-person-lines-fill"></i>
                   <span class="nav-item">Admin</span>
-              </label>
+              </a>
               <div class="sideDrop shadow-sm ">
                   <a href="{{url_for('admins.register_admin')}}" class="cont">Add Admin</a>
                   <a href="{{url_for('admins.manage_admins')}}" class="cont">Manage Admin</a>
               </div>
           </li>
           <li class="hasDrop log">
-              <label for="drop3" class="toggleDrop">
+              <a for="drop3" class="toggleDrop">
                   <i class="bi bi-stack"></i>
                   <span class="nav-item">Unit</span>
-              </label>
+              </a>
               <div class="sideDrop shadow-sm">
                   <a href="{{url_for('admins.register_unit')}}" class="cont">Add Unit</a>
                   <a href="{{url_for('admins.manage_units')}}" class="cont">Manage Unit</a>
               </div>
           </li>
           <li class="hasDrop log">
-              <label for="drop4" class="toggleDrop">
+              <a for="drop4" class="toggleDrop">
                   <i class="bi bi-person-circle"></i>
                   <span class="nav-item">Profile</span>
-              </label>
+              </a>
               <div class="sideDrop shadow-sm">
                   <a href="{{url_for('admins.pending_approvals')}}" class="cont">Pending Approvals</a>
                   <a href="{{url_for('admins.approved_profiles')}}" class="cont">Approved Profiles</a>
@@ -123,17 +154,17 @@
               </div>
           </li>
           <li class="hasDrop log">
-              <label for="drop5" class="toggleDrop">
+              <a for="drop5" class="toggleDrop">
                   <i class="bi bi-cash-coin"></i>
                   <span class="nav-item">Finance</span>
-              </label>
+              </a>
               <div class="sideDrop shadow-sm">
-                  <a href="#" class="cont">Create Payment</a>
-                  <a href="#" class="cont">Generate Financial Report</a>
+                  <a href="{{url_for('admins.create_payment')}}" class="cont">Create Payment</a>
+                  <a href="{{url_for('admins.generate_finance')}}" class="cont">Generate Financial Report</a>
               </div>
           </li>
           <li class="log">
-              <a href="#">
+              <a href="{{url_for('admins.send_unit_message')}}">
                   <i class="bi bi-chat-left-text"></i>
                   <span class="nav-item">Send Messages</span>
               </a>
@@ -145,21 +176,339 @@
               </a>
           </li>
           <li class="log">
-              <a href="#">
+              <a href="{{url_for('admins.admin_logout')}}" data-bs-toggle="modal" data-bs-target="#logoutmodal">
                   <i class="bi bi-escape"></i>
                   <span class="nav-item">Logout</span>
               </a>
           </li>
       </ul>
+
+    
   </div>
 
 
 
   
+
+  
   {% block content %}
 
       {% endblock content %}
+
+
+
+{#
+      <!-- disapprove modal -->
+<div class="modal fade" id="disapprovemodal" tabindex="-1" aria-labelledby="disapprovemodallabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-uppercase" id="disapprovemodallabel">Disapprove profile update?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               Do you really want to disapprove this profile update?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+
+
+                <form method="POST" id="disapprove_profile_update_form" action="{{ url_for('admins.pending_approvals') }}">
+								<input type="hidden" name="user_id" id="disapprovehiddenid" />
+								<input type="hidden" name="page" value="{{pending_updates_list.page}}" />
+								<button type="submit" class="btn btn-primary " href="#">
+									Yes, Disapprove
+								</button>
+				</form>
+            </div>
+        </div>
+    </div>
+   </div> 
+   <!-- End of Modal -->
+
+#}
+
+   	
+   <div class="modal fade" id="disapprovemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h1 class="modal-title fs-5 text-uppercase" id="exampleModalLabel">Disapprove User profile?</h1>
+               <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+            Are you sure you really want to DISAPPROVE this member's profile update?
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+
+
+
+               <form method="POST" id="disapprove_profile_update_form"
+								action="{{ url_for('admins.pending_approvals') }}">
+								<input type="hidden" name="profile_updateid_disapprove" id="disapproveprofilehiddenid" />
+                                
+                                {% if pending_updates_list %}       
+								<input type="hidden" name="page" value="{{pending_updates_list.page}}" />
+                                {% endif %}
+                                    
+								<button type="submit" class="btn btn-primary " href="#"> Yes, Disapprove
+					</button>
+				</form>
+
+               
+           </div>
+       </div>
+   </div>
+</div>
+
+
+
+<!-- approve user profile -->
+<div class="modal fade" id="approvemodal" tabindex="-1" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h1 class="modal-title fs-5 text-uppercase" id="exampleModalLabel">Approve User Profile?</h1>
+               <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+               Do you relly want to APPROVE this member's profile update?
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+             
+               
+               <form method="POST" action="{{ url_for('admins.pending_approvals') }}" id="approve_profile_update_form">
+					<input type="hidden" name="profile_updateid" id="profileupdatehiddenid" />
+
+                    {% if pending_updates_list %}       
+                    <input type="hidden" name="page" value="{{pending_updates_list.page}}" />
+                    {% endif %}
+                    
+					<button type="submit" class="btn btn-primary" id="">Yes, Approve </button>
+			</form>
+
+           </div>
+       </div>
+   </div>
+</div>
+
+<!-- End of approve user profile -->
     
+
+   
+   {% if form and form.title %}
+    	<!-- Message Modal -->
+			<div class="modal fade" id="Messagedrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="Messagedrop" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Messagedrop">Send  a message</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action="{{url_for('admins.send_message')}}" method="POST" id="form">
+                           {{ form.hidden_tag() }} 
+                            <input type="hidden" name="user_id" id="examplehiddenid" />
+                            <div class="input-control">
+                                {{ form.title.label (class="solu") }} {{ form.title }}
+                            </div>
+                            <br />
+                            <br />
+                            <div class="input-control">
+                                {{ form.message.label (class="solu") }} {{ form.message }}
+                            </div>
+                            <br />
+                            {{ form.submit(class="btn btn-success") }}
+                        </form>
+                    </div>
+
+
+                {#    <div class="">
+                   	<button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button> 
+
+                    </div>
+                    #}
+                </div>
+            </div>
+        </div>
+        <!-- end of message modal -->
+        {% endif %}
+
+
+        
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete ?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this user?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                        <form method="POST" action="{{ url_for('admins.delete_user') }}">
+                            <input type="hidden" name="user_id" id="deletehiddenid" />
+                            {# <input type="hidden" name="page" value="{{members.page}}" /> #}
+                            <button type="submit" class="btn btn-primary" href="#">
+                                Yes, Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+    
+
+        <!--  View Member Modal -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">User Details</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bedd">
+                            <div>
+                                <img id="modalUserImage" src="images/2.png" alt="image" width="100px" />
+                            </div>
+                            <br />
+                            <br />
+                            <div>
+                                <h5 id="modalUserName">...</h5>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserId">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserEmail">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserPhone">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserPassword">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserUnits">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserDateReg">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserOccupation">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserWorkAddr">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserHomeAddr">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserExperience">...</p>
+                            </div>
+                            <br />
+                            <div>
+                                <p id="modalUserCurrentSalary">...</p>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    
+
+
+        <!-- Logout modal -->
+
+        <div class="modal fade" id="logoutmodal" tabindex="-1" aria-labelledby="logoutmodallabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5 text-uppercase" id="logoutmodallabel">Log Out</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Ready to wrap up your session? Confirm your logout!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <a href="{{url_for('members.user_logout')}}" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end of logout modal -->
+    
+
+
+    
+
+  <!-- suspend modal -->
+  <div class="modal fade" id="suspendmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-uppercase" id="exampleModalLabel">Suspend User</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Do you really want to suspend this member?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <form method="POST" action="{{ url_for('admins.suspend_user') }}">
+                    <input type="hidden" name="user_id" id="suspendhiddenid" />
+                    <input type="submit" class="btn btn-primary" />
+                        
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+   </div>
+   <!-- End of Modal -->
+
+
+
+
     <script>
       // Navbar Search Toggler
       let searchInput = document.getElementById('search')
@@ -208,6 +557,10 @@
   </script>
 
 
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
 crossorigin="anonymous"></script>
@@ -217,5 +570,45 @@ crossorigin="anonymous"></script>
 integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 crossorigin="anonymous"></script>
 
+
+ {# <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script type="text/javascript" src="{{url_for('static', filename='js/jquery.basictable.min.js')}}"></script> 
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js" integrity="sha512-6Cwk0kyyPu8pyO9DdwyN+jcGzvZQbUzQNLI0PadCY3ikWFXW9Jkat+yrnloE63dzAKmJ1WNeryPd1yszfj7kqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ #} 
+
+
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js" integrity="sha512-FHZVRMUW9FsXobt+ONiix6Z0tIkxvQfxtCSirkKc5Sb4TKHmqq1dZa8DphF0XqKb3ldLu/wgMa8mT6uXiLlRlw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <!-- for units -->
+
+
+
+{# <script src="{{ url_for('static', filename='js/jquery2.0.3.min.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/jquery.cookie.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/morris.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/screenfull.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/proton.js') }}" ></script>
+#}
+
+
+
+    <link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
+    <script src="../static/js/jquery2.0.3.min.js" ></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+    <script src="../static/js/modernizr.js" ></script>
+    <script src="../static/js/jquery.cookie.js" ></script>
+    <script src="../static/js/screenfull.js" ></script>
+    <script src="../static/js/bootstrap.js" ></script>
+    <script src="../static/js/proton.js" ></script> 
+   
+    
 
   </body>

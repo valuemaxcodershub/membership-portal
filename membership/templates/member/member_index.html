@@ -261,7 +261,7 @@
 
 #}
 
-
+{#
 <!DOCTYPE html>
 <html lang="en">
 
@@ -316,7 +316,7 @@
                 </a>
             </li>
             <li class="log">
-                <a href="#">
+                <a href="{{url_for('main.member_page',  business_name=member.business_name.replace(' ', '_'))}}" target="_blank">
                     <i class="bi bi-box-arrow-up-right"></i>
                     <span class="nav-item text-nowrap">Public Profile</span>
                 </a>
@@ -340,7 +340,7 @@
                 </a>
             </li>
             <li class="log">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                <a href="{{url_for('members.user_logout')}}" data-bs-toggle="modal" data-bs-target="#logoutModal">
                     <i class="bi bi-escape"></i>
                     <span class="nav-item">Logout</span>
                 </a>
@@ -350,16 +350,33 @@
 
 
     <div class="main-content">
-        <div class="alert alert-warning d-flex align-items-center w-100 rounded-top-0 alert-dismissible fade show py-2"
+        
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+
+        <div class="alert alert-{{category}} d-flex align-items-center w-100 rounded-top-0 alert-dismissible fade show py-2"
             role="alert">
             <i class="flex-shrink-0 bi bi-exclamation-triangle-fill fs-4"></i>
             <div class="fs-5 text-center w-100" style="font-variant: small-caps;">
                 <strong class="d-block">Latest Notifications</strong>
-                An example danger alert with an icon
+                {{message}}
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %} 
 
+
+    #}
+
+
+
+{% extends 'member_base.html' %}
+{% block content_body %}
         <div class="dashboard">
             <a href="{{ url_for('members.edit_business_profile') }}" class="rounded myCard">
                 <div class="my-3">
@@ -548,15 +565,16 @@
                 <div class="col-lg-10">
                     <div class="row justify-content-end">
                         <div class="col-auto">
-                            <button class="btn shadow rounded-3 px-5 p-3 btn-success text-uppercase text-center m-0">
+                            <a href="{{ url_for('members.edit_business_profile') }}" class="btn shadow rounded-3 px-5 p-3 btn-success text-uppercase text-center m-0">
                                 Edit Your Profile
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        {% endblock content_body %}
+        {#
     </div>
 
 
@@ -629,3 +647,5 @@
 </body>
 
 </html>
+
+#}

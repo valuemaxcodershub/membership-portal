@@ -23,6 +23,8 @@ def inject_menu():
 
     return dict(this_member = this_member, loggedinuser = current_user)
 
+
+
 @members.route('/dues', methods=['GET', 'POST'])
 @user_role_required
 def my_dues():
@@ -35,7 +37,7 @@ def transaction_history():
 
   return render_template("member/member_construction.html")
 
-
+'''
 @members.route("/member-home", methods=["GET", "POST"])
 def member_home():
   if current_user.is_authenticated:
@@ -43,7 +45,7 @@ def member_home():
       return redirect(url_for("members.login"))
 
   return "Member Homepage"
-
+'''
 
 @members.route("/member-dashboard", methods=["GET", "POST"])
 @user_role_required
@@ -128,7 +130,7 @@ def user_account():
 @members.route("/user-logout")
 def user_logout():
     logout_user()
-    return redirect(url_for('members.login'))
+    return redirect(url_for('main.business_members'))
 
 
 
@@ -192,7 +194,7 @@ def edit_business_profile():
       db.session.add_all([member, new_update_from_user])
       db.session.commit()
 
-      flash('Your update has been sent to the admins for approval.')
+      flash('Your update has been sent to the admins for approval.', category="info")
       return redirect(url_for('members.dashboard'))
 
     else:

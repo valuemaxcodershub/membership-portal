@@ -21,10 +21,10 @@ def admin_role_required(func):
         if current_user.role == "ADMIN":
           return func(*args, **kwargs)
         else:
-          flash("You must log in to access this page", "info")
+          flash("You must log in to access this page", category= "info")
           return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
       else:
-          flash("You must log in to access this page", "info")
+          flash("You must log in to access this page", category="info")
           return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
     return decorated_view
 
@@ -33,7 +33,7 @@ def super_admin_role_required(func):
     def decorated_view(*args, **kwargs):
       if current_user.is_authenticated:
         if current_user.role == "USER":
-          flash("You must log in to access this page", "info")
+          flash("You must log in to access this page", category="info")
           return redirect(url_for('admins.admin_login', next=url_for(request.endpoint)))
         elif not current_user.is_superadmin:
             abort(403)

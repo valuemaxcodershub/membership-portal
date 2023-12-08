@@ -16,6 +16,12 @@ body {
   box-sizing: border-box;
 }
 
+#btn-search{
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 .ogle {
   font-size: 12px;
   /* margin-top: -10%; */
