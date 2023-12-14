@@ -321,8 +321,20 @@ def export_custom():
   records = data.a.all() #fetch from data store
   if records:
     print(records[0].unit_ids())
-  cw.writerow(["business_name", "phone", "email", "unit_ids"])
-  cw.writerows([( r.business_name, r.business_phone, r.business_email, "-".join(r.unit_ids()) ) for r in records])
+
+# business_name
+# business_email
+# business_phone
+#     business_address
+# business_services
+# business_facebook
+# business_website
+# business_twitter
+# business_linkedin
+# business_whatsapp
+  cw.writerow(["business_name", "phone", "email", "unit_ids", "address", "services", "website", "facebook",
+               "twitter", "linkedin", "whatsapp"])
+  cw.writerows([( r.business_name, r.business_phone, r.business_email, "-".join(r.unit_ids()), r.business_address, r.business_services, r.business_website, r.business_facebook, r.business_twitter, r.business_linkedin,r.business_whatsapp ) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"
@@ -341,12 +353,16 @@ def register_bulk(error_message=""):
     file.save(csv_path)
 
     #bulk registration
+    
     try:
       parse_csv(csv_path)
+      print('Parsing CSV: ', parse_csv(csv_path))
+
       db.session.commit()
     except Exception as e:
       db.session.remove()
       error_message = f"There is an error with the input file -> \n{e}"
+      print('Error is there.')
       return render_template("register_bulk.html", form=form, error_message=error_message)
     else:
       flash("Bulk registration successfully", category="success")
@@ -413,7 +429,7 @@ def pending_approvals():
   user_updates = UserUpdate.query.filter_by(update_status = UserUpdate.PENDING)
   page = request.args.get('page', 1, type=int)
   pending_updates_list = user_updates.paginate(page=page, per_page=10)
-
+  
 
 
   if request.method == 'POST':

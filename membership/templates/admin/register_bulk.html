@@ -12,7 +12,7 @@
             {{ form.csv_file(type="file", accept=".csv", class="btn btn-success") }}
             {% if form.csv_file.errors %}
               {% for error in form.csv_file.errors %}
-                <span class="text-danger">{{ error }}</span></br>
+                <span class="text-danger">{{ error }}</span><br/>
               {% endfor %}
             {% endif %}
             <span class="error">{{ error_message }}</span>

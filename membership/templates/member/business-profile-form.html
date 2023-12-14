@@ -590,12 +590,12 @@
 
 
                                     {% if form.date_of_birth.errors %}
-                                    {{ form.date_of_birth(required=True, id="date_of_birth", class="form-control")}}
+                                    {{ form.date_of_birth(required=True, id="date_of_birth",  class="form-control")}}
                                     {% for error in form.date_of_birth.errors %}
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                   {% else %}
-                                    {{ form.date_of_birth(required=True, id="date_of_birth", class="form-control")}}
+                                    {{ form.date_of_birth(required=True, id="date_of_birth", class="form-control" )}}
                                   {% endif %}
                                 <span class="error"></span>
 
@@ -649,8 +649,7 @@
                           {#  <form action="" class="form-control form-control-sm border-0 bg-transparent"> #}
                                 <div class="mb-3">
                                   <label for="business_name">Business Name</label>
-                                 {# <input type="text" id="business_name" class="form-control"> #}
-
+                                
                                     {% if form.business_name.errors %}
                                     {{ form.business_name(required=True, class='form-control') }}
                                     {% for error in form.business_name.errors %}
@@ -665,7 +664,7 @@
                                 </div>
                                 <div class="mb-4">
                                     <label for="business_location" class="form-label">Business Location</label>
-                                    {# <input type="text" id="business_location" class="form-control"> #}
+                                  
 
                                     {% if form.business_address.errors %}
                                     {{ form.business_address(required=True, class='form-control')}}
@@ -721,13 +720,9 @@
                     <h4 class="text-center">UPDATE PRODUCTS & SERVICE IMAGES</h4>
                     <div class="shadow bg-light rounded-3 py-lg-3 px-lg-4 p-3 row row-cols-lg-4 row-cols-md-3 row-cols-2 justify-content-around">
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_1}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_1}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_1.label(class="form-label text-muted", for="business_product_image_1")}}
                                   {% if form.business_product_image_1.errors %}
@@ -741,13 +736,9 @@
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_2}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_2}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_2.label(class="form-label text-muted", for="business_product_image_2")}}
                                   {% if form.business_product_image_2.errors %}
@@ -761,13 +752,9 @@
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_3}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_3}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_3.label(class="form-label text-muted", for="business_product_image_3")}}
                                   {% if form.business_product_image_3.errors %}
@@ -781,13 +768,13 @@
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
+                           {# <img src="/static/profile_pics/default.jpg" alt="" class=" rounded-5">
                             <label class="form-label text-muted">Display Image </label>
                             <input type="file" name="" id="" class="form-control form-control-sm"
                                 class="form-control form-control-sm"> 
                                 #}
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_4}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_4}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_4.label(class="form-label text-muted", for="business_product_image_4")}}
                                   {% if form.business_product_image_4.errors %}
@@ -801,13 +788,9 @@
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_5}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_5}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_5.label(class="form-label text-muted", for="business_product_image_5")}}
                                   {% if form.business_product_image_5.errors %}
@@ -821,13 +804,9 @@
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_6}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_6}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_6.label(class="form-label text-muted", for="business_product_image_6")}}
                                   {% if form.business_product_image_6.errors %}
@@ -836,18 +815,14 @@
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                   {% else %}
-                                    {{ form.business_product_image_6(class="form-controll form-control-sm", id='business_product_image_6', accept=".jpg, .png, .jpeg")}}
+                                    {{ form.business_product_image_6(class="form-control form-control-sm", id='business_product_image_6', accept=".jpg, .png, .jpeg")}}
                                   {% endif %}
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_1}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_1}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_1.label(class="form-label text-muted", for="business_product_image_7")}}
                                   {% if form.business_product_image_1.errors %}
@@ -856,18 +831,14 @@
                                         <span>{{ error }}</span>
                                     {% endfor %}
                                   {% else %}
-                                    {{ form.business_product_image_1(class="form-controll form-control-sm", id='business_product_image_7', accept=".jpg, .png, .jpeg")}}
+                                    {{ form.business_product_image_1(class="form-control form-control-sm", id='business_product_image_7', accept=".jpg, .png, .jpeg")}}
                                   {% endif %}
                                 
                         </div>
                         <div class="col-md text-center p-3 d-flex flex-column">
-                           {# <img src="../static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                            <label class="form-label text-muted">Display Image </label>
-                            <input type="file" name="" id="" class="form-control form-control-sm"
-                                class="form-control form-control-sm"> 
-                                #}
+                        
 
-                                  <img src="../static/profile_pics/{{member.business_product_image_4}}" class="rounded-5" alt="" >
+                                  <img src="/static/profile_pics/{{member.business_product_image_4}}" class="rounded-5" alt="" >
                                   
                                   {{form.business_product_image_1.label(class="form-label text-muted", for="business_product_image_8")}}
                                   {% if form.business_product_image_1.errors %}
