@@ -602,41 +602,102 @@
 
             <h4 class="text-center">PRODUCTS & SERVICE IMAGES</h4>
             <div class="row row-cols-lg-4 row-cols-md-3 row-cols-2 py-lg-3 px-lg-4 p-3 justify-content-around">
-                <div class="col-md text-center p-3 d-flex flex-column">
+              
+              
+              {% if not member.business_product_image_1 == "default.jpg" %}
+                
+                
+              <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+              {% endif %}                
+                
+                {% if not member.business_product_image_2 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+                {% endif %}                
+                
+                {% if not member.business_product_image_3 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+                {% endif %}                
+                
+                {% if not member.business_product_image_4 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+                {% endif %}                
+                
+                {% if not member.business_product_image_5 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+                {% endif %}                
+                
+                {% if not member.business_product_image_6 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+                {% endif %}                
+                
+                {% if not member.business_product_image_1 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
+                {% endif %}                
+                
+                {% if not member.business_product_image_2 == "default.jpg" %}
+                  
+                  
                 <div class="col-md text-center p-3 d-flex flex-column">
                     <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" class=" rounded-3" style="width: 250px; height: 250px; object-fit: cover;">
                 </div>
-            </div>
+                {% endif %}            
+              
+              </div>
 
             <div class="row justify-content-center py-3 m-3">
                 <h4 class="text-center">LINKS & CONTACT INFORMATION</h4>
                 <div class="row  g-3 ">
                     <div class=" ">
                         <div class="d-flex mb-3">
-                            <a class="nav-link" href="{{member.business_facebook}}"><i class="bi bi-facebook me-3"></i></a>
-                            <a class="nav-link" href="{{member.business_phone}}"><i class="bi bi-whatsapp me-3"></i></a>
-                            <a class="nav-link" href="{{member.business_linkedin}}"><i class="bi bi-linkedin me-3"></i></a>
-                            <a class="nav-link" href="{{member.business_twitter}}"><i class="bi bi-twitter me-3"></i></a>                        
+                          
+                          {% if member.business_facebook %}
+                            
+                          <a class="nav-link" href="{{member.business_facebook}}"><i class="bi bi-facebook me-3"></i></a>
+                          {% endif %}
+                            
+                          
+                          {% if member.business_phone %}
+                          <a class="nav-link" href="https://wa.me/{{member.business_phone}}"><i class="bi bi-whatsapp me-3"></i></a>
+                          {% endif %}
+                            
+                          
+                          {% if member.business_linkedin %}
+                          <a class="nav-link" href="{{member.business_linkedin}}"><i class="bi bi-linkedin me-3"></i></a>
+                            
+                          {% endif %}
+                            
+                          
+                          {% if member.business_twitter %}
+                          <a class="nav-link" href="{{member.business_twitter}}"><i class="bi bi-twitter me-3"></i></a>                        
+                            
+                          {% endif %}
+                            
                         </div>
                     </div>
                 </div>

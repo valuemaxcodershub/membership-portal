@@ -208,6 +208,8 @@
       </tr>
     </thead>
     <tbody>
+      
+      {% if not members.items == [] %}
       {% for member in members.items %}
             <tr>
               <td>{{member.business_name}}</td>
@@ -217,6 +219,15 @@
               <td><a href="{{url_for('main.member_page', business_name=member.business_name.replace(' ', '_'))}}" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
             </tr>
       {% endfor %}
+
+      {% else %}
+      <tr>
+        <td><strong>There's no such details </strong></td>
+      </tr>
+      {% endif %}
+        
+      
+
     </tbody>
     </table>
   </div>

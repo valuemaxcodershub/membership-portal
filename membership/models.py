@@ -43,7 +43,7 @@ class User(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
   #db.backref fixes instrumentedlist error --- now fixed
   units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
-  username = db.Column(db.String(20), unique=True)
+  username = db.Column(db.String(20), unique=True) # its really not needed.
   password = db.Column(db.String(60), nullable=False, default="12345678")
   date_registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
   role = db.Column(db.String(6), nullable=False, default="USER")

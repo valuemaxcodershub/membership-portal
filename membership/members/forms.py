@@ -38,7 +38,6 @@ class CreateProfileForm(FlaskForm):
   business_website = StringField("Website Url")
   business_phone = StringField("Business Phone Number", validators=[DataRequired()])
   password = StringField("Password", validators=[DataRequired()])
-  # email = StringField("Email", validators=[DataRequired(), Email()])
   date_of_birth = StringField()
   business_about = TextAreaField("About your business")
   business_address = StringField("Business Location")

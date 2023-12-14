@@ -156,12 +156,15 @@ def edit_business_profile():
       form.business_address.data = member.business_address 
       form.business_services.data = member.business_services
       form.date_of_birth.data = member.date_of_birth
+      
       form.password.data = member.password
 
   elif request.method == 'POST':
     if form.validate_on_submit():
       
       userd = {}
+
+      print('I print date of birth in POST: ', form.date_of_birth)
       
       for field in request.form:
         if field == 'csrf_token' or field == 'mymultiselect' or field == 'submit':
