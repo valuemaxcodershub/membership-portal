@@ -3,15 +3,15 @@
 <section class="wrapper scrollable">
 	<nav class="user-menu">
 		<a href="javascript:;" class="main-menu-access">
-		<i class="icon-proton-logo"></i>
-		<i class="icon-reorder"></i>
+			<i class="icon-proton-logo"></i>
+			<i class="icon-reorder"></i>
 		</a>
 	</nav>
 	<!--  -->
 	<br>
 	<br>
 	<div class="bedd">
-		<div >
+		<div>
 			<img src="/static/profile_pics/{{ member.business_photo }}" alt="image" width="100px">
 		</div>
 		<br>
@@ -33,10 +33,10 @@
 			<p>Password: {{ member.password }}</p>
 		</div>
 		<div>
-			<p>Units: 
-			{% for unit in member.units.all() %}
+			<p>Units:
+				{% for unit in member.units.all() %}
 				<span>{{ unit.name }}</span>
-			{% endfor %}
+				{% endfor %}
 			</p>
 		</div>
 		<div>
@@ -54,34 +54,36 @@
 		<div>
 			<p><a href="{{ url_for('admins.edit_member', member_id=member.id) }}">Edit Member Details</a></p>
 		</div>
-	</div>	
+	</div>
 
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#verifydeletemodal"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete User</button>
+	<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#verifydeletemodal"><i
+			class="fa fa-trash-o" aria-hidden="true"></i>Delete User</button>
 
 	<!-- Modal -->
-						<div class="modal fade" id="verifydeletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog" role="document">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <h5 class="modal-title" id="exampleModalLabel">Delete {{member.name}} unit?</h5>
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						          <span aria-hidden="true">&times;</span>
-						        </button>
-						      </div>
-						      <div class="modal-body">
-						        Are you sure you want to delete this user?
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						        <form method="POST" action="{{ url_for('admins.delete_user', user_id=member.id) }}">
-						        <button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
-						        </form>
-						      </div>
-						    </div>
-						  </div>
-						</div>
-
+	<div class="modal fade" id="verifydeletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Delete {{member.name}} unit?</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Are you sure you want to delete this user?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<form method="POST" action="{{ url_for('admins.delete_user', user_id=member.id) }}">
+						<button type="submit" class="btn btn-primary" href="#">Yes, Delete</button>
+					</form>
+				</div>
 			</div>
-			 
+		</div>
+	</div>
+
+	</div>
+
 </section>
 {% endblock content %}
