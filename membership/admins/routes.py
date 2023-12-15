@@ -78,6 +78,7 @@ def send_unit_message():
 
       selected_units = request.form.getlist('mymultiselect')
 
+
       inputted_units = []
       for unit_name in selected_units:
         unit = Unit.query.filter_by(name=unit_name).all()[0]
@@ -292,7 +293,6 @@ def manage_unit_members(unit_id):
   page = request.args.get('page', 1, type=int)
   unit = Unit.query.filter_by(id=unit_id)[0]
   unit_members = unit.unit_members
-  print(unit_members)
   members = unit_members
 
   return render_template("admin/manage_unit_members.html", title="Units Management", members=members, unit=unit)
@@ -322,16 +322,6 @@ def export_custom():
   if records:
     print(records[0].unit_ids())
 
-# business_name
-# business_email
-# business_phone
-#     business_address
-# business_services
-# business_facebook
-# business_website
-# business_twitter
-# business_linkedin
-# business_whatsapp
   cw.writerow(["business_name", "phone", "email", "unit_ids", "address", "services", "website", "facebook",
                "twitter", "linkedin", "whatsapp"])
   cw.writerows([( r.business_name, r.business_phone, r.business_email, "-".join(r.unit_ids()), r.business_address, r.business_services, r.business_website, r.business_facebook, r.business_twitter, r.business_linkedin,r.business_whatsapp ) for r in records])
@@ -355,15 +345,19 @@ def register_bulk(error_message=""):
     #bulk registration
     
     try:
-      parse_csv(csv_path)
-      print('Parsing CSV: ', parse_csv(csv_path))
+      with open(csv_path, 'r') as bulk_phone:
+        next(bulk_phone) # this line to skip the column name
+
+        for row  in bulk_phone:
+          new_phone= User(business_phone= row)
+          db.session.add(new_phone)
 
       db.session.commit()
     except Exception as e:
       db.session.remove()
       error_message = f"There is an error with the input file -> \n{e}"
       print('Error is there.')
-      return render_template("register_bulk.html", form=form, error_message=error_message)
+      return render_template("admin/register_bulk.html", form=form, error_message=error_message)
     else:
       flash("Bulk registration successfully", category="success")
       return(redirect(url_for("admins.manage_members")))

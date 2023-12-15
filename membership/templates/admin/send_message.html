@@ -36,6 +36,7 @@
   
    
       <h1 style="color: rgb(55, 95, 62);">Send Message to Users</h1>
+     
           <form action="{{url_for('admins.send_unit_message')}}" method="POST" id="form">
               {{ form.hidden_tag()  }}
              <div class="input-control">
@@ -50,10 +51,12 @@
              </div>
               <br />
                 <div class="container mt-5" id="iners">
+                 
                   <h5>Select Unit</h5>
-                  <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example" data-actions-box="true">
+                  <select name="mymultiselect" class="selectpicker"  aria-label="size 3 select example" data-actions-box="true"  >
+                  
                     {% for unit in dashboard_units %}
-                        <option value="{{unit.name}}">{{unit.name}}</option>
+                      <option value="{{unit.name}}">{{unit.name}}</option>
                     {% endfor %}
                   </select>
                 </div>

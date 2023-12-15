@@ -28,7 +28,7 @@ class UserUpdate(db.Model):
 
   def __repr__(self):
     
-    return str(self.userid) + " has updated their profile."
+    return str(User.query.filter_by(id = self.userid).all()[0].business_name)
 
 
 
@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
   current_salary = db.Column(db.String(60))
   occupation = db.Column(db.String(60))
   experience = db.Column(db.String(60))
-  date_of_birth = db.Column(db.String(77), nullable=False, default=datetime.utcnow)
+  # date_of_birth = db.Column(db.String(77), nullable=False, default=datetime.utcnow)
   business_address = db.Column(db.String(120))
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
   has_filled_profile = db.Column(db.Boolean(), default=False)
