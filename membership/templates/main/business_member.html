@@ -1,635 +1,277 @@
-
-{# <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Business Member</title>
-      <!-- bootstrap -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <!--// bootstrap -->
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/f2545b0bd6.js" crossorigin="anonymous"></script>
-    <!-- font awesome -->
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-    <!-- font-awesome icons -->
-    <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/font.css') }}">
-    <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/business.css') }}">
-    <!-- //font-awesome icons -->
-
-    <style>
-      .bosses{
-        margin-right: 20em;
-      }
-      #down{
-        /* background: #f6f8f6 ; */
-        color: #f2f6f2 ;
-        font-size: 30px;
-      }
-      #reck{
-        margin-left: 10%;
-      }
-    </style>
-    
-</head>
-<body>
-  <div class="ricky ">
-
-    <nav>
-        <div class=" container">
-          <div class="row">
-            <div class="col-md-8 rocky">
-              <div class="">
-                <span class=""> 
-                  <i class="fa fa-phone" aria-hidden="true"></i> 
-                  +2348160831342 or +2348032428096
-                </span>
-                &nbsp;
-                <span> <i class="fa fa-envelope-o" aria-hidden="true"></i> 
-                  info@nasmeoyo.org
-                </span>
-               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="bosses">
-                <div class=" d-flex justify-content-center" id="bosses">
-                  
-                  <div class="dropdown uyo fumni" >
-                    <li class="btn btn-success dropdown- d-inline-block" type="button" id=" dropdownMenuButton2" data-toggle="" aria-expanded="false"  tabindex="0" data-toggle="tooltip" data-placement="top" title="Search" style="background: #0ece0b ;">
-                      <i class="fas fa-search"></i>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                      <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="d-flex" autocomplete="off">
-                        <input id="member_autocomplete" name="search_query" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-success" type="submit" style="color: #A8D6B4;"> <i class="fas fa-search"></i></button>
-                        </form>
-                    </ul>
-                  </li>
-                  </div> 
-
-                <div class="btn btn-success dropdown ibadan btn-group dropstart" id="ibadan">
-                  <li class=" dropdown- d-inline-block" type="button" id=" dropdownMenuButton1"  title="sort by clusters/unit">
-                    <i class="fa fa-database" aria-hidden="true"></i>
-                  
-                  <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                    {% for unit in dashboard_units %}
-                    <li><a href=" {{ url_for('main.business_unit_members', unit_id=unit.id) }}" class="dropdown-item dropstart">{{unit.name}}</a></li>
-                    {% endfor %}
-                  </ul>
-                </li>
-                </div>
-                <!-- <div class="fumni" style="">
-                  <form  method="POST" action="{{ url_for('main.search_business_members') }}" class="search-box "autocomplete="off">
-                    <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
-                    <input type="text" name="search_query" class="input-search" placeholder="Search for members..">
-                </form>
-                </div> -->
-
-                
-                <i class="fa fa-facebook" aria-hidden="true" id="down"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-                  
-                        
-        </div>
-    </nav>
-    
-  </div>
-<!-- navbar -->
-<div class="donee">
-  <div class="container">
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"  id="mufu dropstart">
-      <div class="container-fluid"> 
-        <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-inline-flex justify-content-end oyo" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 dropstart">
-              <li class="nav-item ">
-                <a class="nav-link active dropdown-" href="https://nasmeoyo.org/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="https://nasmeoyo.org">Home</a>
-                
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/about-us/">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/blog">Unit & Cluster</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                  Membership
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershiptypes">Membership Types</a></li>
-                  <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipbenefits">Membership Benefit</a></li>
-                  <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration/">NASME COOPERATIVE</a></li>
-                  <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration/">Membership Registration</a></li>
-                </ul>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                  Members' Portal
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/business-members">Current Members List</a></li>
-                  <li><a class="dropdown-item" href="/login">Members Login</a></li>
-                  <li><a class="dropdown-item" href="https://portal.nasmeoyo.org/admin">Login as Admin</a></li>
-                </ul>
-              </li>
-              
-             
-              <li class="nav-item ">
-                <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                  News & update
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/news-update/">Blog</a></li>
-                  <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/gallery-2">Gallery</a></li>
-                  
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/contact-us">Contact us</a>
-              </li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"> 
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="../static/images/FAV.jpg" alt="image"  width="100" height="70"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse oyo" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li class="nav-item ">
-              <a class="nav-link active dropdown-" href="{{ url_for('main.business_members') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="https://nasmeoyo.org">Home Data</a>
-              
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/about-us/">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/blog">Unit & Cluster</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                Membership
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershiptypes">Membership Types</a></li>
-                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipbenefits">Membership Benefit</a></li>
-                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration/">NASME COOPERATIVE</a></li>
-                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration/">Membership Registration</a></li>
-              </ul>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                Members' Portal
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/business-members">Current Members List</a></li>
-                <li><a class="dropdown-item" href="/login">Members Login</a></li>
-                <li><a class="dropdown-item" href="/admin">Login as Admin</a></li>
-              </ul>
-            </li>
-            
-           
-            <li class="nav-item ">
-              <a class="nav-link active dropdown-" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                News & update
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/news-update/">Blog</a></li>
-                <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/gallery-2">Gallery</a></li>
-                
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="https://nasmeoyo.org/index.php/contact-us">Contact us</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-</div>
-
-<br>
-<!--  -->
-<!-- <div class="musa" id="musa">
-  <div class="container">
-    <div class=" row">
-
-      <div class=" col">
-        
-           <div>
-            <form  method="#" action="#" class="search-box "autocomplete="off">
-              <button type="submit" class="btn-search "><i class="fas fa-search"></i></button>
-              <input type="text" name="search_query" class="input-search" placeholder="Search for members...">
-          </form>
-          </div> 
-        </div>
-      <div class=" col">
-            <div class="dropdown ibadan">
-              <li class="btn btn-secondary dropdown- glow-on-hover d-inline-block" type="button" id="glow-on-hover dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"  tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="clusters">
-                <i class="fa fa-database" aria-hidden="true"></i>
-              
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                {% for unit in dashboard_units %}
-                <li><a href=" {{ url_for('admins.manage_unit_members', unit_id=unit.id) }}" class="dropdown-item" target="_blank">{{unit.name}}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-            </div> -->
-          
-
-<br>
-<br>
-<div class="container agile-tables " >
-  
-  <h3 style="text-align: center; color:rgb(31, 55, 31); font-weight:bold; margin-top: 20px;" class="text-center">Business Members</h3>
-  <div class="w3l-table-info table-responsive">
-    
-      <table id="tuble" class="table table-success table-striped table-hover shadow-lg p-3 mb-5 bg-body rounded center table-bordered" style="width: 85%; font-size: 16px;">
-    <thead>
-      <tr>
-      <th>Business Name</th>
-      <th>Phone No</th>
-      <th>Email</th>
-      <th>Cluster</th>
-      <th>URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for member in members %}
-            <tr>
-              <td>{{member.business_name}}</td>
-              <td>{{ member.business_phone }}</td>
-              <td>{{ member.business_email }}</td>
-              <td>{{ member.display_units() }}</td>
-              <td><a href="{{url_for('main.member_page', business_name=member.business_name.replace(' ', '_'))}}" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to see business profile">[Click]</a></td>
-            </tr>
-      {% endfor %}
-    </tbody>
-    </table>
-  </div>
-  </div>
-
-  <!-- footer -->
-  <div class="foot">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-md-3">
-          <input type="text">
-          <br>
-          <br>
-          <br>
-          <div class="socket_1">
-            <p>The Nigeria association of small  and medium   enterprises(nasme) was registered in 1996 as a business  membership organisation (BMO), to co-operate and foster the promotion of micro, small and medium enterprises ( MSMEs) in Nigeria NASME is the only leading Nigerian private sector. <a href="#" >read more.</a></p>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <h6>LASTEST POST</h6>
-          <br>
-          <div class="socket_2">
-            <p>WELCOME TO NASME NEWS AND <br> UPDATES</p>
-            <h6 style="color: rgb(9, 210, 9); font-weight:bold;">October 15, 2020</h6>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <h6>QUICK LINKS</h6>
-          <br>
-          <div class="socket_3">
-            <ul>
-              <li>HOME</li>
-              <li>ABOUT US</li>
-              <li>UNIT & CLUSTER</li>
-              <li>MEMBERSHIP</li>
-              <ul>
-              <li>MEMBERSHIP TYPES</li>
-              <li>MEMBERSHIP BENEFITS</li>
-              <li>MEMBERSHIP REGISTRATION</li>
-              </ul>
-              <li>NASME COPORATIVE</li>
-              <li>NEWS & UPDATES</li>
-              <ul>
-              <li>BLOG</li>
-              <li>GALLERY</li>
-              </ul>
-              <li>CONTACT US</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <h6>CONTACT INFORMATION</h6>
-          <br>
-          <div class="socket_5">
-            <p>NASME Oyo State ChapterBlock c, Suits 5 & 6, Oyo State Permanent Trade Fair Complex (EXPOYO), Sango – U.I Road, Ibadan, Oyo State, Nigeria. Tel: +2348160831342 or +2348032428096 , info@nasmeoyo.org</p>
-
-            <p>Meeting Day: Last Thursday of Every Month</p>
-
-            <p>Time: 2pm Prompt</p>
-
-            <p>Cooperative Meeting : 1pm (Same Day)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    // let timVine = document.getElementById("musa");
-    //   let navbar = document.getElementById("mufu");
-
-    // let navPos = navbar.getBoundingClientRect().top;
-
-    // window.addEventListener("scroll", e => {
-    //   let scrollPos = window.scrollY;
-    //   if (scrollPos > navPos) {
-    //     navbar.classList.add('sticky');
-    //     header.classList.add('navbarOffsetMargin');
-    //   } else {
-    //     navbar.classList.remove('sticky');
-    //     header.classList.remove('navbarOffsetMargin');
-    //   }
-    // });
-  </script>
-
-</body>
-</html>
-
-#}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <!-- <link rel="stylesheet" href="../static/css/header.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <!-- <link rel="stylesheet" href="../static/css/header.css"> -->
 
-    <style>
-        .navbar input::placeholder {
-            font-variant: small-caps;
-        }
+  <style>
+    .navbar input::placeholder {
+      font-variant: small-caps;
+    }
 
-        .navbar-brand {
-            width: 50px;
-        }
+    .navbar-brand {
+      width: 100px;
+    }
 
-        .navbar-brand img {
-            width: 100%
-        }
+    .navbar-brand img {
+      width: 100%
+    }
 
-        input,
-        button,
-        .navbar-toggler {
-            border: none;
-            outline: none;
-            box-shadow: none;
-        }
+    input,
+    button,
+    .navbar-toggler,
+    input:focus,
+    button:focus,
+    .navbar-toggler:focus {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
 
-        .header .search-icon {
-            background: white;
-        }
+    .header .search-icon {
+      background: white;
+    }
 
-        .dropdown-menu .dropdown-item:focus {
-            background: #228c2e;
-        }
+    .dropdown-menu .dropdown-item:focus {
+      background: #228c2e;
+    }
 
 
-        @media screen and (max-width:991px) {
-            .dropdown {
-                width: 100%;
-            }
+    @media screen and (max-width:991px) {
+      .dropdown {
+        width: 100%;
+      }
 
-            .nav-item .dropdown-menu {
-                box-shadow: none !important;
-                background: #228c2e;
-                text-align: center;
-            }
+      .nav-item .dropdown-menu {
+        box-shadow: none !important;
+        background: #228c2e;
+        text-align: center;
+      }
 
-            .dropdown-menu .dropdown-item {
-                color: #fff;
-            }
-        }
-    </style>
+      .dropdown-menu .dropdown-item {
+        color: #fff;
+      }
+    }
+  </style>
 </head>
 
 <body style="background: silver;">
 
 
-    <nav class="navbar" style="flex-wrap: nowrap; background-color: #228c2e; ">
-        <div class="container-fluid d-flex px-md-5 px-3">
-          <div class="d-none d-md-block d-lg-flex">
-            <div>
-                <i class="bi bi-telephone-fill text-light"></i>
-                <span class="text-light px-3">+2348160831342 or +2348032428096</span>
-            </div>
-            <div>
-                <i class="bi bi-envelope-fill text-light"></i>
-                <span class="text-light px-3">info@nasmeoyo.org</span>
-            </div>
+  <nav class="navbar px-4" style="flex-wrap: nowrap; background-color: rgb(9, 210, 9); z-index: 9999;">
+    <div class="container-fluid d-flex px-md-5 px-3">
+      <div class="d-none d-md-block d-lg-flex">
+        <div>
+          <i class="bi bi-telephone-fill text-light"></i>
+          <span class="text-light px-3">+2348160831342 or +2348032428096</span>
         </div>
-
-
-
-            <div class="d-flex header">
-                <form action="{{url_for('main.search_business_members')}}" class="d-flex rounded mx-lg-2 mx-1">
-                    <input class="form-control rounded-0 rounded-start border-0 w-100" style="box-shadow: none;"
-                        type="search" name="search_query" placeholder="Search" aria-label="Search">
-                    <button class="rounded-0 rounded-end btn border-0 search-icon" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-
-                <button class="btn ms-md-3 mx-0" type="submit" title="Sort by Clusters/Units">
-                    <i class="bi bi-collection-fill text-light"></i>
-                </button>
-               {# <button class="btn ms-md-3 mx-0" type="submit" title="Admin Profile">
-                    <i class="bi bi-person-workspace text-light"></i>
-                </button> #}
-              {#  <button class="btn ms-md-3 mx-0" type="submit" title="Toggler">
-                    <i class="bi bi-facebook text-light"></i>
-                </button> #}
-            </div>
+        <div>
+          <i class="bi bi-envelope-fill text-light"></i>
+          <span class="text-light px-3">info@nasmeoyo.org</span>
         </div>
-    </nav>
-
-    <nav class="navbar sticky-top navbar-expand-lg bg-white px-md-5 shadow">
-        <div class="container-fluid">
-            <a class="navbar-brand p-0" id="navBrand" href="#">
-                <img class="" src="../static/web_images/nasme-removebg-preview.png" alt="">
-            </a>
-
-            <span class="navbar-toggler navbar-toggler-icon" data-bs-toggle="collapse"
-                data-bs-target="#navbarTogglerDemo02"></span>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100 justify-content-center align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-center active" href="https://nasmeoyo.org">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="#">Data</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="https://nasmeoyo.org/index.php/about-us/">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="https://nasmeoyo.org/index.php/blog">Unit & Cluster</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Membership
-                        </a>
-                        <ul class="dropdown-menu border-0 shadow mt-1">
-                            <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershiptypes">Membership Types</a></li>
-                            <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipbenefits">Membership Benefit</a></li>
-                            <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration">Membership Registration</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration">NASME Co-operative</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-center dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Membership Portal
-                        </a>
-                        <ul class="dropdown-menu border-0 shadow mt-1">
-                            <li><a class="dropdown-item" href="/business-members">Current Member's List</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/login">Member's Login</a></li>
-                            <li><a class="dropdown-item" href="{{url_for('admins.admin_login')}}">Admin Login</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            News & Update
-                        </a>
-                        <ul class="dropdown-menu border-0 shadow mt-1">
-                            <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/news-update/">Blog</a></li>
-                            <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/gallery-2">Gallery</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-center" href="https://nasmeoyo.org/index.php/contact-us">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="main-content p-5 table-responsive-lg">
-        <table class="table table-bordered table-hover table-success table-striped-columns caption-top">
-            <caption class="text-center fs-4">BUSINESS MEMBERS</caption>
-            <thead class="table-dark">
-             
-                <tr>
-                    <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Business Name</th>
-                    <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Phone Number</th>
-                    <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">E-mail</th>
-                    <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Cluster</th>
-                    <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Url</th>
-                </tr>
+      </div>
 
 
-            </thead>
-            <tbody class="table-group-divider">
 
-              
-              {% for member in members %}
-              <tr>
-                <td>{{member.business_name}}</td>
-                <td>{{member.business_phone}}</td>
-                <td>{{member.business_email}}</td>
-                <td>{{member.display_units()}}</td>
-                <th><a href="{{url_for('main.member_page', business_name=member.business_name.replace(' ', '_'))}}">See Link</a></th>
-            </tr>
+      <div class="d-flex header">
+        <form action="{{url_for('main.search_business_members')}}" class="d-flex rounded mx-lg-2 mx-1">
+          <input class="form-control rounded-0 rounded-start border-0 w-100" style="box-shadow: none;" type="search"
+            name="search_query" placeholder="Search" aria-label="Search">
+          <button class="rounded-0 rounded-end btn border-0 search-icon" type="submit">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
 
-              {% endfor %}
-                
-              
-            </tbody>
-        </table>
+        <button class="btn ms-md-3 mx-0 dropdown" title="Sort by Clusters/Units">
+          <i class="bi bi-collection-fill text-light dropdown-toggle" data-bs-toggle="dropdown"></i>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Demo</a></li>
+            <li><a class="dropdown-item" href="#">Demo</a></li>
+            <li><a class="dropdown-item" href="#">Demo</a></li>
+            <li><a class="dropdown-item" href="#">Demo</a></li>
+          </ul>
+        </button>
+        <button class="btn ms-md-3 mx-0" title="Facebook icon">
+          <i class="bi bi-facebook text-light"></i>
+        </button>
+      </div>
     </div>
+  </nav>
+
+  <nav class="navbar sticky-top navbar-expand-lg bg-white px-md-5 shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand p-0" id="navBrand" href="#">
+        <img class="" src="../../static/images/FAV.jpg" alt="">
+      </a>
+
+      <span class="navbar-toggler navbar-toggler-icon" data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo02"></span>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100 justify-content-center align-items-center">
+          <li class="nav-item">
+            <a class="nav-link text-center active" href="https://nasmeoyo.org">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="#">Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="https://nasmeoyo.org/index.php/about-us/">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="https://nasmeoyo.org/index.php/blog">Unit & Cluster</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Membership
+            </a>
+            <ul class="dropdown-menu border-0 shadow mt-1">
+              <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershiptypes">Membership Types</a>
+              </li>
+              <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipbenefits">Membership
+                  Benefit</a></li>
+              <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration">Membership
+                  Registration</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/membershipregisteration">NASME
+                  Co-operative</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-center dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Membership Portal
+            </a>
+            <ul class="dropdown-menu border-0 shadow mt-1">
+              <li><a class="dropdown-item" href="/business-members">Current Member's List</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="/login">Member's Login</a></li>
+              <li><a class="dropdown-item" href="{{url_for('admins.admin_login')}}">Admin Login</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              News & Update
+            </a>
+            <ul class="dropdown-menu border-0 shadow mt-1">
+              <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/news-update/">Blog</a></li>
+              <li><a class="dropdown-item" href="https://nasmeoyo.org/index.php/gallery-2">Gallery</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="https://nasmeoyo.org/index.php/contact-us">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content p-5 table-responsive-lg">
+    <table class="table table-bordered table-hover table-success table-striped-columns caption-top">
+      <caption class="text-center fs-4">BUSINESS MEMBERS</caption>
+      <thead class="table-dark">
+
+        <tr>
+          <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Business Name</th>
+          <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Phone Number</th>
+          <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">E-mail</th>
+          <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Cluster</th>
+          <th style="font-weight: 600; font-variant: small-caps; text-wrap: nowrap;">Url</th>
+        </tr>
 
 
-    <footer class="p-5" style="background: rgb(56,56,56); color: silver;">
-        <div class="container px-5">
-            <div class="row">
-                <div class="col-md-4 my-3">
-                    <h6 class="mb-4">
-                        <input type="text">
-                    </h6>
-                    <p style="font-size: .8rem;">The Nigeria association of small and medium enterprises(nasme) was
-                        registered in 1996 as a
-                        business membership
-                        organisation (BMO), to co-operate and foster the promotion of micro, small and medium
-                        enterprises ( MSMEs) in Nigeria
-                        NASME is the only leading Nigerian private sector.</p>
-                </div>
-                <div class="col-md-4 my-3">
-                    <h6 class="text-white mb-4">LASTEST POST</h6>
-                    <p style="font-size: .8rem;">WELCOME TO NASME NEWS AND UPDATES</p>
-                    <h6 style="font-size: .8rem;">October 15, 2020</h6>
-                </div>
-                <div class="col-md-4 my-3">
-                    <h6 class="text-white mb-4">CONTACT INFORMATION</h6>
-                    <p style="font-size: .8rem;">NASME Oyo State ChapterBlock c, Suits 5 & 6, Oyo State Permanent Trade
-                        Fair Complex (EXPOYO),
-                        Sango – U.I Road, Ibadan,
-                        Oyo State, Nigeria. Tel: +2348160831342 or +2348032428096 , info@nasmeoyo.org</p>
-                    <p style="font-size: .8rem;">Meeting Day: Last Thursday of Every Month</p>
-                    <p style="font-size: .8rem;">Time: 2pm Prompt</p>
-                    <p style="font-size: .8rem;">Cooperative Meeting : 1pm (Same Day)</p>
-                </div>
-            </div>
+      </thead>
+      <tbody class="table-group-divider">
+
+
+        {% for member in members %}
+        <tr>
+          <td>{{member.business_name}}</td>
+          <td>{{member.business_phone}}</td>
+          <td>{{member.business_email}}</td>
+          <td>{{member.display_units()}}</td>
+          <th><a href="{{url_for('main.member_page', business_name=member.business_name.replace(' ', '_'))}}">See
+              More</a></th>
+        </tr>
+
+        {% endfor %}
+
+
+      </tbody>
+    </table>
+  </div>
+
+
+  <footer class="p-5" style="background: rgb(56,56,56); color: silver;">
+    <div class="container px-5">
+      <div class="row">
+        <div class="col-md-4 my-3">
+          <h6 class="mb-4 fs-4 text-light" style="font-variant: small-caps;">
+            NasmeOyo
+          </h6>
+          <p style="font-size: .8rem;">The Nigeria association of small and medium enterprises(nasme) was
+            registered in 1996 as a
+            business membership
+            organisation (BMO), to co-operate and foster the promotion of micro, small and medium
+            enterprises ( MSMEs) in Nigeria
+            NASME is the only leading Nigerian private sector.</p>
         </div>
-    </footer>
+        <div class="col-md-4 my-3">
+          <h6 class="text-white mb-4">LASTEST POST</h6>
+          <p style="font-size: .8rem;">WELCOME TO NASME NEWS AND UPDATES</p>
+          <h6 style="font-size: .8rem;">October 15, 2020</h6>
+        </div>
+        <div class="col-md-4 my-3">
+          <h6 class="text-white mb-4">CONTACT INFORMATION</h6>
+          <p style="font-size: .8rem;">NASME Oyo State ChapterBlock c, Suits 5 & 6, Oyo State Permanent Trade
+            Fair Complex (EXPOYO),
+            Sango – U.I Road, Ibadan,
+            Oyo State, Nigeria. Tel: +2348160831342 or +2348032428096 , info@nasmeoyo.org</p>
+          <p style="font-size: .8rem;">Meeting Day: Last Thursday of Every Month</p>
+          <p style="font-size: .8rem;">Time: 2pm Prompt</p>
+          <p style="font-size: .8rem;">Cooperative Meeting : 1pm (Same Day)</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
 
-    <script>
-        // Navbar Search Toggler
-        let searchInput = document.getElementById('search')
-        let btnSearch = document.getElementById('btn-search')
-        let navBrand = document.getElementById('navBrand')
+  <script>
+    // Navbar Search Toggler
+    let searchInput = document.getElementById('search')
+    let btnSearch = document.getElementById('btn-search')
+    let navBrand = document.getElementById('navBrand')
 
-        btnSearch.addEventListener('click', (e) => {
-            e.preventDefault()
-            searchInput.classList.toggle('active')
-            navBrand.classList.toggle('none')
-        })
-        // Navbar Search Toggler Ends
+    btnSearch.addEventListener('click', (e) => {
+      e.preventDefault()
+      searchInput.classList.toggle('active')
+      navBrand.classList.toggle('none')
+    })
+    // Navbar Search Toggler Ends
 
 
-    </script>
+  </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

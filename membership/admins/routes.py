@@ -546,6 +546,8 @@ def edit_member(member_id):
 
   if form.validate_on_submit():
 
+   
+
     if form.picture.data:
       picture_file = save_picture(form.picture.data)
       member.business_photo = picture_file
@@ -557,7 +559,7 @@ def edit_member(member_id):
     member.business_about = form.business_about.data
     member.business_address = form.business_address.data
     member.business_phone = form.phone.data
-    member.date_of_birth = form.date_of_birth.data
+    # member.date_of_birth = form.date_of_birth.data
 
     selected_units = request.form.getlist('mymultiselect')
 
@@ -578,10 +580,13 @@ def edit_member(member_id):
     
     return(redirect(url_for("admins.manage_members")))
   
+  else:
+    print('It is nto submitting')
 
-  elif request.method == 'GET':
+
+  if request.method == 'GET':
     form.password.data = member.password
-    form.date_of_birth.data = member.date_of_birth
+    # form.date_of_birth.data = member.date_of_birth
     form.business_about.data = member.business_about
     form.business_name.data = member.business_name
     form.email.data = member.business_email
@@ -593,6 +598,9 @@ def edit_member(member_id):
 
   image_file = url_for('static', filename='profile_pics/' + member.business_photo)
   return render_template('admin/edit_member_detail.html', member=member, form=form, image_file=image_file, units=units)
+
+
+
 
 @admins.route('/admin/download-template')
 @admin_role_required
@@ -615,8 +623,8 @@ def export_db():
   cw = csv.writer(si)
   records = User.query.all()   # or a filtered set, of course
   # any table method that extracts an iterable will work
-  cw.writerow(["phone", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience", "date_of_birth"])
-  cw.writerows([(r.phone, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address, r.date_of_birth) for r in records])
+  cw.writerow(["phone", "business_name", "business_phone", "business_email", "businesss_about", "unit_ids", "image_file", "business_about", "business_address", "experience"])
+  cw.writerows([(r.phone, r.business_name, r.business_phone, r.business_email, r.business_about, "-".join(r.unit_ids()), r.image_file, r.business_about, r.occupation, r.business_address) for r in records])
   response = make_response(si.getvalue())
   response.headers['Content-Disposition'] = 'attachment; filename=report.csv'
   response.headers["Content-type"] = "text/csv"

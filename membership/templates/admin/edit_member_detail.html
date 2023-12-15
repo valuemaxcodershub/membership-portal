@@ -257,24 +257,6 @@
       {{ form.password }}
     {% endif %} 
 
-
-
-
-    <br />
-    <br />
-    {{ form.date_of_birth.label }}
-    <br />
-    {% if form.date_of_birth.errors %}
-      {{ form.date_of_birth }}
-      {% for error in form.date_of_birth.errors %}
-          <span>{{ error }}</span>
-      {% endfor %}
-    {% else %}
-      {{ form.date_of_birth }}
-    {% endif %}
-    
-
-
     <br />
     <br />
 

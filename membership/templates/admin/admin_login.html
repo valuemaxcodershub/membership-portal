@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,21 +14,22 @@
 
 <body>
 
-     <!-- flashed messages  -->
+    <!-- flashed messages  -->
     {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{category}} d-flex align-items-center w-100 rounded-top-0" role="alert">
-            <!-- <i class="flex-shrink-0 bi bi-exclamation-triangle-fill fs-4"></i> -->
-            <div class="fs-5 text-center w-100" style="font-variant: small-caps;">
-               {{message}}
-            </div>
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}} d-flex align-items-center w-100 rounded-top-0 alert-dismissible" role="alert">
+        <!-- <i class="flex-shrink-0 bi bi-exclamation-triangle-fill fs-4"></i> -->
+        <div class="fs-5 text-center w-100" style="font-variant: small-caps;">
+            {{message}}
         </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %} 
-    
-   
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+
 
     <div class="container-fluid h-100 bg-dark-subtle">
         <div class="row align-items-center justify-content-center d-flex" style="min-height: 100vh;">
@@ -41,7 +40,8 @@
             </div>
             <div class="col-md-6 d-flex flex-column form-styled">
                 <div class="row d-flex justify-content-center align-items-center h-100">
-                    <form class="col-lg-6 bg-white p-4 px-3 form-control-sm col-md-11 col-xl-6 col-10" method = 'POST' id='form'>
+                    <form class="col-lg-6 bg-white p-4 px-3 form-control-sm col-md-11 col-xl-6 col-10" method='POST'
+                        id='form'>
 
 
                         {{ form.hidden_tag() }}
@@ -52,14 +52,14 @@
                             {# <input type="tel" class="form-control" id="exampleInputEmail1"> #}
 
                             {% if form.email.errors %}
-                                {{ form.email(type="email", id="email", class="form-control", placeholder="Email") }}
-                                <span class="error"></span>
-                                {% for error in form.email.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
+                            {{ form.email(type="email", id="email", class="form-control", placeholder="Email") }}
+                            <span class="error"></span>
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
                             {% else %}
-                                {{ form.email(type="email", id="email", class='form-control', placeholder="Email") }}
-                                <span class="error"></span>
+                            {{ form.email(type="email", id="email", class='form-control', placeholder="Email") }}
+                            <span class="error"></span>
                             {% endif %}
 
 
@@ -72,14 +72,16 @@
                             {# <input type="password" class="form-control" id="exampleInputPassword1"> #}
 
                             {% if form.password.errors %}
-                              {{ form.password(type="password", id="password", class="form-control", placeholder="Password") }}
-                              <span class="error" ></span>
-                              {% for error in form.password.errors %}
-                                  <span>{{ error }}</span>
-                              {% endfor %}
+                            {{ form.password(type="password", id="password", class="form-control",
+                            placeholder="Password") }}
+                            <span class="error"></span>
+                            {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
                             {% else %}
-                              {{ form.password(type="password", id="password", class="form-control", placeholder="Password") }}
-                              <span class="error" ></span>
+                            {{ form.password(type="password", id="password", class="form-control",
+                            placeholder="Password") }}
+                            <span class="error"></span>
                             {% endif %}
 
 
@@ -90,16 +92,17 @@
                                 {{ form.remember(type="checkbox", class='form-check-input', id='exampleCheck1') }}
                                 {{ form.remember.label(class='form-check-label', for='exampleCheck1') }}
 
-                              {#  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                {# <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Remember Me </label> #}
                             </div>
                             <div>
                                 <a href="/reset_password" target="_blank" class='nav-link'>Forgot Password? </a>
                             </div>
                         </div>
-                      {#  <button type="submit" id='ric' class="btn w-100 mt-2 text-light"
+                        {# <button type="submit" id='ric' class="btn w-100 mt-2 text-light"
                             style="background: #228c2e;">Submit</button> #}
-                            {{ form.submit(type="submit",  class="btn w-100 mt-2 text-light", style="background: #228c2e",  id="ric") }}
+                        {{ form.submit(type="submit", class="btn w-100 mt-2 text-light", style="background: #228c2e",
+                        id="ric") }}
                     </form>
                 </div>
             </div>
@@ -117,59 +120,59 @@
 
 
 
-        <script>
-            const form = document.getElementById('form');
-            const email = document.getElementById('email');
-            const password = document.getElementById('password');
-    
-            form.addEventListener('submit', e => {
-                // e.preventDefault();
-                validateInputs(e);
-            });
-    
-            const setError = (element, message) => {
-                const inputControl = element.parentElement;
-                const errorDisplay = inputControl.querySelector('.error');
-    
-                errorDisplay.innerText = message;
-                inputControl.classList.add('error');
-                inputControl.classList.remove('success');
-    
-            };
-            const setSuccess = element => {
-                const inputControl = element.parentElement;
-                const errorDisplay = inputControl.querySelector('.error');
-    
-                errorDisplay.innerText = '';
-                inputControl.classList.add('success');
-                inputControl.classList.remove('error');
-            };
-    
-            const validateInputs = (e) => {
-                const emailValue = email.value.trim();
-                const passwordValue = password.value.trim();
-    
-                if(emailValue === '') {
-                    setError(email, 'Phone number is required');
-                    e.preventDefault();
-                }else{
-                    setSuccess(email);
-                }
-    
-                if(passwordValue === ''){
-                    setError(password, 'Password is required');
-                    e.preventDefault();
-                }
-                else if (passwordValue.length < 8 ) {
-                    setError(password, 'Password must be at least 8 characters.');
-                    e.preventDefault();
-                }
-                else {
-                    setSuccess(password);
-                }
-            };
-    
-        </script>
+    <script>
+        const form = document.getElementById('form');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+
+        form.addEventListener('submit', e => {
+            // e.preventDefault();
+            validateInputs(e);
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
+
+        };
+        const setSuccess = element => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.querySelector('.error');
+
+            errorDisplay.innerText = '';
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        };
+
+        const validateInputs = (e) => {
+            const emailValue = email.value.trim();
+            const passwordValue = password.value.trim();
+
+            if (emailValue === '') {
+                setError(email, 'Phone number is required');
+                e.preventDefault();
+            } else {
+                setSuccess(email);
+            }
+
+            if (passwordValue === '') {
+                setError(password, 'Password is required');
+                e.preventDefault();
+            }
+            else if (passwordValue.length < 8) {
+                setError(password, 'Password must be at least 8 characters.');
+                e.preventDefault();
+            }
+            else {
+                setSuccess(password);
+            }
+        };
+
+    </script>
 </body>
 
 
