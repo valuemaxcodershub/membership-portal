@@ -17,7 +17,7 @@ load_dotenv()
 # i added a comment
 app = Flask(__name__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# app.config["SECRET_KEY"] = "0f3c34f7789f6917e12593945aa86bdb"
+app.config["SECRET_KEY"] = "0f3c34f7789f6917e12593945aa86bdb"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("NASME_DATABASE_URI")
 # app.config[
 #     "SQLALCHEMY_DATABASE_URI"
