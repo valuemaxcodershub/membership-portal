@@ -91,10 +91,11 @@
         <button class="btn ms-md-3 mx-0 dropdown" title="Sort by Clusters/Units">
           <i class="bi bi-collection-fill text-light dropdown-toggle" data-bs-toggle="dropdown"></i>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Demo</a></li>
-            <li><a class="dropdown-item" href="#">Demo</a></li>
-            <li><a class="dropdown-item" href="#">Demo</a></li>
-            <li><a class="dropdown-item" href="#">Demo</a></li>
+            
+            {% for unit in units  %}
+            <li><a class="dropdown-item" href="{{url_for('main.business_unit_members', unit_id=unit.id)}}">{{unit.name}}</a></li>
+            {% endfor %}
+              
           </ul>
         </button>
         <button class="btn ms-md-3 mx-0" title="Facebook icon">

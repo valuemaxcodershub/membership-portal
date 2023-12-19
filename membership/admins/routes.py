@@ -349,7 +349,7 @@ def register_bulk(error_message=""):
         next(bulk_phone) # this line to skip the column name
 
         for row  in bulk_phone:
-          new_phone= User(business_phone= row)
+          new_phone= User(business_phone= int(row))
           db.session.add(new_phone)
 
       db.session.commit()

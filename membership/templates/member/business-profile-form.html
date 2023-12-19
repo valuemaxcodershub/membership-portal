@@ -1,523 +1,5 @@
-{#
-{% extends "member_layout.html" %}
-{% block content %}
-<style>
-  #form {
-    width: 80%;
-    margin: 5%;
-    padding: 10px;
-    font-size: 19px;
-    /* text-align: center;  */
-    /* margin-top: 20%; */
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: bold;
-    background-color: rgb(181, 203, 185);
-    color: rgb(121, 146, 125);
-    border-radius: 4px;
-    font-size: 15px;
-  }
-
-  /* #ric{
-            padding: 10px;
-            margin-top: 10px;
-            width: 100%;
-            color: white;
-            font-weight: bold;
-            background: #0b5836;
-            border: none;
-            border-radius: 4px;
-        }
-        #ric:hover{
-            background: #05ed88;
-            transition: 1s;
-        }
-        #rich{
-            background: green;
-            padding: 20px;
-            padding-bottom: 10%;
-            
-        }
-        #rich h2{
-            font-weight: bold;
-        }
-        #rach{
-            margin-top: 9%;
-            color: rgb(5, 89, 5);
-            font-weight: bold;
-            text-align: center;
-        }
-        #rach h3{
-            font-weight: bold;
-        } */
-
-  .input-control {
-    display: flex;
-    flex-direction: column;
-  }
-
-  h1 {
-    text-align: center;
-  }
-
-  .input-control input {
-    border: 2px solid #f0f0f0;
-    border-radius: 4px;
-    display: block;
-    font-size: 12px;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .input-control textarea {
-    border: 2px solid #f0f0f0;
-    border-radius: 4px;
-    display: block;
-    font-size: 12px;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .input-control textarea:focus {
-    outline: 0;
-  }
-
-  .input-control input:focus {
-    outline: 0;
-  }
-
-  .input-control.success input {
-    border-color: #09c372;
-  }
-
-  .input-control.error input {
-    border-color: #ff3660;
-  }
-
-  .input-control.error {
-    color: #ff3660;
-    font-size: 9px;
-    height: 13px;
-  }
-
-  #viold input {
-    width: 90%;
-  }
-
-  .olu {
-    width: 90%;
-  }
-
-  #bus-photo {
-    border-radius: 300%;
-    width: 40%;
-    background: white;
-  }
-
-  #saul input {
-    width: 90%;
-  }
-</style>
-<form action="/edit-business-profile" method="POST" id="form" enctype="multipart/form-data">
-  <br>
-  {{form.hidden_tag()}}
-  <div class="container mom">
-    <div class="row">
-      <div class="col " id="saul">
-        <div>
-          {{form.business_photo.label}}
-          <br>
-          <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}" alt="" width="40%">
-          <br>
-          <br>
-          {% if form.business_photo.errors %}
-          {{ form.business_photo(class="btn btn-success text-md-start", accept=".jpg, .png, .jpeg") }}
-          {% for error in form.business_photo.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-          {% else %}
-          {{ form.business_photo(class="btn btn-success text-md-start text-capitalize", accept=".jpg, .png, .jpeg")}}
-          {% endif %}
-        </div>
-      </div>
-      <div class="col">
-        <div class="input-control">
-          {{ form.business_name.label }}
-
-          {% if form.business_name.errors %}
-          {{ form.business_name(required=True) }}
-          {% for error in form.business_name.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-          {% else %}
-          {{ form.business_name(required=True)}}
-          {% endif %}
-          <span class="error"></span>
-        </div>
-        <div class="container mt-5">
-          <h5>Select Unit</h5>
-          <select name="mymultiselect" class="selectpicker" multiple aria-label="size 3 select example">
-            {% for unit in units %}
-            {% if unit in member.units %}
-            <option value="{{unit.name}}" selected class="text-lowercase">{{unit.name}}</option>
-            {% else %}
-            <option value="{{unit.name}}" class="text-lowercase">{{unit.name}}</option>
-            {% endif %}
-            {% endfor %}
-          </select>
-        </div>
-        <br>
-        <div class="input-control">
-          {{ form.business_about.label }}
-
-          {% if form.business_about.errors %}
-          {{ form.business_about(required=True)}}
-          {% for error in form.business_about.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-          {% else %}
-          {{ form.business_about(required=True)}}
-          {% endif %}
-          <span class="error"></span>
-        </div>
-        <br>
-        <div class="input-control">
-          {{ form.password.label }}
-
-          {% if form.password.errors %}
-          {{ form.password(required=True)}}
-          {% for error in form.password.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-          {% else %}
-          {{ form.password(required=True)}}
-          {% endif %}
-          <span class="error"></span>
-        </div>
-        <br>
-
-        <div class="input-control">
-          {{ form.business_services.label }}
-
-          {% if form.business_services.errors %}
-          {{ form.business_services(required=True)}}
-          {% for error in form.business_services.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-          {% else %}
-          {{ form.business_services(required=True)}}
-          {% endif %}
-          <span class="error"></span>
-        </div>
-        <br>
-        <div class="input-control">
-          {{ form.business_address.label }}
-
-          {% if form.business_address.errors %}
-          {{ form.business_address(required=True)}}
-          {% for error in form.business_address.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-          {% else %}
-          {{ form.business_address(required=True)}}
-          {% endif %}
-          <span class="error"></span>
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
-    <div>
-      <h1>Product/Service Images</h1>
-      <br>
-      <!-- <div class="row" id="viold">
-            <label for="files">Select display Image(s):</label>
-            <input class="btn btn-success" type="file" id="files" name="business-p-images" accept=".jpg, .png, .jpeg" multiple><br><br>
-          </div> -->
-      <div class="row" id="viold">
-        <div class="col-md-4">
-          <div>
-            <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" width="40%">
-            <br>
-            {{form.business_product_image_1.label}}
-            {% if form.business_product_image_1.errors %}
-            {{ form.business_product_image_1(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
-            {% for error in form.business_product_image_1.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_product_image_1(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div>
-            <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" width="40%">
-            <br>
-            {{form.business_product_image_2.label}}
-            {% if form.business_product_image_2.errors %}
-            {{ form.business_product_image_2(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
-            {% for error in form.business_product_image_2.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_product_image_2(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div>
-            <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" width="40%">
-            <br>
-            {{form.business_product_image_3.label}}
-            {% if form.business_product_image_3.errors %}
-            {{ form.business_product_image_3(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
-            {% for error in form.business_product_image_3.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_product_image_3(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <br>
-      <br>
-      <div class="row" id="viold">
-        <div class="col-md-4">
-          <div>
-            <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" width="40%">
-            <br>
-            {{form.business_product_image_4.label}}
-            {% if form.business_product_image_4.errors %}
-            {{ form.business_product_image_4(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
-            {% for error in form.business_product_image_4.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_product_image_4(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div>
-            <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" width="40%">
-            <br>
-            {{form.business_product_image_5.label}}
-            {% if form.business_product_image_5.errors %}
-            {{ form.business_product_image_5(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
-            {% for error in form.business_product_image_5.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_product_image_5(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div>
-            <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" width="40%">
-            <br>
-            {{form.business_product_image_6.label}}
-            {% if form.business_product_image_6.errors %}
-            {{ form.business_product_image_6(class="btn btn-success", accept=".jpg, .png, .jpeg") }}
-            {% for error in form.business_product_image_6.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_product_image_6(class="btn btn-success text-capitalize", accept=".jpg, .png, .jpeg")}}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <!--  -->
-    <br>
-    <div>
-      <h1>Links / Contact Information</h1>
-      <br>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="input-control">
-            {{form.business_phone.label}}
-            {{form.business_phone(required=True, type="tel", id="bus-phone")}}
-            <span class="error"></span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-control">
-            {{form.business_email.label}}
-            {{form.business_email(required=True, type="email")}}
-            <span class="error"></span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-control">
-            {{ form.business_website.label }}
-            {% if form.business_website.errors %}
-            {{ form.business_website}}
-            {% for error in form.business_website.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_website}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-control">
-            {{ form.business_facebook.label }}
-            {% if form.business_facebook.errors %}
-            {{ form.business_facebook}}
-            {% for error in form.business_facebook.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_facebook}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-control">
-            {{ form.business_twitter.label }}
-            {% if form.business_twitter.errors %}
-            {{ form.business_twitter}}
-            {% for error in form.business_twitter.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_twitter}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-control">
-            {{ form.business_linkedin.label }}
-            {% if form.business_linkedin.errors %}
-            {{ form.business_linkedin}}
-            {% for error in form.business_linkedin.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_linkedin}}
-            {% endif %}
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-control">
-            {{ form.business_whatsapp.label }}
-            {% if form.business_whatsapp.errors %}
-            {{ form.business_facebook}}
-            {% for error in form.business_whatsapp.errors %}
-            <span>{{ error }}</span>
-            {% endfor %}
-            {% else %}
-            {{ form.business_whatsapp}}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <br>
-      <br>
-      {{form.submit(class="btn btn-success", type="submit")}}
-      <br>
-      <br>
-</form>
-{% endblock content %}
-
-#}
-
-
-{#
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="../static/css/header.css">
-  <link rel="stylesheet" href="../static/css/side.css">
-  <link rel="stylesheet" href="../static/css/main.css">
-</head>
-
-<body>
-  <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px;">
-    <div class="container d-flex px-md-5 px-3">
-      <a class="navbar-brand p-0" id="navBrand" href="#">
-        <img class="" src="../static/web_images/nasme-removebg-preview.png" alt="">
-      </a>
-      <div class="d-flex" style="position: relative;">
-        <button type="button" class="btn btn- position-relative rounded-0 rounded-end ms-md-3 mx-0"
-          title="Notifications">
-          <i class="fs-4 bi bi-bell-fill text-light"></i>
-          <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger mt-2">
-            9+
-            <span class="visually-hidden">unread messages</span>
-          </span>
-        </button>
-        <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" title="Edit Profile">
-          <i class=" fs-4 bi bi-person-fill-gear text-light"></i>
-        </button>
-        <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" id="togglerLg" title="Toggler">
-          <i class=" fs-4 bi bi-list text-light"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
-  <div class="sidebar">
-    <div class="top">
-      <i class="bi bi-list" id="btn"></i>
-      <span>NasmeOyo</span>
-    </div>
-    <ul class="px-0 mb-0">
-      <li class="log">
-        <label>
-          <i class="bi bi-house-check" title="Dashboard"></i>
-          <span class="nav-item">Dashboard</span>
-        </label>
-      </li>
-      <li class="log">
-        <label>
-          <i class="bi bi-pencil-square" title="Edit Profile"></i>
-          <span class="nav-item">Edit Profile</span>
-        </label>
-      </li>
-      <li class="log">
-        <label>
-          <i class="bi bi-wallet" title="Dues"></i>
-          <span class="nav-item">My Dues</span>
-        </label>
-      </li>
-      <li class="log">
-        <label>
-          <i class="bi bi-list" title="Transaction History"></i>
-          <span class="nav-item text-center text-nowrap">Transaction log</span>
-        </label>
-      </li>
-      <li class="log">
-        <label>
-          <i class="bi bi-person-fill" title="Account"></i>
-          <span class="nav-item">Account</span>
-        </label>
-      </li>
-      <li class="log">
-        <label>
-          <i class="bi bi-escape" title="Logout"></i>
-          <span class="nav-item">Logout</span>
-        </label>
-      </li>
-    </ul>
-  </div>
-  <div class="main-content">
-    #}
 
     {% extends 'member_base.html' %}
-
 
     {% block content_body %}
     <div class="container">
@@ -529,20 +11,12 @@
             <h4 class="text-center">UPDATE BUSINESS INFO</h4>
             <div class="row shadow bg-light rounded-3 py-lg-3 px-lg-4 p-3">
               <div class="col-md-6">
-                {#
-                <img src="../static/profile_pics/default.jpg" alt="" class="rounded-5 shadow-sm w-50">
-                #}
                 <img id="bus-photo" src="../static/profile_pics/{{ member.business_photo }}"
                   class="rounded-5 shadow-sm w-50" alt="" width="40%">
                 <div class="form-control my-4 border-0 form-control-sm bg-transparent">
                   <div class="mb-3">
                     <label class="form-label" for="business_logo">Upload Business Logo</label>
-                    {#
-                    <input type="file" class="form-control" id="business_logo">
-                    #}
-
-
-
+                  
                     {% if form.business_photo.errors %}
                     {{ form.business_photo(type="file", class="form-control", accept=".jpg, .png, .jpeg") }}
                     {% for error in form.business_photo.errors %}
@@ -574,14 +48,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="">Select Unit</label>
-                    {#
-                    <select class="form-select">
-                      <option selected disabled></option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                    #}
+                 
                     <select name="mymultiselect" class="form-select" multiple>
                       {% for unit in units %}
                       {% if unit in member.units %}
@@ -658,9 +125,8 @@
                     {% endif %}
                     <span class="error"></span>
                   </div>
-                  {#
-                </form>
-                #}
+                 
+                  
               </div>
             </div>
           </div>
@@ -802,20 +268,18 @@
                   <label for="" class="form-label">Business Phone Number</label>
                   <div class="input-group mb-3">
                     <i class="bi bi-telephone-fill input-group-text"></i>
-                    {#
-                    <input type="text" class="form-control">
-                    #}
+                   
                     {{form.business_phone(required=True, class='form-control', type="number", id="bus-phone")}}
                     <span class="error"></span>
                   </div>
                 </div>
+
+
                 <div class="col-md-4">
                   <label for="" class="form-label">Business E-mail</label>
                   <div class="input-group mb-3">
                     <i class="bi bi-envelope-fill input-group-text"></i>
-                    {#
-                    <input type="text" class="form-control">
-                    #}
+                    
                     {% if form.business_email.errors %}
                     {{ form.business_email(class='form-control', type="email")}}
                     {% for error in form.business_email.errors %}
@@ -826,13 +290,13 @@
                     {% endif %}
                   </div>
                 </div>
+
+
                 <div class="col-md-4">
                   <label for="" class="form-label">Business Website Url</label>
                   <div class="input-group mb-3">
                     <i class="bi bi-globe input-group-text"></i>
-                    {#
-                    <input type="url" class="form-control">
-                    #}
+                   
                     {% if form.business_website.errors %}
                     {{ form.business_website(class='form-control', type="url")}}
                     {% for error in form.business_website.errors %}
@@ -847,9 +311,7 @@
                   <label for="" class="form-label">Facebook</label>
                   <div class="input-group mb-3">
                     <i class="bi bi-facebook input-group-text"></i>
-                    {#
-                    <input type="text" class="form-control">
-                    #}
+                    
                     {% if form.business_facebook.errors %}
                     {{ form.business_facebook(class='form-control',type="url")}}
                     {% for error in form.business_facebook.errors %}
@@ -906,18 +368,17 @@
 
 
                     {% if form.business_whatsapp.errors %}
-                    {{ form.business_whatsapp(class='form-control', type="url")}}
+                    {{ form.business_whatsapp(class='form-control', type="number")}}
                     {% for error in form.business_whatsapp.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
                     {% else %}
-                    {{ form.business_linkedin(class='form-control', type="url")}}
+                    {{ form.business_linkedin(class='form-control', type="number")}}
                     {% endif %}
                   </div>
                 </div>
-                {#
-              </form>
-              #}
+              
+                
             </div>
           </div>
         </div>
@@ -925,12 +386,6 @@
           <div class="col-lg-10">
             <div class="row justify-content-end">
               <div class="col-auto">
-                {#
-                <button class="btn shadow rounded-3 px-5 p-3 btn-success text-uppercase text-center m-0">
-                  Update Profile Details
-                </button>
-                #}
-
                 {{form.submit(class="btn shadow rounded-3 px-5 p-3 btn-success text-uppercase text-center m-0",
                 type="submit")}}
               </div>
@@ -940,48 +395,3 @@
       </form>
     </div>
     {% endblock content_body %}
-
-    {#
-  </div>
-  <script>
-    // TOGGLER
-    let btn = document.querySelector('#btn')
-    let sidebar = document.querySelector('.sidebar')
-    let sideDrops = document.querySelectorAll('.sideDrop')
-    let toggleDrops = document.querySelectorAll('.toggleDrop')
-    let smallToggler = document.getElementById('togglerLg');
-    let tog = document.querySelectorAll('.log')
-
-    btn.onclick = function () {
-      sidebar.classList.toggle('active')
-    };
-
-    tog.forEach(function (tog) {
-      tog.onclick = function () {
-        sidebar.classList.add('active');
-      };
-    });
-    //TOGGlER
-
-
-    // TOGGLER AT SM
-    smallToggler.onclick = function () {
-      if (window.innerWidth <= 450) {
-        sidebar.style.display =
-          (sidebar.style.display === 'none' || sidebar.style.display === '') ? 'block' : 'none';
-        sidebar.classList.add('active');
-      }
-    };
-
-    // TOGGLER AT SM ENDS
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
-#}

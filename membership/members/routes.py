@@ -87,8 +87,9 @@ def login():
         phone_input = request.form["phone"]
         password_input = request.form["password"]
         remember = form.remember.data
-
+       
         user = User.query.filter_by(business_phone=phone_input).first()
+       
         if user and user.password == password_input:
             login_user(user, remember=remember)
             next_page = request.args.get("next")
@@ -152,19 +153,21 @@ def edit_business_profile():
     form = CreateProfileForm()
 
     if request.method == "GET":
-        if member.business_name:
-            form.business_name.data = member.business_name
+        if member.business_name or member.business_phone:
+            form.business_name.data = member.business_name or ""
             form.business_email.data = member.business_email
-            form.business_website.data = member.business_website
-            form.business_phone.data = member.business_phone
-            form.business_about.data = member.business_about
-            form.business_photo.data = member.business_photo
-            form.business_facebook.data = member.business_facebook
-            form.business_twitter.data = member.business_twitter
-            form.business_linkedin.data = member.business_linkedin
-            form.business_whatsapp.data = member.business_whatsapp
-            form.business_address.data = member.business_address
-            form.business_services.data = member.business_services
+            form.business_website.data = member.business_website or ""
+            form.business_phone.data = member.business_phone or ""
+            form.business_about.data = member.business_about or ""
+            form.business_photo.data = member.business_photo or ""
+            form.business_facebook.data = member.business_facebook or ""
+            form.business_twitter.data = member.business_twitter or ""
+            form.business_linkedin.data = member.business_linkedin or ""
+            form.business_whatsapp.data = member.business_whatsapp or ""
+            form.business_address.data = member.business_address or ""
+            form.business_services.data = member.business_services or ""
+
+            # print('******** FORM', form)
             # form.date_of_birth.data = member.date_of_birth
 
             form.password.data = member.password
@@ -173,14 +176,8 @@ def edit_business_profile():
         if form.validate_on_submit():
             userd = {}
 
-            # print('I print date of birth in POST: ', form.date_of_birth)
-
             for field in request.form:
-                if (
-                    field == "csrf_token"
-                    or field == "mymultiselect"
-                    or field == "submit"
-                ):
+                if (field == "csrf_token"  or field == "mymultiselect"  or field == "submit" ):
                     continue
 
                 if getattr(form, field).data != getattr(member, field):

@@ -48,10 +48,12 @@ def business_unit_members(unit_id):
   page = request.args.get('page', 1, type=int)
   unit = Unit.query.filter_by(id=unit_id)[0]
   unit_members = unit.unit_members
-  print(unit_members)
-  members = unit_members.filter(User.business_name!=None).filter(User._is_suspended==False)
-
-  return render_template("main/business_unit_members.html", members=members, unit=unit)
+  
+  # try:
+  #   members = unit_members.filter(User.business_name!=None).filter(User._is_suspended==False)
+  # except:
+  #   members = unit_members.filter(User._is_suspended==False)
+  return render_template("main/business_unit_members.html", members=unit_members, unit=unit)
 
 
 @main.route("/business-profile")
