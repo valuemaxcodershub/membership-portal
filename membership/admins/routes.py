@@ -356,7 +356,6 @@ def register_bulk(error_message=""):
     except Exception as e:
       db.session.remove()
       error_message = f"There is an error with the input file -> \n{e}"
-      print('Error is there.')
       return render_template("admin/register_bulk.html", form=form, error_message=error_message)
     else:
       flash("Bulk registration successfully", category="success")
