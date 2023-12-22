@@ -16,35 +16,23 @@
                 <div class="form-control my-4 border-0 form-control-sm bg-transparent">
                   <div class="mb-3">
                     <label class="form-label" for="business_logo">Upload Business Logo</label>
-                  
-                    {% if form.business_photo.errors %}
                     {{ form.business_photo(type="file", class="form-control", accept=".jpg, .png, .jpeg") }}
+            
                     {% for error in form.business_photo.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
-                    {% else %}
-                    {{ form.business_photo(type="file", class="form-control", accept=".jpg, .png, .jpeg")}}
-                    {% endif %}
+                   
                   </div>
 
                   <div class="mb-3">
                     <label for="update_password">Update Password</label>
-                    {#
-                    <input type="text" maxlength="16" minlength="8" id="update_password" class="form-control">
-                    #}
-
-
-                    {% if form.password.errors %}
-                    {{ form.password(required=True, id='update_password', type="password",
-                    class='form-control',maxlength="16", minlength="8")}}
+                  
+                    {{ form.password(required=True, id='update_password', type="password", class='form-control',maxlength="16", minlength="8")}}
                     {% for error in form.password.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
-                    {% else %}
-                    {{ form.password(required=True, id='update_password', type='password',
-                    class='form-control', maxlength="16", minlength="8")}}
-                    {% endif %}
-                    <span class="error"></span>
+                    
+                    
                   </div>
                   <div class="mb-3">
                     <label for="">Select Unit</label>
@@ -67,63 +55,42 @@
                   #}
                   <div class="mb-3">
                     <label for="business_name">Business Name</label>
-                    {% if form.business_name.errors %}
-                    {{ form.business_name(required=True, class='form-control', minlength="20", maxlength='40') }}
+                    {{ form.business_name(required=True, class='form-control', minlength="10", maxlength='40') }}
                     {% for error in form.business_name.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
-                    {% else %}
-                    {{ form.business_name(required=True, class='form-control')}}
-                    {% endif %}
-                    <span class="error"></span>
+                  
                   </div>
                   <div class="mb-4">
                     <label for="business_location" class="form-label">Business Location</label>
-                    {% if form.business_address.errors %}
                     {{ form.business_address(required=True, class='form-control', minlength="20", maxlength="40")}}
+                    
                     {% for error in form.business_address.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
-                    {% else %}
-                    {{ form.business_address(required=True, class='form-control')}}
-                    {% endif %}
-                    <span class="error"></span>
+                   
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label">About Your Business</label>
-                    {#
-                    <textarea class="form-control" id="" rows="5"></textarea>
-                    #}
-
-                    {% if form.business_about.errors %}
-                    {{ form.business_about(required=True, class='form-control', minlength="400", maxlength="600" ,
-                    style='height:
+                    {{ form.business_about(required=True, class='form-control', minlength="400", maxlength="600" , style='height:
                     150px;')}}
+
+                    
                     {% for error in form.business_about.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
-                    {% else %}
-                    {{ form.business_about(required=True, class='form-control', style='height: 150px;')}}
-                    {% endif %}
-                    <span class="error"></span>
+                  
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label">Services Rendered</label>
-                    {#
-                    <textarea class="form-control" id="" rows="5"></textarea>
-                    #}
+                   
                     <caption>
                       <span class="text-danger">*</span>Use comma (,) to separate the list of services
                     </caption>
-                    {% if form.business_services.errors %}
                     {{ form.business_services(required=True, class='form-control', style='height: 150px;')}}
                     {% for error in form.business_services.errors %}
                     <span>{{ error }}</span>
                     {% endfor %}
-                    {% else %}
-                    {{ form.business_services(required=True, class='form-control', style='height: 150px;')}}
-                    {% endif %}
-                    <span class="error"></span>
                   </div>
                  
                   
@@ -137,21 +104,21 @@
             <div
               class="shadow bg-light rounded-3 py-lg-3 px-lg-4 p-3 row row-cols-lg-4 row-cols-md-3 row-cols-2 justify-content-around">
               <div class="col-md text-center p-3 d-flex flex-column">
-                <img src="/static/profile_pics/{{member.business_product_image_1}}" class="rounded-5" alt="">
+                <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_1}}" class="rounded-5" alt="">
                 {{form.business_product_image_1.label(class="form-label text-muted", for="business_product_image_1")}}
                 {% if form.business_product_image_1.errors %}
                 {{ form.business_product_image_1(class="form-control form-control-sm", id='business_product_image_1',
                 accept=".jpg, .png, .jpeg") }}
                 {% for error in form.business_product_image_1.errors %}
                 <span>{{ error }}</span>
-                {% endfor %}
+                {% endfor %} 
                 {% else %}
                 {{ form.business_product_image_1(class="form-controll form-control-sm", id='business_product_image_1',
                 accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
               <div class="col-md text-center p-3 d-flex flex-column">
-                <img src="/static/profile_pics/{{member.business_product_image_2}}" class="rounded-5" alt="">
+                <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_2}}" class="rounded-5" alt="">
                 {{form.business_product_image_2.label(class="form-label text-muted", for="business_product_image_2")}}
                 {% if form.business_product_image_2.errors %}
                 {{ form.business_product_image_2(class="form-control form-control-sm", id='business_product_image_2',
@@ -165,7 +132,7 @@
                 {% endif %}
               </div>
               <div class="col-md text-center p-3 d-flex flex-column">
-                <img src="/static/profile_pics/{{member.business_product_image_3}}" class="rounded-5" alt="">
+                <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_3}}" class="rounded-5" alt="">
                 {{form.business_product_image_3.label(class="form-label text-muted", for="business_product_image_3")}}
                 {% if form.business_product_image_3.errors %}
                 {{ form.business_product_image_3(class="form-control form-control-sm", id='business_product_image_3',
@@ -179,13 +146,9 @@
                 {% endif %}
               </div>
               <div class="col-md text-center p-3 d-flex flex-column">
-                {#
-                <img src="/static/profile_pics/default.jpg" alt="" class=" rounded-5">
-                <label class="form-label text-muted">Display Image</label>
-                <input type="file" name="" id="" class="form-control form-control-sm"
-                  class="form-control form-control-sm">
-                #}
-                <img src="/static/profile_pics/{{member.business_product_image_4}}" class="rounded-5" alt="">
+               
+                
+                <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_4}}" class="rounded-5" alt="">
                 {{form.business_product_image_4.label(class="form-label text-muted", for="business_product_image_4")}}
                 {% if form.business_product_image_4.errors %}
                 {{ form.business_product_image_4(class="form-control form-control-sm", id='business_product_image_4',
@@ -199,7 +162,7 @@
                 {% endif %}
               </div>
               <div class="col-md text-center p-3 d-flex flex-column">
-                <img src="/static/profile_pics/{{member.business_product_image_5}}" class="rounded-5" alt="">
+                <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_5}}" class="rounded-5" alt="">
                 {{form.business_product_image_5.label(class="form-label text-muted", for="business_product_image_5")}}
                 {% if form.business_product_image_5.errors %}
                 {{ form.business_product_image_5(class="form-control form-control-sm", id='business_product_image_5',
@@ -213,7 +176,7 @@
                 {% endif %}
               </div>
               <div class="col-md text-center p-3 d-flex flex-column">
-                <img src="/static/profile_pics/{{member.business_product_image_6}}" class="rounded-5" alt="">
+                <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_6}}" class="rounded-5" alt="">
                 {{form.business_product_image_6.label(class="form-label text-muted", for="business_product_image_6")}}
                 {% if form.business_product_image_6.errors %}
                 {{ form.business_product_image_6(class="form-control form-control-sm", id='business_product_image_6',
@@ -226,6 +189,8 @@
                 accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
+
+              {#
               <div class="col-md text-center p-3 d-flex flex-column">
                 <img src="/static/profile_pics/{{member.business_product_image_1}}" class="rounded-5" alt="">
                 {{form.business_product_image_1.label(class="form-label text-muted", for="business_product_image_7")}}
@@ -254,6 +219,8 @@
                 accept=".jpg, .png, .jpeg")}}
                 {% endif %}
               </div>
+
+              #}
             </div>
           </div>
         </div>
@@ -362,10 +329,7 @@
                   <label for="" class="form-label">Whatsapp</label>
                   <div class="input-group mb-3">
                     <i class="bi bi-whatsapp input-group-text"></i>
-                    {#
-                    <input type="text" class="form-control">
-                    #}
-
+                   
 
                     {% if form.business_whatsapp.errors %}
                     {{ form.business_whatsapp(class='form-control', type="number")}}

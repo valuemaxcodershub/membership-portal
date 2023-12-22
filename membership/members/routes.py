@@ -16,16 +16,13 @@ members = Blueprint("members", __name__)
 def inject_menu():
     this_member = current_user
 
+    total_messages = 0
     if this_member.is_authenticated:
         last_read_time = this_member.last_message_read_time or datetime(1900, 1, 1)
-        print(
-            "Count of messages: ",
-            Message.query.filter_by(member_recipient_id=this_member.id)
-            .filter(Message.timestamp > last_read_time)
-            .count(),
-        )
+        total_messages = Message.query.filter_by(member_recipient_id=this_member.id).filter(Message.timestamp > last_read_time).count()
+        
 
-    return dict(this_member=this_member, loggedinuser=current_user)
+    return dict(this_member=this_member, loggedinuser=current_user, messages_count =total_messages)
 
 
 @members.route("/dues", methods=["GET", "POST"])

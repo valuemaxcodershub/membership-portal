@@ -8,16 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../static/css/header.css">
-    <link rel="stylesheet" href="../../static/css/side.css">
-    <link rel="stylesheet" href="../../static/css/main.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/header.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/side.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
 </head>
 
 <body>
     <nav class="navbar fixed-top" style="flex-wrap: nowrap; background-color: rgb(20, 64, 23); height: 75px;">
         <div class="container d-flex px-md-5 px-3">
             <a class="navbar-brand p-0" id="navBrand" href="#">
-                <img class="" src="../../static/web_images/nasme-removebg-preview.png" alt="">
+                <img class="" src="{{url_for('static', filename='web_images/nasme-removebg-preview.png')}}" alt="">
             </a>
 
             <div class="d-flex" style="position: relative;">
@@ -25,7 +25,7 @@
                     class="btn btn- position-relative rounded-0 rounded-end ms-md-3 mx-0" title="Notifications">
                     <i class="fs-4 bi bi-bell-fill text-light"></i>
                     <span class="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger mt-2">
-                        9+
+                        {{messages_count}}
                         <span class="visually-hidden">unread messages</span>
                     </span>
                 </a>

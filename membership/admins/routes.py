@@ -75,9 +75,7 @@ def send_unit_message():
     form = MessageForm()
  
     if form.validate_on_submit():
-
       selected_units = request.form.getlist('mymultiselect')
-
 
       inputted_units = []
       for unit_name in selected_units:
@@ -85,8 +83,7 @@ def send_unit_message():
         inputted_units.append(unit)
 
       for unit in inputted_units:
-        msg = Message(author=current_user, unit_recipient=unit, title=form.title.data,
-                      body=form.message.data)
+        msg = Message(author=current_user, unit_recipient=unit, title=form.title.data, body=form.message.data)
         db.session.add(msg)
         db.session.commit()
 
@@ -424,13 +421,21 @@ def pending_approvals():
   pending_updates_list = user_updates.paginate(page=page, per_page=10)
   
 
-
   if request.method == 'POST':
+    
     if request.form.get('profile_updateid'):
       profileid = request.form.get('profile_updateid')
       user_update = UserUpdate.query.filter_by(id = profileid)[0]
       owner_of_update = User.query.filter_by(id = user_update.userid)[0]
       user_data = json.loads(user_update.update)
+      
+      
+      if user_data.get('business_email') and User.query.filter_by(business_email= user_data.get('business_email')).exists():
+        user_update.update_status = UserUpdate.DISAPPROVED
+        db.session.add(user_update)
+        db.session.commit()
+        flash("This update has been disapproved because another member already exists with this email!!", "danger")
+        return redirect(url_for('admins.pending_approvals'))
       
       for key, value in user_data.items():
         setattr(owner_of_update, key, value)

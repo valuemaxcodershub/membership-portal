@@ -82,6 +82,7 @@
 					<tr>
 						<td><b>{{member}}</b> has updated their profile details <td>
 
+						
 						<td class="d-flex justify-content-center">
 
 							<a type="button" class="btn btn-primary approveBtn" data-toggle="modal" id="{{member.id}}"
@@ -92,19 +93,11 @@
 									data-profileid="{{member.id}}"></i></a>
 
 
-
-							<a type="button" class="btn btn-warning" dataId="{{member.id}}"
-								dataImage="/static/profile_pics/{{member.business_photo}}"
-								dataName="{{ member.username }}" dataEmail="{{member.business_email}}"
-								dataPhone="{{member.business_phone}}" dataPassword="{{ member.password }}"
-								dataUnits="{{member}}" dataDateReg="{{ member.date_registered }}"
-								dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}"
-								dataWorkAddre="{{ member.work_address }}" dataExperience="{{member.experience}}"
-								dataCurrentSalary="{{member.current_salary}}" data-toggle="modal"
-								data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip"
-								data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye"
+							<a type="button"  class="btn btn-warning see-user-detail" dataId="{{member.id}}" dataUserData="{{member.update}}"
+								data-toggle="modal"	data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip"
+								data-bs-placement="top" title="View Details"><i class="fa fa-eye"
 									aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top"
-									title="Click To View User Details"></i></a>
+									title="view Details"></i></a>
 
 
 							<a type="button" class="disapproveBtn btn btn-danger" style="background: red"
@@ -125,76 +118,7 @@
 
 			<br />
 
-		{#	<!-- Disapprove Modal -->
-			<div  class="modal fade" id="disapprovemodal" tabindex="-1" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-				<div class="modal-dialog" >
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="deleteModalLabel">Disapprove ?</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							Are you sure you want to disapprove this update?
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">
-								Close
-							</button>
-							<form method="POST" id="disapprove_profile_update_form"
-								action="{{ url_for('admins.pending_approvals') }}">
-								<input type="hidden" name="user_id" id="deletehiddenid" />
-								<input type="hidden" name="page" value="{{pending_updates_list.page}}" />
-								<button type="submit" class="btn btn-primary " href="#">
-									Yes, Disapprove
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			#}
-
 		
-			<!-- Approve modal -->
-			{#
-			<div class="modal fade" id="approvemodal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-				aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="approveModalLabel">Approve ?</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							Are you sure you want to approve this update?
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">
-								Close
-							</button>
-							<form method="POST" action="{{ url_for('admins.pending_approvals') }}"
-								id="approve_profile_update_form">
-								<input type="hidden" name="user_id" id="deletehiddenid" />
-								<input type="hidden" name="page" value="{{member.page}}" /> 
-
-								<button type="submit" class="btn btn-primary" id="">
-									Yes, Approve
-								</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			#}
-
-		
-
 
 			<!--  View Member Modal -->
 			<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -208,58 +132,71 @@
 						<div class="modal-body">
 							<div class="bedd">
 								<div>
-									<img id="modalUserImage" src="images/2.png" alt="image" width="100px" />
+									<img id="modalUserImage" src="" alt="image" width="100px" />
 								</div>
 								<br />
 								<br />
+
+							
 								<div>
-									<h5 id="modalUserName">...</h5>
+									<h5 id="modalUserName">N/A</h5>
 								</div>
 								<br />
+								
 								<div>
-									<p id="modalUserId">...</p>
-								</div>
-								<br />
-								<div>
-									<p id="modalUserEmail">...</p>
-								</div>
-								<br />
-								<div>
-									<p id="modalUserPhone">...</p>
+									<p id="modalUserEmail">N/A</p>
 								</div>
 								<br />
 								<div>
-									<p id="modalUserPassword">...</p>
+									<p id="modalUserPhone">N/A</p>
+								</div>
+								<br />
+
+								<div>
+									<p id="modalUserAbout">N/A</p>
+								</div>
+								<br />
+								
+								<div>
+									<p id="modalUserUnits">N/A</p>
 								</div>
 								<br />
 								<div>
-									<p id="modalUserUnits">...</p>
+									<p id="modalUserDateReg">N/A</p>
 								</div>
 								<br />
 								<div>
-									<p id="modalUserDateReg">...</p>
+									<p id="modalUserHomeAddr">N/A</p>
+								</div>
+								<br />
+
+									{#
+								<div>
+									<img id="modalUserBusImg1" src="" alt="image" width="100px" />
 								</div>
 								<br />
 								<div>
-									<p id="modalUserOccupation">...</p>
+									<img id="modalUserBusImg2" src="" alt="image" width="100px" />
 								</div>
 								<br />
 								<div>
-									<p id="modalUserWorkAddr">...</p>
+									<img id="modalUserBusImg3" src="" alt="image" width="100px" />
 								</div>
 								<br />
 								<div>
-									<p id="modalUserHomeAddr">...</p>
+									<img id="modalUserBusImg4" src="" alt="image" width="100px" />
 								</div>
 								<br />
 								<div>
-									<p id="modalUserExperience">...</p>
+									<img id="modalUserBusImg5" src="" alt="image" width="100px" />
 								</div>
 								<br />
 								<div>
-									<p id="modalUserCurrentSalary">...</p>
+									<img id="modalUserBusImg6" src="" alt="image" width="100px" />
 								</div>
 								<br />
+								
+							#}
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -289,8 +226,6 @@
 </div>
 
 <script>
-
-
 	var user_profile_data_id = 0
 
 	var approveBtns = document.querySelectorAll(".approveBtn");
@@ -311,9 +246,7 @@
 		btn.addEventListener("click", function (ev) {
 			var pid = ev.target.dataset.profileid;
 			user_profile_data_id = Number(pid)
-			console.log(user_profile_data_id)
 			document.getElementById('disapproveprofilehiddenid').value = user_profile_data_id
-			console.log('The value of PID is: ', document.getElementById('disapproveprofilehiddenid').value)
 		});
 	}
 
@@ -321,7 +254,7 @@
 
 
 	var form = document.getElementById('approve_profile_update_form')
-	document.getElementById('approve_profile_update_form').addEventListener('submit', (e) => {
+	form.addEventListener('submit', (e) => {
 
 		var pidfield = document.createElement('input')
 		pidfield.type = "hidden"
@@ -332,7 +265,7 @@
 	})
 
 	var form1 = document.getElementById('disapprove_profile_update_form')
-	document.getElementById('disapprove_profile_update_form').addEventListener('submit', (e) => {
+	form1.addEventListener('submit', (e) => {
 
 		var pidfield = document.createElement('input')
 		pidfield.type = "hidden"
@@ -342,36 +275,40 @@
 		form1.appendChild(pidfield)
 	})
 
-
+	
+	
 
 	function viewUserFunction(obj) {
-		let dataImage = obj.getAttribute("dataImage");
-		let dataName = obj.getAttribute("dataName");
-		let dataEmail = obj.getAttribute("dataEmail");
-		let dataId = obj.getAttribute("dataId");
-		let dataPhone = obj.getAttribute("dataPhone");
-		let dataPassword = obj.getAttribute("dataPassword");
-		let dataUnits = obj.getAttribute("dataUnits");
-		let dataDateReg = obj.getAttribute("dataDateReg");
-		let dataOccupation = obj.getAttribute("dataOccupation");
-		let dataHomeAddress = obj.getAttribute("dataHomeAddr");
-		let dataWorkAddress = obj.getAttribute("dataWorkAddr");
-		let dataExperience = obj.getAttribute("dataExperience");
-		let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
 
-		document.getElementById("modalUserImage").src = dataImage;
-		$("#modalUserName").text("Name:  " + dataName);
-		$("#modalUserEmail").text("Email:  " + dataEmail);
-		// $('#modalUserId').text('Name:  ' + dataName);
-		$("#modalUserPhone").text("Phone:  " + dataPhone);
-		$("#modalUserPassword").text("Password:  " + dataPassword);
-		$("#modalUserUnits").text("Units:  " + dataUnits);
-		$("#modalUserDateReg").text("Date Joined:  " + dataDateReg);
-		$("#modalUserOccupation").text("Occupation:  " + dataOccupation);
-		$("#modalUserHomeAddr").text("Home Address:  " + dataHomeAddress);
-		$("#modalUserWorkAddr").text("Work Address:  " + dataWorkAddress);
-		$("#modalUserExperience").text("Experience:  " + dataExperience);
-		$("#modalUserCurrentSalary").text("Current Salary:  " + dataCurrentSalary);
+		var data = obj.getAttribute("dataUserData")
+
+		var jsondata = JSON.parse(data)
+		
+		let dataImage = obj.getAttribute("dataImage");
+		let dataPassword = obj.getAttribute("dataPassword");
+		let dataHomeAddress = obj.getAttribute("dataHomeAddr");
+
+		if (jsondata["business_photo"]){
+			document.getElementById("modalUserImage").src = "/static/profile_pics/" + jsondata["business_photo"];
+		}
+		// document.getElementById("modalUserImage").src = '/static/profile_pics/0b0ae3a76e39742f.jpg';
+		if (jsondata["business_name"]){
+			document.querySelector("#modalUserName").innerHTML = ("Name:  " + jsondata["business_name"]);
+		}
+		
+		if (jsondata["business_email"]){
+			document.querySelector("#modalUserEmail").innerHTML = ("Email:  " + jsondata["business_email"]);
+		}
+		if (jsondata["selected_units"]){
+			document.querySelector("#modalUserUnits").innerHTML = ("Selected Units:  " + jsondata["selected_units"]);
+		}
+		if (jsondata["business_phone"]){
+			document.querySelector("#modalUserPhone").innerHTML = ("Phone:  " + jsondata["business_phone"]);
+		}
+		if (jsondata["business_about"]){
+			document.querySelector("#modalUserAbout").innerHTML = ("About:  " + jsondata["business_about"]);
+		}
+
 	}
 </script>
 

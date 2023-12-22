@@ -84,6 +84,9 @@
           </button>
         </form>
 
+
+        
+
         <button class="btn ms-md-3 mx-0 dropdown" title="Sort by Clusters/Units">
           <i class="bi bi-collection-fill text-light dropdown-toggle" data-bs-toggle="dropdown"></i>
           <ul class="dropdown-menu">
@@ -94,6 +97,14 @@
            
           </ul>
         </button>
+
+
+
+
+
+
+
+
         <button class="btn ms-md-3 mx-0" title="Facebook icon">
           <i class="bi bi-facebook text-light"></i>
         </button>
@@ -205,7 +216,7 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_1}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
@@ -214,7 +225,7 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_2}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
@@ -223,7 +234,7 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_3}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_3}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
@@ -232,7 +243,7 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_4}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_4}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
@@ -241,7 +252,7 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_5}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_5}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
@@ -250,16 +261,19 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_6}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_6}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
 
+        {#
+
         {% if not member.business_product_image_1 == "default.jpg" %}
 
-
+     
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_1}}" alt="" class=" rounded-3"
+        
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_1}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
@@ -268,10 +282,12 @@
 
 
         <div class="col-md text-center p-3 d-flex flex-column">
-          <img src="../static/profile_pics/{{member.business_product_image_2}}" alt="" class=" rounded-3"
+          <img src="{{url_for('static', filename='profile_pics/') + member.business_product_image_2}}" alt="" class=" rounded-3"
             style="width: 250px; height: 250px; object-fit: cover;">
         </div>
         {% endif %}
+
+        #}
 
       </div>
 
@@ -283,7 +299,7 @@
 
               {% if member.business_facebook %}
 
-              <a class="nav-link" href="{{member.business_facebook}}"><i class="bi bi-facebook me-3"></i></a>
+              <a class="nav-link" target="_blank" href="{{member.business_facebook}}"><i class="bi bi-facebook me-3"></i></a>
               {% endif %}
 
 
@@ -293,13 +309,13 @@
 
 
               {% if member.business_linkedin %}
-              <a class="nav-link" href="{{member.business_linkedin}}"><i class="bi bi-linkedin me-3"></i></a>
+              <a class="nav-link" target="_blank" href="{{member.business_linkedin}}"><i class="bi bi-linkedin me-3"></i></a>
 
               {% endif %}
 
 
               {% if member.business_twitter %}
-              <a class="nav-link" href="{{member.business_twitter}}"><i class="bi bi-twitter me-3"></i></a>
+              <a class="nav-link" target="_blank" href="{{member.business_twitter}}"><i class="bi bi-twitter me-3"></i></a>
 
               {% endif %}
 
@@ -330,7 +346,7 @@
           <div class="col-12">
             <div class="d-flex mb-3 justify-content-center">
               <i class="bi bi-globe me-3"></i>
-              <a href="http://{{member.business_website}}" target="_blank" class="text-capitalize">See More About Business</a>
+              <a href="https://{{member.business_website}}" target="_blank" class="text-capitalize">See More About Business</a>
             </div>
           </div>
 

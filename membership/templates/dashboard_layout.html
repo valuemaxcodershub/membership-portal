@@ -85,9 +85,9 @@
 
 
             <div class="d-flex" style="position: relative;">
-                <form class="d-flex rounded mx-lg-2 mx-1" method="POST" action="url_for('admins.search_members')">
+                <form class="d-flex rounded mx-lg-2 mx-1" method="POST" action="{{url_for('admins.search_members')}}">
                     <input class="form-control rounded-0 rounded-start border-0 w-100" id="search"
-                        style="box-shadow: none;" type="text" placeholder="Search" aria-label="Search">
+                        style="box-shadow: none;" type="text" placeholder="Search" aria-label="Search" name="search_query">
                     <button class="rounded-0 rounded-end btn border-0" style="background-color: green;" id="btn-search"
                         type="submit">
                         <i class="bi bi-search"></i>
@@ -97,8 +97,11 @@
                 <button class="btn ms-md-3 mx-0 dropdown nav-item" title="Sort by Clusters/Units">
                     <i class="bi bi-collection-fill text-light dropdown-toggle nav-link" data-bs-toggle="dropdown"></i>
                     <div class="dropdown-menu mt-3 border-0 outline-0 rounded-bottom-2 me-2 bg-white">
-                        <a class="text-wrap dropdown-item" href="#">Demo</a>
-                        <a class="text-wrap dropdown-item" href="#">Demo</a>
+
+                        {% for unit in dashboard_units  %}
+                        <a class="text-wrap dropdown-item" href="{{url_for('admins.manage_unit_members', unit_id=unit.id)}}">{{unit.name}}</a>
+                        {% endfor %}
+                      
                     </div>
                 </button>
 
@@ -408,57 +411,61 @@
                 <div class="modal-body">
                     <div class="bedd">
                         <div>
-                            <img id="modalUserImage" src="images/2.png" alt="image" width="100px" />
+                            <img id="modalUserImage" src="" alt="image" width="100px" />
                         </div>
                         <br />
+                        
                         <br />
                         <div>
-                            <h5 id="modalUserName">...</h5>
+                            <p id="modalUserName">N/A</p>
                         </div>
+
                         <br />
                         <div>
-                            <p id="modalUserId">...</p>
-                        </div>
-                        <br />
-                        <div>
-                            <p id="modalUserEmail">...</p>
+                            <p id="modalUserEmail">N/A</p>
                         </div>
                         <br />
                         <div>
-                            <p id="modalUserPhone">...</p>
+                            <p id="modalUserPhone">N/A</p>
                         </div>
+                        
                         <br />
                         <div>
-                            <p id="modalUserPassword">...</p>
+                            <p id="modalUserAbout">N/A</p>
                         </div>
+                        
                         <br />
                         <div>
-                            <p id="modalUserUnits">...</p>
+                            <p id="modalUserUnits">N/A</p>
                         </div>
                         <br />
+                       
                         <div>
-                            <p id="modalUserDateReg">...</p>
+                            <p id="modalUserHomeAddr">N/A</p>
+                        </div>
+
+                        <br />
+                       
+                        <div>
+                            <p id="modalUserWebsite">N/A</p>
+                        </div>
+                      
+                        <br />
+                       
+                        <div>
+                            <p id="modalUserFacebook">N/A</p>
                         </div>
                         <br />
+                       
                         <div>
-                            <p id="modalUserOccupation">...</p>
+                            <p id="modalUserLinkedin">N/A</p>
                         </div>
                         <br />
+                       
                         <div>
-                            <p id="modalUserWorkAddr">...</p>
+                            <p id="modalUserTwitter">N/A</p>
                         </div>
-                        <br />
-                        <div>
-                            <p id="modalUserHomeAddr">...</p>
-                        </div>
-                        <br />
-                        <div>
-                            <p id="modalUserExperience">...</p>
-                        </div>
-                        <br />
-                        <div>
-                            <p id="modalUserCurrentSalary">...</p>
-                        </div>
+                       
                         <br />
                     </div>
                     <div class="modal-footer">
@@ -535,7 +542,7 @@
         let navBrand = document.getElementById('navBrand')
 
         btnSearch.addEventListener('click', (e) => {
-            e.preventDefault()
+           // e.preventDefault()
             searchInput.classList.toggle('active')
             navBrand.classList.toggle('none')
         })

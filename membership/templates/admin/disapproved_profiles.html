@@ -40,9 +40,9 @@
 
 							<td class="d-flex justify-content-center" >
 								
-								<a type="button" class="btn btn-warning"  dataId="{{member.id}}" dataImage="/static/profile_pics/{{member.business_photo }}" dataName="{{ member.username }}" dataEmail="{{member.business_email}}" dataPhone="{{member.business_phone}}" dataPassword="{{ member.password }}" dataDateReg="{{ member.date_registered }}" dataOccupation="{{ member.occupation }}" dataHomeAddr="{{ member.home_address }}" dataWorkAddre="{{ member.work_address }}" dataExperience = "{{member.experience}}" dataCurrentSalary="{{member.current_salary}}" data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
-								<a type="button" class="btn btn-danger" style="background: red;" data-toggle="modal" id="{{member.id}}" dataName="{{member.username}}" data-target="#deletemodal"  onclick="deleteFunction(this)"data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"><i class="fa fa-trash-o" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Member"></i></a>
-
+								<a type="button" class="btn btn-warning" dataUserData="{{member.update}}"  data-toggle="modal" data-target="#staticBackdrop" onclick="viewUserFunction(this)" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to View User Details"><i class="fa fa-eye" aria-hidden="true"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click To View User Details"></i></a>
+								
+								
 							</td>
 						  {% endfor %}
 					  </table>
@@ -71,57 +71,51 @@
 
 				</div>
 				  <script>
-						    function deleteFunction(obj){
-						        let userId = obj.id;
-						        let name = obj.getAttribute("dataName");
-
-						        $('#deletehiddenid').val(userId);
-						        $('#deleteModalLabel').text('Delete ' + name);
-						        $("#deletemodal").modal("show");
-						    }
-
-						   
-
-						    function messageUserFunction(obj){
-						        let userId = obj.id;
-						        let name = obj.getAttribute("dataName");
-
-						        $('#examplehiddenid').val(userId);
-						        $('#exampleModalLabel').text('Message ' + name);
-						        $("#examplemodal").modal("show");
-						    }
-
+			
 						    function viewUserFunction(obj){
-						    	let dataImage = obj.getAttribute("dataImage");
-						    	let dataName = obj.getAttribute("dataName");
-						    	let dataEmail = obj.getAttribute("dataEmail");
-						    	let dataId = obj.getAttribute("dataId");
-						    	let dataPhone = obj.getAttribute("dataPhone");
-						    	let dataPassword = obj.getAttribute("dataPassword");
-						    	let dataUnits = obj.getAttribute("dataUnits");
-						    	let dataDateReg = obj.getAttribute("dataDateReg");
-						    	let dataOccupation = obj.getAttribute("dataOccupation");
-						    	let dataHomeAddress = obj.getAttribute("dataHomeAddr");
-						    	let dataWorkAddress = obj.getAttribute("dataWorkAddr");
-						    	let dataExperience = obj.getAttribute("dataExperience");
-						    	let dataCurrentSalary = obj.getAttribute("dataCurrentSalary");
+						    	var data = obj.getAttribute("dataUserData")
 
+		var jsondata = JSON.parse(data)
+		
+		let dataImage = obj.getAttribute("dataImage");
+		let dataPassword = obj.getAttribute("dataPassword");
+		let dataHomeAddress = obj.getAttribute("dataHomeAddr");
 
-						    	document.getElementById('modalUserImage').src = dataImage;
-						    	$('#modalUserName').text('Name:  ' + dataName);
-						    	$('#modalUserEmail').text('Email:  ' + dataEmail);
-						    	// $('#modalUserId').text('Name:  ' + dataName);
-						    	$('#modalUserPhone').text('Phone:  ' + dataPhone);
-						    	$('#modalUserPassword').text('Password:  ' + dataPassword);
-						    	$('#modalUserUnits').text('Units:  ' + dataUnits);
-						    	$('#modalUserDateReg').text('Date Joined:  ' + dataDateReg);
-						    	$('#modalUserOccupation').text('Occupation:  ' + dataOccupation);
-						    	$('#modalUserHomeAddr').text('Home Address:  ' + dataHomeAddress);
-						    	$('#modalUserWorkAddr').text('Work Address:  ' + dataWorkAddress);
-						    	$('#modalUserExperience').text('Experience:  ' + dataExperience);
-						    	$('#modalUserCurrentSalary').text('Current Salary:  ' + dataCurrentSalary);
-
-
+		if (jsondata["business_photo"]){
+			document.getElementById("modalUserImage").src = "/static/profile_pics/" + jsondata["business_photo"];
+		}
+		
+		if (jsondata["business_name"]){
+			document.querySelector("#modalUserName").innerHTML = ("Name:  " + jsondata["business_name"]);
+		}
+		
+		if (jsondata["business_email"]){
+			document.querySelector("#modalUserEmail").innerHTML = ("Email:  " + jsondata["business_email"]);
+		}
+		if (jsondata["selected_units"]){
+			document.querySelector("#modalUserUnits").innerHTML = ("Selected Units:  " + jsondata["selected_units"]);
+		}
+		if (jsondata["business_phone"]){
+			document.querySelector("#modalUserPhone").innerHTML = ("Phone:  " + jsondata["business_phone"]);
+		}
+		if (jsondata["business_about"]){
+			document.querySelector("#modalUserAbout").innerHTML = ("About:  " + jsondata["business_about"]);
+		}
+		if (jsondata["business_address"]){
+			document.querySelector("#modalUserHomeAddr").innerHTML = ("Address:  " + jsondata["business_address"]);
+		}
+		if (jsondata["business_website"]){
+			document.querySelector("#modalUserWebsite").innerHTML = ("Website:  " + jsondata["business_website"]);
+		}
+		if (jsondata["business_facebook"]){
+			document.querySelector("#modalUserFacebook").innerHTML = ("Facebook:  " + jsondata["business_facebook"]);
+		}
+		if (jsondata["business_linkedin"]){
+			document.querySelector("#modalUserHomeAddr").innerHTML = ("Linkedin:  " + jsondata["business_linkedin"]);
+		}
+		if (jsondata["business_twitter"]){
+			document.querySelector("#modalUserHomeAddr").innerHTML = ("Twitter:  " + jsondata["business_twitter"]);
+		}
 
 
 						    }

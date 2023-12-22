@@ -26,115 +26,13 @@
                 title="close" onclick="this.parentElement.style.display='none'">
             </button>
         </div>
+
+        {%else%}
+
+        <p class="fw-semibold fs-3 text-center mt-5">You don't have any messages </p>
+
           {% endfor %}
             
-          {# 
-            <div class="accordion mx-lg-5 bg-white rounded-5 py-4 shadow-lg m-3" style="display: flex;">
-                <div class="accordion-item ms-lg-5 border-0 outline-0 w-100">
-                    <h2 class="accordion-header">
-                        <p class="accordion-button collapsed fs-4 bg-transparent mb-0" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" style="font-variant: small-caps;">
-                            Josh's Confectionery
-                        </p>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <section class="container text-dark">
-                                <h6>Who we are</h6>
-                                <p>
-                                    We love making delicious snacks that will make your taste buds sing. We use only
-                                    the
-                                    finest ingredients and
-                                    time-tested
-                                    recipes to create our mouthwatering chin chin and other treats.
-                                </p>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="me-lg-5 me-2 btn-close fs-2 h-50" style="margin-top: 1.35rem;"
-                    title="close" onclick="this.parentElement.style.display='none'">
-                </button>
-            </div>
-            <div class="accordion mx-lg-5 bg-white rounded-5 py-4 shadow-lg m-3" style="display: flex;">
-                <div class="accordion-item ms-lg-5 border-0 outline-0 w-100">
-                    <h2 class="accordion-header">
-                        <p class="accordion-button collapsed fs-4 bg-transparent mb-0" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" style="font-variant: small-caps;">
-                            Julie's Confectionery
-                        </p>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <section class="container text-dark">
-                                <h6>Who we are</h6>
-                                <p>
-                                    We love making delicious snacks that will make your taste buds sing. We use only
-                                    the
-                                    finest ingredients and
-                                    time-tested
-                                    recipes to create our mouthwatering chin chin and other treats.
-                                </p>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="me-lg-5 me-2 btn-close fs-2 h-50" style="margin-top: 1.35rem;"
-                    title="close" onclick="this.parentElement.style.display='none'">
-                </button>
-            </div> #}
         </div>
 
         {% endblock content_body %}
-
-        {#
-    </div>
-
-
-
-
-
-    <script>
-        // TOGGLER
-        let btn = document.querySelector('#btn')
-        let sidebar = document.querySelector('.sidebar')
-        let sideDrops = document.querySelectorAll('.sideDrop')
-        let toggleDrops = document.querySelectorAll('.toggleDrop')
-        let smallToggler = document.getElementById('togglerLg');
-        let tog = document.querySelectorAll('.log')
-
-        btn.onclick = function () {
-            sidebar.classList.toggle('active')
-        };
-
-        tog.forEach(function (tog) {
-            tog.onclick = function () {
-                sidebar.classList.add('active');
-            };
-        });
-        //TOGGlER
-
-
-        // TOGGLER AT SM
-        smallToggler.onclick = function () {
-            if (window.innerWidth <= 450) {
-                sidebar.style.display =
-                    (sidebar.style.display === 'none' || sidebar.style.display === '') ? 'block' : 'none';
-                sidebar.classList.add('active');
-            }
-        };
-
-        // TOGGLER AT SM ENDS
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
-
-#}
