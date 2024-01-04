@@ -57,6 +57,10 @@
       .dropdown-menu .dropdown-item {
         color: #fff;
       }
+
+      .header {
+        flex-direction: row-reverse;
+      }
     }
   </style>
 </head>
@@ -88,14 +92,16 @@
           </button>
         </form>
 
-        <button class="btn ms-md-3 mx-0 dropdown" title="Sort by Clusters/Units">
+        <button class="btn ms-md-3 mx-0 dropdown w-auto" title="Sort by Clusters/Units">
           <i class="bi bi-collection-fill text-light dropdown-toggle" data-bs-toggle="dropdown"></i>
-          <ul class="dropdown-menu">
-            
-            {% for unit in units  %}
-            <li><a class="dropdown-item" href="{{url_for('main.business_unit_members', unit_id=unit.id)}}">{{unit.name}}</a></li>
+          <ul class="dropdown-menu py-0">
+
+            {% for unit in units %}
+            <li class="py-1 border-top rounded-top"><a class="dropdown-item rounded-top-0 text-dark text-wrap"
+                href="{{url_for('main.business_unit_members', unit_id=unit.id)}}">{{unit.name}}</a></li>
+
             {% endfor %}
-              
+
           </ul>
         </button>
         <button class="btn ms-md-3 mx-0" title="Facebook icon">

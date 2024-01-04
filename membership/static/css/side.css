@@ -173,10 +173,10 @@ body {
     }
 }
 
-@media screen and (max-width:450.5px) {
+@media screen and (max-width:450.9px) {
     .sidebar {
         position: fixed;
-        top: 75px;
+        top: 150px;
         left: 0;
         height: auto;
         width: 100%;
@@ -225,4 +225,7 @@ body {
         text-align: center;
     }
 
+    .main-content{
+        top: 150px;
+    }
 }

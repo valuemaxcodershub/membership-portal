@@ -18,25 +18,31 @@ button {
 
 #btn-search {
     background: white;
+    box-shadow: none !important;
 }
 
-@media screen and (max-width:550px) {
-    .navbar #search {
-        display: none;
+.navbar {
+    height: 75px;
+}
+
+.navGrid {
+    display: grid !important;
+    grid-template-columns: 1fr auto auto auto;
+}
+
+@media screen and (max-width:450.9px) {
+    .navbar {
+        height: 150px;
     }
 
-    .navbar #search.active {
-        display: block;
+    .navGrid {
+        grid-template-rows: auto auto;
+        row-gap: 10px;
     }
 
-    .navbar #search~#btn-search {
-        color: white;
-        background: transparent;
-    }
-
-    .navbar #search.active~#btn-search {
-        background: white;
-        color: black;
+    .navSearch {
+        grid-row: 2;
+        grid-column: 1/5;
     }
 }
 
