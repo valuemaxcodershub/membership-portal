@@ -45,6 +45,18 @@
     <script src="{{ url_for('static', filename='js/skycons.js') }}"></script>
 
     #}
+
+    <style>
+        @media screen and (max-width:450.9px) {
+            .sidebar {
+                top: 150px;
+            }
+
+            .main-content{
+                top: 150px;
+            }
+        }
+    </style>
 </head>
 
 
@@ -84,7 +96,7 @@
             </a>
 
 
-            
+
             <form class="d-flex rounded mx-lg-2 mx-1 navSearch" method="POST"
                 action="{{url_for('admins.search_members')}}">
                 <input class="form-control rounded-0 rounded-start border-0 w-100" id="search" style="box-shadow: none;"
@@ -99,7 +111,8 @@
                 <div class="dropdown-menu mt-md-3 border-0 outline-0 rounded-bottom-2 me-2 bg-white py-0">
 
                     {% for unit in dashboard_units %}
-                    <a class="text-wrap dropdown-item border-top py-2 rounded-bottom" style="min-width: 0 !important;"
+                    <a class="text-wrap dropdown-item border-top py-1 rounded-bottom"
+                        style="min-width: 0 !important; font-variant: small-caps;"
                         href="{{url_for('admins.manage_unit_members', unit_id=unit.id)}}">
                         {{unit.name}}
                     </a>
@@ -111,7 +124,7 @@
             <button class="rounded-0 rounded-end btn ms-md-3 mx-0" type="submit" id="togglerLg" title="Toggler">
                 <i class="bi bi-list text-light"></i>
             </button>
-      
+
         </div>
     </nav>
 
