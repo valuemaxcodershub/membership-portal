@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# user = "root"
-# password = ""
+user = "root"
+password = ""
 
 # i added a comment
 app = Flask(__name__)
