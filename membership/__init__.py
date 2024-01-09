@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-user = "root"
-password = ""
+# user = "root"
+# password = ""
 
 # i added a comment
 app = Flask(__name__)
@@ -50,4 +50,4 @@ with app.app_context():
         migrate.init_app(app, db, render_as_batch=True)
     else:
         migrate.init_app(app, db)
-        print("About to migrate to db")
+        
