@@ -229,19 +229,22 @@ def suspend_user():
 @admin_role_required
 def delete_user():
   user_id = int(request.form['user_id'])
-  user = User.query.get_or_404(user_id)
-  userprofileupdates = UserUpdate.query.filter_by(userid = user.id).all()
+  # user = User.query.get_or_404(user_id)
+  user= User.query.filter_by(id = user_id)
+  userprofileupdates = UserUpdate.query.filter_by(userid = user[0].id).all()
 
   if userprofileupdates:
     for update in userprofileupdates:
       db.session.delete(update)
   
-  if user.role == "USER":
+  if user[0].role == "USER":
     link = 'admins.manage_members'
   else:
     link = 'admins.manage_admins'
 
-  db.session.delete(user)
+  user.delete()
+  print('Delete done.')
+  # db.session.delete(user)
   db.session.commit()
 
 

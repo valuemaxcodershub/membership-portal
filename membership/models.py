@@ -21,10 +21,12 @@ class UserUpdate(db.Model):
   DISAPPROVED = 'DISAPPROVED'
 
   id = db.Column(db.Integer, primary_key=True)
-  userid = db.Column(db.Integer, db.ForeignKey('user.id')) # modifying the foreign key
+  userid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True, default=None) # modifying the foreign key and making it nullable
   update = db.Column(db.String(8000))
   update_status = db.Column(db.String(60), nullable=False, default = PENDING)
   date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+  update_date = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+  another = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
 
   def __repr__(self):
     
