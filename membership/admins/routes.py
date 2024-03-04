@@ -234,6 +234,7 @@ def delete_user():
   userprofileupdates = UserUpdate.query.filter_by(userid = user[0].id).all()
 
   if userprofileupdates:
+    print('\n\n\nThere are updates \n\n\n')
     for update in userprofileupdates:
       db.session.delete(update)
   

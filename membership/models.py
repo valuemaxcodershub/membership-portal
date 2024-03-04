@@ -9,8 +9,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 user_unit = db.Table("user_unit",
-  db.Column("user_id", db.Integer, db.ForeignKey("user.id")),
-  db.Column("unit_id", db.Integer, db.ForeignKey("unit.id")),
+  db.Column("user_id", db.Integer, db.ForeignKey("user.id", ondelete="CASCADE")),
+  db.Column("unit_id", db.Integer, db.ForeignKey("unit.id"), nullable=True, default=None),
   )
 
 
@@ -25,8 +25,8 @@ class UserUpdate(db.Model):
   update = db.Column(db.String(8000))
   update_status = db.Column(db.String(60), nullable=False, default = PENDING)
   date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-  update_date = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
-  another = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+  # update_date = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+  # test = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
 
   def __repr__(self):
     
@@ -44,7 +44,7 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key=True)
   #db.backref fixes instrumentedlist error --- now fixed
-  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True)
+  units = db.relationship("Unit", secondary=user_unit, backref=db.backref("unit_members", lazy=True), lazy=True, passive_deletes= True)
   username = db.Column(db.String(20), unique=True) # its really not needed.
   password = db.Column(db.String(60), nullable=False, default="12345678")
   date_registered = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -53,7 +53,11 @@ class User(db.Model, UserMixin):
   current_salary = db.Column(db.String(60))
   occupation = db.Column(db.String(60))
   experience = db.Column(db.String(60))
+
+
   # date_of_birth = db.Column(db.String(77), nullable=False, default=datetime.utcnow)
+
+
   business_address = db.Column(db.String(120))
   _is_suspended = db.Column("is_suspended", db.Boolean, nullable=False, default=False)
   has_filled_profile = db.Column(db.Boolean(), default=False)
